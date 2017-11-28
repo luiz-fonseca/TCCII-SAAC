@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETStandard,Version=v2.0/",
-    "signature": "b5d48d69269be713fa05bef03dfa2c81784a98e2"
+    "signature": "cf6a219884bd6790486fb74f830f7ccf137fa624"
   },
   "compilationOptions": {},
   "targets": {
@@ -11,7 +11,7 @@
         "dependencies": {
           "NETStandard.Library": "2.0.0",
           "Prism.DryIoc.Forms": "7.0.0.168-pre",
-          "Xamarin.Forms": "2.4.0.282"
+          "Xamarin.Forms": "2.5.0.91635"
         },
         "runtime": {
           "saac.dll": {}
@@ -64,7 +64,7 @@
         "dependencies": {
           "NETStandard.Library": "2.0.0",
           "Prism.Core": "7.0.0.168-pre",
-          "Xamarin.Forms": "2.4.0.282"
+          "Xamarin.Forms": "2.5.0.91635"
         },
         "runtime": {
           "lib/netstandard1.0/Prism.Forms.dll": {}
@@ -266,7 +266,7 @@
           "System.Runtime": "4.3.0"
         }
       },
-      "Xamarin.Forms/2.4.0.282": {
+      "Xamarin.Forms/2.5.0.91635": {
         "runtime": {
           "lib/netstandard1.0/Xamarin.Forms.Core.dll": {},
           "lib/netstandard1.0/Xamarin.Forms.Platform.dll": {},
@@ -477,12 +477,12 @@
       "path": "system.threading.tasks/4.3.0",
       "hashPath": "system.threading.tasks.4.3.0.nupkg.sha512"
     },
-    "Xamarin.Forms/2.4.0.282": {
+    "Xamarin.Forms/2.5.0.91635": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-XhgWe/d5wwWD2vZe0t0QfE+kJPqzjc01GSuSWjzbX37MNn0JunXO22js3FRSRuDMbXLE3FlwBngazxpFP0x5qA==",
-      "path": "xamarin.forms/2.4.0.282",
-      "hashPath": "xamarin.forms.2.4.0.282.nupkg.sha512"
+      "sha512": "sha512-rsEaYnT21VJBmqg/ucUDtKQ9BNbpVMPquPr8Ss3NZ2Y6K2Q75h4T21j7R1hG5MqLfb7DeiHjBv8UnPW7+EPNcw==",
+      "path": "xamarin.forms/2.5.0.91635",
+      "hashPath": "xamarin.forms.2.5.0.91635.nupkg.sha512"
     }
   }
 }

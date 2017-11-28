@@ -226,6 +226,14 @@ Android.Support.V7.Widget.RecyclerView/IRecyclerListenerImplementor, Xamarin.And
 Android.Support.V7.Widget.RecyclerView+IRecyclerListenerImplementor, Xamarin.Android.Support.v7.RecyclerView, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;mono.android.support.v7.widget.RecyclerView_RecyclerListenerImplementor
 Android.Support.V7.Widget.RecyclerView.IRecyclerListenerImplementor;mono.android.support.v7.widget.RecyclerView_RecyclerListenerImplementor
 mono.android.support.v7.widget.RecyclerView_RecyclerListenerImplementor;mono.android.support.v7.widget.RecyclerView_RecyclerListenerImplementor
+Xamarin.Forms.Platform.Android.PageExtensions/EmbeddedFragment, Xamarin.Forms.Platform.Android;md5b60ffeb829f638581ab2bb9b1a7f4f3f.PageExtensions_EmbeddedFragment
+Xamarin.Forms.Platform.Android.PageExtensions+EmbeddedFragment, Xamarin.Forms.Platform.Android, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null;md5b60ffeb829f638581ab2bb9b1a7f4f3f.PageExtensions_EmbeddedFragment
+Xamarin.Forms.Platform.Android.PageExtensions.EmbeddedFragment;md5b60ffeb829f638581ab2bb9b1a7f4f3f.PageExtensions_EmbeddedFragment
+xamarin.forms.platform.android.PageExtensions_EmbeddedFragment;md5b60ffeb829f638581ab2bb9b1a7f4f3f.PageExtensions_EmbeddedFragment
+Xamarin.Forms.Platform.Android.PageExtensions/EmbeddedSupportFragment, Xamarin.Forms.Platform.Android;md5b60ffeb829f638581ab2bb9b1a7f4f3f.PageExtensions_EmbeddedSupportFragment
+Xamarin.Forms.Platform.Android.PageExtensions+EmbeddedSupportFragment, Xamarin.Forms.Platform.Android, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null;md5b60ffeb829f638581ab2bb9b1a7f4f3f.PageExtensions_EmbeddedSupportFragment
+Xamarin.Forms.Platform.Android.PageExtensions.EmbeddedSupportFragment;md5b60ffeb829f638581ab2bb9b1a7f4f3f.PageExtensions_EmbeddedSupportFragment
+xamarin.forms.platform.android.PageExtensions_EmbeddedSupportFragment;md5b60ffeb829f638581ab2bb9b1a7f4f3f.PageExtensions_EmbeddedSupportFragment
 Xamarin.Forms.Platform.Android.CellAdapter, Xamarin.Forms.Platform.Android;md5b60ffeb829f638581ab2bb9b1a7f4f3f.CellAdapter
 Xamarin.Forms.Platform.Android.CellAdapter, Xamarin.Forms.Platform.Android, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null;md5b60ffeb829f638581ab2bb9b1a7f4f3f.CellAdapter
 Xamarin.Forms.Platform.Android.CellAdapter;md5b60ffeb829f638581ab2bb9b1a7f4f3f.CellAdapter
