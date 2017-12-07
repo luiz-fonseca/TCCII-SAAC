@@ -1,11 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="saac.Views.MainPage"
-             Title="{Binding Title}">
+             x:Class="saac.Views.MainPage">
+    
+    <StackLayout Padding="50,60,60,10">
 
-    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-        <Label Text="Welcome to Xamarin Forms and Prism!" />
+        <Label HorizontalOptions="Center" Font="Large"  Text="SaaC" />
+        <Label HorizontalOptions="Center" Text="Sistema Auxiliar de Apoio ao Concurseiro" />
+
+        <Button VerticalOptions="CenterAndExpand"  Text="Facebook" BackgroundColor="Blue" TextColor="White" Command="{Binding CriarUsuarioCommand}"></Button>
+
     </StackLayout>
 
 </ContentPage>

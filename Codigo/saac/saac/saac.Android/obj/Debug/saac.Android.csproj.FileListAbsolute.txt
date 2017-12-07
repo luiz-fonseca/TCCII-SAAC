@@ -1,10 +1,10 @@
+C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\saac.Android.csprojResolveAssemblyReference.cache
 C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\bin\Debug\saac.Android.dll
 C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\bin\Debug\saac.Android.pdb
 C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\bin\Debug\com.companyname.saac.apk
 C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\bin\Debug\com.companyname.saac-Signed.apk
 C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\bin\Debug\saac.dll
 C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\bin\Debug\saac.pdb
-C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\saac.Android.csprojResolveAssemblyReference.cache
 C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\saac.Android.csproj.CoreCompileInputs.cache
 C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\saac.Android.dll
 C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\saac.Android.pdb

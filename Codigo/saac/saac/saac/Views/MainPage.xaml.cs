@@ -12,6 +12,7 @@ namespace saac.Views
 		public MainPage ()
 		{
 			InitializeComponent ();
-		}
-	}
+
+        }
+    }
 }
