@@ -10,7 +10,7 @@ namespace saac.Services
 {
     public class AzureService
     {
-        private IMobileServiceClient _cliente;
+        protected IMobileServiceClient _cliente;
         private IMobileServiceTable<Usuario> _tableUsuario;
         private IMobileServiceTable<Comentario> _tableComentario;
         private IMobileServiceTable<Grupo> _tableGrupo;
@@ -34,10 +34,10 @@ namespace saac.Services
          
         }
 
-        public async void addUsuario(Usuario user)
+        /*public async void addUsuario(Usuario user)
         {
             await _tableUsuario.InsertAsync(user);
-        }
+        }*/
         
 
         

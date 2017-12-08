@@ -13,41 +13,31 @@ namespace saac.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
-        private AzureService _cliente;
+        private readonly IAzureServiceUser _cliente;
         public Usuario _user;
-
-        private string _ex;
-
-        public string Ex
-        {
-            get { return _ex; }
-            set { SetProperty(ref _ex, value); }
-        }
-
 
         public DelegateCommand CriarUsuarioCommand { get; set; }
 
 
-        public MainPageViewModel(INavigationService navigationService) 
+        public MainPageViewModel(INavigationService navigationService, IAzureServiceUser cliente) 
             : base (navigationService)
         {
-            _cliente = new AzureService();
-            
+            _cliente = cliente;
             CriarUsuarioCommand = new DelegateCommand(CriarUsuario);
+
         }
 
         private void CriarUsuario()
         {
             _user = new Usuario();
-            _user.Id = "ac67";
-            _user.Nome = "Luiz";
+            _user.Id = "5yh";
+            _user.Nome = "Gilon";
             _user.Foto = "Teste";
             _user.DtNasci = new DateTime(25 / 11 / 1991);
             _user.Sexo = true;
             _user.Endereco = "Pedra Mole";
 
-
-            _cliente.addUsuario(_user);
+            _cliente.AddUsuario(_user);
         }
     }
 }

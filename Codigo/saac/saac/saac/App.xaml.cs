@@ -5,6 +5,8 @@ using Prism.DryIoc;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+using saac.Services;
+
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace saac
 {
@@ -30,6 +32,9 @@ namespace saac
         {
             Container.RegisterTypeForNavigation<NavigationPage>();
             Container.RegisterTypeForNavigation<MainPage>();
+
+            Container.Register<IAzureServiceUser,AzureServiceUser>();
+
         }
     }
 }
