@@ -8,3 +8,4 @@ C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac\obj\Debug\netstanda
 C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac\obj\Debug\netstandard2.0\saac.AssemblyInfo.cs
 C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac\obj\Debug\netstandard2.0\saac.dll
 C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac\obj\Debug\netstandard2.0\saac.pdb
+C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac\obj\Debug\netstandard2.0\saac.csprojResolveAssemblyReference.cache

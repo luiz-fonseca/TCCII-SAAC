@@ -3,10 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="saac.Views.MainPage">
     
-    <StackLayout Padding="50,60,60,10">
+    <StackLayout Padding="20,50,20,20">
 
-        <Label HorizontalOptions="Center" Font="Large"  Text="SaaC" />
-        <Label HorizontalOptions="Center" Text="Sistema Auxiliar de Apoio ao Concurseiro" />
+        <Label HorizontalOptions="Center" Font="Large" TextColor="Green" Text="SaaC" />
+        <Label HorizontalOptions="Center" TextColor="Green" Text="Sistema Auxiliar de Apoio ao Concurseiro" />
 
         <Button VerticalOptions="CenterAndExpand"  Text="Facebook" BackgroundColor="Blue" TextColor="White" Command="{Binding CriarUsuarioCommand}"></Button>
 

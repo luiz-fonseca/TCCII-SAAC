@@ -1,10 +1,12 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.WindowsAzure.MobileServices;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace saac.Models
 {
+    [DataTable("TB_GRUPO")]
     public class Grupo
     {
         [JsonProperty(PropertyName = "codGrupo")]
@@ -19,7 +21,8 @@ namespace saac.Models
         [JsonProperty(PropertyName = "categoria")]
         public string Categoria { get; set; }
 
-        [JsonProperty(PropertyName = "foto")]
-        public string Foto { get; set; }
+        [Version]
+        public string Version { get; set; }
+
     }
 }

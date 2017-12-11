@@ -17,6 +17,11 @@ namespace saac.Droid
             base.OnCreate(bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
+
+            //Inicializando o SDK do Azure : Luiz Fonsêca
+            Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
+            //
+
             LoadApplication(new App(new AndroidInitializer()));
         }
     }

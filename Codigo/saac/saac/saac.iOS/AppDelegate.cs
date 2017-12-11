@@ -23,6 +23,10 @@ namespace saac.iOS
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App(new iOSInitializer()));
 
+            //Inicializando o SDK do Azure : Luiz Fonsêca
+            Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
+            //
+
             return base.FinishedLaunching(app, options);
         }
     }

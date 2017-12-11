@@ -4,42 +4,41 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Microsoft.WindowsAzure.MobileServices;
-using saac.Models;
+using saac.Services.Interfaces;
 
 namespace saac.Services
 {
-    public class AzureService
+    public class AzureService<T>: IAzureService<T>
     {
-        protected IMobileServiceClient _cliente;
-        private IMobileServiceTable<Usuario> _tableUsuario;
-        private IMobileServiceTable<Comentario> _tableComentario;
-        private IMobileServiceTable<Grupo> _tableGrupo;
-        private IMobileServiceTable<Publicacao> _tablePublicaco;
+        private IMobileServiceClient _cliente;
+        private IMobileServiceTable<T> _table;
         private const string serviceUri = "http://saac.azurewebsites.net";
-
 
         public AzureService()
         {
             _cliente = new MobileServiceClient(serviceUri);
-            _tableUsuario = _cliente.GetTable<Usuario>();
-           // _tableComentario = _cliente.GetTable<Comentario>();
-            //_tableGrupo = _cliente.GetTable<Grupo>();
-            //_tablePublicaco = _cliente.GetTable<Publicacao>();
+            _table = _cliente.GetTable<T>();
 
         }
 
-        public async Task<IEnumerable<Usuario>> GetUsuario()
+        async void IAzureService<T>.AdicionarTable(T t)
         {
-            return await _tableUsuario.ToEnumerableAsync();
-         
+            await _table.InsertAsync(t);
         }
 
-        /*public async void addUsuario(Usuario user)
+        async void IAzureService<T>.AtualizarTable(T t)
         {
-            await _tableUsuario.InsertAsync(user);
-        }*/
-        
+            await _table.UpdateAsync(t);
+        }
 
-        
+        async void IAzureService<T>.RemoverTable(T t)
+        {
+            await _table.DeleteAsync(t);
+        }
+
+        async Task<IEnumerable<T>> IAzureService<T>.GetTable()
+        {
+            return await _table.ToEnumerableAsync();
+        }
     }
 }

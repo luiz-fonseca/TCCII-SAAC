@@ -6,6 +6,8 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 using saac.Services;
+using saac.Services.Interfaces;
+using saac.Models;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace saac
@@ -25,15 +27,22 @@ namespace saac
         {
             InitializeComponent();
 
+            //página inicial
             await NavigationService.NavigateAsync("MainPage");
         }
 
         protected override void RegisterTypes()
         {
+            //Registrando para a navegação
             Container.RegisterTypeForNavigation<NavigationPage>();
             Container.RegisterTypeForNavigation<MainPage>();
 
-            Container.Register<IAzureServiceUser,AzureServiceUser>();
+            //Registando entre interface e a implemantação
+            Container.Register<IAzureService<Usuario>,AzureService<Usuario>>();
+            Container.Register<IAzureService<Grupo>, AzureService<Grupo>>();
+            Container.Register<IAzureService<Publicacao>, AzureService<Publicacao>>();
+            Container.Register<IAzureService<Comentario>, AzureService<Comentario>>();
+
 
         }
     }
