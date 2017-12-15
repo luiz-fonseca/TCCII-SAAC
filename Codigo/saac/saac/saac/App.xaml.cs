@@ -36,14 +36,14 @@ namespace saac
             //Registrando para a navegação
             Container.RegisterTypeForNavigation<NavigationPage>();
             Container.RegisterTypeForNavigation<MainPage>();
+            Container.RegisterTypeForNavigation<PrincipalPage>();
 
             //Registando entre interface e a implemantação
-            Container.Register<IAzureService<Usuario>,AzureService<Usuario>>();
-            Container.Register<IAzureService<Grupo>, AzureService<Grupo>>();
-            Container.Register<IAzureService<Publicacao>, AzureService<Publicacao>>();
-            Container.Register<IAzureService<Comentario>, AzureService<Comentario>>();
-
-
+            Container.Register<IAzureServiceBase<Usuario>,AzureService<Usuario>>();
+            Container.Register<IAzureServiceBase<Grupo>, AzureService<Grupo>>();
+            Container.Register<IAzureServiceBase<Publicacao>, AzureService<Publicacao>>();
+            Container.Register<IAzureServiceBase<Comentario>, AzureService<Comentario>>();
+            
         }
     }
 }

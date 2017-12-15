@@ -6,7 +6,7 @@ using System.Text;
 
 namespace saac.Models
 {
-    [DataTable("TB_PUBLICACO")]
+    [DataTable("TB_PUBLICACAO")]
     public class Publicacao
     {
         [JsonProperty(PropertyName = "codPublicacao")]

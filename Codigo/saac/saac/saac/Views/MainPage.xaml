@@ -7,7 +7,7 @@
 
         <Label HorizontalOptions="Center" Font="Large" TextColor="Green" Text="SaaC" />
         <Label HorizontalOptions="Center" TextColor="Green" Text="Sistema Auxiliar de Apoio ao Concurseiro" />
-
+        <Label Text="{Binding Ex}"/>
         <Button VerticalOptions="CenterAndExpand"  Text="Facebook" BackgroundColor="Blue" TextColor="White" Command="{Binding CriarUsuarioCommand}"></Button>
 
     </StackLayout>

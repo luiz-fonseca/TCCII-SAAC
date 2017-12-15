@@ -4,13 +4,15 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Microsoft.WindowsAzure.MobileServices;
+using saac.Models;
 using saac.Services.Interfaces;
 
 namespace saac.Services
 {
-    public class AzureService<T>: IAzureService<T>
+    public class AzureService<T> : IAzureServiceBase<T>
     {
-        private IMobileServiceClient _cliente;
+
+        protected IMobileServiceClient _cliente;
         private IMobileServiceTable<T> _table;
         private const string serviceUri = "http://saac.azurewebsites.net";
 
@@ -21,24 +23,31 @@ namespace saac.Services
 
         }
 
-        async void IAzureService<T>.AdicionarTable(T t)
+        async void IAzureServiceBase<T>.AdicionarTable(T t)
         {
             await _table.InsertAsync(t);
         }
 
-        async void IAzureService<T>.AtualizarTable(T t)
+        async void IAzureServiceBase<T>.AtualizarTable(T t)
         {
             await _table.UpdateAsync(t);
         }
 
-        async void IAzureService<T>.RemoverTable(T t)
+        async void IAzureServiceBase<T>.RemoverTable(T t)
         {
             await _table.DeleteAsync(t);
         }
 
-        async Task<IEnumerable<T>> IAzureService<T>.GetTable()
+        async Task<IEnumerable<T>> IAzureServiceBase<T>.GetTable()
         {
             return await _table.ToEnumerableAsync();
         }
+
+        async Task<T> IAzureServiceBase<T>.ExisteResgistro(string id)
+        {  
+           return await _table.LookupAsync(id);
+          
+        } 
+
     }
 }

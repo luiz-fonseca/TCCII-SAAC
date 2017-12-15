@@ -10,4 +10,10 @@
     <PackageReference Include="Prism.DryIoc.Forms" Version="7.0.0.168-pre" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Update="Views\PrincipalPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

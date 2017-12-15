@@ -18,16 +18,6 @@ C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\r
 C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\res\values\styles.xml
 C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\R.cs.flag
 C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\uploadflags.txt
-C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\bin\Debug\FormsViewGroup.dll.mdb
-C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\bin\Debug\saac.Android.dll.mdb
-C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\bin\Debug\Xamarin.Forms.Core.dll.mdb
-C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\bin\Debug\Xamarin.Forms.Platform.Android.dll.mdb
-C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\bin\Debug\Xamarin.Forms.Xaml.dll.mdb
-C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\android\assets\FormsViewGroup.dll.mdb
-C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\android\assets\saac.Android.dll.mdb
-C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\android\assets\Xamarin.Forms.Core.dll.mdb
-C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\android\assets\Xamarin.Forms.Platform.Android.dll.mdb
-C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\android\assets\Xamarin.Forms.Xaml.dll.mdb
 C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\bin\Debug\saac.Android.dll
 bin\Debug\FormsViewGroup.dll.mdb
 bin\Debug\Xamarin.Forms.Core.dll.mdb
