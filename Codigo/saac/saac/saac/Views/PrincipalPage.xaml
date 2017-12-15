@@ -1,15 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:Views="clr-namespace:saac.Views;assembly=saac"
             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
             prism:ViewModelLocator.AutowireViewModel="True"
-            x:Class="saac.Views.PrincipalPage">
-    
+            x:Class="saac.Views.PrincipalPage"
+            Title="Saac">
+
     <TabbedPage.Children>
-        <ContentPage Title="Profile" Icon="Profile.png">
+
+        <Views:MeusGruposPage/>
+
+        <ContentPage Title="Profile">
             <StackLayout Spacing="20" Padding="20"
                          VerticalOptions="Center">
-                <Entry Placeholder="Username"
+                <EntryCell Placeholder="Username"
                        Text="{Binding Username}"/>
                 <Entry Placeholder="Password"
                        Text="{Binding Password}"
@@ -19,10 +24,10 @@
                         Command="{Binding LoginCommand}"/>
             </StackLayout>
         </ContentPage>
-        <ContentPage Title="Settings" Icon="Settings.png">
+        
+        <ContentPage Title="Settings">
             <!-- Settings -->
         </ContentPage>
     </TabbedPage.Children>
-
 
 </TabbedPage>

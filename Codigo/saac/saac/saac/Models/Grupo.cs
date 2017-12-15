@@ -9,8 +9,8 @@ namespace saac.Models
     [DataTable("TB_GRUPO")]
     public class Grupo
     {
-        [JsonProperty(PropertyName = "codGrupo")]
-        public int CodGrupo { get; set; }
+        [JsonProperty(PropertyName = "id")]
+        public string Id { get; set; }
 
         [JsonProperty(PropertyName = "nome")]
         public string Nome { get; set; }

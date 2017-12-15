@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="saac.Views.AdicionarGrupoPage">
+
+    <ContentPage.Content>
+        <StackLayout Spacing="20" Padding="20"
+                         VerticalOptions="Center">
+            <Entry Placeholder="Nome do Grupo"
+                       Text="{Binding Grupos.Nome}"/>
+
+            <Entry  Placeholder="Descrição"
+                       Text="{Binding Grupos.Descricao}"/>
+
+            <Entry  Placeholder="Categoria"
+                       Text="{Binding Grupos.Categoria}"/>
+
+            <Button Text="Salvar" TextColor="White"
+                        BackgroundColor="#77D065"
+                        Command="{Binding SalvarGrupoCommand}"/>
+        </StackLayout>
+
+    </ContentPage.Content>
+
+</ContentPage>

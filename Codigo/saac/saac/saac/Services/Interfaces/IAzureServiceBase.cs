@@ -9,9 +9,9 @@ namespace saac.Services.Interfaces
 {
     public interface IAzureServiceBase<T>
     {
-        void AdicionarTable(T t);
-        void AtualizarTable(T t);
-        void RemoverTable(T t);
+        Task AdicionarTable(T t);
+        Task AtualizarTable(T t);
+        Task RemoverTable(T t);
         Task<IEnumerable<T>> GetTable();
         Task<T> ExisteResgistro(string id);
     }

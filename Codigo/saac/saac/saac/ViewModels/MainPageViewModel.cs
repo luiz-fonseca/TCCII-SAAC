@@ -20,14 +20,6 @@ namespace saac.ViewModels
         private readonly IPageDialogService _dialogService;
         public Usuario _user;
         
-        private string _ex;
-
-        public string Ex
-        {
-            get { return _ex; }
-            set { SetProperty(ref _ex, value); }
-        }
-
 
         public DelegateCommand CriarUsuarioCommand { get; set; }
 
@@ -54,9 +46,8 @@ namespace saac.ViewModels
 
             try
             {
-                var resultado = await _cliente.ExisteResgistro(_user.Id);
-                Ex = resultado.Nome;
-                await _navigationService.NavigateAsync("PrincipalPage");
+                var resultado = await _cliente.ExisteResgistro("Id");
+                await _navigationService.NavigateAsync("NavigationPage/PrincipalPage");
 
                 //var navigationParams = new NavigationParameters();
                 //navigationParams.Add("model", new Contact());
@@ -64,9 +55,9 @@ namespace saac.ViewModels
             }
             catch
             {
-                 _cliente.AdicionarTable(_user);
-
-                await _dialogService.DisplayAlertAsync("Cadastro", "Parabéns!! O seu cadastro foi realizado.", "OK");
+                //await _cliente.AdicionarTable(_user);
+                await _dialogService.DisplayAlertAsync("Cadastro Realizado", "Parabéns!! O seu cadastro foi realizado.", "OK");
+                await _navigationService.NavigateAsync("NavigationPage/PrincipalPage");
 
                 //var navigationParams = new NavigationParameters();
                 //navigationParams.Add("model", _user.Id);

@@ -23,17 +23,17 @@ namespace saac.Services
 
         }
 
-        async void IAzureServiceBase<T>.AdicionarTable(T t)
+        async Task IAzureServiceBase<T>.AdicionarTable(T t)
         {
             await _table.InsertAsync(t);
         }
 
-        async void IAzureServiceBase<T>.AtualizarTable(T t)
+        async Task IAzureServiceBase<T>.AtualizarTable(T t)
         {
             await _table.UpdateAsync(t);
         }
 
-        async void IAzureServiceBase<T>.RemoverTable(T t)
+        async Task IAzureServiceBase<T>.RemoverTable(T t)
         {
             await _table.DeleteAsync(t);
         }
