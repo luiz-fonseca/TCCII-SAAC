@@ -50,10 +50,14 @@ namespace saac.ViewModels
             User.Sexo = true;
             User.Endereco = "Areia Branca";
 
+            var navigationParams = new NavigationParameters();
+            navigationParams.Add("userId", User.Id);
+
+
             try
             {
                 var resultado = await _cliente.ExisteResgistro(User.Id);
-                await _navigationService.NavigateAsync("NavigationPage/PrincipalPage?message=3");
+                await _navigationService.NavigateAsync("NavigationPage/PrincipalPage", navigationParams);
       
             }
             catch

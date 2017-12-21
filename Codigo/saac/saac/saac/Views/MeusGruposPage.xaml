@@ -13,7 +13,7 @@
 
     <ContentPage.Content>
 
-        <Label Text="{Binding Message}"/>
+        <Label Text="{Binding UserId}"/>
         
     </ContentPage.Content>
   

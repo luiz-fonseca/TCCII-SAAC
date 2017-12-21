@@ -45,6 +45,7 @@ namespace saac
             Container.Register<IAzureServiceBase<Grupo>, AzureService<Grupo>>();
             Container.Register<IAzureServiceBase<Publicacao>, AzureService<Publicacao>>();
             Container.Register<IAzureServiceBase<Comentario>, AzureService<Comentario>>();
+            Container.Register<IAzureServiceBase<Auxiliar>, AzureService<Auxiliar>>();
         }
     }
 }

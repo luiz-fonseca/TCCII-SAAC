@@ -13,11 +13,11 @@ namespace saac.ViewModels
 
         protected bool HasInitialized { get; set; }
 
-        private string _message;
-        public string Message
+        private string _userId;
+        public string UserId
         {
-            get { return _message; }
-            set { SetProperty(ref _message, value); }
+            get { return _userId; }
+            set { SetProperty(ref _userId, value); }
         }
 
 
@@ -34,7 +34,10 @@ namespace saac.ViewModels
 
         private async void AdicionarGrupo()
         {
-            await _navigationService.NavigateAsync("AdicionarGrupoPage");
+            var navigationParams = new NavigationParameters();
+            navigationParams.Add("userId", UserId);
+
+            await _navigationService.NavigateAsync("AdicionarGrupoPage", navigationParams);
            
         }
 
@@ -43,7 +46,7 @@ namespace saac.ViewModels
             if (HasInitialized) return;
             HasInitialized = true;
 
-            Message = parameters.GetValue<string>("message");
+            UserId = parameters.GetValue<string>("userId");
         }
 
     }
