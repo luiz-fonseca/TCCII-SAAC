@@ -8,26 +8,11 @@
             Title="Saac">
 
     <TabbedPage.Children>
-
+        
         <Views:MeusGruposPage/>
 
-        <ContentPage Title="Profile">
-            <StackLayout Spacing="20" Padding="20"
-                         VerticalOptions="Center">
-                <EntryCell Placeholder="Username"
-                       Text="{Binding Username}"/>
-                <Entry Placeholder="Password"
-                       Text="{Binding Password}"
-                       IsPassword="true"/>
-                <Button Text="Login" TextColor="White"
-                        BackgroundColor="#77D065"
-                        Command="{Binding LoginCommand}"/>
-            </StackLayout>
-        </ContentPage>
-        
-        <ContentPage Title="Settings">
-            <!-- Settings -->
-        </ContentPage>
+        <Views:AdicionarGrupoPage />
+
     </TabbedPage.Children>
 
 </TabbedPage>

@@ -11,6 +11,16 @@ namespace saac.ViewModels
 	public class MeusGruposPageViewModel : ViewModelBase
     {
 
+        protected bool HasInitialized { get; set; }
+
+        private string _message;
+        public string Message
+        {
+            get { return _message; }
+            set { SetProperty(ref _message, value); }
+        }
+
+
         private readonly INavigationService _navigationService;
        
 
@@ -27,5 +37,14 @@ namespace saac.ViewModels
             await _navigationService.NavigateAsync("AdicionarGrupoPage");
            
         }
+
+        public override void OnNavigatingTo(NavigationParameters parameters)
+        {
+            if (HasInitialized) return;
+            HasInitialized = true;
+
+            Message = parameters.GetValue<string>("message");
+        }
+
     }
 }

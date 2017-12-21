@@ -7,11 +7,13 @@
              Title="Grupos">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Novo Grupo" Order="Primary" Command="{Binding AdicionarGrupoCommand}"/>
+        <ToolbarItem Text="Novo Grupo" Order="Secondary" Command="{Binding AdicionarGrupoCommand}"/>
+        <ToolbarItem Text="Sobre" Order="Secondary" Command="{Binding AdicionarGrupoCommand}"/>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        
+
+        <Label Text="{Binding Message}"/>
         
     </ContentPage.Content>
   

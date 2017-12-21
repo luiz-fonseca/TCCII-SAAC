@@ -12,7 +12,8 @@ namespace saac.ViewModels
 {
 	public class AdicionarGrupoPageViewModel : ViewModelBase
 	{
-        private readonly IAzureServiceBase<Grupo> _cliente;
+
+        private readonly IAzureServiceBase<Grupo> _clienteGrupo;
         private readonly INavigationService _navigationService;
         private readonly IPageDialogService _dialogService;
 
@@ -28,11 +29,11 @@ namespace saac.ViewModels
         public DelegateCommand SalvarGrupoCommand { get; set; }
 
         public AdicionarGrupoPageViewModel(INavigationService navigationService, IPageDialogService dialogService,
-            IAzureServiceBase<Grupo> cliente
+            IAzureServiceBase<Grupo> clienteGrupo
             ):base(navigationService)
         {
-            _cliente = cliente;
-            _grupos = new Grupo();
+            _clienteGrupo = clienteGrupo;
+            Grupos = new Grupo();
 
             _navigationService = navigationService;
             _dialogService = dialogService;
@@ -42,10 +43,12 @@ namespace saac.ViewModels
 
         private async void SalvarGrupo()
         {
-           // await _cliente.AdicionarTable(_grupos);
+            Grupos.Id = Guid.NewGuid().ToString("N");
+
+            await _clienteGrupo.AdicionarTable(Grupos);
 
             await _dialogService.DisplayAlertAsync("Grupo Cadastrado", "Parabéns!! O cadastro" +
-                "do seu grupo foi realizado.", "OK");
+                " do seu grupo foi realizado.", "OK");
             await _navigationService.GoBackAsync();
         }
     }
