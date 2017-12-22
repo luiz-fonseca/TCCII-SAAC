@@ -41,11 +41,12 @@ namespace saac
             Container.RegisterTypeForNavigation<AdicionarGrupoPage>();
 
             //Registando entre interface e a implemantação
-            Container.Register<IAzureServiceBase<Usuario>,AzureService<Usuario>>();
-            Container.Register<IAzureServiceBase<Grupo>, AzureService<Grupo>>();
-            Container.Register<IAzureServiceBase<Publicacao>, AzureService<Publicacao>>();
-            Container.Register<IAzureServiceBase<Comentario>, AzureService<Comentario>>();
-            Container.Register<IAzureServiceBase<Auxiliar>, AzureService<Auxiliar>>();
+            Container.Register<IAzureServiceUser<Usuario>, AzureServiceUser<Usuario>>();
+            Container.Register<IAzureServiceGroup<Grupo>, AzureServiceGroup<Grupo>>();
+            Container.Register<IAzureServiceAux<Auxiliar>, AzureServiceAux<Auxiliar>>();
+            Container.Register<IAzureServicePublication<Publicacao>, AzureServicePublication<Publicacao>>();
+            Container.Register<IAzureServiceComment<Comentario>, AzureServiceComment<Comentario>>();
+
         }
     }
 }

@@ -10,12 +10,14 @@ using saac.Models;
 using saac.Services.Interfaces;
 using saac.Services;
 using Prism.Services;
+using Microsoft.WindowsAzure.MobileServices;
 
 namespace saac.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
-        private readonly IAzureServiceBase<Usuario> _cliente;
+        private readonly IAzureServiceUser<Usuario> _clienteUser;
+
         private readonly INavigationService _navigationService;
         private readonly IPageDialogService _dialogService;
 
@@ -30,10 +32,10 @@ namespace saac.ViewModels
         public DelegateCommand CriarUsuarioCommand { get; set; }
 
 
-        public MainPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IAzureServiceBase<Usuario> cliente) 
+        public MainPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IAzureServiceUser<Usuario> clienteUser) 
             : base (navigationService)
         {
-            _cliente = cliente;
+            _clienteUser = clienteUser;
             _dialogService = dialogService;
             _navigationService = navigationService;
             CriarUsuarioCommand = new DelegateCommand(CriarUsuario);
@@ -43,7 +45,7 @@ namespace saac.ViewModels
         private async void CriarUsuario()
         {
             User = new Usuario();
-            User.Id = "abcdefghi";
+            User.Id = "c";
             User.Nome = "Clovis";
             User.Foto = "ok";
             User.DtNasci = new DateTime(24 / 04 / 1984);
@@ -56,15 +58,15 @@ namespace saac.ViewModels
 
             try
             {
-                var resultado = await _cliente.ExisteResgistro(User.Id);
+                await _clienteUser.ExisteResgistro(User.Id);
                 await _navigationService.NavigateAsync("NavigationPage/PrincipalPage", navigationParams);
       
             }
-            catch
+            catch(MobileServiceInvalidOperationException)
             {
-                await _cliente.AdicionarTable(_user);
+                await _clienteUser.AdicionarTable(User);
                 await _dialogService.DisplayAlertAsync("Cadastro Realizado", "Parabéns!! O seu cadastro foi realizado.", "OK");
-                await _navigationService.NavigateAsync("NavigationPage/PrincipalPage?message=3");
+                await _navigationService.NavigateAsync("NavigationPage/PrincipalPage", navigationParams);
 
             }
 

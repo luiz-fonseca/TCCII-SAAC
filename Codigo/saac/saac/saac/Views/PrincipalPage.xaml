@@ -11,7 +11,13 @@
         
         <Views:MeusGruposPage/>
 
-        <Views:AdicionarGrupoPage />
+        <ContentPage Title="Concursos">
+            
+        </ContentPage>
+
+        <ContentPage Title="Extras">
+
+        </ContentPage>
 
     </TabbedPage.Children>
 

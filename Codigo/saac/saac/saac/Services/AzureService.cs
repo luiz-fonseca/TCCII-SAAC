@@ -11,9 +11,11 @@ namespace saac.Services
 {
     public class AzureService<T> : IAzureServiceBase<T>
     {
-
         protected IMobileServiceClient _cliente;
+
         private IMobileServiceTable<T> _table;
+       
+
         private const string serviceUri = "http://saac.azurewebsites.net";
 
         public AzureService()
@@ -47,7 +49,7 @@ namespace saac.Services
         {  
            return await _table.LookupAsync(id);
           
-        } 
+        }
 
     }
 }

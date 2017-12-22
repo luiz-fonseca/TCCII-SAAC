@@ -12,8 +12,9 @@ namespace saac.ViewModels
 {
 	public class AdicionarGrupoPageViewModel : ViewModelBase
 	{
-        private readonly IAzureServiceBase<Grupo> _clienteGrupo;
-        private readonly IAzureServiceBase<Auxiliar> _clienteAuxiliar;
+        private readonly IAzureServiceGroup<Grupo> _clienteGrupo;
+        private readonly IAzureServiceAux<Auxiliar> _clienteAuxiliar;
+
         private readonly INavigationService _navigationService;
         private readonly IPageDialogService _dialogService;
 
@@ -44,7 +45,7 @@ namespace saac.ViewModels
         public DelegateCommand SalvarGrupoCommand { get; set; }
 
         public AdicionarGrupoPageViewModel(INavigationService navigationService, IPageDialogService dialogService,
-            IAzureServiceBase<Grupo> clienteGrupo, IAzureServiceBase<Auxiliar> clienteAuxiliar
+            IAzureServiceGroup<Grupo> clienteGrupo, IAzureServiceAux<Auxiliar> clienteAuxiliar
             ) :base(navigationService)
         {
             _clienteGrupo = clienteGrupo;
