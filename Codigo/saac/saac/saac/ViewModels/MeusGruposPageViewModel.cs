@@ -2,8 +2,11 @@
 using Prism.Mvvm;
 using Prism.Navigation;
 using Prism.Services;
+using saac.Models;
+using saac.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace saac.ViewModels
@@ -20,19 +23,63 @@ namespace saac.ViewModels
             set { SetProperty(ref _userId, value); }
         }
 
+        private string _message;
+        public string Message
+        {
+            get { return _message; }
+            set { SetProperty(ref _message, value); }
+        }
+
+       public ObservableCollection<Grupo> MeusGroups
+        {
+            get;
+        }
+
+        private readonly IAzureServiceAux<Auxiliar> _clienteAux;
+        private readonly IAzureServiceGroup<Grupo> _clienteGroup;
 
         private readonly INavigationService _navigationService;
        
 
         public DelegateCommand AdicionarGrupoCommand { get; set; }
 
-        public MeusGruposPageViewModel(INavigationService navigationService ):base(navigationService)
+        public MeusGruposPageViewModel(INavigationService navigationService, IAzureServiceAux<Auxiliar> clienteAux, 
+            IAzureServiceGroup<Grupo> clienteGroup) :base(navigationService)
         {
             _navigationService = navigationService;
+            _clienteAux = clienteAux;
+            _clienteGroup = clienteGroup;
+
+            MeusGroups = new ObservableCollection<Grupo>();
+
             AdicionarGrupoCommand = new DelegateCommand(AdicionarGrupo);
         }
 
-        private async void AdicionarGrupo()
+        
+        public async void ExibirMeusGrupos(string id)
+        {
+            try
+            {
+                var aux = await _clienteAux.MeusGrupos(id);
+               var resultado = await _clienteGroup.MeusGrupos(aux);
+
+                MeusGroups.Clear();
+                foreach (var item in resultado)
+                {
+                    MeusGroups.Add(item);
+
+                }
+                
+            }
+            catch
+            {
+               Message = "Você ainda não possui Grupos. Crie um ou Entre em algum";
+            }
+            
+
+        }
+
+        public async void AdicionarGrupo()
         {
             var navigationParams = new NavigationParameters();
             navigationParams.Add("userId", UserId);
@@ -47,6 +94,7 @@ namespace saac.ViewModels
             HasInitialized = true;
 
             UserId = parameters.GetValue<string>("userId");
+            ExibirMeusGrupos(UserId);
         }
 
     }

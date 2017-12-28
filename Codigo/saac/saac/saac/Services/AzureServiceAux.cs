@@ -18,9 +18,16 @@ namespace saac.Services
 
         }
 
-        Task<List<string>> IAzureServiceAux<T>.MeusGrupos(string id)
+        async Task<List<string>> IAzureServiceAux<T>.MeusGrupos(string id)
         {
-            throw new NotImplementedException();
+            List<string> items = new List<string>();
+
+            var query = _tableAux
+                .Where(Auxiliar => Auxiliar.CodUsuario == id)
+                .Select(Auxiliar => Auxiliar.CodGrupo);
+
+            items = await query.ToListAsync();
+            return items;
         }
     }
 }

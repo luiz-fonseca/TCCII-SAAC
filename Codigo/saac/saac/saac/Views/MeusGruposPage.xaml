@@ -13,8 +13,15 @@
 
     <ContentPage.Content>
 
-        <Label Text="{Binding UserId}"/>
-        
+        <ListView ItemsSource="{Binding MeusGroups}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Nome}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+
     </ContentPage.Content>
   
 </ContentPage>

@@ -13,8 +13,7 @@ namespace saac.Services
     {
         protected IMobileServiceClient _cliente;
 
-        private IMobileServiceTable<T> _table;
-       
+        private IMobileServiceTable<T> _table; 
 
         private const string serviceUri = "http://saac.azurewebsites.net";
 
