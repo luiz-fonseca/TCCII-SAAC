@@ -18,7 +18,7 @@ namespace saac.ViewModels
         private readonly INavigationService _navigationService;
         private readonly IPageDialogService _dialogService;
 
-        public Grupo _grupos;
+        private Grupo _grupos;
        
         public Grupo Grupos
         {

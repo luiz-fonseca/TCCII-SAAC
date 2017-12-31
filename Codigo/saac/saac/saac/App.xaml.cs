@@ -39,6 +39,7 @@ namespace saac
             Container.RegisterTypeForNavigation<PrincipalPage>();
             Container.RegisterTypeForNavigation<MeusGruposPage>();
             Container.RegisterTypeForNavigation<AdicionarGrupoPage>();
+            Container.RegisterTypeForNavigation<GrupoSelecionadoPage>();
 
             //Registando entre interface e a implemantação
             Container.Register<IAzureServiceUser<Usuario>, AzureServiceUser<Usuario>>();
@@ -47,6 +48,7 @@ namespace saac
             Container.Register<IAzureServicePublication<Publicacao>, AzureServicePublication<Publicacao>>();
             Container.Register<IAzureServiceComment<Comentario>, AzureServiceComment<Comentario>>();
 
+            
         }
     }
 }

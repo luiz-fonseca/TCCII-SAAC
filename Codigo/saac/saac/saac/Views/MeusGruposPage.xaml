@@ -2,8 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="saac.Views.MeusGruposPage"
+             x:Class="saac.Views.MeusGruposPage"            
              Title="Grupos">
 
     <ContentPage.ToolbarItems>
@@ -12,8 +13,13 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-
         <ListView ItemsSource="{Binding MeusGroups}">
+            <ListView.Behaviors>
+                <behaviors:EventToCommandBehavior   EventName="ItemTapped" 
+                                                    Command="{Binding GrupoSelectedCommand}"
+                                                    EventArgsParameterPath="Item" />
+            </ListView.Behaviors>
+
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextCell Text="{Binding Nome}"/>
@@ -21,7 +27,6 @@
             </ListView.ItemTemplate>
 
         </ListView>
-
     </ContentPage.Content>
-  
+
 </ContentPage>

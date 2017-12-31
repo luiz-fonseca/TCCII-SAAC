@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using Microsoft.WindowsAzure.MobileServices;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using Prism.Services;
@@ -13,7 +14,6 @@ namespace saac.ViewModels
 {
 	public class MeusGruposPageViewModel : ViewModelBase
     {
-
         protected bool HasInitialized { get; set; }
 
         private string _userId;
@@ -30,9 +30,11 @@ namespace saac.ViewModels
             set { SetProperty(ref _message, value); }
         }
 
-       public ObservableCollection<Grupo> MeusGroups
+        private ObservableCollection<Grupo> _meusGroups;
+        public ObservableCollection<Grupo> MeusGroups
         {
-            get;
+            get { return _meusGroups; }
+            set { SetProperty(ref _meusGroups, value); }
         }
 
         private readonly IAzureServiceAux<Auxiliar> _clienteAux;
@@ -40,8 +42,14 @@ namespace saac.ViewModels
 
         private readonly INavigationService _navigationService;
        
-
         public DelegateCommand AdicionarGrupoCommand { get; set; }
+
+
+        private DelegateCommand<Grupo> _grupoSelectedCommand;
+
+        public DelegateCommand<Grupo> GrupoSelectedCommand => 
+            _grupoSelectedCommand != null ? _grupoSelectedCommand : (_grupoSelectedCommand = new DelegateCommand<Grupo>(ItemTapped));
+
 
         public MeusGruposPageViewModel(INavigationService navigationService, IAzureServiceAux<Auxiliar> clienteAux, 
             IAzureServiceGroup<Grupo> clienteGroup) :base(navigationService)
@@ -53,6 +61,7 @@ namespace saac.ViewModels
             MeusGroups = new ObservableCollection<Grupo>();
 
             AdicionarGrupoCommand = new DelegateCommand(AdicionarGrupo);
+
         }
 
         
@@ -60,7 +69,7 @@ namespace saac.ViewModels
         {
             try
             {
-                var aux = await _clienteAux.MeusGrupos(id);
+               var aux = await _clienteAux.MeusGrupos(id);
                var resultado = await _clienteGroup.MeusGrupos(aux);
 
                 MeusGroups.Clear();
@@ -71,11 +80,21 @@ namespace saac.ViewModels
                 }
                 
             }
-            catch
+            catch (MobileServiceInvalidOperationException)
             {
                Message = "Você ainda não possui Grupos. Crie um ou Entre em algum";
+
             }
             
+
+        }
+
+        public async void ItemTapped(Grupo args)
+        {   
+            var navigationParams = new NavigationParameters();
+            navigationParams.Add("grupo", args);
+
+            await  _navigationService.NavigateAsync("GrupoSelecionadoPage", navigationParams);
 
         }
 
@@ -94,7 +113,9 @@ namespace saac.ViewModels
             HasInitialized = true;
 
             UserId = parameters.GetValue<string>("userId");
+
             ExibirMeusGrupos(UserId);
+
         }
 
     }

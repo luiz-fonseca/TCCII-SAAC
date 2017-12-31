@@ -27,6 +27,7 @@ namespace saac.Services
                 .Select(Auxiliar => Auxiliar.CodGrupo);
 
             items = await query.ToListAsync();
+
             return items;
         }
     }
