@@ -10,13 +10,13 @@ namespace saac.Models
     public class Publicacao
     {
         [JsonProperty(PropertyName = "codPublicacao")]
-        public int CodPublicaco { get; set; }
+        public string CodPublicaco { get; set; }
 
         [JsonProperty(PropertyName = "codGrupo")]
-        public int CodGrupo { get; set; }
+        public string CodGrupo { get; set; }
 
         [JsonProperty(PropertyName = "codPessoa")]
-        public int CodPessoa { get; set; }
+        public string CodPessoa { get; set; }
 
         [JsonProperty(PropertyName = "texto")]
         public string Texto { get; set; }

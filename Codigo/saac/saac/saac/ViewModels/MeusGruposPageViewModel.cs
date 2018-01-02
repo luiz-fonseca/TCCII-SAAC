@@ -93,8 +93,9 @@ namespace saac.ViewModels
         {   
             var navigationParams = new NavigationParameters();
             navigationParams.Add("grupo", args);
+            navigationParams.Add("userId", UserId);
 
-            await  _navigationService.NavigateAsync("GrupoSelecionadoPage", navigationParams);
+            await  _navigationService.NavigateAsync("NavigationPage/GrupoSelecionadoPage", navigationParams);
 
         }
 
