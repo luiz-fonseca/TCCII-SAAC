@@ -4,6 +4,7 @@ using saac.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace saac.Services
 {
@@ -14,6 +15,19 @@ namespace saac.Services
         public AzureServicePublication()
         {
             _tablePublication = _cliente.GetTable<Publicacao>();
+
+        }
+
+        async Task<List<Publicacao>> IAzureServicePublication<T>.Publicacoes(string codGrupo)
+        {
+            List<Publicacao> itens = new List<Publicacao>();
+
+            var query = _tablePublication
+                .Where(Publicacao => Publicacao.CodGrupo == codGrupo);
+
+            itens = await query.ToListAsync();
+
+            return itens;
 
         }
     }

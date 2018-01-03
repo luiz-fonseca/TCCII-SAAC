@@ -43,20 +43,29 @@ namespace saac.ViewModels
 
         private readonly INavigationService _navigationService;
 
+        public DelegateCommand SalvarPublicacaoCommand { get; set; }
+
         public GrupoSelecionadoPageViewModel(INavigationService navigationService, IAzureServicePublication<Publicacao> clientePublication) : base(navigationService)
         {
             _navigationService = navigationService;
             _clientePublication = clientePublication;
 
+            SalvarPublicacaoCommand = new DelegateCommand(AdicionarPublicacao);
+
         }
 
         public async void AdicionarPublicacao()
         {
-            Publication.CodPublicaco = Guid.NewGuid().ToString("N");
+            Publication.Id = Guid.NewGuid().ToString("N");
             Publication.CodPessoa = UserId;
             Publication.CodGrupo = Grupos.Id;
 
             await _clientePublication.AdicionarTable(Publication);
+        }
+
+        public async void ExibirPublicacoes()
+        {
+
         }
 
         public override void OnNavigatedTo(NavigationParameters parameters)

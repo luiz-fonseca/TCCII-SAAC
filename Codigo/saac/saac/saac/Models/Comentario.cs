@@ -9,8 +9,8 @@ namespace saac.Models
     [DataTable("TB_COMENTARIO")]
     public class Comentario
     {
-        [JsonProperty(PropertyName = "codComentario")]
-        public int CodComentario { get; set; }
+        [JsonProperty(PropertyName = "id")]
+        public int Id { get; set; }
 
         [JsonProperty(PropertyName = "codPublicacao")]
         public int CodPublicaco { get; set; }
