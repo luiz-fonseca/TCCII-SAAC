@@ -14,10 +14,12 @@
             <Label Text="{Binding Grupos.Categoria}"/>
             <Entry Placeholder="Publicacao"
                        Text="{Binding Publication.Texto}"/>
-            
+
             <Button Text="Salvar" TextColor="White"
                         BackgroundColor="#77D065"
                         Command="{Binding SalvarPublicacaoCommand}"/>
+
+            <Label Text="{Binding Message}"/>
 
             <ListView ItemsSource="{Binding PublicacoesGrupo}">
                 <ListView.Behaviors>

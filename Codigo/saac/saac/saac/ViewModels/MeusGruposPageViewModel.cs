@@ -70,22 +70,28 @@ namespace saac.ViewModels
             try
             {
                var aux = await _clienteAux.MeusGrupos(id);
-               var resultado = await _clienteGroup.MeusGrupos(aux);
-
-                MeusGroups.Clear();
-                foreach (var item in resultado)
+                if (aux.Count == 0)
                 {
-                    MeusGroups.Add(item);
+                    Message = "Você ainda não possui Grupos. Crie um ou Entre em algum";
 
                 }
-                
+                else
+                {
+                    var resultado = await _clienteGroup.MeusGrupos(aux);
+
+                    MeusGroups.Clear();
+                    foreach (var item in resultado)
+                    {
+                        MeusGroups.Add(item);
+
+                    }
+                }
             }
             catch (MobileServiceInvalidOperationException)
             {
-               Message = "Você ainda não possui Grupos. Crie um ou Entre em algum";
+                Message = "Ocorreu algum problema, por favor tente mais tarde";
 
             }
-            
 
         }
 

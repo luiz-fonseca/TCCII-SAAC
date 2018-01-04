@@ -15,8 +15,8 @@ namespace saac.Models
         [JsonProperty(PropertyName = "codGrupo")]
         public string CodGrupo { get; set; }
 
-        [JsonProperty(PropertyName = "codPessoa")]
-        public string CodPessoa { get; set; }
+        [JsonProperty(PropertyName = "codUsuario")]
+        public string CodUsuario { get; set; }
 
         [JsonProperty(PropertyName = "texto")]
         public string Texto { get; set; }

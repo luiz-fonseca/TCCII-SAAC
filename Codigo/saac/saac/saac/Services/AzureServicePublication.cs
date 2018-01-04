@@ -28,7 +28,7 @@ namespace saac.Services
             itens = await query.ToListAsync();
 
             return itens;
-
+            
         }
     }
 }

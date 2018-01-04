@@ -66,6 +66,9 @@ namespace saac.ViewModels
             _navigationService = navigationService;
             _clientePublication = clientePublication;
 
+            Publication = new Publicacao();
+            Grupos = new Grupo();
+
             PublicacoesGrupo = new ObservableCollection<Publicacao>();
 
             SalvarPublicacaoCommand = new DelegateCommand(AdicionarPublicacao);
@@ -75,7 +78,7 @@ namespace saac.ViewModels
         public async void AdicionarPublicacao()
         {
             Publication.Id = Guid.NewGuid().ToString("N");
-            Publication.CodPessoa = UserId;
+            Publication.CodUsuario = UserId;
             Publication.CodGrupo = Grupos.Id;
 
             await _clientePublication.AdicionarTable(Publication);
@@ -84,22 +87,31 @@ namespace saac.ViewModels
 
         public async void ExibirPublicacoes(string codGrupo)
         {
+
             try
             {
                 var resultado = await _clientePublication.Publicacoes(codGrupo);
 
-                PublicacoesGrupo.Clear();
-                foreach (var item in resultado)
+                if (resultado.Count == 0)
                 {
-                    PublicacoesGrupo.Add(item);
+                    Message = "Este grupo ainda não possui nehuma publicação";
+                }
+                else
+                {
+                    PublicacoesGrupo.Clear();
+                    foreach (var item in resultado)
+                    {
+                        PublicacoesGrupo.Add(item);
 
+                    }
                 }
             }
-            catch (MobileServiceInvalidOperationException)
+            catch(MobileServiceInvalidOperationException)
             {
-                Message = "Este grupo ainda não possui publicações";
+                Message = "Ocorreu algum problema, por favor tente mais tarde";
 
             }
+
         }
 
         public async void ItemTapped(Publicacao args)
@@ -108,7 +120,7 @@ namespace saac.ViewModels
             navigationParams.Add("publicacao", args);
             navigationParams.Add("userId", UserId);
 
-            await _navigationService.NavigateAsync("NavigationPage/PublicacaoSelecionadaPage", navigationParams);
+            await _navigationService.NavigateAsync("PublicacaoSelecionadaPage", navigationParams);
 
         }
 

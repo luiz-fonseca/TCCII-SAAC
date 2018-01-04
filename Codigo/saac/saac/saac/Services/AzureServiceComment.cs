@@ -4,6 +4,7 @@ using saac.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace saac.Services
 {
@@ -15,6 +16,18 @@ namespace saac.Services
         {
             _tableComment = _cliente.GetTable<Comentario>();
 
+        }
+
+        async Task<List<Comentario>> IAzureServiceComment<T>.Comentarios(string codPublicacao)
+        {
+            List<Comentario> itens = new List<Comentario>();
+
+            var query = _tableComment
+                .Where(Comentario => Comentario.CodPublicacao == codPublicacao);
+
+            itens = await query.ToListAsync();
+
+            return itens;
         }
     }
 }
