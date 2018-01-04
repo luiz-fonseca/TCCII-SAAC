@@ -1,1 +1,0 @@
-C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.UWP\saac.UWP.csproj;x86

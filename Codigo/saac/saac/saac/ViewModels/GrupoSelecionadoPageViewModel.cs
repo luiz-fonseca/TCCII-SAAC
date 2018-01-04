@@ -1,10 +1,12 @@
-﻿using Prism.Commands;
+﻿using Microsoft.WindowsAzure.MobileServices;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using saac.Models;
 using saac.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace saac.ViewModels
@@ -39,16 +41,32 @@ namespace saac.ViewModels
             set { SetProperty(ref _userId, value); }
         }
 
+        private ObservableCollection<Publicacao> _publicacoesGrupo;
+        public ObservableCollection<Publicacao> PublicacoesGrupo
+        {
+            get { return _publicacoesGrupo; }
+            set { SetProperty(ref _publicacoesGrupo, value); }
+
+        }
+
         private readonly IAzureServicePublication<Publicacao> _clientePublication;
 
         private readonly INavigationService _navigationService;
 
         public DelegateCommand SalvarPublicacaoCommand { get; set; }
 
+        private DelegateCommand<Publicacao> _publicacaoSelectedCommand;
+
+        public DelegateCommand<Publicacao> PublicacaoSelectedCommand =>
+            _publicacaoSelectedCommand != null ? _publicacaoSelectedCommand : (_publicacaoSelectedCommand = new DelegateCommand<Publicacao>(ItemTapped));
+
+
         public GrupoSelecionadoPageViewModel(INavigationService navigationService, IAzureServicePublication<Publicacao> clientePublication) : base(navigationService)
         {
             _navigationService = navigationService;
             _clientePublication = clientePublication;
+
+            PublicacoesGrupo = new ObservableCollection<Publicacao>();
 
             SalvarPublicacaoCommand = new DelegateCommand(AdicionarPublicacao);
 
@@ -61,10 +79,36 @@ namespace saac.ViewModels
             Publication.CodGrupo = Grupos.Id;
 
             await _clientePublication.AdicionarTable(Publication);
+
         }
 
-        public async void ExibirPublicacoes()
+        public async void ExibirPublicacoes(string codGrupo)
         {
+            try
+            {
+                var resultado = await _clientePublication.Publicacoes(codGrupo);
+
+                PublicacoesGrupo.Clear();
+                foreach (var item in resultado)
+                {
+                    PublicacoesGrupo.Add(item);
+
+                }
+            }
+            catch (MobileServiceInvalidOperationException)
+            {
+                Message = "Este grupo ainda não possui publicações";
+
+            }
+        }
+
+        public async void ItemTapped(Publicacao args)
+        {
+            var navigationParams = new NavigationParameters();
+            navigationParams.Add("publicaco", args);
+            navigationParams.Add("userId", UserId);
+
+            await _navigationService.NavigateAsync("NavigationPage/PublicacaoSelecionadaPage", navigationParams);
 
         }
 
@@ -79,8 +123,8 @@ namespace saac.ViewModels
             {
                 UserId = (string)parameters["userId"]; ;
             }
-                
 
+            ExibirPublicacoes(Grupos.Id);
         }
     }
 }
