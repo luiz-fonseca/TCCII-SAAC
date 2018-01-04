@@ -48,7 +48,8 @@ namespace saac
             Container.Register<IAzureServicePublication<Publicacao>, AzureServicePublication<Publicacao>>();
             Container.Register<IAzureServiceComment<Comentario>, AzureServiceComment<Comentario>>();
 
-            
+
+            Container.RegisterTypeForNavigation<PublicacaoSelecionadaPage>();
         }
     }
 }

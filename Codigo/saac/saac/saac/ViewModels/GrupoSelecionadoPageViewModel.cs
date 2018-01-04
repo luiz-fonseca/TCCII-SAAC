@@ -105,7 +105,7 @@ namespace saac.ViewModels
         public async void ItemTapped(Publicacao args)
         {
             var navigationParams = new NavigationParameters();
-            navigationParams.Add("publicaco", args);
+            navigationParams.Add("publicacao", args);
             navigationParams.Add("userId", UserId);
 
             await _navigationService.NavigateAsync("NavigationPage/PublicacaoSelecionadaPage", navigationParams);
