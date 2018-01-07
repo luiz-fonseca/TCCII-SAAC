@@ -8,6 +8,7 @@
 
     <ContentPage.Content>
         <StackLayout>
+            <Label Text="{Binding Nome}"/>
             <Label Text="{Binding Publication.Texto}"/>
             <Entry Placeholder="Comentário"
                        Text="{Binding Comentarios.Texto}"/>

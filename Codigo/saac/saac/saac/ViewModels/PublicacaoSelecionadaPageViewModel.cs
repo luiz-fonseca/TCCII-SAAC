@@ -12,12 +12,19 @@ using System.Linq;
 namespace saac.ViewModels
 {
     public class PublicacaoSelecionadaPageViewModel : ViewModelBase
-    {
+    {  
         private Publicacao _publication;
         public Publicacao Publication
         {
             get { return _publication; }
             set { SetProperty(ref _publication, value); }
+        }
+
+        private string _nome;
+        public string Nome
+        {
+            get { return _nome; }
+            set { SetProperty(ref _nome, value); }
         }
 
         private Comentario _comentarios;
@@ -42,8 +49,8 @@ namespace saac.ViewModels
             set { SetProperty(ref _message, value); }
         }
 
-        private ObservableCollection<Comentario> _comentariosPublication;
-        public ObservableCollection<Comentario> ComentariosPublication
+        private ObservableCollection<object> _comentariosPublication;
+        public ObservableCollection<object> ComentariosPublication
         {
             get { return _comentariosPublication; }
             set { SetProperty(ref _comentariosPublication, value); }
@@ -52,20 +59,23 @@ namespace saac.ViewModels
 
         public DelegateCommand SalvarComentarioCommand { get; set; }
 
+        private readonly IAzureServiceUser<Usuario> _clienteUser;
         private readonly IAzureServiceComment<Comentario> _clienteComment;
 
         private readonly INavigationService _navigationService;
 
-        public PublicacaoSelecionadaPageViewModel(INavigationService navigationService, IAzureServiceComment<Comentario> clienteComment) : base(navigationService)
+        public PublicacaoSelecionadaPageViewModel(INavigationService navigationService, IAzureServiceComment<Comentario> clienteComment,
+                                            IAzureServiceUser<Usuario> clienteUser) : base(navigationService)
         {
             _navigationService = navigationService;
 
             _clienteComment = clienteComment;
+            _clienteUser = clienteUser;
 
             Publication = new Publicacao();
             Comentarios = new Comentario();
-
-            ComentariosPublication = new ObservableCollection<Comentario>();
+   
+            ComentariosPublication = new ObservableCollection<object>();
 
             SalvarComentarioCommand = new DelegateCommand(AdicionarComentario);
 
@@ -84,29 +94,50 @@ namespace saac.ViewModels
 
         public async void Exibircomentario(string codPublicacao)
         {
+            List<string> auxList = new List<string>();
+
             try
             {
-                var resultado = await _clienteComment.Comentarios(codPublicacao);
+                var resulComment = await _clienteComment.Comentarios(codPublicacao);
 
-                if (resultado.Count == 0)
+                if (resulComment.Count != 0)
                 {
-                    Message = "Esta publicacao ainda não possui nehum comentario";
-                }
-                else
-                {
+                    foreach (var item in resulComment)
+                    {
+                        if (!auxList.Contains(item.CodUsuario))
+                        {
+                            auxList.Add(item.CodUsuario);
+
+                        }
+                    }
+
+                    var resulUser = await _clienteUser.Usuarios(auxList);
+
+                    var resultado = resulComment.Join(resulUser, c => c.CodUsuario, u => u.Id,
+                                                        (c, u) => new { c.Id, c.CodPublicacao, c.CodUsuario, c.Texto, u.Nome });
+
                     ComentariosPublication.Clear();
                     foreach (var item in resultado)
                     {
                         ComentariosPublication.Add(item);
 
                     }
+
+
                 }
+                else
+                {
+                    Message = "Esta publicacao ainda não possui nehum comentario";
+
+                }
+
             }
             catch (MobileServiceInvalidOperationException)
             {
                 Message = "Ocorreu algum problema, por favor tente mais tarde";
 
             }
+
         }
 
         public override void OnNavigatedTo(NavigationParameters parameters)
@@ -114,11 +145,19 @@ namespace saac.ViewModels
             if (parameters.ContainsKey("publicacao"))
             {
                 Publication = (Publicacao)parameters["publicacao"];
+
+            }
+
+            if (parameters.ContainsKey("nome"))
+            {
+                Nome = (string)parameters["nome"]; ;
+
             }
 
             if (parameters.ContainsKey("userId"))
             {
                 UserId = (string)parameters["userId"]; ;
+
             }
 
             Exibircomentario(Publication.Id);

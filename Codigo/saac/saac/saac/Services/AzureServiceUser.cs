@@ -18,6 +18,25 @@ namespace saac.Services
 
         }
 
-      
+        async Task<List<Usuario>> IAzureServiceUser<T>.Usuarios(List<string> codUser)
+        {
+            List<Usuario> itens = new List<Usuario>();
+
+            foreach (var item in codUser)
+            {
+                var query = _tableUser
+                .Where(Usuario => Usuario.Id == item);
+
+                var resultado = await query.ToListAsync();
+
+                foreach (var aux in resultado)
+                {
+                    itens.Add(aux);
+                }
+
+            }
+            
+            return itens;
+        }
     }
 }
