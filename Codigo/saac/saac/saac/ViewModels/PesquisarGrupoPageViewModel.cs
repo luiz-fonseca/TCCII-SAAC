@@ -13,6 +13,14 @@ namespace saac.ViewModels
 {
 	public class PesquisarGrupoPageViewModel : ViewModelBase
 	{
+        private int _teste;
+        public int Teste
+        {
+            get { return _teste; }
+            set { SetProperty(ref _teste, value); }
+        }
+
+
         private string _userId;
         public string UserId
         {
@@ -21,12 +29,19 @@ namespace saac.ViewModels
         }
 
         private string _message;
-
         public string Message
         {
             get { return _message; }
             set { _message = value; }
         }
+
+        private string _pesquisar;
+        public string Pesquisar
+        {
+            get { return _pesquisar; }
+            set { SetProperty(ref _pesquisar, value); }
+        }
+
 
 
         private ObservableCollection<Grupo> _groups;
@@ -40,8 +55,9 @@ namespace saac.ViewModels
 
         private readonly INavigationService _navigationService;
 
-        private DelegateCommand<Grupo> _grupoSelectedCommand;
+        public DelegateCommand PesquisarGrupoCommand { get; set; }
 
+        private DelegateCommand<Grupo> _grupoSelectedCommand;
         public DelegateCommand<Grupo> GrupoSelectedCommand =>
             _grupoSelectedCommand != null ? _grupoSelectedCommand : (_grupoSelectedCommand = new DelegateCommand<Grupo>(ItemTapped));
 
@@ -53,7 +69,23 @@ namespace saac.ViewModels
 
             Groups = new ObservableCollection<Grupo>();
 
+            PesquisarGrupoCommand = new DelegateCommand(PesquisarGrupo);
 
+
+        }
+
+        public async void PesquisarGrupo()
+        {
+            var auxList = await _clienteGroup.PesquisarGrupos(Pesquisar);
+
+            Groups.Clear();
+            foreach (var item in auxList)
+            {
+                Groups.Add(item);
+
+            }
+           
+            
         }
 
         public async void ExibirGrupos()

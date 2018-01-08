@@ -2,6 +2,7 @@
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
+using Prism.Services;
 using saac.Models;
 using saac.Services.Interfaces;
 using System;
@@ -25,6 +26,13 @@ namespace saac.ViewModels
         {
             get { return _grupos; }
             set { SetProperty(ref _grupos, value); }
+        }
+
+        public Auxiliar _aux;
+        public Auxiliar Aux
+        {
+            get { return _aux; }
+            set { SetProperty(ref _aux, value); }
         }
 
         private string _message;
@@ -52,30 +60,49 @@ namespace saac.ViewModels
 
         private readonly IAzureServiceUser<Usuario> _clienteUser;
         private readonly IAzureServicePublication<Publicacao> _clientePublication;
+        private readonly IAzureServiceAux<Auxiliar> _clienteAuxiliar;
 
         private readonly INavigationService _navigationService;
+        private readonly IPageDialogService _dialogService;
 
         public DelegateCommand SalvarPublicacaoCommand { get; set; }
+        public DelegateCommand SeguirGrupoCommand { get; set; }
 
         private DelegateCommand<object> _publicacaoSelectedCommand;
-
         public DelegateCommand<object> PublicacaoSelectedCommand =>
             _publicacaoSelectedCommand != null ? _publicacaoSelectedCommand : (_publicacaoSelectedCommand = new DelegateCommand<object>(ItemTapped));
 
 
         public GrupoSelecionadoPageViewModel(INavigationService navigationService, IAzureServicePublication<Publicacao> clientePublication,
-            IAzureServiceUser<Usuario> clienteUser) : base(navigationService)
+            IAzureServiceUser<Usuario> clienteUser, IAzureServiceAux<Auxiliar> clienteAuxiliar, IPageDialogService dialogService) : base(navigationService)
         {
             _navigationService = navigationService;
+            _dialogService = dialogService;
             _clientePublication = clientePublication;
             _clienteUser = clienteUser;
+            _clienteAuxiliar = clienteAuxiliar;
 
             Publication = new Publicacao();
             Grupos = new Grupo();
+            Aux = new Auxiliar();
 
             PublicacoesGrupo = new ObservableCollection<object>();
 
             SalvarPublicacaoCommand = new DelegateCommand(AdicionarPublicacao);
+            SeguirGrupoCommand = new DelegateCommand(SeguirGrupo);
+
+        }
+
+        public async void SeguirGrupo()
+        {
+            Aux.CodGrupo = Grupos.Id;
+            Aux.CodUsuario = UserId;
+            Aux.Adiministrador = false;
+
+            await _clienteAuxiliar.AdicionarTable(Aux);
+
+            await _dialogService.DisplayAlertAsync("Seguindo Grupo", "Parabéns!! você já " +
+               " está seguindo este grupo.", "OK");
 
         }
 

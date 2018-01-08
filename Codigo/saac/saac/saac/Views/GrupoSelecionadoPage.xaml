@@ -12,6 +12,12 @@
             <Label Text="{Binding Grupos.Nome}"/>
             <Label Text="{Binding Grupos.Descricao}"/>
             <Label Text="{Binding Grupos.Categoria}"/>
+
+            <Button Text="Seguir" TextColor="White"
+                        BackgroundColor="#77D065"
+                        Command="{Binding SeguirGrupoCommand}"/>
+
+
             <Entry Placeholder="Publicacao"
                        Text="{Binding Publication.Texto}"/>
 

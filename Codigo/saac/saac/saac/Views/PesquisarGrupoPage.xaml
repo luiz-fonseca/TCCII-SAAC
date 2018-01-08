@@ -8,20 +8,31 @@
              Title="Grupos">
     
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding Groups}">
-            <ListView.Behaviors>
-                <behaviors:EventToCommandBehavior   EventName="ItemTapped" 
-                                                    Command="{Binding GrupoSelectedCommand}"
-                                                    EventArgsParameterPath="Item" />
-            </ListView.Behaviors>
+        <StackLayout>
+            <Entry  Placeholder="Categoria"
+                       Text="{Binding Pesquisar}"/>
 
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextCell Text="{Binding Nome}"/>
-                </DataTemplate>
-            </ListView.ItemTemplate>
+            <Button Text="Pesquisar" TextColor="White"
+                        BackgroundColor="#77D065"
+                        Command="{Binding PesquisarGrupoCommand}"/>
 
-        </ListView>
+            <Label Text="{Binding Teste}"/>
+
+            <ListView ItemsSource="{Binding Groups}">
+                <ListView.Behaviors>
+                    <behaviors:EventToCommandBehavior   EventName="ItemTapped" 
+                                                        Command="{Binding GrupoSelectedCommand}"
+                                                        EventArgsParameterPath="Item" />
+                </ListView.Behaviors>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Nome}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+        </StackLayout>
     </ContentPage.Content>
   
 </ContentPage>

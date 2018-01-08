@@ -38,5 +38,18 @@ namespace saac.Services
 
             return items;
         }
+
+        async Task<List<Grupo>> IAzureServiceGroup<T>.PesquisarGrupos(string nomeGrupo)
+        {
+            var itens = new List<Grupo>();
+
+            var query = _tableGroup
+                .Where(Grupo => Grupo.Nome == nomeGrupo);
+
+            itens = await query.ToListAsync();
+
+            return itens;
+
+        }
     }
 }
