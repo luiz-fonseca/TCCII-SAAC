@@ -8,8 +8,8 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="{Binding Nome}"/>
-            <Label Text="{Binding Publication.Texto}"/>
+            <Label TextColor="Green" Text="{Binding Nome}"/>
+            <Label Font="Medium" Text="{Binding Publication.Texto}"/>
             <Entry Placeholder="Comentário"
                        Text="{Binding Comentarios.Texto}"/>
 
@@ -22,7 +22,12 @@
             <ListView ItemsSource="{Binding ComentariosPublication}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding Texto}"/>
+                        <ViewCell>
+                            <StackLayout Padding="10">
+                                <Label TextColor="Green" Text="{Binding Nome}"/>
+                                <Label Font="Small" Text="{Binding Texto}"/>
+                            </StackLayout>
+                        </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
 

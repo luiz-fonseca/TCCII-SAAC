@@ -9,14 +9,12 @@
     
     <ContentPage.Content>
         <StackLayout>
-            <Entry  Placeholder="Categoria"
+            <Entry  Placeholder="Grupos"
                        Text="{Binding Pesquisar}"/>
 
             <Button Text="Pesquisar" TextColor="White"
                         BackgroundColor="#77D065"
                         Command="{Binding PesquisarGrupoCommand}"/>
-
-            <Label Text="{Binding Teste}"/>
 
             <ListView ItemsSource="{Binding Groups}">
                 <ListView.Behaviors>
@@ -27,7 +25,14 @@
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding Nome}"/>
+                        <ViewCell>
+                            <StackLayout Padding="10">
+                                <Label Font="Small" TextColor="Green" Text="{Binding Nome}"/>
+                                <Label Text="{Binding Descricao}"/>
+                                <Label TextColor="Green" Text="{Binding Categoria}"/>
+
+                            </StackLayout>
+                        </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
 

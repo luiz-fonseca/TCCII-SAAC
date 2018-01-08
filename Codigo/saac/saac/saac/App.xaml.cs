@@ -29,6 +29,7 @@ namespace saac
 
             //página inicial
             await NavigationService.NavigateAsync("MainPage");
+
         }
 
         protected override void RegisterTypes()

@@ -9,9 +9,9 @@
     
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="{Binding Grupos.Nome}"/>
+            <Label Font="Medium" TextColor="Green" Text="{Binding Grupos.Nome}"/>
             <Label Text="{Binding Grupos.Descricao}"/>
-            <Label Text="{Binding Grupos.Categoria}"/>
+            <Label TextColor="Green" Text="{Binding Grupos.Categoria}"/>
 
             <Button Text="Seguir" TextColor="White"
                         BackgroundColor="#77D065"
@@ -36,7 +36,12 @@
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding Texto}"/>
+                        <ViewCell>
+                            <StackLayout Padding="10">
+                                <Label TextColor="Green" Text="{Binding Nome}"/>
+                                <Label Font="Small" Text="{Binding Texto}"/>
+                            </StackLayout>
+                        </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
 

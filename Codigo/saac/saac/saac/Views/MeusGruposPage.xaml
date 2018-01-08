@@ -14,20 +14,29 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding MeusGroups}">
-            <ListView.Behaviors>
-                <behaviors:EventToCommandBehavior   EventName="ItemTapped" 
-                                                    Command="{Binding GrupoSelectedCommand}"
-                                                    EventArgsParameterPath="Item" />
-            </ListView.Behaviors>
+        <StackLayout>
+            <ListView ItemsSource="{Binding MeusGroups}">
+                <ListView.Behaviors>
+                    <behaviors:EventToCommandBehavior   EventName="ItemTapped" 
+                                                        Command="{Binding GrupoSelectedCommand}"
+                                                        EventArgsParameterPath="Item" />
+                </ListView.Behaviors>
 
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextCell Text="{Binding Nome}"/>
-                </DataTemplate>
-            </ListView.ItemTemplate>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10">
+                                <Label Font="Small" TextColor="Green" Text="{Binding Nome}"/>
+                                <Label Text="{Binding Descricao}"/>
+                                <Label TextColor="Green" Text="{Binding Categoria}"/>
 
-        </ListView>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+        </StackLayout>
     </ContentPage.Content>
 
 </ContentPage>
