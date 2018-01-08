@@ -43,6 +43,7 @@ namespace saac.ViewModels
         private readonly INavigationService _navigationService;
        
         public DelegateCommand AdicionarGrupoCommand { get; set; }
+        public DelegateCommand PesquisarGrupoCommand { get; set; }
 
 
         private DelegateCommand<Grupo> _grupoSelectedCommand;
@@ -61,6 +62,7 @@ namespace saac.ViewModels
             MeusGroups = new ObservableCollection<Grupo>();
 
             AdicionarGrupoCommand = new DelegateCommand(AdicionarGrupo);
+            PesquisarGrupoCommand = new DelegateCommand(PesquisarGrupo);
 
         }
 
@@ -112,6 +114,15 @@ namespace saac.ViewModels
 
             await _navigationService.NavigateAsync("AdicionarGrupoPage", navigationParams);
            
+        }
+
+        public async void PesquisarGrupo()
+        {
+            var navigationParams = new NavigationParameters();
+            navigationParams.Add("userId", UserId);
+
+            await _navigationService.NavigateAsync("NavigationPage/PesquisarGrupoPage", navigationParams);
+
         }
 
         public override void OnNavigatingTo(NavigationParameters parameters)

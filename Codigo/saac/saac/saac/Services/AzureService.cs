@@ -39,9 +39,9 @@ namespace saac.Services
             await _table.DeleteAsync(t);
         }
 
-        async Task<IEnumerable<T>> IAzureServiceBase<T>.GetTable()
+        async Task<List<T>> IAzureServiceBase<T>.GetTable()
         {
-            return await _table.ToEnumerableAsync();
+            return await _table.ToListAsync();
         }
 
         async Task<T> IAzureServiceBase<T>.ExisteResgistro(string id)

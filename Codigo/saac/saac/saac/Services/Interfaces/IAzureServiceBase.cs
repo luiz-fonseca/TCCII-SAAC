@@ -12,7 +12,7 @@ namespace saac.Services.Interfaces
         Task AdicionarTable(T t);
         Task AtualizarTable(T t);
         Task RemoverTable(T t);
-        Task<IEnumerable<T>> GetTable();
+        Task<List<T>> GetTable();
         Task<T> ExisteResgistro(string id);
     }
 }
