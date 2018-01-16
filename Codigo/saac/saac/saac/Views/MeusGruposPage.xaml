@@ -15,7 +15,10 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <ListView ItemsSource="{Binding MeusGroups}">
+            <ListView ItemsSource="{Binding MeusGroups}" HasUnevenRows="True" 
+                      IsPullToRefreshEnabled="True" RefreshCommand="{Binding AtualizarCommand}"
+                      IsRefreshing="{Binding Atualizando}">
+                
                 <ListView.Behaviors>
                     <behaviors:EventToCommandBehavior   EventName="ItemTapped" 
                                                         Command="{Binding GrupoSelectedCommand}"

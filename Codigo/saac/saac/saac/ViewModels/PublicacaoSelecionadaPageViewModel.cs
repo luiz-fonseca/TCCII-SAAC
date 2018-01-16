@@ -12,7 +12,14 @@ using System.Linq;
 namespace saac.ViewModels
 {
     public class PublicacaoSelecionadaPageViewModel : ViewModelBase
-    {  
+    {
+        private bool _atualizando = false;
+        public bool Atualizando
+        {
+            get { return _atualizando; }
+            set { SetProperty(ref _atualizando, value); }
+        }
+
         private Publicacao _publication;
         public Publicacao Publication
         {
@@ -58,6 +65,7 @@ namespace saac.ViewModels
         }
 
         public DelegateCommand SalvarComentarioCommand { get; set; }
+        public DelegateCommand AtualizarCommand { get; set; }
 
         private readonly IAzureServiceUser<Usuario> _clienteUser;
         private readonly IAzureServiceComment<Comentario> _clienteComment;
@@ -78,6 +86,17 @@ namespace saac.ViewModels
             ComentariosPublication = new ObservableCollection<object>();
 
             SalvarComentarioCommand = new DelegateCommand(AdicionarComentario);
+            AtualizarCommand = new DelegateCommand(AtualizarComentarios);
+
+        }
+
+        public void AtualizarComentarios()
+        {
+            Atualizando = true;
+
+            Exibircomentario(Publication.Id);
+
+            Atualizando = false;
 
         }
 

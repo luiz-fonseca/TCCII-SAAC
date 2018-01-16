@@ -14,6 +14,13 @@ namespace saac.ViewModels
 {
 	public class GrupoSelecionadoPageViewModel : ViewModelBase
     {
+        private bool _atualizando = false;
+        public bool Atualizando
+        {
+            get { return _atualizando; }
+            set { SetProperty(ref _atualizando, value); }
+        }
+
         private Publicacao _publication;
         public Publicacao Publication
         {
@@ -67,6 +74,7 @@ namespace saac.ViewModels
 
         public DelegateCommand SalvarPublicacaoCommand { get; set; }
         public DelegateCommand SeguirGrupoCommand { get; set; }
+        public DelegateCommand AtualizarCommand { get; set; }
 
         private DelegateCommand<object> _publicacaoSelectedCommand;
         public DelegateCommand<object> PublicacaoSelectedCommand =>
@@ -90,19 +98,40 @@ namespace saac.ViewModels
 
             SalvarPublicacaoCommand = new DelegateCommand(AdicionarPublicacao);
             SeguirGrupoCommand = new DelegateCommand(SeguirGrupo);
+            AtualizarCommand = new DelegateCommand(AtualizarPublicacoes);
+
+        }
+
+        public void AtualizarPublicacoes()
+        {
+            Atualizando = true;
+
+            ExibirPublicacoes(Grupos.Id);
+
+            Atualizando = false;
 
         }
 
         public async void SeguirGrupo()
         {
-            Aux.CodGrupo = Grupos.Id;
-            Aux.CodUsuario = UserId;
-            Aux.Adiministrador = false;
+            var resultado = await _clienteAuxiliar.ExisteSeguirAux(Grupos.Id, UserId);
 
-            await _clienteAuxiliar.AdicionarTable(Aux);
+            if (resultado == 0)
+            {
+                Aux.CodGrupo = Grupos.Id;
+                Aux.CodUsuario = UserId;
+                Aux.Adiministrador = false;
 
-            await _dialogService.DisplayAlertAsync("Seguindo Grupo", "Parabéns!! você já " +
-               " está seguindo este grupo.", "OK");
+                await _clienteAuxiliar.AdicionarTable(Aux);
+
+                await _dialogService.DisplayAlertAsync("Seguindo Grupo", "Parabéns!! você já " +
+                   " está seguindo este grupo.", "OK");
+
+            }
+            else
+            {
+                await _dialogService.DisplayAlertAsync("Seguindo Grupo", "Você já segue este grupo","Ok");
+            }   
 
         }
 

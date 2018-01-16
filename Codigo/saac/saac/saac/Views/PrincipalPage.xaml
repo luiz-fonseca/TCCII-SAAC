@@ -5,8 +5,7 @@
             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
             prism:ViewModelLocator.AutowireViewModel="True"
             x:Class="saac.Views.PrincipalPage"
-            Title="Saac"
-            BarBackgroundColor="Green">
+            Title="Saac">
 
     <TabbedPage.Children>
 

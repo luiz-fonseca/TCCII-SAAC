@@ -9,12 +9,21 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace saac.ViewModels
 {
 	public class MeusGruposPageViewModel : ViewModelBase
     {
         protected bool HasInitialized { get; set; }
+
+        private bool _atualizando = false;
+        public bool Atualizando
+        {
+            get { return _atualizando; }
+            set { SetProperty(ref _atualizando, value); }
+        }
+
 
         private string _userId;
         public string UserId
@@ -44,6 +53,7 @@ namespace saac.ViewModels
        
         public DelegateCommand AdicionarGrupoCommand { get; set; }
         public DelegateCommand PesquisarGrupoCommand { get; set; }
+        public DelegateCommand AtualizarCommand { get; set; }
 
 
         private DelegateCommand<Grupo> _grupoSelectedCommand;
@@ -63,10 +73,20 @@ namespace saac.ViewModels
 
             AdicionarGrupoCommand = new DelegateCommand(AdicionarGrupo);
             PesquisarGrupoCommand = new DelegateCommand(PesquisarGrupo);
+            AtualizarCommand = new DelegateCommand(AtualizarGrupos);
 
         }
 
-        
+        public void AtualizarGrupos()
+        {
+            Atualizando = true;
+
+            ExibirMeusGrupos(UserId);
+
+            Atualizando = false;
+
+        }
+
         public async void ExibirMeusGrupos(string id)
         {
             try
@@ -103,7 +123,7 @@ namespace saac.ViewModels
             navigationParams.Add("grupo", args);
             navigationParams.Add("userId", UserId);
 
-            await  _navigationService.NavigateAsync("NavigationPage/GrupoSelecionadoPage", navigationParams);
+            await  _navigationService.NavigateAsync("GrupoSelecionadoPage", navigationParams, useModalNavigation: false);
 
         }
 
@@ -112,7 +132,7 @@ namespace saac.ViewModels
             var navigationParams = new NavigationParameters();
             navigationParams.Add("userId", UserId);
 
-            await _navigationService.NavigateAsync("AdicionarGrupoPage", navigationParams);
+            await _navigationService.NavigateAsync("AdicionarGrupoPage", navigationParams, useModalNavigation: false);
            
         }
 
@@ -121,7 +141,7 @@ namespace saac.ViewModels
             var navigationParams = new NavigationParameters();
             navigationParams.Add("userId", UserId);
 
-            await _navigationService.NavigateAsync("NavigationPage/PesquisarGrupoPage", navigationParams);
+            await _navigationService.NavigateAsync("PesquisarGrupoPage", navigationParams, useModalNavigation: false);
 
         }
 

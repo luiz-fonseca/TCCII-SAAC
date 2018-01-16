@@ -16,7 +16,10 @@
                         BackgroundColor="#77D065"
                         Command="{Binding PesquisarGrupoCommand}"/>
 
-            <ListView ItemsSource="{Binding Groups}">
+            <ListView ItemsSource="{Binding Groups}" HasUnevenRows="True"
+                      IsPullToRefreshEnabled="True" RefreshCommand="{Binding AtualizarCommand}"
+                      IsRefreshing="{Binding Atualizando}">
+                
                 <ListView.Behaviors>
                     <behaviors:EventToCommandBehavior   EventName="ItemTapped" 
                                                         Command="{Binding GrupoSelectedCommand}"

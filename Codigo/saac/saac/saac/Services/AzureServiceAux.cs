@@ -18,6 +18,17 @@ namespace saac.Services
 
         }
 
+        async Task<int> IAzureServiceAux<T>.ExisteSeguirAux(string idGrupo, string idUser)
+        {
+            var query = _tableAux
+                .Where(Auxiliar => Auxiliar.CodGrupo == idGrupo && Auxiliar.CodUsuario == idUser);
+
+            var aux = await query.ToListAsync();
+            int resultado = aux.Count;
+
+            return resultado;
+        }
+
         async Task<List<string>> IAzureServiceAux<T>.MeusGrupos(string id)
         {
             List<string> items = new List<string>();

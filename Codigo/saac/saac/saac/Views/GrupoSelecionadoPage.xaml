@@ -13,9 +13,7 @@
             <Label Text="{Binding Grupos.Descricao}"/>
             <Label TextColor="Green" Text="{Binding Grupos.Categoria}"/>
 
-            <Button Text="Seguir" TextColor="White"
-                        BackgroundColor="#77D065"
-                        Command="{Binding SeguirGrupoCommand}"/>
+            <Button Text="Seguir" Command="{Binding SeguirGrupoCommand}"/>
 
 
             <Entry Placeholder="Publicacao"
@@ -27,7 +25,10 @@
 
             <Label Text="{Binding Message}"/>
 
-            <ListView ItemsSource="{Binding PublicacoesGrupo}">
+            <ListView ItemsSource="{Binding PublicacoesGrupo}" HasUnevenRows="True"
+                      IsPullToRefreshEnabled="True" RefreshCommand="{Binding AtualizarCommand}"
+                      IsRefreshing="{Binding Atualizando}">
+                
                 <ListView.Behaviors>
                     <behaviors:EventToCommandBehavior   EventName="ItemTapped" 
                                                     Command="{Binding PublicacaoSelectedCommand}"

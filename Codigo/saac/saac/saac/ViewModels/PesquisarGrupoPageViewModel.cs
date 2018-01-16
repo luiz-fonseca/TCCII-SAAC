@@ -13,11 +13,11 @@ namespace saac.ViewModels
 {
 	public class PesquisarGrupoPageViewModel : ViewModelBase
 	{
-        private int _teste;
-        public int Teste
+        private bool _atualizando = false;
+        public bool Atualizando
         {
-            get { return _teste; }
-            set { SetProperty(ref _teste, value); }
+            get { return _atualizando; }
+            set { SetProperty(ref _atualizando, value); }
         }
 
 
@@ -56,6 +56,7 @@ namespace saac.ViewModels
         private readonly INavigationService _navigationService;
 
         public DelegateCommand PesquisarGrupoCommand { get; set; }
+        public DelegateCommand AtualizarCommand { get; set; }
 
         private DelegateCommand<Grupo> _grupoSelectedCommand;
         public DelegateCommand<Grupo> GrupoSelectedCommand =>
@@ -70,7 +71,17 @@ namespace saac.ViewModels
             Groups = new ObservableCollection<Grupo>();
 
             PesquisarGrupoCommand = new DelegateCommand(PesquisarGrupo);
+            AtualizarCommand = new DelegateCommand(AtualizarGrupos);
 
+        }
+
+        public void AtualizarGrupos()
+        {
+            Atualizando = true;
+
+            ExibirGrupos();
+
+            Atualizando = false;
 
         }
 

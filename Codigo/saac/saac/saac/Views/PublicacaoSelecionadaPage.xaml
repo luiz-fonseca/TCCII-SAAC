@@ -7,19 +7,16 @@
              Title="Comentarios">
 
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Padding="10">
             <Label TextColor="Green" Text="{Binding Nome}"/>
             <Label Font="Medium" Text="{Binding Publication.Texto}"/>
-            <Entry Placeholder="Comentário"
-                       Text="{Binding Comentarios.Texto}"/>
-
-            <Button Text="Salvar" TextColor="White"
-                        BackgroundColor="#77D065"
-                        Command="{Binding SalvarComentarioCommand}"/>
-
+            
             <Label Text="{Binding Message}"/>
 
-            <ListView ItemsSource="{Binding ComentariosPublication}">
+            <ListView ItemsSource="{Binding ComentariosPublication}" HasUnevenRows="True"
+                      IsPullToRefreshEnabled="True" RefreshCommand="{Binding AtualizarCommand}"
+                      IsRefreshing="{Binding Atualizando}">
+                
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -32,6 +29,14 @@
                 </ListView.ItemTemplate>
 
             </ListView>
+
+            <Entry VerticalOptions="End"  Placeholder="Comentário"
+                       Text="{Binding Comentarios.Texto}"/>
+
+            <Button VerticalOptions="End" Text="Salvar" TextColor="White"
+                        BackgroundColor="#77D065"
+                        Command="{Binding SalvarComentarioCommand}"/>
+
 
         </StackLayout>
 
