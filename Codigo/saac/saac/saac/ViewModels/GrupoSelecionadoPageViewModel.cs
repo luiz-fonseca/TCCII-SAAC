@@ -86,6 +86,7 @@ namespace saac.ViewModels
         {
             _navigationService = navigationService;
             _dialogService = dialogService;
+
             _clientePublication = clientePublication;
             _clienteUser = clienteUser;
             _clienteAuxiliar = clienteAuxiliar;
@@ -130,7 +131,16 @@ namespace saac.ViewModels
             }
             else
             {
-                await _dialogService.DisplayAlertAsync("Seguindo Grupo", "Você já segue este grupo","Ok");
+                var resulSeguir = await _dialogService.DisplayAlertAsync("Seguindo Grupo", "Deseja dixar de seguir este grupo?", " Sim ", " Não ");
+                if (resulSeguir) 
+                {
+                    var resultadoAux = await _clienteAuxiliar.GetAuxiliar(Grupos.Id, UserId);
+
+                    await _clienteAuxiliar.RemoverTable(resultadoAux);
+
+                    await _dialogService.DisplayAlertAsync("Seguindo Grupo", "Você deixou de seguir este grupo", "OK");
+
+                }
             }   
 
         }

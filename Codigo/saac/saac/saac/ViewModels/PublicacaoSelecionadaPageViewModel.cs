@@ -2,6 +2,7 @@
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
+using Prism.Services;
 using saac.Models;
 using saac.Services.Interfaces;
 using System;
@@ -66,19 +67,30 @@ namespace saac.ViewModels
 
         public DelegateCommand SalvarComentarioCommand { get; set; }
         public DelegateCommand AtualizarCommand { get; set; }
+        public DelegateCommand ExcluirPublicacaoCommand { get; set; }
+
+        private DelegateCommand<object> _comentarioSelectedCommand;
+        public DelegateCommand<object> ComentarioSelectedCommand =>
+            _comentarioSelectedCommand != null ? _comentarioSelectedCommand : (_comentarioSelectedCommand = new DelegateCommand<object>(ItemTapped));
+
 
         private readonly IAzureServiceUser<Usuario> _clienteUser;
+        private readonly IAzureServicePublication<Publicacao> _clientePublication;
         private readonly IAzureServiceComment<Comentario> _clienteComment;
 
         private readonly INavigationService _navigationService;
+        private readonly IPageDialogService _dialogService;
 
         public PublicacaoSelecionadaPageViewModel(INavigationService navigationService, IAzureServiceComment<Comentario> clienteComment,
-                                            IAzureServiceUser<Usuario> clienteUser) : base(navigationService)
+                                            IAzureServiceUser<Usuario> clienteUser, IAzureServicePublication<Publicacao> clientePublication,
+                                            IPageDialogService dialogService) : base(navigationService)
         {
             _navigationService = navigationService;
+            _dialogService = dialogService;
 
             _clienteComment = clienteComment;
             _clienteUser = clienteUser;
+            _clientePublication = clientePublication;
 
             Publication = new Publicacao();
             Comentarios = new Comentario();
@@ -87,8 +99,29 @@ namespace saac.ViewModels
 
             SalvarComentarioCommand = new DelegateCommand(AdicionarComentario);
             AtualizarCommand = new DelegateCommand(AtualizarComentarios);
+            ExcluirPublicacaoCommand = new DelegateCommand(ExcluirPublicacao);
 
         }
+
+        public async void ItemTapped(object args)
+        {
+            var comment = ConversaoComentario(args);
+
+            var auxResul = await _clienteComment.MeuCometario(comment.Id, UserId);
+            if (auxResul != 0)
+            {
+                var resulComment = await _dialogService.DisplayAlertAsync("Apagar Comentário", "Deseja excluir este cometario?", " Sim ", " Não ");
+
+                if (resulComment)
+                {
+                    ExcluirComentario(comment);
+              
+                }
+            }
+
+             
+        }
+
 
         public void AtualizarComentarios()
         {
@@ -108,6 +141,30 @@ namespace saac.ViewModels
 
             await _clienteComment.AdicionarTable(Comentarios);
 
+
+        }
+
+        public async void ExcluirPublicacao()
+        {
+            var aux = await _clientePublication.MinhaPublicaco(Publication.Id, UserId);
+            if (aux != 0)
+            {
+                foreach (var item in ComentariosPublication)
+                {
+                    var comment = ConversaoComentario(item);
+                    ExcluirComentario(comment);
+
+                }
+
+                await _clientePublication.RemoverTable(Publication);
+            }
+
+        }
+
+        public async void ExcluirComentario(Comentario args)
+        {
+
+            await _clienteComment.RemoverTable(args);
 
         }
 
@@ -156,6 +213,29 @@ namespace saac.ViewModels
                 Message = "Ocorreu algum problema, por favor tente mais tarde";
 
             }
+
+        }
+
+        public Comentario ConversaoComentario(object args)
+        {
+            var comment = new Comentario();
+  
+            var aux = Conversao(args, new { Id = "", CodPublicacao = "", CodUsuario = "", Texto = "", Nome = "" });
+
+            comment.Id = aux.Id;
+            comment.CodPublicacao = aux.CodPublicacao;
+            comment.CodUsuario = aux.CodUsuario;
+            comment.Texto = aux.Texto;
+
+            return comment;
+
+            
+
+        }
+
+        public T Conversao<T>(object objeto, T tipo)
+        {
+            return (T)objeto;
 
         }
 

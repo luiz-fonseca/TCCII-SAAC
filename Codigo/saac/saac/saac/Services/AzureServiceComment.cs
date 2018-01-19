@@ -29,5 +29,16 @@ namespace saac.Services
 
             return itens;
         }
+
+        async Task<int> IAzureServiceComment<T>.MeuCometario(string codComentario, string codUsuario)
+        {
+            var query = _tableComment
+                 .Where(Comentario => Comentario.Id == codComentario && Comentario.CodUsuario == codUsuario);
+
+            var aux = await query.ToListAsync();
+            var resultado = aux.Count;
+
+            return resultado;
+        }
     }
 }

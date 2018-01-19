@@ -18,6 +18,17 @@ namespace saac.Services
 
         }
 
+        async Task<int> IAzureServicePublication<T>.MinhaPublicaco(string codPublicao, string CodUsuario)
+        {
+            var query = _tablePublication
+                .Where(Publicacao => Publicacao.Id == codPublicao && Publicacao.CodUsuario == CodUsuario);
+
+            var aux = await query.ToListAsync();
+            var resultado = aux.Count;
+
+            return resultado;
+        }
+
         async Task<List<Publicacao>> IAzureServicePublication<T>.Publicacoes(string codGrupo)
         {
             List<Publicacao> itens = new List<Publicacao>();
