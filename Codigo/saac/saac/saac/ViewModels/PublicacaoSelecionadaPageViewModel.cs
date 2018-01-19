@@ -115,11 +115,13 @@ namespace saac.ViewModels
                 if (resulComment)
                 {
                     ExcluirComentario(comment);
-              
-                }
-            }
 
-             
+                    AtualizarComentarios();
+
+                }
+
+            }
+   
         }
 
 
@@ -141,6 +143,8 @@ namespace saac.ViewModels
 
             await _clienteComment.AdicionarTable(Comentarios);
 
+            AtualizarComentarios();
+
 
         }
 
@@ -149,14 +153,23 @@ namespace saac.ViewModels
             var aux = await _clientePublication.MinhaPublicaco(Publication.Id, UserId);
             if (aux != 0)
             {
-                foreach (var item in ComentariosPublication)
+                var resulPublicacao = await _dialogService.DisplayAlertAsync("Excluir Publicação?", "Se você excluir está publicação," +
+                    " todos os comentários relacionados também serão excluidos. Deseja Continuar?", " Sim ", " Não ");
+
+                if (resulPublicacao)
                 {
-                    var comment = ConversaoComentario(item);
-                    ExcluirComentario(comment);
+                    foreach (var item in ComentariosPublication)
+                    {
+                        var comment = ConversaoComentario(item);
+                        ExcluirComentario(comment);
 
-                }
+                    }
 
-                await _clientePublication.RemoverTable(Publication);
+                    await _clientePublication.RemoverTable(Publication);
+
+                    await _navigationService.GoBackAsync();
+
+                }     
             }
 
         }
@@ -178,6 +191,8 @@ namespace saac.ViewModels
 
                 if (resulComment.Count != 0)
                 {
+                    Message = "";
+
                     foreach (var item in resulComment)
                     {
                         if (!auxList.Contains(item.CodUsuario))
@@ -203,6 +218,7 @@ namespace saac.ViewModels
                 }
                 else
                 {
+                    ComentariosPublication.Clear();
                     Message = "Esta publicacao ainda não possui nehum comentario";
 
                 }

@@ -153,6 +153,8 @@ namespace saac.ViewModels
 
             await _clientePublication.AdicionarTable(Publication);
 
+            AtualizarPublicacoes();
+
         }
 
         public async void ExibirPublicacoes(string codGrupo)
@@ -165,6 +167,8 @@ namespace saac.ViewModels
 
                 if (resulPublication.Count != 0)
                 {
+                    Message = "";
+
                     foreach (var item in resulPublication)
                     {
                         if (!auxList.Contains(item.CodUsuario))

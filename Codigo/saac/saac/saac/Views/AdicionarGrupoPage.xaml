@@ -22,8 +22,6 @@
                         BackgroundColor="#77D065"
                         Command="{Binding SalvarGrupoCommand}"/>
 
-            <Label Text="{Binding UserId}"/>
-
         </StackLayout>
 
     </ContentPage.Content>

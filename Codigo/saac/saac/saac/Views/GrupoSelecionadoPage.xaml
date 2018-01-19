@@ -16,12 +16,14 @@
             <Button Text="Seguir" Command="{Binding SeguirGrupoCommand}"/>
 
 
-            <Entry Placeholder="Publicacao"
+            <Entry Placeholder="Publicação"
                        Text="{Binding Publication.Texto}"/>
 
             <Button Text="Salvar" TextColor="White"
                         BackgroundColor="#77D065"
                         Command="{Binding SalvarPublicacaoCommand}"/>
+
+            <Label Text="Publicações" TextColor="Green"/>
 
             <Label Text="{Binding Message}"/>
 
