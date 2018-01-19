@@ -19,7 +19,6 @@ namespace saac.ViewModels
         private readonly IPageDialogService _dialogService;
 
         private Grupo _grupos;
-       
         public Grupo Grupos
         {
             get { return _grupos; }
@@ -41,6 +40,40 @@ namespace saac.ViewModels
             set { SetProperty(ref _userId, value); }
         }
 
+        private string _nome;
+        public string Nome
+        {
+            get { return _nome; }
+            set
+            {
+                SetProperty(ref _nome, value);
+                SalvarGrupoCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        private string _descricao;
+        public string Descricao
+        {
+            get { return _descricao; }
+            set
+            {
+                SetProperty(ref _descricao, value);
+                SalvarGrupoCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        private string _categoria;
+        public string Categoria
+        {
+            get { return _categoria; }
+            set
+            {
+                SetProperty(ref _categoria, value);
+                SalvarGrupoCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+
 
         public DelegateCommand SalvarGrupoCommand { get; set; }
 
@@ -57,12 +90,22 @@ namespace saac.ViewModels
             _navigationService = navigationService;
             _dialogService = dialogService;
 
-            SalvarGrupoCommand = new DelegateCommand(SalvarGrupo);
+            SalvarGrupoCommand = new DelegateCommand(SalvarGrupo, CondicaoSalvarGrupo);
+        }
+
+        private bool CondicaoSalvarGrupo()
+        {
+            return !string.IsNullOrWhiteSpace(Nome) &&
+                !string.IsNullOrWhiteSpace(Descricao) &&
+                !string.IsNullOrWhiteSpace(Categoria);
         }
 
         private async void SalvarGrupo()
         {
             Grupos.Id = Guid.NewGuid().ToString("N");
+            Grupos.Nome = Nome;
+            Grupos.Descricao = Descricao;
+            Grupos.Categoria = Categoria;
 
             await _clienteGrupo.AdicionarTable(Grupos);
 

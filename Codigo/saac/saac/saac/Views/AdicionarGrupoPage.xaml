@@ -10,13 +10,13 @@
         <StackLayout Spacing="20" Padding="20"
                          VerticalOptions="Center">
             <Entry Placeholder="Nome do Grupo"
-                       Text="{Binding Grupos.Nome}"/>
+                       Text="{Binding Nome}"/>
 
             <Entry  Placeholder="Descrição"
-                       Text="{Binding Grupos.Descricao}"/>
+                       Text="{Binding Descricao}"/>
 
             <Entry  Placeholder="Categoria"
-                       Text="{Binding Grupos.Categoria}"/>
+                       Text="{Binding Categoria}"/>
 
             <Button Text="Salvar" TextColor="White"
                         BackgroundColor="#77D065"

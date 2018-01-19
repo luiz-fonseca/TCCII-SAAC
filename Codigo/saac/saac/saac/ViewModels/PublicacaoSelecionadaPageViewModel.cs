@@ -57,6 +57,17 @@ namespace saac.ViewModels
             set { SetProperty(ref _message, value); }
         }
 
+        private string _texto;
+        public string Texto
+        {
+            get { return _texto; }
+            set
+            {
+                SetProperty(ref _texto, value);
+                SalvarComentarioCommand.RaiseCanExecuteChanged();
+            }
+        }
+
         private ObservableCollection<object> _comentariosPublication;
         public ObservableCollection<object> ComentariosPublication
         {
@@ -97,10 +108,15 @@ namespace saac.ViewModels
    
             ComentariosPublication = new ObservableCollection<object>();
 
-            SalvarComentarioCommand = new DelegateCommand(AdicionarComentario);
+            SalvarComentarioCommand = new DelegateCommand(AdicionarComentario, CondicaoAdicionarComentario);
             AtualizarCommand = new DelegateCommand(AtualizarComentarios);
             ExcluirPublicacaoCommand = new DelegateCommand(ExcluirPublicacao);
 
+        }
+
+        private bool CondicaoAdicionarComentario()
+        {
+            return !string.IsNullOrWhiteSpace(Texto);
         }
 
         public async void ItemTapped(object args)
@@ -140,6 +156,7 @@ namespace saac.ViewModels
             Comentarios.Id = Guid.NewGuid().ToString("N");
             Comentarios.CodUsuario = UserId;
             Comentarios.CodPublicacao = Publication.Id;
+            Comentarios.Texto = Texto;
 
             await _clienteComment.AdicionarTable(Comentarios);
 

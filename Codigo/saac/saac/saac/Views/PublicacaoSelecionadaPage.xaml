@@ -45,7 +45,7 @@
             </ListView>
 
             <Entry VerticalOptions="End"  Placeholder="Comentário"
-                       Text="{Binding Comentarios.Texto}"/>
+                       Text="{Binding Texto}"/>
 
             <Button VerticalOptions="End" Text="Salvar" TextColor="White"
                         BackgroundColor="#77D065"

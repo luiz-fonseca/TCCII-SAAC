@@ -17,7 +17,7 @@
 
 
             <Entry Placeholder="Publicação"
-                       Text="{Binding Publication.Texto}"/>
+                       Text="{Binding Texto}"/>
 
             <Button Text="Salvar" TextColor="White"
                         BackgroundColor="#77D065"

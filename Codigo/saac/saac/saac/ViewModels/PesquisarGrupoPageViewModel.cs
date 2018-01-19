@@ -39,7 +39,11 @@ namespace saac.ViewModels
         public string Pesquisar
         {
             get { return _pesquisar; }
-            set { SetProperty(ref _pesquisar, value); }
+            set
+            {
+                SetProperty(ref _pesquisar, value);
+                PesquisarGrupoCommand.RaiseCanExecuteChanged();
+            }
         }
 
 
@@ -70,8 +74,14 @@ namespace saac.ViewModels
 
             Groups = new ObservableCollection<Grupo>();
 
-            PesquisarGrupoCommand = new DelegateCommand(PesquisarGrupo);
+            PesquisarGrupoCommand = new DelegateCommand(PesquisarGrupo, CondicaoPesquisarGrupo);
             AtualizarCommand = new DelegateCommand(AtualizarGrupos);
+
+        }
+
+        private bool CondicaoPesquisarGrupo()
+        {
+            return !string.IsNullOrWhiteSpace(Pesquisar);
 
         }
 
@@ -137,6 +147,7 @@ namespace saac.ViewModels
             await _navigationService.NavigateAsync("GrupoSelecionadoPage", navigationParams);
 
         }
+
 
         public override void OnNavigatedTo(NavigationParameters parameters)
         {

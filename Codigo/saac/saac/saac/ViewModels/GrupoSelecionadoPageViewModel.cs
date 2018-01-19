@@ -56,6 +56,18 @@ namespace saac.ViewModels
             set { SetProperty(ref _userId, value); }
         }
 
+        private string _texto;
+        public string Texto
+        {
+            get { return _texto; }
+            set
+            {
+                SetProperty(ref _texto, value);
+                SalvarPublicacaoCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+
         private ObservableCollection<object> _publicacoesGrupo;
         public ObservableCollection<object> PublicacoesGrupo
         {
@@ -97,10 +109,15 @@ namespace saac.ViewModels
 
             PublicacoesGrupo = new ObservableCollection<object>();
 
-            SalvarPublicacaoCommand = new DelegateCommand(AdicionarPublicacao);
+            SalvarPublicacaoCommand = new DelegateCommand(AdicionarPublicacao, CondicaoAdicionarPublicacao);
             SeguirGrupoCommand = new DelegateCommand(SeguirGrupo);
             AtualizarCommand = new DelegateCommand(AtualizarPublicacoes);
 
+        }
+
+        private bool CondicaoAdicionarPublicacao()
+        {
+            return !string.IsNullOrWhiteSpace(Texto);
         }
 
         public void AtualizarPublicacoes()
@@ -150,6 +167,7 @@ namespace saac.ViewModels
             Publication.Id = Guid.NewGuid().ToString("N");
             Publication.CodUsuario = UserId;
             Publication.CodGrupo = Grupos.Id;
+            Publication.Texto = Texto;
 
             await _clientePublication.AdicionarTable(Publication);
 
@@ -193,6 +211,7 @@ namespace saac.ViewModels
                 }
                 else
                 {
+                    PublicacoesGrupo.Clear();
                     Message = "Este grupo ainda não possui nehuma publicação";
 
                 }
