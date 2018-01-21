@@ -15,6 +15,8 @@ namespace saac.ViewModels
 {
 	public class MeusGruposPageViewModel : ViewModelBase
     {
+        #region Propriedades
+
         protected bool HasInitialized { get; set; }
 
         private bool _atualizando = false;
@@ -50,7 +52,9 @@ namespace saac.ViewModels
         private readonly IAzureServiceGroup<Grupo> _clienteGroup;
 
         private readonly INavigationService _navigationService;
-       
+
+        #endregion
+
         public DelegateCommand AdicionarGrupoCommand { get; set; }
         public DelegateCommand PesquisarGrupoCommand { get; set; }
         public DelegateCommand AtualizarCommand { get; set; }
@@ -150,7 +154,10 @@ namespace saac.ViewModels
             if (HasInitialized) return;
             HasInitialized = true;
 
-            UserId = parameters.GetValue<string>("userId");
+            if (parameters.ContainsKey("userId"))
+            {
+                UserId = (string)parameters["userId"]; ;
+            }
 
             ExibirMeusGrupos(UserId);
 

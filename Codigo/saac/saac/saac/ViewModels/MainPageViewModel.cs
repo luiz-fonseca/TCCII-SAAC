@@ -21,8 +21,7 @@ namespace saac.ViewModels
         private readonly INavigationService _navigationService;
         private readonly IPageDialogService _dialogService;
 
-        public Usuario _user;
-
+        private Usuario _user;
         public Usuario User
         {
             get { return _user; }
@@ -45,7 +44,7 @@ namespace saac.ViewModels
         private async void CriarUsuario()
         {
             User = new Usuario();
-            User.Id = "c";
+            User.Id = "aaaa";
             User.Nome = "Clovis";
             User.Foto = "ok";
             User.DtNasci = new DateTime(24 / 04 / 1984);

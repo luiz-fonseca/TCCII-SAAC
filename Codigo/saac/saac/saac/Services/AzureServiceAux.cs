@@ -60,5 +60,17 @@ namespace saac.Services
 
             return items;
         }
+
+        async Task<int> IAzureServiceAux<T>.QuantidadeRegistros(string idGrupo)
+        {
+            var query = _tableAux
+                .Where(Auxiliar => Auxiliar.CodGrupo == idGrupo);
+
+            var aux = await query.ToListAsync();
+            int resultado = aux.Count;
+
+            return resultado;
+
+        }
     }
 }

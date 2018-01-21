@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace saac.ViewModels
 {
@@ -80,6 +81,8 @@ namespace saac.ViewModels
         private readonly IAzureServiceUser<Usuario> _clienteUser;
         private readonly IAzureServicePublication<Publicacao> _clientePublication;
         private readonly IAzureServiceAux<Auxiliar> _clienteAuxiliar;
+        private readonly IAzureServiceGroup<Grupo> _clienteGroup;
+        private readonly IAzureServiceComment<Comentario> _clienteComment;
 
         private readonly INavigationService _navigationService;
         private readonly IPageDialogService _dialogService;
@@ -94,7 +97,8 @@ namespace saac.ViewModels
 
 
         public GrupoSelecionadoPageViewModel(INavigationService navigationService, IAzureServicePublication<Publicacao> clientePublication,
-            IAzureServiceUser<Usuario> clienteUser, IAzureServiceAux<Auxiliar> clienteAuxiliar, IPageDialogService dialogService) : base(navigationService)
+            IAzureServiceUser<Usuario> clienteUser, IAzureServiceAux<Auxiliar> clienteAuxiliar, IAzureServiceGroup<Grupo> clienteGroup, 
+            IAzureServiceComment<Comentario> clienteComment, IPageDialogService dialogService) : base(navigationService)
         {
             _navigationService = navigationService;
             _dialogService = dialogService;
@@ -102,6 +106,8 @@ namespace saac.ViewModels
             _clientePublication = clientePublication;
             _clienteUser = clienteUser;
             _clienteAuxiliar = clienteAuxiliar;
+            _clienteGroup = clienteGroup;
+            _clienteComment = clienteComment;
 
             Publication = new Publicacao();
             Grupos = new Grupo();
@@ -151,11 +157,36 @@ namespace saac.ViewModels
                 var resulSeguir = await _dialogService.DisplayAlertAsync("Seguindo Grupo", "Deseja dixar de seguir este grupo?", " Sim ", " Não ");
                 if (resulSeguir) 
                 {
-                    var resultadoAux = await _clienteAuxiliar.GetAuxiliar(Grupos.Id, UserId);
+                    var quantidade = await _clienteAuxiliar.QuantidadeRegistros(Grupos.Id);
+                    if (quantidade == 1)
+                    {
+                        var resulGrupo = await _dialogService.DisplayAlertAsync("Excluir Grupo?", "Você é o ultimo seguidor deste grupo," +
+                            " se você deixar de segui-lo, este grupo e todas as suas publicações serão excluidos. Deseja Continuar?", " Sim ", " Não ");
 
-                    await _clienteAuxiliar.RemoverTable(resultadoAux);
+                        if (resulGrupo)
+                        {
+                            var resultadoAux = await _clienteAuxiliar.GetAuxiliar(Grupos.Id, UserId);
 
-                    await _dialogService.DisplayAlertAsync("Seguindo Grupo", "Você deixou de seguir este grupo", "OK");
+                            await RemoverGrupo();
+
+                            await _clienteAuxiliar.RemoverTable(resultadoAux);
+
+                            await _dialogService.DisplayAlertAsync("Grupo", "O grupo e suas publicações foram excluídos", "OK");
+
+                            await _navigationService.GoBackAsync();
+
+                        }
+
+                    }
+                    else
+                    {
+                        var resultadoAux = await _clienteAuxiliar.GetAuxiliar(Grupos.Id, UserId);
+
+                        await _clienteAuxiliar.RemoverTable(resultadoAux);
+
+                        await _dialogService.DisplayAlertAsync("Seguindo Grupo", "Você deixou de seguir este grupo", "OK");
+
+                    }
 
                 }
             }   
@@ -173,6 +204,26 @@ namespace saac.ViewModels
 
             AtualizarPublicacoes();
 
+        }
+
+        public async Task RemoverGrupo()
+        {
+            foreach (var item in PublicacoesGrupo)
+            {
+                var auxConversao = ConversaoAux(item);
+                var pub = (Publicacao)auxConversao[0];
+
+                var auxComment = await _clienteComment.Comentarios(pub.Id);
+
+                foreach (var itens in auxComment)
+                {
+                    await _clienteComment.RemoverTable(itens);
+
+                }
+                await _clientePublication.RemoverTable(pub);
+
+            }
+            await _clienteGroup.RemoverTable(Grupos);
         }
 
         public async void ExibirPublicacoes(string codGrupo)
@@ -226,13 +277,10 @@ namespace saac.ViewModels
 
         public async void ItemTapped(object args)
         {
-            var publica = new Publicacao();
-            string nome;
-
             var aux = ConversaoAux(args);
 
-            publica = (Publicacao)aux[0];
-            nome = (string)aux[1];
+            var publica = (Publicacao)aux[0];
+            var nome = (string)aux[1];
 
             var navigationParams = new NavigationParameters();
             navigationParams.Add("publicacao", publica);
