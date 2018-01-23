@@ -97,7 +97,7 @@ namespace saac.ViewModels
 
 
         public GrupoSelecionadoPageViewModel(INavigationService navigationService, IAzureServicePublication<Publicacao> clientePublication,
-            IAzureServiceUser<Usuario> clienteUser, IAzureServiceAux<Auxiliar> clienteAuxiliar, IAzureServiceGroup<Grupo> clienteGroup, 
+            IAzureServiceUser<Usuario> clienteUser, IAzureServiceAux<Auxiliar> clienteAuxiliar, IAzureServiceGroup<Grupo> clienteGroup,
             IAzureServiceComment<Comentario> clienteComment, IPageDialogService dialogService) : base(navigationService)
         {
             _navigationService = navigationService;
@@ -155,7 +155,7 @@ namespace saac.ViewModels
             else
             {
                 var resulSeguir = await _dialogService.DisplayAlertAsync("Seguindo Grupo", "Deseja dixar de seguir este grupo?", " Sim ", " Não ");
-                if (resulSeguir) 
+                if (resulSeguir)
                 {
                     var quantidade = await _clienteAuxiliar.QuantidadeRegistros(Grupos.Id);
                     if (quantidade == 1)
@@ -189,7 +189,7 @@ namespace saac.ViewModels
                     }
 
                 }
-            }   
+            }
 
         }
 
@@ -201,6 +201,8 @@ namespace saac.ViewModels
             Publication.Texto = Texto;
 
             await _clientePublication.AdicionarTable(Publication);
+
+            Texto = string.Empty;
 
             AtualizarPublicacoes();
 
@@ -248,9 +250,9 @@ namespace saac.ViewModels
                     }
 
                     var resulUser = await _clienteUser.Usuarios(auxList);
-                        
+
                     var resulatdo = resulPublication.Join(resulUser, p => p.CodUsuario, u => u.Id,
-                                                        (p, u) => new {p.Id, p.CodGrupo, p.CodUsuario, p.Texto, u.Nome });
+                                                        (p, u) => new { p.Id, p.CodGrupo, p.CodUsuario, p.Texto, u.Nome });
 
                     PublicacoesGrupo.Clear();
                     foreach (var item in resulatdo)
@@ -272,7 +274,7 @@ namespace saac.ViewModels
                 Message = "Ocorreu algum problema, por favor tente mais tarde";
 
             }
-            
+
         }
 
         public async void ItemTapped(object args)

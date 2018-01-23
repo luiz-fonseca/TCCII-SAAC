@@ -11,7 +11,7 @@ using System.Linq;
 namespace saac.ViewModels
 {
 	public class AdicionarGrupoPageViewModel : ViewModelBase
-	{
+    {
         private readonly IAzureServiceGroup<Grupo> _clienteGrupo;
         private readonly IAzureServiceAux<Auxiliar> _clienteAuxiliar;
 
@@ -79,7 +79,7 @@ namespace saac.ViewModels
 
         public AdicionarGrupoPageViewModel(INavigationService navigationService, IPageDialogService dialogService,
             IAzureServiceGroup<Grupo> clienteGrupo, IAzureServiceAux<Auxiliar> clienteAuxiliar
-            ) :base(navigationService)
+            ) : base(navigationService)
         {
             _clienteGrupo = clienteGrupo;
             _clienteAuxiliar = clienteAuxiliar;
@@ -111,13 +111,17 @@ namespace saac.ViewModels
 
             SalvarAuxiliar(Grupos.Id, true);
 
+            Nome = string.Empty;
+            Descricao = string.Empty;
+            Categoria = string.Empty;
+
             await _dialogService.DisplayAlertAsync("Grupo Cadastrado", "Parabéns!! O cadastro" +
                 " do seu grupo foi realizado.", "OK");
             await _navigationService.GoBackAsync();
         }
 
         private async void SalvarAuxiliar(string IdGrupo, bool adm)
-        { 
+        {
             Aux.CodGrupo = IdGrupo;
             Aux.CodUsuario = UserId;
             Aux.Adiministrador = adm;

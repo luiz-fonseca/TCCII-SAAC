@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="saac.Views.MainPage"
              Title="SaaC">
-    
+
     <StackLayout Padding="20,50,20,20">
 
         <Label HorizontalOptions="Center" Font="Large" TextColor="Green" Text="SaaC" />

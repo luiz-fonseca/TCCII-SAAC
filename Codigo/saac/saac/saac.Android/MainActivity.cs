@@ -1,8 +1,8 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
-using DryIoc;
-using Prism.DryIoc;
+using Prism;
+using Prism.Ioc;
 
 namespace saac.Droid
 {
@@ -18,9 +18,7 @@ namespace saac.Droid
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
-            //Inicializando o SDK do Azure : Luiz Fonsêca
             Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
-            //
 
             LoadApplication(new App(new AndroidInitializer()));
         }
@@ -28,7 +26,7 @@ namespace saac.Droid
 
     public class AndroidInitializer : IPlatformInitializer
     {
-        public void RegisterTypes(IContainer container)
+        public void RegisterTypes(IContainerRegistry container)
         {
             // Register any platform specific implementations
         }

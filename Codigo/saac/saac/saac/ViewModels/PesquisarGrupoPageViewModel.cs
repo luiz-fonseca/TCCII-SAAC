@@ -12,7 +12,7 @@ using System.Linq;
 namespace saac.ViewModels
 {
 	public class PesquisarGrupoPageViewModel : ViewModelBase
-	{
+    {
         private bool _atualizando = false;
         public bool Atualizando
         {
@@ -105,8 +105,8 @@ namespace saac.ViewModels
                 Groups.Add(item);
 
             }
-           
-            
+
+
         }
 
         public async void ExibirGrupos()

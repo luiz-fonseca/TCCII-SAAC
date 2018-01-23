@@ -1,13 +1,13 @@
-﻿using saac.ViewModels;
+﻿using Prism;
+using Prism.Ioc;
+using saac.ViewModels;
 using saac.Views;
-using DryIoc;
-using Prism.DryIoc;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
-using saac.Services;
+using Prism.DryIoc;
 using saac.Services.Interfaces;
 using saac.Models;
+using saac.Services;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace saac
@@ -27,30 +27,25 @@ namespace saac
         {
             InitializeComponent();
 
-            //página inicial
             await NavigationService.NavigateAsync("MainPage");
-
         }
 
-        protected override void RegisterTypes()
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            //Registrando para a navegação
-            Container.RegisterTypeForNavigation<NavigationPage>();
-            Container.RegisterTypeForNavigation<MainPage>();
-            Container.RegisterTypeForNavigation<PrincipalPage>();
-            Container.RegisterTypeForNavigation<MeusGruposPage>();
-            Container.RegisterTypeForNavigation<AdicionarGrupoPage>();
-            Container.RegisterTypeForNavigation<GrupoSelecionadoPage>();
-            Container.RegisterTypeForNavigation<PublicacaoSelecionadaPage>();
-            Container.RegisterTypeForNavigation<PesquisarGrupoPage>();
+            containerRegistry.RegisterForNavigation<NavigationPage>();
+            containerRegistry.RegisterForNavigation<MainPage>();
+            containerRegistry.RegisterForNavigation<PrincipalPage>();
+            containerRegistry.RegisterForNavigation<PublicacaoSelecionadaPage>();
+            containerRegistry.RegisterForNavigation<PesquisarGrupoPage>();
+            containerRegistry.RegisterForNavigation<MeusGruposPage>();
+            containerRegistry.RegisterForNavigation<GrupoSelecionadoPage>();
+            containerRegistry.RegisterForNavigation<AdicionarGrupoPage>();
 
-            //Registando entre interface e a implemantação
-            Container.Register<IAzureServiceUser<Usuario>, AzureServiceUser<Usuario>>();
-            Container.Register<IAzureServiceGroup<Grupo>, AzureServiceGroup<Grupo>>();
-            Container.Register<IAzureServiceAux<Auxiliar>, AzureServiceAux<Auxiliar>>();
-            Container.Register<IAzureServicePublication<Publicacao>, AzureServicePublication<Publicacao>>();
-            Container.Register<IAzureServiceComment<Comentario>, AzureServiceComment<Comentario>>();
-
+            containerRegistry.Register<IAzureServiceUser<Usuario>, AzureServiceUser<Usuario>>();
+            containerRegistry.Register<IAzureServiceGroup<Grupo>, AzureServiceGroup<Grupo>>();
+            containerRegistry.Register<IAzureServiceAux<Auxiliar>, AzureServiceAux<Auxiliar>>();
+            containerRegistry.Register<IAzureServicePublication<Publicacao>, AzureServicePublication<Publicacao>>();
+            containerRegistry.Register<IAzureServiceComment<Comentario>, AzureServiceComment<Comentario>>();
         }
     }
 }

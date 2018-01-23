@@ -18,6 +18,5 @@ namespace saac.Views
                 PageUtilities.OnNavigatingTo(child, parameters);
             }
         }
-
     }
 }

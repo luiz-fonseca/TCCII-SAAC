@@ -6,7 +6,7 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="saac.Views.GrupoSelecionadoPage"
              Title="Grupo">
-    
+
     <ContentPage.Content>
         <StackLayout>
             <Label Font="Medium" TextColor="Green" Text="{Binding Grupos.Nome}"/>
@@ -30,7 +30,7 @@
             <ListView ItemsSource="{Binding PublicacoesGrupo}" HasUnevenRows="True"
                       IsPullToRefreshEnabled="True" RefreshCommand="{Binding AtualizarCommand}"
                       IsRefreshing="{Binding Atualizando}">
-                
+
                 <ListView.Behaviors>
                     <behaviors:EventToCommandBehavior   EventName="ItemTapped" 
                                                     Command="{Binding PublicacaoSelectedCommand}"
@@ -51,7 +51,8 @@
             </ListView>
 
         </StackLayout>
-        
+
     </ContentPage.Content>
-  
+
+
 </ContentPage>

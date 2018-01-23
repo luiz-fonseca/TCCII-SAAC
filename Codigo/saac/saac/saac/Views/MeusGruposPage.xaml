@@ -4,7 +4,7 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="saac.Views.MeusGruposPage"            
+             x:Class="saac.Views.MeusGruposPage"
              Title="Grupos">
 
     <ContentPage.ToolbarItems>
@@ -18,7 +18,7 @@
             <ListView ItemsSource="{Binding MeusGroups}" HasUnevenRows="True" 
                       IsPullToRefreshEnabled="True" RefreshCommand="{Binding AtualizarCommand}"
                       IsRefreshing="{Binding Atualizando}">
-                
+
                 <ListView.Behaviors>
                     <behaviors:EventToCommandBehavior   EventName="ItemTapped" 
                                                         Command="{Binding GrupoSelectedCommand}"

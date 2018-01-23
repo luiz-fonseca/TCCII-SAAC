@@ -9,9 +9,9 @@ namespace saac.ViewModels
 {
 	public class PrincipalPageViewModel : ViewModelBase
     {
-        public PrincipalPageViewModel(INavigationService navigationService) :base(navigationService)
+        public PrincipalPageViewModel(INavigationService navigationService) : base(navigationService)
         {
 
         }
-	}
+    }
 }

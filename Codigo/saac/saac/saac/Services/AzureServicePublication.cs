@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace saac.Services
 {
-    public class AzureServicePublication<T>: AzureService<T>, IAzureServicePublication<T>
+    public class AzureServicePublication<T> : AzureService<T>, IAzureServicePublication<T>
     {
         private IMobileServiceTable<Publicacao> _tablePublication;
 
@@ -39,7 +39,7 @@ namespace saac.Services
             itens = await query.ToListAsync();
 
             return itens;
-            
+
         }
     }
 }

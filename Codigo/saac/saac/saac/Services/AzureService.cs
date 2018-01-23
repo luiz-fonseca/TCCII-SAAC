@@ -1,11 +1,9 @@
-﻿using System;
+﻿using Microsoft.WindowsAzure.MobileServices;
+using saac.Services.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-
-using Microsoft.WindowsAzure.MobileServices;
-using saac.Models;
-using saac.Services.Interfaces;
 
 namespace saac.Services
 {
@@ -13,7 +11,7 @@ namespace saac.Services
     {
         protected IMobileServiceClient _cliente;
 
-        private IMobileServiceTable<T> _table; 
+        private IMobileServiceTable<T> _table;
 
         private const string serviceUri = "http://saac.azurewebsites.net";
 
@@ -45,10 +43,11 @@ namespace saac.Services
         }
 
         async Task<T> IAzureServiceBase<T>.ExisteResgistro(string id)
-        {  
-           return await _table.LookupAsync(id);
-          
+        {
+            return await _table.LookupAsync(id);
+
         }
 
     }
+
 }

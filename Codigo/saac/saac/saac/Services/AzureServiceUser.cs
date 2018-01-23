@@ -13,7 +13,7 @@ namespace saac.Services
         private IMobileServiceTable<Usuario> _tableUser;
 
         public AzureServiceUser()
-        {      
+        {
             _tableUser = _cliente.GetTable<Usuario>();
 
         }
@@ -35,7 +35,7 @@ namespace saac.Services
                 }
 
             }
-            
+
             return itens;
         }
     }

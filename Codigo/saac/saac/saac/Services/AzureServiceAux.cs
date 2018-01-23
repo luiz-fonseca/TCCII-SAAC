@@ -29,12 +29,12 @@ namespace saac.Services
 
             foreach (var item in aux)
             {
-               resultado = item;
+                resultado = item;
             }
 
             return resultado;
-            
-           
+
+
         }
 
         async Task<int> IAzureServiceAux<T>.ExisteSeguirAux(string idGrupo, string idUser)

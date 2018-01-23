@@ -1,7 +1,8 @@
 ﻿using Foundation;
+using Prism;
+using Prism.Ioc;
 using UIKit;
-using DryIoc;
-using Prism.DryIoc;
+
 
 namespace saac.iOS
 {
@@ -23,9 +24,7 @@ namespace saac.iOS
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App(new iOSInitializer()));
 
-            //Inicializando o SDK do Azure : Luiz Fonsêca
             Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
-            //
 
             return base.FinishedLaunching(app, options);
         }
@@ -33,9 +32,9 @@ namespace saac.iOS
 
     public class iOSInitializer : IPlatformInitializer
     {
-        public void RegisterTypes(IContainer container)
+        public void RegisterTypes(IContainerRegistry container)
         {
-            
+
         }
     }
 }

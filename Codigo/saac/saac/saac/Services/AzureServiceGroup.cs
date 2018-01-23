@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace saac.Services
 {
-    public class AzureServiceGroup<T>: AzureService<T>, IAzureServiceGroup<T>
+    public class AzureServiceGroup<T> : AzureService<T>, IAzureServiceGroup<T>
     {
         private IMobileServiceTable<Grupo> _tableGroup;
 

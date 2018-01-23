@@ -11,10 +11,10 @@ namespace saac.Models
     {
         [JsonProperty(PropertyName = "id")]
         public string Id { get; set; }
-        
+
         [JsonProperty(PropertyName = "nome")]
         public string Nome { get; set; }
-        
+
         [JsonProperty(PropertyName = "descricao")]
         public string Descricao { get; set; }
 

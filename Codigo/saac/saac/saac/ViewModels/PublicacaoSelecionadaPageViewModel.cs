@@ -12,7 +12,7 @@ using System.Linq;
 
 namespace saac.ViewModels
 {
-    public class PublicacaoSelecionadaPageViewModel : ViewModelBase
+	public class PublicacaoSelecionadaPageViewModel : ViewModelBase
     {
         private bool _atualizando = false;
         public bool Atualizando
@@ -105,7 +105,7 @@ namespace saac.ViewModels
 
             Publication = new Publicacao();
             Comentarios = new Comentario();
-   
+
             ComentariosPublication = new ObservableCollection<object>();
 
             SalvarComentarioCommand = new DelegateCommand(AdicionarComentario, CondicaoAdicionarComentario);
@@ -137,7 +137,7 @@ namespace saac.ViewModels
                 }
 
             }
-   
+
         }
 
 
@@ -159,6 +159,8 @@ namespace saac.ViewModels
             Comentarios.Texto = Texto;
 
             await _clienteComment.AdicionarTable(Comentarios);
+
+            Texto = string.Empty;
 
             AtualizarComentarios();
 
@@ -186,7 +188,7 @@ namespace saac.ViewModels
 
                     await _navigationService.GoBackAsync();
 
-                }     
+                }
             }
 
         }
@@ -252,7 +254,7 @@ namespace saac.ViewModels
         public Comentario ConversaoComentario(object args)
         {
             var comment = new Comentario();
-  
+
             var aux = Conversao(args, new { Id = "", CodPublicacao = "", CodUsuario = "", Texto = "", Nome = "" });
 
             comment.Id = aux.Id;
@@ -262,7 +264,7 @@ namespace saac.ViewModels
 
             return comment;
 
-            
+
 
         }
 

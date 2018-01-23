@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace saac.Services.Interfaces
 {
-    public interface IAzureServicePublication<T>: IAzureServiceBase<T>
+    public interface IAzureServicePublication<T> : IAzureServiceBase<T>
     {
         Task<List<Publicacao>> Publicacoes(string codGrupo);
         Task<int> MinhaPublicaco(string codPublicao, string CodUsuario);

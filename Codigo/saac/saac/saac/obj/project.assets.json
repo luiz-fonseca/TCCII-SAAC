@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     ".NETStandard,Version=v2.0": {
-      "DryIoc.dll/2.12.2": {
+      "DryIoc.dll/2.12.6": {
         "type": "package",
         "dependencies": {
           "System.Collections": "4.3.0",
@@ -133,45 +133,39 @@
           "lib/netstandard1.0/Newtonsoft.Json.dll": {}
         }
       },
-      "Prism.Core/7.0.0.168-pre": {
+      "Prism.Core/7.0.0.396": {
         "type": "package",
-        "dependencies": {
-          "NETStandard.Library": "1.6.1",
-          "System.Resources.ResourceManager": "4.3.0"
-        },
         "compile": {
-          "lib/netstandard1.0/Prism.dll": {}
+          "lib/netstandard2.0/Prism.dll": {}
         },
         "runtime": {
-          "lib/netstandard1.0/Prism.dll": {}
+          "lib/netstandard2.0/Prism.dll": {}
         }
       },
-      "Prism.DryIoc.Forms/7.0.0.168-pre": {
+      "Prism.DryIoc.Forms/7.0.0.396": {
         "type": "package",
         "dependencies": {
-          "DryIoc.dll": "2.12.2",
-          "NETStandard.Library": "1.6.1",
-          "Prism.Forms": "7.0.0.168-pre"
+          "DryIoc.dll": "2.12.6",
+          "Prism.Forms": "7.0.0.396"
         },
         "compile": {
-          "lib/netstandard1.0/Prism.DryIoc.Forms.dll": {}
+          "lib/netstandard2.0/Prism.DryIoc.Forms.dll": {}
         },
         "runtime": {
-          "lib/netstandard1.0/Prism.DryIoc.Forms.dll": {}
+          "lib/netstandard2.0/Prism.DryIoc.Forms.dll": {}
         }
       },
-      "Prism.Forms/7.0.0.168-pre": {
+      "Prism.Forms/7.0.0.396": {
         "type": "package",
         "dependencies": {
-          "NETStandard.Library": "1.6.1",
-          "Prism.Core": "7.0.0.168-pre",
-          "Xamarin.Forms": "2.4.0.282"
+          "Prism.Core": "7.0.0.396",
+          "Xamarin.Forms": "2.5.0.122203"
         },
         "compile": {
-          "lib/netstandard1.0/Prism.Forms.dll": {}
+          "lib/netstandard2.0/Prism.Forms.dll": {}
         },
         "runtime": {
-          "lib/netstandard1.0/Prism.Forms.dll": {}
+          "lib/netstandard2.0/Prism.Forms.dll": {}
         }
       },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
@@ -932,7 +926,7 @@
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
       },
-      "Xamarin.Forms/2.5.0.121934": {
+      "Xamarin.Forms/2.5.0.122203": {
         "type": "package",
         "compile": {
           "lib/netstandard1.0/Xamarin.Forms.Core.dll": {},
@@ -952,14 +946,14 @@
     }
   },
   "libraries": {
-    "DryIoc.dll/2.12.2": {
-      "sha512": "kLBSglJtp3lvfJJO9PeBDkkMZz+BkotMBgafftT8wqYoekZ3l+FAgEk6ACkvfU5yDTSVG4Kgb3xgXMxfcR8vtA==",
+    "DryIoc.dll/2.12.6": {
+      "sha512": "jmqwiN8591mEgDp7FU/HrOEzrHsrL0STNZQRMVh5BgvyNiaSu0hoxVXcZC9BwbEugCcOLdO6mUrcJPY3q/dYEQ==",
       "type": "package",
-      "path": "dryioc.dll/2.12.2",
+      "path": "dryioc.dll/2.12.6",
       "files": [
         "DryIoc.snk",
         "LICENSE.txt",
-        "dryioc.dll.2.12.2.nupkg.sha512",
+        "dryioc.dll.2.12.6.nupkg.sha512",
         "dryioc.dll.nuspec",
         "lib/net35/DryIoc.XML",
         "lib/net35/DryIoc.dll",
@@ -1234,36 +1228,47 @@
         "tools/install.ps1"
       ]
     },
-    "Prism.Core/7.0.0.168-pre": {
-      "sha512": "uDU1KOGd84CtWAfYy94jlxEPg/lv8zOPN5qjqQ//SL2bN6kJbIa5DsSGbZY3U3e46IO5ASnGsHTmwMyBpXIxtg==",
+    "Prism.Core/7.0.0.396": {
+      "sha512": "XxPmXiA+v/D6zUeAUwSz7GgWNIbzyLLgkP32vDr6fGfv/YPg8CRkmkf+MkP+cxXKdUsqezxXgRRwMUcjWRqWMw==",
       "type": "package",
-      "path": "prism.core/7.0.0.168-pre",
+      "path": "prism.core/7.0.0.396",
       "files": [
+        "lib/net45/Prism.dll",
+        "lib/net45/Prism.xml",
         "lib/netstandard1.0/Prism.dll",
         "lib/netstandard1.0/Prism.xml",
-        "prism.core.7.0.0.168-pre.nupkg.sha512",
+        "lib/netstandard2.0/Prism.dll",
+        "lib/netstandard2.0/Prism.xml",
+        "lib/uap10.0/Prism.dll",
+        "lib/uap10.0/Prism.pri",
+        "lib/uap10.0/Prism.xml",
+        "prism.core.7.0.0.396.nupkg.sha512",
         "prism.core.nuspec"
       ]
     },
-    "Prism.DryIoc.Forms/7.0.0.168-pre": {
-      "sha512": "Qw51Ike/GIT0dJ8X6X141CUVsC6TxdHWSZoKBq6FIHxw/h/MmGWtfcxFu9Ix37iXdf4p3INmDim99WH4MI2uzQ==",
+    "Prism.DryIoc.Forms/7.0.0.396": {
+      "sha512": "Yr5XYU98h4xXeNKFmVrWCNP8DFXZTBSehr47TWjR27Oy/xMMkzYZDaHvcaU0X+CBoQcsH4ZACvv00w2z+VnqNw==",
       "type": "package",
-      "path": "prism.dryioc.forms/7.0.0.168-pre",
+      "path": "prism.dryioc.forms/7.0.0.396",
       "files": [
         "lib/netstandard1.0/Prism.DryIoc.Forms.dll",
         "lib/netstandard1.0/Prism.DryIoc.Forms.xml",
-        "prism.dryioc.forms.7.0.0.168-pre.nupkg.sha512",
+        "lib/netstandard2.0/Prism.DryIoc.Forms.dll",
+        "lib/netstandard2.0/Prism.DryIoc.Forms.xml",
+        "prism.dryioc.forms.7.0.0.396.nupkg.sha512",
         "prism.dryioc.forms.nuspec"
       ]
     },
-    "Prism.Forms/7.0.0.168-pre": {
-      "sha512": "8LPOMPqKPt98FYrYtLu53AXyZL47rCpKHEznXbHlcEb1HzMJrDlqrlIGgo+y43f2A9zSLt1lcOGAhPwr1DsPIQ==",
+    "Prism.Forms/7.0.0.396": {
+      "sha512": "QWnC4tfyLgIDKl+7wSm+lASOpU14enpl1RV27QbeIoORYXyoBsNA8omF+gfH2JH12VQ9Xpb1q3YLFA98d8+NmA==",
       "type": "package",
-      "path": "prism.forms/7.0.0.168-pre",
+      "path": "prism.forms/7.0.0.396",
       "files": [
         "lib/netstandard1.0/Prism.Forms.dll",
         "lib/netstandard1.0/Prism.Forms.xml",
-        "prism.forms.7.0.0.168-pre.nupkg.sha512",
+        "lib/netstandard2.0/Prism.Forms.dll",
+        "lib/netstandard2.0/Prism.Forms.xml",
+        "prism.forms.7.0.0.396.nupkg.sha512",
         "prism.forms.nuspec"
       ]
     },
@@ -3805,10 +3810,10 @@
         "system.xml.xdocument.nuspec"
       ]
     },
-    "Xamarin.Forms/2.5.0.121934": {
-      "sha512": "H3Gh6nvximMk9i8LdfhPnARo+kEsh8hDXWRboiUPb1r22gkIGA8i8tbnRcSXJWk4fCW/kdMTom6SFN0L+NhItw==",
+    "Xamarin.Forms/2.5.0.122203": {
+      "sha512": "qg7A2IXbVV/5u9qqeiDhRMwpVEsbWKBxzeAtD0rTuntmaDB1Z7WuBg5IK2VBklJbKe2Ps8V9zBfEwgJIqPVJUw==",
       "type": "package",
-      "path": "xamarin.forms/2.5.0.121934",
+      "path": "xamarin.forms/2.5.0.122203",
       "files": [
         "build/netstandard1.0/Mono.Cecil.Mdb.dll",
         "build/netstandard1.0/Mono.Cecil.Pdb.dll",
@@ -3833,14 +3838,18 @@
         "lib/MonoAndroid10/Design/Xamarin.Forms.Core.Design.dll",
         "lib/MonoAndroid10/Design/Xamarin.Forms.Xaml.Design.dll",
         "lib/MonoAndroid10/FormsViewGroup.dll",
+        "lib/MonoAndroid10/FormsViewGroup.dll.mdb",
         "lib/MonoAndroid10/FormsViewGroup.pdb",
         "lib/MonoAndroid10/Xamarin.Forms.Core.dll",
+        "lib/MonoAndroid10/Xamarin.Forms.Core.dll.mdb",
         "lib/MonoAndroid10/Xamarin.Forms.Core.pdb",
         "lib/MonoAndroid10/Xamarin.Forms.Core.xml",
         "lib/MonoAndroid10/Xamarin.Forms.Platform.Android.dll",
+        "lib/MonoAndroid10/Xamarin.Forms.Platform.Android.dll.mdb",
         "lib/MonoAndroid10/Xamarin.Forms.Platform.Android.pdb",
         "lib/MonoAndroid10/Xamarin.Forms.Platform.dll",
         "lib/MonoAndroid10/Xamarin.Forms.Xaml.dll",
+        "lib/MonoAndroid10/Xamarin.Forms.Xaml.dll.mdb",
         "lib/MonoAndroid10/Xamarin.Forms.Xaml.pdb",
         "lib/MonoAndroid10/Xamarin.Forms.Xaml.xml",
         "lib/WP80/Design/Xamarin.Forms.Core.Design.dll",
@@ -3983,7 +3992,7 @@
         "lib/wpa81/Xamarin.Forms.Platform.dll",
         "lib/wpa81/Xamarin.Forms.Xaml.dll",
         "lib/wpa81/Xamarin.Forms.Xaml.xml",
-        "xamarin.forms.2.5.0.121934.nupkg.sha512",
+        "xamarin.forms.2.5.0.122203.nupkg.sha512",
         "xamarin.forms.nuspec"
       ]
     }
@@ -3992,8 +4001,8 @@
     ".NETStandard,Version=v2.0": [
       "Microsoft.Azure.Mobile.Client >= 4.0.2",
       "NETStandard.Library >= 2.0.1",
-      "Prism.DryIoc.Forms >= 7.0.0.168-pre",
-      "Xamarin.Forms >= 2.5.0.121934"
+      "Prism.DryIoc.Forms >= 7.0.0.396",
+      "Xamarin.Forms >= 2.5.0.122203"
     ]
   },
   "packageFolders": {
@@ -4055,11 +4064,11 @@
           },
           "Prism.DryIoc.Forms": {
             "target": "Package",
-            "version": "[7.0.0.168-pre, )"
+            "version": "[7.0.0.396, )"
           },
           "Xamarin.Forms": {
             "target": "Package",
-            "version": "[2.5.0.121934, )"
+            "version": "[2.5.0.122203, )"
           }
         },
         "imports": [

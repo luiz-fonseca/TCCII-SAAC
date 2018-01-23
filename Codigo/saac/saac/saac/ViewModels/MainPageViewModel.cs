@@ -1,16 +1,14 @@
-﻿using Prism.Commands;
+﻿using Microsoft.WindowsAzure.MobileServices;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
+using Prism.Services;
+using saac.Models;
+using saac.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
-using saac.Models;
-using saac.Services.Interfaces;
-using saac.Services;
-using Prism.Services;
-using Microsoft.WindowsAzure.MobileServices;
 
 namespace saac.ViewModels
 {
@@ -31,8 +29,8 @@ namespace saac.ViewModels
         public DelegateCommand CriarUsuarioCommand { get; set; }
 
 
-        public MainPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IAzureServiceUser<Usuario> clienteUser) 
-            : base (navigationService)
+        public MainPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IAzureServiceUser<Usuario> clienteUser)
+            : base(navigationService)
         {
             _clienteUser = clienteUser;
             _dialogService = dialogService;
@@ -59,9 +57,9 @@ namespace saac.ViewModels
             {
                 await _clienteUser.ExisteResgistro(User.Id);
                 await _navigationService.NavigateAsync("NavigationPage/PrincipalPage", navigationParams);
-      
+
             }
-            catch(MobileServiceInvalidOperationException)
+            catch (MobileServiceInvalidOperationException)
             {
                 await _clienteUser.AdicionarTable(User);
                 await _dialogService.DisplayAlertAsync("Cadastro Realizado", "Parabéns!! O seu cadastro foi realizado.", "OK");
@@ -70,6 +68,5 @@ namespace saac.ViewModels
             }
 
         }
-
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace saac.Services.Interfaces
 {
-    public interface IAzureServiceAux<T>: IAzureServiceBase<T>
+    public interface IAzureServiceAux<T> : IAzureServiceBase<T>
     {
         Task<List<string>> MeusGrupos(string id);
         Task<int> ExisteSeguirAux(string idGrupo, string idUser);
