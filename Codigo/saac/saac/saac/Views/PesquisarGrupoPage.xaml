@@ -9,12 +9,7 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <Entry  Placeholder="Grupos"
-                       Text="{Binding Pesquisar}"/>
-
-            <Button Text="Pesquisar" TextColor="White"
-                        BackgroundColor="#77D065"
-                        Command="{Binding PesquisarGrupoCommand}"/>
+            <SearchBar Placeholder="Grupos" Text="{Binding Pesquisar}" SearchCommand="{Binding PesquisarGrupoCommand}" />
 
             <ListView ItemsSource="{Binding Groups}" HasUnevenRows="True"
                       IsPullToRefreshEnabled="True" RefreshCommand="{Binding AtualizarCommand}"

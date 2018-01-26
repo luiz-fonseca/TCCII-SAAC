@@ -139,14 +139,14 @@ namespace saac.ViewModels
 
                 if (resultado != 0)
                 {
-                    await _navigationService.NavigateAsync("NavigationPage/PrincipalPage", navigationParams);
+                    await _navigationService.NavigateAsync("../PrincipalPage", navigationParams);
 
                 }
                 else
                 {
                     await _clienteUser.AdicionarTable(User);
                     await _dialogService.DisplayAlertAsync("Cadastro Realizado", "Parabéns!! O seu cadastro foi realizado.", "OK");
-                    await _navigationService.NavigateAsync("NavigationPage/PrincipalPage", navigationParams);
+                    await _navigationService.NavigateAsync("../PrincipalPage", navigationParams);
                 }
 
 

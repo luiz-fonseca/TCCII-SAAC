@@ -27,7 +27,7 @@ namespace saac
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("MainPage");
+            await NavigationService.NavigateAsync("NavigationPage/MainPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
