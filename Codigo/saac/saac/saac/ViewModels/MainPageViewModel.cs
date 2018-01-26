@@ -9,12 +9,27 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace saac.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
+        private string ClientId = "1958735654139902";
+
+        private Facebook _facebookProfile;
+        public Facebook FacebookProfile
+        {
+            get { return _facebookProfile; }
+            set
+            {
+                SetProperty(ref _facebookProfile, value);
+            }
+        }
+
         private readonly IAzureServiceUser<Usuario> _clienteUser;
+        private readonly IFacebookService _clienteFacebook;
 
         private readonly INavigationService _navigationService;
         private readonly IPageDialogService _dialogService;
@@ -29,23 +44,88 @@ namespace saac.ViewModels
         public DelegateCommand CriarUsuarioCommand { get; set; }
 
 
-        public MainPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IAzureServiceUser<Usuario> clienteUser)
+        public MainPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IAzureServiceUser<Usuario> clienteUser,
+            IFacebookService clienteFacebook)
             : base(navigationService)
         {
             _clienteUser = clienteUser;
+            _clienteFacebook = clienteFacebook;
             _dialogService = dialogService;
             _navigationService = navigationService;
             CriarUsuarioCommand = new DelegateCommand(CriarUsuario);
 
         }
 
+        #region facebook
+        public async Task SetFacebookUserProfileAsync(string accessToken)
+        {
+            FacebookProfile = await _clienteFacebook.GetFacebookProfileAsync(accessToken);
+
+        }
+
+        public string ExtractAccessTokenFromUrl(string url)
+        {
+
+            if (url.Contains("access_token") && url.Contains("&expires_in="))
+            {
+
+                var at = url.Replace("https://www.facebook.com/connect/login_success.html#access_token=", "");
+
+                var accessToken = at.Remove(at.IndexOf("&expires_in="));
+
+                return accessToken;
+
+            }
+
+            return string.Empty;
+
+        }
+
+        public WebView Initialize()
+        {
+            var apiRequest =
+
+                "https://www.facebook.com/dialog/oauth?client_id="
+                + ClientId
+                + "&display=popup&response_type=token&redirect_uri=http://www.facebook.com/connect/login_success.html";
+
+            var webView = new WebView
+            {
+                Source = apiRequest,
+                HeightRequest = 1
+
+            };
+
+            webView.Navigated += WebViewOnNavigated;
+
+            return webView;
+        }
+
+
+        private async void WebViewOnNavigated(object sender, WebNavigatedEventArgs e)
+        {
+            var accessToken = ExtractAccessTokenFromUrl(e.Url);
+
+            if (accessToken != "")
+            {
+                await SetFacebookUserProfileAsync(accessToken);
+
+                //chamar o método aqui
+
+                CriarUsuario();
+
+            }
+        }
+        #endregion
+
+
         private async void CriarUsuario()
         {
             User = new Usuario();
-            User.Id = "aaaa";
-            User.Nome = "Clovis";
+            User.Id = FacebookProfile.Id;
+            User.Nome = FacebookProfile.Name;
             User.Foto = "ok";
-            User.DtNasci = new DateTime(24 / 04 / 1984);
+            User.DtNasci = FacebookProfile.DtNascimento;
             User.Sexo = true;
             User.Endereco = "Areia Branca";
 
@@ -55,15 +135,26 @@ namespace saac.ViewModels
 
             try
             {
-                await _clienteUser.ExisteResgistro(User.Id);
-                await _navigationService.NavigateAsync("NavigationPage/PrincipalPage", navigationParams);
+                var resultado = await _clienteUser.ExisteUsuario(User.Id);
+
+                if (resultado != 0)
+                {
+                    await _navigationService.NavigateAsync("NavigationPage/PrincipalPage", navigationParams);
+
+                }
+                else
+                {
+                    await _clienteUser.AdicionarTable(User);
+                    await _dialogService.DisplayAlertAsync("Cadastro Realizado", "Parabéns!! O seu cadastro foi realizado.", "OK");
+                    await _navigationService.NavigateAsync("NavigationPage/PrincipalPage", navigationParams);
+                }
+
+
 
             }
-            catch (MobileServiceInvalidOperationException)
+            catch (Exception)
             {
-                await _clienteUser.AdicionarTable(User);
-                await _dialogService.DisplayAlertAsync("Cadastro Realizado", "Parabéns!! O seu cadastro foi realizado.", "OK");
-                await _navigationService.NavigateAsync("NavigationPage/PrincipalPage", navigationParams);
+                await _dialogService.DisplayAlertAsync("Ops!", "Ocorreu algum problema.", "OK");
 
             }
 

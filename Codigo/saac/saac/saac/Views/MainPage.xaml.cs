@@ -1,4 +1,5 @@
-﻿using System;
+﻿using saac.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,5 +14,13 @@ namespace saac.Views
 		{
 			InitializeComponent ();
 		}
-	}
+
+        private void LoginWithFacebook_Clicked(object sender, EventArgs e)
+        {
+            var vm = BindingContext as MainPageViewModel;
+
+            Content = vm.Initialize();
+
+        }
+    }
 }

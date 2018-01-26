@@ -46,6 +46,7 @@ namespace saac
             containerRegistry.Register<IAzureServiceAux<Auxiliar>, AzureServiceAux<Auxiliar>>();
             containerRegistry.Register<IAzureServicePublication<Publicacao>, AzureServicePublication<Publicacao>>();
             containerRegistry.Register<IAzureServiceComment<Comentario>, AzureServiceComment<Comentario>>();
+            containerRegistry.Register<IFacebookService, FacebookService>();
         }
     }
 }

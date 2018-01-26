@@ -9,5 +9,6 @@ namespace saac.Services.Interfaces
     public interface IAzureServiceUser<T> : IAzureServiceBase<T>
     {
         Task<List<Usuario>> Usuarios(List<string> codUser);
+        Task<int> ExisteUsuario(string codUser);
     }
 }
