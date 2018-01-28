@@ -12,6 +12,7 @@ namespace saac.ViewModels
 {
 	public class AdicionarGrupoPageViewModel : ViewModelBase
     {
+        #region Propriedades
         private readonly IAzureServiceGroup<Grupo> _clienteGrupo;
         private readonly IAzureServiceAux<Auxiliar> _clienteAuxiliar;
 
@@ -73,9 +74,11 @@ namespace saac.ViewModels
             }
         }
 
+        private DelegateCommand _salvarGrupoCommand;
+        public DelegateCommand SalvarGrupoCommand =>
+            _salvarGrupoCommand ?? (_salvarGrupoCommand = new DelegateCommand(SalvarGrupo, CondicaoSalvarGrupo));
 
-
-        public DelegateCommand SalvarGrupoCommand { get; set; }
+        #endregion
 
         public AdicionarGrupoPageViewModel(INavigationService navigationService, IPageDialogService dialogService,
             IAzureServiceGroup<Grupo> clienteGrupo, IAzureServiceAux<Auxiliar> clienteAuxiliar
@@ -90,7 +93,6 @@ namespace saac.ViewModels
             _navigationService = navigationService;
             _dialogService = dialogService;
 
-            SalvarGrupoCommand = new DelegateCommand(SalvarGrupo, CondicaoSalvarGrupo);
         }
 
         private bool CondicaoSalvarGrupo()

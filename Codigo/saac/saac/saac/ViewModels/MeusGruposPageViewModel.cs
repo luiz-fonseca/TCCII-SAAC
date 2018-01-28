@@ -51,18 +51,24 @@ namespace saac.ViewModels
 
         private readonly INavigationService _navigationService;
 
-        #endregion
+        private DelegateCommand _adicionarGrupoCommand;
+        public DelegateCommand AdicionarGrupoCommand =>
+            _adicionarGrupoCommand ?? (_adicionarGrupoCommand = new DelegateCommand(AdicionarGrupo));
 
-        public DelegateCommand AdicionarGrupoCommand { get; set; }
-        public DelegateCommand PesquisarGrupoCommand { get; set; }
-        public DelegateCommand AtualizarCommand { get; set; }
+        private DelegateCommand _pesquisarGrupoCommand;
+        public DelegateCommand PesquisarGrupoCommand =>
+            _pesquisarGrupoCommand ?? (_pesquisarGrupoCommand = new DelegateCommand(PesquisarGrupo));
+
+        private DelegateCommand _atualizarCommand;
+        public DelegateCommand AtualizarCommand =>
+            _atualizarCommand ?? (_atualizarCommand = new DelegateCommand(AtualizarGrupos));
 
 
         private DelegateCommand<Grupo> _grupoSelectedCommand;
-
         public DelegateCommand<Grupo> GrupoSelectedCommand =>
             _grupoSelectedCommand != null ? _grupoSelectedCommand : (_grupoSelectedCommand = new DelegateCommand<Grupo>(ItemTapped));
 
+        #endregion
 
         public MeusGruposPageViewModel(INavigationService navigationService, IAzureServiceAux<Auxiliar> clienteAux,
             IAzureServiceGroup<Grupo> clienteGroup) : base(navigationService)
@@ -72,10 +78,6 @@ namespace saac.ViewModels
             _clienteGroup = clienteGroup;
 
             MeusGroups = new ObservableCollection<Grupo>();
-
-            AdicionarGrupoCommand = new DelegateCommand(AdicionarGrupo);
-            PesquisarGrupoCommand = new DelegateCommand(PesquisarGrupo);
-            AtualizarCommand = new DelegateCommand(AtualizarGrupos);
 
         }
 

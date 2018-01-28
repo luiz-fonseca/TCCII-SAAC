@@ -14,6 +14,7 @@ namespace saac.ViewModels
 {
 	public class PublicacaoSelecionadaPageViewModel : ViewModelBase
     {
+        #region Propriedades
         private bool _atualizando = false;
         public bool Atualizando
         {
@@ -76,9 +77,18 @@ namespace saac.ViewModels
 
         }
 
-        public DelegateCommand SalvarComentarioCommand { get; set; }
-        public DelegateCommand AtualizarCommand { get; set; }
-        public DelegateCommand ExcluirPublicacaoCommand { get; set; }
+        private DelegateCommand _salvarComentarioCommand;
+        public DelegateCommand SalvarComentarioCommand =>
+            _salvarComentarioCommand ?? (_salvarComentarioCommand = new DelegateCommand(AdicionarComentario, CondicaoAdicionarComentario));
+
+        private DelegateCommand _atualizarCommand;
+        public DelegateCommand AtualizarCommand =>
+            _atualizarCommand ?? (_atualizarCommand = new DelegateCommand(AtualizarComentarios));
+
+        private DelegateCommand _excluirPublicacaoCommand;
+        public DelegateCommand ExcluirPublicacaoCommand =>
+            _excluirPublicacaoCommand ?? (_excluirPublicacaoCommand = new DelegateCommand(ExcluirPublicacao));
+
 
         private DelegateCommand<object> _comentarioSelectedCommand;
         public DelegateCommand<object> ComentarioSelectedCommand =>
@@ -91,6 +101,8 @@ namespace saac.ViewModels
 
         private readonly INavigationService _navigationService;
         private readonly IPageDialogService _dialogService;
+
+        #endregion
 
         public PublicacaoSelecionadaPageViewModel(INavigationService navigationService, IAzureServiceComment<Comentario> clienteComment,
                                             IAzureServiceUser<Usuario> clienteUser, IAzureServicePublication<Publicacao> clientePublication,
@@ -107,10 +119,6 @@ namespace saac.ViewModels
             Comentarios = new Comentario();
 
             ComentariosPublication = new ObservableCollection<object>();
-
-            SalvarComentarioCommand = new DelegateCommand(AdicionarComentario, CondicaoAdicionarComentario);
-            AtualizarCommand = new DelegateCommand(AtualizarComentarios);
-            ExcluirPublicacaoCommand = new DelegateCommand(ExcluirPublicacao);
 
         }
 

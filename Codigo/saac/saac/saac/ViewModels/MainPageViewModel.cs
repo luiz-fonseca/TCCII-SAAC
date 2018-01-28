@@ -16,7 +16,7 @@ namespace saac.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
-        private string ClientId = "1958735654139902";
+        #region Propriedades
 
         private Facebook _facebookProfile;
         public Facebook FacebookProfile
@@ -41,8 +41,11 @@ namespace saac.ViewModels
             set { SetProperty(ref _user, value); }
         }
 
-        public DelegateCommand CriarUsuarioCommand { get; set; }
+        private DelegateCommand _criarUsuarioCommand;
+        public DelegateCommand CriarUsuarioCommand =>
+            _criarUsuarioCommand ?? (_criarUsuarioCommand = new DelegateCommand(CriarUsuario));
 
+        #endregion
 
         public MainPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IAzureServiceUser<Usuario> clienteUser,
             IFacebookService clienteFacebook)
@@ -52,7 +55,6 @@ namespace saac.ViewModels
             _clienteFacebook = clienteFacebook;
             _dialogService = dialogService;
             _navigationService = navigationService;
-            CriarUsuarioCommand = new DelegateCommand(CriarUsuario);
 
         }
 
@@ -83,6 +85,8 @@ namespace saac.ViewModels
 
         public WebView Initialize()
         {
+            string ClientId = "1958735654139902";
+
             var apiRequest =
 
                 "https://www.facebook.com/dialog/oauth?client_id="

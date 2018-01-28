@@ -15,6 +15,7 @@ namespace saac.ViewModels
 {
 	public class GrupoSelecionadoPageViewModel : ViewModelBase
     {
+        #region Propriedades
         private bool _atualizando = false;
         public bool Atualizando
         {
@@ -87,14 +88,25 @@ namespace saac.ViewModels
         private readonly INavigationService _navigationService;
         private readonly IPageDialogService _dialogService;
 
-        public DelegateCommand SalvarPublicacaoCommand { get; set; }
-        public DelegateCommand SeguirGrupoCommand { get; set; }
-        public DelegateCommand AtualizarCommand { get; set; }
+        private DelegateCommand _salvarPublicacaoCommand;
+        public DelegateCommand SalvarPublicacaoCommand =>
+            _salvarPublicacaoCommand ?? (_salvarPublicacaoCommand = new DelegateCommand(AdicionarPublicacao, CondicaoAdicionarPublicacao));
+
+        private DelegateCommand _seguirGrupoCommand;
+        public DelegateCommand SeguirGrupoCommand =>
+            _seguirGrupoCommand ?? (_seguirGrupoCommand = new DelegateCommand(SeguirGrupo));
+
+
+        private DelegateCommand _atualizarCommand;
+        public DelegateCommand AtualizarCommand =>
+            _atualizarCommand ?? (_atualizarCommand = new DelegateCommand(AtualizarPublicacoes));
+
 
         private DelegateCommand<object> _publicacaoSelectedCommand;
         public DelegateCommand<object> PublicacaoSelectedCommand =>
             _publicacaoSelectedCommand != null ? _publicacaoSelectedCommand : (_publicacaoSelectedCommand = new DelegateCommand<object>(ItemTapped));
 
+        #endregion
 
         public GrupoSelecionadoPageViewModel(INavigationService navigationService, IAzureServicePublication<Publicacao> clientePublication,
             IAzureServiceUser<Usuario> clienteUser, IAzureServiceAux<Auxiliar> clienteAuxiliar, IAzureServiceGroup<Grupo> clienteGroup,
@@ -114,10 +126,6 @@ namespace saac.ViewModels
             Aux = new Auxiliar();
 
             PublicacoesGrupo = new ObservableCollection<object>();
-
-            SalvarPublicacaoCommand = new DelegateCommand(AdicionarPublicacao, CondicaoAdicionarPublicacao);
-            SeguirGrupoCommand = new DelegateCommand(SeguirGrupo);
-            AtualizarCommand = new DelegateCommand(AtualizarPublicacoes);
 
         }
 
