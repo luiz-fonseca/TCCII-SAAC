@@ -9,6 +9,7 @@
     <ContentPage.Content>
         <StackLayout Spacing="20" Padding="20"
                          VerticalOptions="Center">
+            
             <Entry Placeholder="Nome do Grupo"
                        Text="{Binding Nome}"/>
 

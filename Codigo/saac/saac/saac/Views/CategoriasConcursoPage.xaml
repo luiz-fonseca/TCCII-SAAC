@@ -17,6 +17,17 @@
                                                         EventArgsParameterPath="Item" />
                 </ListView.Behaviors>
 
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10">
+                                <Label Font="Small" TextColor="Green" Text="{Binding Nome}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+
             </ListView>
         </StackLayout>
     </ContentPage.Content>

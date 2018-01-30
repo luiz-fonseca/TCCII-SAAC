@@ -5,5 +5,34 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="saac.Views.SobrePage"
              Title="Sobre">
+    
+    <StackLayout>
+
+        <Label Text="Universidade Federal de Sergipe - UFS " TextColor="Green"/>
+        <Label Text="Campus Universitário Prof. Alberto Carvalho" TextColor="Green"/>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Departamento de Sistemas de Informação - DSI" TextColor="Green"/>
+            <Label Text=""/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Disciplina: " TextColor="Green"/>
+            <Label Text="Trabalho de Conclusão de Curso II"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Orientador: " TextColor="Green"/>
+            <Label Text="Dr. José Aélio"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Discente: " TextColor="Green"/>
+            <Label Text="Luiz Antônio Fonsêca Sobrinho"/>
+        </StackLayout>
+
+        <Label Text="Sistema Auxiliar de Apoio ao Concurseiro (SaaC)" TextColor="Green"/>
+
+    </StackLayout>
   
 </ContentPage>
