@@ -11,12 +11,10 @@
 
         <Views:MeusGruposPage/>
 
-        <ContentPage Title="Concursos">
+        <Views:CategoriasConcursoPage/>
 
-        </ContentPage>
-
-        <ContentPage Title="Extras">
-
+        <ContentPage Title="Extra">
+            
         </ContentPage>
 
     </TabbedPage.Children>
