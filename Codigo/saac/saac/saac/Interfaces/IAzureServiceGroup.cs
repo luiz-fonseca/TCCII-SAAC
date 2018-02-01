@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace saac.Services.Interfaces
+namespace saac.Interfaces
 {
     public interface IAzureServiceGroup<T> : IAzureServiceBase<T>
     {
