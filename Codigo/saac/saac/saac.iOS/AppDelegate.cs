@@ -1,6 +1,8 @@
 ﻿using Foundation;
 using Prism;
 using Prism.Ioc;
+using saac.Interfaces;
+using saac.iOS.Services;
 using UIKit;
 
 
@@ -34,6 +36,7 @@ namespace saac.iOS
     {
         public void RegisterTypes(IContainerRegistry container)
         {
+            container.Register<IFacebookLogout, FacebookLogout>();
 
         }
     }

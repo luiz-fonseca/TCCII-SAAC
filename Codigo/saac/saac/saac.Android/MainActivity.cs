@@ -3,6 +3,8 @@ using Android.Content.PM;
 using Android.OS;
 using Prism;
 using Prism.Ioc;
+using saac.Droid.Services;
+using saac.Interfaces;
 
 namespace saac.Droid
 {
@@ -28,7 +30,7 @@ namespace saac.Droid
     {
         public void RegisterTypes(IContainerRegistry container)
         {
-            // Register any platform specific implementations
+            container.Register<IFacebookLogout, FacebookLogout>();
         }
     }
 }

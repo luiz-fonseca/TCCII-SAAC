@@ -1,5 +1,7 @@
 ﻿using Prism;
 using Prism.Ioc;
+using saac.Interfaces;
+using saac.UWP.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -31,6 +33,7 @@ namespace saac.UWP
     {
         public void RegisterTypes(IContainerRegistry container)
         {
+            container.Register<IFacebookLogout, FacebookLogout>();
 
         }
     }
