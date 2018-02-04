@@ -10,6 +10,7 @@ namespace saac.ViewModels
 {
 	public class CategoriasConcursoPageViewModel : ViewModelBase
 	{
+        #region Propriedades
         private ObservableCollection<object> _categorias;
         public ObservableCollection<object> Categorias
         {
@@ -22,8 +23,9 @@ namespace saac.ViewModels
         private DelegateCommand<object> _categoriaSelectedCommand;
         public DelegateCommand<object> CategoriaSelectedCommand =>
             _categoriaSelectedCommand != null ? _categoriaSelectedCommand : (_categoriaSelectedCommand = new DelegateCommand<object>(ItemTapped));
+        #endregion
 
-
+        #region Construtor
         public CategoriasConcursoPageViewModel(INavigationService navigationService) : base(navigationService)
         {
             _navigationService = navigationService;
@@ -32,7 +34,9 @@ namespace saac.ViewModels
             ExibirCategorias();
 
         }
+        #endregion
 
+        #region Métodos
         public void ExibirCategorias()
         {
             Categorias.Add(new  { Nome="Nacional"});
@@ -71,6 +75,6 @@ namespace saac.ViewModels
 
         }
 
-
+        #endregion
     }
 }

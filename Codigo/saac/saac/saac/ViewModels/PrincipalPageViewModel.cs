@@ -10,6 +10,7 @@ namespace saac.ViewModels
 {
 	public class PrincipalPageViewModel : ViewModelBase
     {
+        #region Propriedades
         private readonly IFacebookLogout _facebookLogout;
         private readonly INavigationService _navigationService;
 
@@ -20,14 +21,18 @@ namespace saac.ViewModels
         private DelegateCommand _sobreCommand;
         public DelegateCommand SobreCommand =>
             _sobreCommand ?? (_sobreCommand = new DelegateCommand(Sobre));
+        #endregion
 
+        #region Construtor
         public PrincipalPageViewModel(INavigationService navigationService, IFacebookLogout facebookLogout) : base(navigationService)
         {
             _navigationService = navigationService;
             _facebookLogout = facebookLogout;
 
         }
+        #endregion
 
+        #region Métodos
         public async void Logout()
         {
             _facebookLogout.Logout();
@@ -40,5 +45,6 @@ namespace saac.ViewModels
             await _navigationService.NavigateAsync("SobrePage", useModalNavigation: false);
 
         }
+        #endregion
     }
 }

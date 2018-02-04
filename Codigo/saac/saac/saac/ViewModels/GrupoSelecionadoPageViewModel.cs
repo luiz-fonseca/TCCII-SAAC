@@ -108,6 +108,7 @@ namespace saac.ViewModels
 
         #endregion
 
+        #region Construtor
         public GrupoSelecionadoPageViewModel(INavigationService navigationService, IAzureServicePublication<Publicacao> clientePublication,
             IAzureServiceUser<Usuario> clienteUser, IAzureServiceAux<Auxiliar> clienteAuxiliar, IAzureServiceGroup<Grupo> clienteGroup,
             IAzureServiceComment<Comentario> clienteComment, IPageDialogService dialogService) : base(navigationService)
@@ -128,7 +129,9 @@ namespace saac.ViewModels
             PublicacoesGrupo = new ObservableCollection<object>();
 
         }
+        #endregion
 
+        #region Métodos
         private bool CondicaoAdicionarPublicacao()
         {
             return !string.IsNullOrWhiteSpace(Texto);
@@ -341,6 +344,6 @@ namespace saac.ViewModels
 
             ExibirPublicacoes(Grupos.Id);
         }
-
+        #endregion
     }
 }

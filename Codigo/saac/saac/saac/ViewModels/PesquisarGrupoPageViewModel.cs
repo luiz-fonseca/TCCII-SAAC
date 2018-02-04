@@ -71,6 +71,7 @@ namespace saac.ViewModels
 
         #endregion
 
+        #region Construtor
         public PesquisarGrupoPageViewModel(INavigationService navigationService, IAzureServiceGroup<Grupo> clienteGroup) : base(navigationService)
         {
             _navigationService = navigationService;
@@ -79,7 +80,9 @@ namespace saac.ViewModels
             Groups = new ObservableCollection<Grupo>();
 
         }
+        #endregion
 
+        #region Métodos
         /*private bool CondicaoPesquisarGrupo()
         {
             return !string.IsNullOrWhiteSpace(Pesquisar);
@@ -159,5 +162,6 @@ namespace saac.ViewModels
 
             ExibirGrupos();
         }
+        #endregion
     }
 }

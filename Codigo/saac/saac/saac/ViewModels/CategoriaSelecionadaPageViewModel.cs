@@ -9,6 +9,7 @@ namespace saac.ViewModels
 {
 	public class CategoriaSelecionadaPageViewModel : ViewModelBase
 	{
+        #region Propriedades
         private string _web;
         public string Web
         {
@@ -17,13 +18,17 @@ namespace saac.ViewModels
         }
 
         private readonly INavigationService _navigationService;
+        #endregion
 
+        #region Construtor
         public CategoriaSelecionadaPageViewModel(INavigationService navigationService) : base(navigationService)
         {
             _navigationService = navigationService;
 
         }
+        #endregion
 
+        #region Métodos
         public void exibir(string args)
         {
             if (args.Contains("Nacional"))
@@ -64,5 +69,6 @@ namespace saac.ViewModels
             exibir(resultado);
 
         }
+        #endregion
     }
 }

@@ -104,6 +104,7 @@ namespace saac.ViewModels
 
         #endregion
 
+        #region Construtor
         public PublicacaoSelecionadaPageViewModel(INavigationService navigationService, IAzureServiceComment<Comentario> clienteComment,
                                             IAzureServiceUser<Usuario> clienteUser, IAzureServicePublication<Publicacao> clientePublication,
                                             IPageDialogService dialogService) : base(navigationService)
@@ -121,7 +122,9 @@ namespace saac.ViewModels
             ComentariosPublication = new ObservableCollection<object>();
 
         }
+        #endregion
 
+        #region Métodos
         private bool CondicaoAdicionarComentario()
         {
             return !string.IsNullOrWhiteSpace(Texto);
@@ -304,6 +307,6 @@ namespace saac.ViewModels
 
             Exibircomentario(Publication.Id);
         }
-
+        #endregion
     }
 }

@@ -69,6 +69,7 @@ namespace saac.ViewModels
 
         #endregion
 
+        #region Construtor
         public MeusGruposPageViewModel(INavigationService navigationService, IAzureServiceAux<Auxiliar> clienteAux,
             IAzureServiceGroup<Grupo> clienteGroup) : base(navigationService)
         {
@@ -79,7 +80,9 @@ namespace saac.ViewModels
             MeusGroups = new ObservableCollection<Grupo>();
 
         }
+        #endregion
 
+        #region Métodos
         public void AtualizarGrupos()
         {
             Atualizando = true;
@@ -161,6 +164,6 @@ namespace saac.ViewModels
             ExibirMeusGrupos(UserId);
 
         }
-
+        #endregion
     }
 }

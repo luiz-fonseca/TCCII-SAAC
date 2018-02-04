@@ -80,6 +80,7 @@ namespace saac.ViewModels
 
         #endregion
 
+        #region Construtor
         public AdicionarGrupoPageViewModel(INavigationService navigationService, IPageDialogService dialogService,
             IAzureServiceGroup<Grupo> clienteGrupo, IAzureServiceAux<Auxiliar> clienteAuxiliar
             ) : base(navigationService)
@@ -94,7 +95,9 @@ namespace saac.ViewModels
             _dialogService = dialogService;
 
         }
+        #endregion
 
+        #region Métodos
         private bool CondicaoSalvarGrupo()
         {
             return !string.IsNullOrWhiteSpace(Nome) &&
@@ -136,6 +139,6 @@ namespace saac.ViewModels
             UserId = parameters.GetValue<string>("userId");
 
         }
-
+        #endregion
     }
 }

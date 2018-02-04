@@ -47,6 +47,8 @@ namespace saac.ViewModels
 
         #endregion
 
+        #region Construtor
+
         public MainPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IAzureServiceUser<Usuario> clienteUser,
             IFacebookService clienteFacebook)
             : base(navigationService)
@@ -57,6 +59,9 @@ namespace saac.ViewModels
             _navigationService = navigationService;
 
         }
+        #endregion
+
+        #region Métodos
 
         #region facebook
         public async Task SetFacebookUserProfileAsync(string accessToken)
@@ -163,5 +168,7 @@ namespace saac.ViewModels
             }
 
         }
+
+        #endregion
     }
 }

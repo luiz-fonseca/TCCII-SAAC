@@ -8,9 +8,11 @@ namespace saac.ViewModels
 {
 	public class SobrePageViewModel : BindableBase
 	{
+        #region Construtor
         public SobrePageViewModel()
         {
 
         }
-	}
+        #endregion
+    }
 }
