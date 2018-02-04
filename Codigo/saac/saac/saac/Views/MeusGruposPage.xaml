@@ -10,7 +10,6 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Pesquisar" Order="Primary"  Command="{Binding PesquisarGrupoCommand}"/>
         <ToolbarItem Text="Novo Grupo" Order="Secondary" Command="{Binding AdicionarGrupoCommand}"/>
-        <ToolbarItem Text="Sobre" Order="Secondary" Command="{Binding SobreCommand}"/>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>

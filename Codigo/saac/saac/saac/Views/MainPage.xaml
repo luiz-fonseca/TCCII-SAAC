@@ -4,11 +4,11 @@
              x:Class="saac.Views.MainPage"
              Title="SaaC">
 
-    <StackLayout HorizontalOptions="CenterAndExpand">
+    <StackLayout Padding="20,50,20,20">
 
         <Label HorizontalOptions="Center" Font="Large" TextColor="Green" Text="SaaC" />
         <Label HorizontalOptions="Center" TextColor="Green" Text="Sistema Auxiliar de Apoio ao Concurseiro" />
-        <Button  VerticalOptions="CenterAndExpand"  Text="Facebook" BackgroundColor="Blue" TextColor="White" Clicked="LoginWithFacebook_Clicked"></Button>
+        <Button VerticalOptions="CenterAndExpand"  Text="Facebook" BackgroundColor="Blue" TextColor="White" Clicked="LoginWithFacebook_Clicked"></Button>
 
     </StackLayout>
 

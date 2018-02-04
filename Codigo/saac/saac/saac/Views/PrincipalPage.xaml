@@ -7,15 +7,19 @@
             x:Class="saac.Views.PrincipalPage"
             Title="Saac">
 
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem Text="Sobre" Order="Secondary" Command="{Binding SobreCommand}"/>
+        <ToolbarItem Text="Sair" Order="Secondary" Command="{Binding LogoutCommand}"/>
+
+    </TabbedPage.ToolbarItems>
+    
     <TabbedPage.Children>
 
         <Views:MeusGruposPage/>
 
         <Views:CategoriasConcursoPage/>
 
-        <ContentPage Title="Extra">
-            
-        </ContentPage>
+        <Views:MaisPage/>
 
     </TabbedPage.Children>
 

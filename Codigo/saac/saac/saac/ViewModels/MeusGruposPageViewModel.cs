@@ -63,10 +63,6 @@ namespace saac.ViewModels
         public DelegateCommand AtualizarCommand =>
             _atualizarCommand ?? (_atualizarCommand = new DelegateCommand(AtualizarGrupos));
 
-        private DelegateCommand _sobreCommand;
-        public DelegateCommand SobreCommand =>
-            _sobreCommand ?? (_sobreCommand = new DelegateCommand(Sobre));
-
         private DelegateCommand<Grupo> _grupoSelectedCommand;
         public DelegateCommand<Grupo> GrupoSelectedCommand =>
             _grupoSelectedCommand != null ? _grupoSelectedCommand : (_grupoSelectedCommand = new DelegateCommand<Grupo>(ItemTapped));
@@ -149,12 +145,6 @@ namespace saac.ViewModels
             navigationParams.Add("userId", UserId);
 
             await _navigationService.NavigateAsync("PesquisarGrupoPage", navigationParams, useModalNavigation: false);
-
-        }
-
-        public async void Sobre()
-        {
-            await _navigationService.NavigateAsync("SobrePage", useModalNavigation: false);
 
         }
 

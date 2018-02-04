@@ -43,6 +43,7 @@ namespace saac
             containerRegistry.RegisterForNavigation<SobrePage>();
             containerRegistry.RegisterForNavigation<CategoriasConcursoPage>();
             containerRegistry.RegisterForNavigation<CategoriaSelecionadaPage>();
+            containerRegistry.RegisterForNavigation<MaisPage>();
 
             containerRegistry.Register<IAzureServiceUser<Usuario>, AzureServiceUser<Usuario>>();
             containerRegistry.Register<IAzureServiceGroup<Grupo>, AzureServiceGroup<Grupo>>();
@@ -51,6 +52,7 @@ namespace saac
             containerRegistry.Register<IAzureServiceComment<Comentario>, AzureServiceComment<Comentario>>();
             containerRegistry.Register<IFacebookService, FacebookService>();
 
+            
         }
     }
 }
