@@ -41,8 +41,14 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Padding="10">
-                                <Label TextColor="Green" Text="{Binding Nome}"/>
+                                <StackLayout Orientation="Horizontal">
+                                    <Image Source="{Binding Foto}"  HeightRequest="50"
+                                            WidthRequest="50" VerticalOptions="Start"/>
+                                    
+                                    <Label TextColor="Green" Text="{Binding Nome}"/>
+                                </StackLayout>
                                 <Label Font="Small" Text="{Binding Texto}"/>
+                                
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

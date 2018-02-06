@@ -51,6 +51,8 @@ namespace saac
             containerRegistry.Register<IAzureServicePublication<Publicacao>, AzureServicePublication<Publicacao>>();
             containerRegistry.Register<IAzureServiceComment<Comentario>, AzureServiceComment<Comentario>>();
             containerRegistry.Register<IFacebookService, FacebookService>();
+            containerRegistry.Register<IAzureServiceAuxConcursoGrupo<AuxConcursoGrupo>, AzureServiceAuxConcursoGrupo<AuxConcursoGrupo>>();
+            containerRegistry.Register<IAzureServiceConcurso<Concurso>, AzureServiceConcurso<Concurso>>();
 
             
         }

@@ -36,6 +36,13 @@ namespace saac.ViewModels
             set { SetProperty(ref _nome, value); }
         }
 
+        private string _foto;
+        public string Foto
+        {
+            get { return _foto; }
+            set { SetProperty(ref _foto, value); }
+        }
+
         private Comentario _comentarios;
         public Comentario Comentarios
         {
@@ -235,7 +242,7 @@ namespace saac.ViewModels
                     var resulUser = await _clienteUser.Usuarios(auxList);
 
                     var resultado = resulComment.Join(resulUser, c => c.CodUsuario, u => u.Id,
-                                                        (c, u) => new { c.Id, c.CodPublicacao, c.CodUsuario, c.Texto, u.Nome });
+                                                        (c, u) => new { c.Id, c.CodPublicacao, c.CodUsuario, c.Texto, u.Nome, u.Foto });
 
                     ComentariosPublication.Clear();
                     foreach (var item in resultado)
@@ -267,7 +274,7 @@ namespace saac.ViewModels
         {
             var comment = new Comentario();
 
-            var aux = Conversao(args, new { Id = "", CodPublicacao = "", CodUsuario = "", Texto = "", Nome = "" });
+            var aux = Conversao(args, new { Id = "", CodPublicacao = "", CodUsuario = "", Texto = "", Nome = "", Foto = "" });
 
             comment.Id = aux.Id;
             comment.CodPublicacao = aux.CodPublicacao;
@@ -297,6 +304,12 @@ namespace saac.ViewModels
             if (parameters.ContainsKey("nome"))
             {
                 Nome = (string)parameters["nome"]; ;
+
+            }
+
+            if (parameters.ContainsKey("foto"))
+            {
+                Foto = (string)parameters["foto"]; ;
 
             }
 

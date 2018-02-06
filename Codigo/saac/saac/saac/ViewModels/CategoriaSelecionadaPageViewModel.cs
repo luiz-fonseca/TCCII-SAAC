@@ -33,32 +33,32 @@ namespace saac.ViewModels
         {
             if (args.Contains("Nacional"))
             {
-                Web = "https://www.pciconcursos.com.br/concursos/nacional/";
+                //Web = "https://www.pciconcursos.com.br/concursos/nacional/";
 
             }
             else if (args.Contains("Nordeste"))
             {
-                Web = "https://www.pciconcursos.com.br/concursos/nordeste/";
+                //Web = "https://www.pciconcursos.com.br/concursos/nordeste/";
 
             }
             else if (args.Contains("Norte"))
             {
-                Web = "https://www.pciconcursos.com.br/concursos/norte/";
+                //Web = "https://www.pciconcursos.com.br/concursos/norte/";
 
             }
             else if (args.Contains("Sudeste"))
             {
-                Web = "https://www.pciconcursos.com.br/concursos/sudeste/";
+                //Web = "https://www.pciconcursos.com.br/concursos/sudeste/";
 
             }
             else if (args.Contains("Sul"))
             {
-                Web = "https://www.pciconcursos.com.br/concursos/sul/";
+                //Web = "https://www.pciconcursos.com.br/concursos/sul/";
 
             }
             else if (args.Contains("Centro-Oeste"))
             {
-                Web = "https://www.pciconcursos.com.br/concursos/centrooeste/";
+                //Web = "https://www.pciconcursos.com.br/concursos/centrooeste/";
 
             }
         }

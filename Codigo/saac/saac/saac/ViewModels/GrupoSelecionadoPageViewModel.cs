@@ -263,7 +263,7 @@ namespace saac.ViewModels
                     var resulUser = await _clienteUser.Usuarios(auxList);
 
                     var resulatdo = resulPublication.Join(resulUser, p => p.CodUsuario, u => u.Id,
-                                                        (p, u) => new { p.Id, p.CodGrupo, p.CodUsuario, p.Texto, u.Nome });
+                                                        (p, u) => new { p.Id, p.CodGrupo, p.CodUsuario, p.Texto, u.Nome, u.Foto });
 
                     PublicacoesGrupo.Clear();
                     foreach (var item in resulatdo)
@@ -294,10 +294,12 @@ namespace saac.ViewModels
 
             var publica = (Publicacao)aux[0];
             var nome = (string)aux[1];
+            var foto = (string)aux[2];
 
             var navigationParams = new NavigationParameters();
             navigationParams.Add("publicacao", publica);
             navigationParams.Add("nome", nome);
+            navigationParams.Add("foto", foto);
             navigationParams.Add("userId", UserId);
 
             await _navigationService.NavigateAsync("PublicacaoSelecionadaPage", navigationParams);
@@ -306,19 +308,22 @@ namespace saac.ViewModels
 
         public object[] ConversaoAux(object args)
         {
-            object[] vetor = new object[2];
+            object[] vetor = new object[3];
             var publica = new Publicacao();
             string Nome;
-            var aux = Conversao(args, new { Id = "", CodGrupo = "", CodUsuario = "", Texto = "", Nome = "" });
+            string Foto;
+            var aux = Conversao(args, new { Id = "", CodGrupo = "", CodUsuario = "", Texto = "", Nome = "", Foto = "" });
 
             publica.Id = aux.Id;
             publica.CodGrupo = aux.CodGrupo;
             publica.CodUsuario = aux.CodUsuario;
             publica.Texto = aux.Texto;
             Nome = aux.Nome;
+            Foto = aux.Foto;
 
             vetor[0] = publica;
             vetor[1] = Nome;
+            vetor[2] = Foto;
 
             return vetor;
 

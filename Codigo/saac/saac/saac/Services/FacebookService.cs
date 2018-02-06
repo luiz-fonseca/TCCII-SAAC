@@ -14,7 +14,7 @@ namespace saac.Services
         public async Task<Facebook> GetFacebookProfileAsync(string accessToken)
         {
             var requestUrl =
-                "https://graph.facebook.com/v2.7/me/?fields=name,email,birthday&access_token="
+                "https://graph.facebook.com/v2.7/me/?fields=name,email,birthday,picture&access_token="
                 + accessToken;
 
             var httpClient = new HttpClient();

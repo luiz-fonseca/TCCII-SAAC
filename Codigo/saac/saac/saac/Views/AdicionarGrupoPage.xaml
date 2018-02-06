@@ -11,13 +11,13 @@
                          VerticalOptions="Center">
             
             <Entry Placeholder="Nome do Grupo"
-                       Text="{Binding Nome}"/>
+                       Text="{Binding Grupos.Nome}"/>
 
             <Entry  Placeholder="Descrição"
-                       Text="{Binding Descricao}"/>
+                       Text="{Binding Grupos.Descricao}"/>
 
             <Entry  Placeholder="Categoria"
-                       Text="{Binding Categoria}"/>
+                       Text="{Binding Grupos.Categoria}"/>
 
             <Button Text="Salvar" TextColor="White"
                         BackgroundColor="#77D065"

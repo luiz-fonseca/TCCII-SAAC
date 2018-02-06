@@ -41,42 +41,10 @@ namespace saac.ViewModels
             set { SetProperty(ref _userId, value); }
         }
 
-        private string _nome;
-        public string Nome
-        {
-            get { return _nome; }
-            set
-            {
-                SetProperty(ref _nome, value);
-                SalvarGrupoCommand.RaiseCanExecuteChanged();
-            }
-        }
-
-        private string _descricao;
-        public string Descricao
-        {
-            get { return _descricao; }
-            set
-            {
-                SetProperty(ref _descricao, value);
-                SalvarGrupoCommand.RaiseCanExecuteChanged();
-            }
-        }
-
-        private string _categoria;
-        public string Categoria
-        {
-            get { return _categoria; }
-            set
-            {
-                SetProperty(ref _categoria, value);
-                SalvarGrupoCommand.RaiseCanExecuteChanged();
-            }
-        }
-
         private DelegateCommand _salvarGrupoCommand;
         public DelegateCommand SalvarGrupoCommand =>
-            _salvarGrupoCommand ?? (_salvarGrupoCommand = new DelegateCommand(SalvarGrupo, CondicaoSalvarGrupo));
+            _salvarGrupoCommand ?? (_salvarGrupoCommand = new DelegateCommand(SalvarGrupo, CondicaoSalvarGrupo))
+            .ObservesProperty(() => Grupos.Nome).ObservesProperty(() => Grupos.Descricao).ObservesProperty(() => Grupos.Categoria);
 
         #endregion
 
@@ -100,28 +68,26 @@ namespace saac.ViewModels
         #region Métodos
         private bool CondicaoSalvarGrupo()
         {
-            return !string.IsNullOrWhiteSpace(Nome) &&
-                !string.IsNullOrWhiteSpace(Descricao) &&
-                !string.IsNullOrWhiteSpace(Categoria);
+            return !string.IsNullOrWhiteSpace(Grupos.Nome) &&
+                !string.IsNullOrWhiteSpace(Grupos.Descricao) &&
+                !string.IsNullOrWhiteSpace(Grupos.Categoria);
         }
 
         private async void SalvarGrupo()
         {
             Grupos.Id = Guid.NewGuid().ToString("N");
-            Grupos.Nome = Nome;
-            Grupos.Descricao = Descricao;
-            Grupos.Categoria = Categoria;
-
+           
             await _clienteGrupo.AdicionarTable(Grupos);
 
             SalvarAuxiliar(Grupos.Id, true);
 
-            Nome = string.Empty;
-            Descricao = string.Empty;
-            Categoria = string.Empty;
+            Grupos.Nome = string.Empty;
+            Grupos.Descricao = string.Empty;
+            Grupos.Categoria = string.Empty;
 
             await _dialogService.DisplayAlertAsync("Grupo Cadastrado", "Parabéns!! O cadastro" +
                 " do seu grupo foi realizado.", "OK");
+
             await _navigationService.GoBackAsync();
         }
 
@@ -134,9 +100,50 @@ namespace saac.ViewModels
             await _clienteAuxiliar.AdicionarTable(Aux);
         }
 
+        /*
+         private async void SelecionarOpcao(){
+            if(condicao == "adicionar")
+            {
+                Message = "Adicionar Grupo";
+                await SalvarGrupo();
+
+            }else if(condicao == "alterar")
+            {
+                Message = "Alterar Grupo";
+                await AlterarGrupo();
+            }
+         }
+
+        /*private async Task AlterarGrupo()
+        {
+
+            await  _clienteGrupo.AlterarTable(Grupos);
+            var navigationParams = new NavigationParameters();
+            navigationParams.Add("grupo", Grupos);
+            navigationParams.Add("userId", UserId);
+
+
+            await _navigationService.GoBackAsync(parameters);
+
+        }*/
+
         public override void OnNavigatedTo(NavigationParameters parameters)
         {
             UserId = parameters.GetValue<string>("userId");
+
+            /*if (parameters.ContainsKey("userId"))
+            {
+                UserId = (string)parameters["userId"]; ;
+            }
+            if (parameters.ContainsKey("condicao"))
+            {
+                Condicao = (string)parameters["condicao"]; ;
+            }
+            if (parameters.ContainsKey("grupo"))
+            {
+                Grupos = (string)parameters["grupo"]; ;
+            }
+             */
 
         }
         #endregion
