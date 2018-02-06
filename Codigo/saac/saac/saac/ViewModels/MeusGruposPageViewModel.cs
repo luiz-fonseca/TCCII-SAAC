@@ -100,11 +100,14 @@ namespace saac.ViewModels
                 var aux = await _clienteAux.MeusGrupos(id);
                 if (aux.Count == 0)
                 {
-                    Message = "Você ainda não possui Grupos. Crie um ou Entre em algum";
+                    MeusGroups.Clear();
+                    Message = "Você ainda não possui nenhum Grupo. Crie um novo ou Entre em algum.";
 
                 }
                 else
                 {
+                    Message = string.Empty;
+
                     var resultado = await _clienteGroup.MeusGrupos(aux);
 
                     MeusGroups.Clear();
@@ -117,7 +120,7 @@ namespace saac.ViewModels
             }
             catch (MobileServiceInvalidOperationException)
             {
-                Message = "Ocorreu algum problema, por favor tente mais tarde";
+                Message = "Ocorreu algum problema, por favor tente novamente mais tarde.";
 
             }
 

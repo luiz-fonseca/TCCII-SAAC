@@ -120,6 +120,8 @@ namespace saac.ViewModels
                 var resultado = await _clienteGroup.GetTable();
                 if (resultado.Count != 0)
                 {
+                    Message = string.Empty;
+
                     Groups.Clear();
                     foreach (var item in resultado)
                     {
@@ -130,13 +132,14 @@ namespace saac.ViewModels
                 }
                 else
                 {
-                    Message = "Ainda não existem Grupos. Crie um ou Entre em algum";
+                    Groups.Clear();
+                    Message = "Ainda não existem Grupos. Crie um novo para começar.";
 
                 }
             }
             catch (MobileServiceInvalidOperationException)
             {
-                Message = "Ocorreu algum problema, por favor tente mais tarde";
+                Message = "Ocorreu algum problema, por favor tente novamente mais tarde.";
 
             }
 

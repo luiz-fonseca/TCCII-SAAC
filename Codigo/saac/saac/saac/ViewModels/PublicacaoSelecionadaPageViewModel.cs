@@ -137,7 +137,7 @@ namespace saac.ViewModels
             var auxResul = await _clienteComment.MeuCometario(comment.Id, UserId);
             if (auxResul != 0)
             {
-                var resulComment = await _dialogService.DisplayAlertAsync("Apagar Comentário", "Deseja excluir este cometario?", " Sim ", " Não ");
+                var resulComment = await _dialogService.DisplayAlertAsync("Excluir Comentário", "Deseja excluir este cometário?", " Sim ", " Não ");
 
                 if (resulComment)
                 {
@@ -183,8 +183,8 @@ namespace saac.ViewModels
             var aux = await _clientePublication.MinhaPublicaco(Publication.Id, UserId);
             if (aux != 0)
             {
-                var resulPublicacao = await _dialogService.DisplayAlertAsync("Excluir Publicação?", "Se você excluir está publicação," +
-                    " todos os comentários relacionados também serão excluidos. Deseja Continuar?", " Sim ", " Não ");
+                var resulPublicacao = await _dialogService.DisplayAlertAsync("Excluir Publicação", "A exclusão desta publicação," +
+                    " também irá excluir todos os comentários relacionados a está publicação. Deseja Continuar?", " Sim ", " Não ");
 
                 if (resulPublicacao)
                 {
@@ -221,7 +221,7 @@ namespace saac.ViewModels
 
                 if (resulComment.Count != 0)
                 {
-                    Message = "";
+                    Message = string.Empty;
 
                     foreach (var item in resulComment)
                     {
@@ -249,14 +249,15 @@ namespace saac.ViewModels
                 else
                 {
                     ComentariosPublication.Clear();
-                    Message = "Esta publicacao ainda não possui nehum comentario";
+
+                    Message = "Está publicação ainda não possui nenhum comentário.";
 
                 }
 
             }
             catch (MobileServiceInvalidOperationException)
             {
-                Message = "Ocorreu algum problema, por favor tente mais tarde";
+                Message = "Ocorreu algum problema, por favor tente novamente mais tarde.";
 
             }
 

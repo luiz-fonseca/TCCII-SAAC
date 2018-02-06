@@ -159,20 +159,20 @@ namespace saac.ViewModels
 
                 await _clienteAuxiliar.AdicionarTable(Aux);
 
-                await _dialogService.DisplayAlertAsync("Seguindo Grupo", "Parabéns!! você já " +
+                await _dialogService.DisplayAlertAsync("Seguindo Grupo", "Parabéns!! você agora " +
                    " está seguindo este grupo.", "OK");
 
             }
             else
             {
-                var resulSeguir = await _dialogService.DisplayAlertAsync("Seguindo Grupo", "Deseja dixar de seguir este grupo?", " Sim ", " Não ");
+                var resulSeguir = await _dialogService.DisplayAlertAsync("Seguindo Grupo", "Deseja deixar de seguir este grupo?", " Sim ", " Não ");
                 if (resulSeguir)
                 {
                     var quantidade = await _clienteAuxiliar.QuantidadeRegistros(Grupos.Id);
                     if (quantidade == 1)
                     {
-                        var resulGrupo = await _dialogService.DisplayAlertAsync("Excluir Grupo?", "Você é o ultimo seguidor deste grupo," +
-                            " se você deixar de segui-lo, este grupo e todas as suas publicações serão excluidos. Deseja Continuar?", " Sim ", " Não ");
+                        var resulGrupo = await _dialogService.DisplayAlertAsync("Excluir Grupo", "Você é a última pessoa a seguir este grupo," +
+                            " se você deixar de segui-lo, este grupo e todas as suas publicações serão excluidas. Deseja Continuar?", " Sim ", " Não ");
 
                         if (resulGrupo)
                         {
@@ -182,7 +182,7 @@ namespace saac.ViewModels
 
                             await _clienteAuxiliar.RemoverTable(resultadoAux);
 
-                            await _dialogService.DisplayAlertAsync("Grupo", "O grupo e suas publicações foram excluídos", "OK");
+                            await _dialogService.DisplayAlertAsync("Grupo", "Este grupo e suas publicações foram excluídos", "OK");
 
                             await _navigationService.GoBackAsync();
 
@@ -195,7 +195,7 @@ namespace saac.ViewModels
 
                         await _clienteAuxiliar.RemoverTable(resultadoAux);
 
-                        await _dialogService.DisplayAlertAsync("Seguindo Grupo", "Você deixou de seguir este grupo", "OK");
+                        await _dialogService.DisplayAlertAsync("Seguindo Grupo", "Você deixou de seguir este grupo.", "OK");
 
                     }
 
@@ -249,7 +249,7 @@ namespace saac.ViewModels
 
                 if (resulPublication.Count != 0)
                 {
-                    Message = "";
+                    Message = string.Empty;
 
                     foreach (var item in resulPublication)
                     {
@@ -276,13 +276,13 @@ namespace saac.ViewModels
                 else
                 {
                     PublicacoesGrupo.Clear();
-                    Message = "Este grupo ainda não possui nehuma publicação";
+                    Message = "Este grupo ainda não possui nehuma publicação.";
 
                 }
             }
             catch (MobileServiceInvalidOperationException)
             {
-                Message = "Ocorreu algum problema, por favor tente mais tarde";
+                Message = "Ocorreu algum problema, por favor tente novamente mais tarde.";
 
             }
 
