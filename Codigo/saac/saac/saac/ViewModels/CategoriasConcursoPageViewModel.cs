@@ -1,6 +1,8 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
+using saac.Interfaces;
+using saac.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,6 +13,26 @@ namespace saac.ViewModels
 	public class CategoriasConcursoPageViewModel : ViewModelBase
 	{
         #region Propriedades
+        protected bool HasInitialized { get; set; }
+
+        private bool _verificadorAdm = false;
+        public bool VerificadorAdm 
+        {
+            get { return _verificadorAdm; }
+            set
+            {
+                SetProperty(ref _verificadorAdm, value);
+                AdministradorCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        private string _userId;
+        public string UserId
+        {
+            get { return _userId; }
+            set { SetProperty(ref _userId, value); }
+        }
+
         private ObservableCollection<object> _categorias;
         public ObservableCollection<object> Categorias
         {
@@ -19,6 +41,11 @@ namespace saac.ViewModels
         }
 
         private readonly INavigationService _navigationService;
+        private readonly IAzureServiceUser<Usuario> _clienteUser;
+
+        private DelegateCommand _administradorCommand;
+        public DelegateCommand AdministradorCommand =>
+            _administradorCommand ?? (_administradorCommand = new DelegateCommand(Administrador, CondicaoAdministrador));
 
         private DelegateCommand<object> _categoriaSelectedCommand;
         public DelegateCommand<object> CategoriaSelectedCommand =>
@@ -26,9 +53,11 @@ namespace saac.ViewModels
         #endregion
 
         #region Construtor
-        public CategoriasConcursoPageViewModel(INavigationService navigationService) : base(navigationService)
+        public CategoriasConcursoPageViewModel(INavigationService navigationService, IAzureServiceUser<Usuario> clienteUser) : base(navigationService)
         {
             _navigationService = navigationService;
+            _clienteUser = clienteUser;
+
             Categorias = new ObservableCollection<object>();
 
             ExibirCategorias();
@@ -59,6 +88,24 @@ namespace saac.ViewModels
 
         }
 
+        private async void Administrador()
+        {
+            await _navigationService.NavigateAsync("AdicionarConcursoPage", useModalNavigation: false);
+        }
+
+        private bool CondicaoAdministrador()
+        {
+            return VerificadorAdm;
+
+        }
+
+        public async void Verificacao(string id)
+        {
+           VerificadorAdm = await _clienteUser.VerificarAdministrador(id);
+
+        }
+
+        
         public string ConversaoCategoria(object args)
         {
             var aux = Conversao(args, new { Nome = "" });
@@ -72,6 +119,20 @@ namespace saac.ViewModels
         public T Conversao<T>(object objeto, T tipo)
         {
             return (T)objeto;
+
+        }
+
+        public override void OnNavigatingTo(NavigationParameters parameters)
+        {
+            if (HasInitialized) return;
+            HasInitialized = true;
+
+            if (parameters.ContainsKey("userId"))
+            {
+                UserId = (string)parameters["userId"]; ;
+            }
+
+            Verificacao(UserId);
 
         }
 

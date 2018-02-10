@@ -44,7 +44,13 @@ namespace saac
             containerRegistry.RegisterForNavigation<CategoriasConcursoPage>();
             containerRegistry.RegisterForNavigation<CategoriaSelecionadaPage>();
             containerRegistry.RegisterForNavigation<MaisPage>();
+            containerRegistry.RegisterForNavigation<AdicionarConcursoPage>();
+            containerRegistry.RegisterForNavigation<AdicionarPrefConcursoPage>();
+            containerRegistry.RegisterForNavigation<AdicionarPrefUserPage>();
+            containerRegistry.RegisterForNavigation<NotificacoesPage>();
 
+
+            //registrando interfaces
             containerRegistry.Register<IAzureServiceUser<Usuario>, AzureServiceUser<Usuario>>();
             containerRegistry.Register<IAzureServiceGroup<Grupo>, AzureServiceGroup<Grupo>>();
             containerRegistry.Register<IAzureServiceAux<Auxiliar>, AzureServiceAux<Auxiliar>>();
@@ -53,6 +59,8 @@ namespace saac
             containerRegistry.Register<IFacebookService, FacebookService>();
             containerRegistry.Register<IAzureServiceAuxConcursoGrupo<AuxConcursoGrupo>, AzureServiceAuxConcursoGrupo<AuxConcursoGrupo>>();
             containerRegistry.Register<IAzureServiceConcurso<Concurso>, AzureServiceConcurso<Concurso>>();
+            containerRegistry.Register<IAzureServicePrefConcurso<PreferenciaConcurso>, AzureServicePrefConcurso<PreferenciaConcurso>>();
+            containerRegistry.Register<IAzureServicePrefUser<PreferenciaUser>, AzureServicePrefUser<PreferenciaUser>>();
 
             
         }

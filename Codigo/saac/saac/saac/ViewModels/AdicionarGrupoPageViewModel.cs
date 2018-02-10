@@ -27,7 +27,6 @@ namespace saac.ViewModels
         }
 
         public Auxiliar _aux;
-
         public Auxiliar Aux
         {
             get { return _aux; }

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="saac.Views.AdicionarConcursoPage"
+             Title="Concurso">
+
+    <StackLayout>
+        <Entry Placeholder="Nome do Grupo"
+                       Text="{Binding Concursos.Titulo}"/>
+
+        <Entry  Placeholder="Descrição"
+                       Text="{Binding Concursos.Descricao}"/>
+
+        <Entry  Placeholder="Categoria"
+                       Text="{Binding Concursos.Detalhes}"/>
+
+        <Button Text="Próximo" TextColor="White"
+                        BackgroundColor="#77D065"
+                        Command="{Binding ProximoCommand}"/>
+
+    </StackLayout>
+    
+  
+</ContentPage>

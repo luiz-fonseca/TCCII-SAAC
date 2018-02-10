@@ -7,8 +7,13 @@
              x:Class="saac.Views.CategoriasConcursoPage"
              Title="Concursos">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Novo Concurso" Order="Secondary" Command="{Binding AdministradorCommand}"/>
+    </ContentPage.ToolbarItems>
+        
     <ContentPage.Content>
         <StackLayout Padding="10">
+
             <ListView ItemsSource="{Binding Categorias}">
 
                 <ListView.Behaviors>

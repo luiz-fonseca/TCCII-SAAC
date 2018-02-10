@@ -49,5 +49,23 @@ namespace saac.Services
 
             return resultado;
         }
+
+        async Task<bool> IAzureServiceUser<T>.VerificarAdministrador(string codUser)
+        {
+            bool resultado = false;
+
+            var query = _tableUser
+                 .Where(Usuario => Usuario.Id == codUser)
+                 .Select(Usuario => Usuario.Sexo);
+
+            var aux = await query.ToListAsync();
+
+            foreach (var item in aux)
+            {
+                resultado = item;
+            }
+
+            return resultado;
+        }
     }
 }

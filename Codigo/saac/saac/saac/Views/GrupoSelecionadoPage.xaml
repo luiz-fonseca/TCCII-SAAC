@@ -44,11 +44,11 @@
                                 <StackLayout Orientation="Horizontal">
                                     <Image Source="{Binding Foto}"  HeightRequest="50"
                                             WidthRequest="50" VerticalOptions="Start"/>
-                                    
+
                                     <Label TextColor="Green" Text="{Binding Nome}"/>
+                                    <Label Text="{Binding Texto}"/>
                                 </StackLayout>
-                                <Label Font="Small" Text="{Binding Texto}"/>
-                                
+
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

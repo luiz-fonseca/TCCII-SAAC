@@ -19,6 +19,8 @@
 
         <Views:CategoriasConcursoPage/>
 
+        <Views:NotificacoesPage/>
+
         <Views:MaisPage/>
 
     </TabbedPage.Children>

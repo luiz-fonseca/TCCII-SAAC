@@ -21,6 +21,7 @@ namespace saac.ViewModels
         private DelegateCommand _sobreCommand;
         public DelegateCommand SobreCommand =>
             _sobreCommand ?? (_sobreCommand = new DelegateCommand(Sobre));
+
         #endregion
 
         #region Construtor
@@ -45,6 +46,7 @@ namespace saac.ViewModels
             await _navigationService.NavigateAsync("SobrePage", useModalNavigation: false);
 
         }
+        
         #endregion
     }
 }

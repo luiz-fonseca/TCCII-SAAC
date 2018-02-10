@@ -145,9 +145,11 @@ namespace saac.ViewModels
             try
             {
                 var resultado = await _clienteUser.ExisteUsuario(User.Id);
-
+         
                 if (resultado != 0)
                 {
+                    //User.Adm = resultado[1].Adm;
+                    //await _clienteUser.AtualizarTable(User);
                     await _navigationService.NavigateAsync("../PrincipalPage", navigationParams);
 
                 }

@@ -7,8 +7,8 @@
              Title="+ Mais">
 
     <StackLayout Padding="20,50,20,20">
-        
-        
+        <Label Text="{Binding UserId}"/>
+
     </StackLayout>
   
 </ContentPage>

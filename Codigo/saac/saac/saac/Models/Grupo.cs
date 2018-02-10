@@ -37,6 +37,9 @@ namespace saac.Models
             set { SetProperty(ref _categoria, value); }
         }
 
+        //[JsonProperty(PropertyName = "temporario")]
+        //public bool Temporario { get; set; } = false;
+
         [Version]
         public string Version { get; set; }
 
