@@ -6,8 +6,40 @@
              x:Class="saac.Views.AdicionarPrefConcursoPage">
     
     <StackLayout>
+        <Label Text="Preferências" TextColor="Green"/>
+
         <StackLayout Orientation="Horizontal">
-            <Button Text="Salvar" TextColor="White"
+            <Label Text="TI              :"/>
+            <Switch IsToggled="{Binding Preferencias.Ti}"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Saúde           :"/>
+            <Switch IsToggled="{Binding Preferencias.Saude}"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Licenciatura    :"/>
+            <Switch IsToggled="{Binding Preferencias.Licenciatura}"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Finanças           :"/>
+            <Switch IsToggled="{Binding Preferencias.Financas}"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Administração   :"/>
+            <Switch IsToggled="{Binding Preferencias.Administracao}"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Militar       :"/>
+            <Switch IsToggled="{Binding Preferencias.Militar}"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Button Text="Voltar" TextColor="White"
                         BackgroundColor="#77D065"
                         Command="{Binding VoltarCommand}"/>
             

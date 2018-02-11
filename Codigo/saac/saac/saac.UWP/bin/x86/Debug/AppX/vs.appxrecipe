@@ -31,13 +31,13 @@
     <AppXManifest Include="C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.UWP\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-02-10T01:00:13.219</Modified>
+      <Modified>2018-02-11T15:15:18.520</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.UWP\bin\x86\Debug\saac.UWP.exe">
       <PackagePath>entrypoint\saac.UWP.exe</PackagePath>
-      <Modified>2018-02-10T01:00:11.418</Modified>
+      <Modified>2018-02-11T15:15:16.862</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\dryioc.dll\2.12.6\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\DryIoc.dll">
       <PackagePath>DryIoc.dll</PackagePath>
@@ -737,7 +737,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac\bin\Debug\netstandard2.0\saac.dll">
       <PackagePath>saac.dll</PackagePath>
-      <Modified>2018-02-10T01:00:03.261</Modified>
+      <Modified>2018-02-11T15:15:09.228</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.UWP\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
@@ -792,11 +792,11 @@
     <AppxPackagedFile Include="C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.UWP\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-02-10T01:00:12.419</Modified>
+      <Modified>2018-02-11T15:15:17.832</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.UWP\bin\x86\Debug\Core\saac.UWP.exe">
       <PackagePath>saac.UWP.exe</PackagePath>
-      <Modified>2018-02-10T01:00:13.207</Modified>
+      <Modified>2018-02-11T15:15:18.509</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

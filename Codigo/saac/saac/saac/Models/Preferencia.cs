@@ -12,22 +12,22 @@ namespace saac.Models
         public string Id { get; set; }
 
         [JsonProperty(PropertyName = "ti")]
-        public bool Ti { get; set; } = false;
+        public bool Ti { get; set; }
 
         [JsonProperty(PropertyName = "saude")]
-        public bool Saude { get; set; } = false;
+        public bool Saude { get; set; }
 
         [JsonProperty(PropertyName = "licenciatura")]
-        public bool Licenciatura { get; set; } = false;
+        public bool Licenciatura { get; set; }
 
         [JsonProperty(PropertyName = "financas")]
-        public bool Financas { get; set; } = false;
+        public bool Financas { get; set; }
 
         [JsonProperty(PropertyName = "administracao")]
-        public bool Administracao { get; set; } = false;
+        public bool Administracao { get; set; }
 
         [JsonProperty(PropertyName = "militar")]
-        public bool Militar { get; set; } = false;
+        public bool Militar { get; set; }
 
 
     }

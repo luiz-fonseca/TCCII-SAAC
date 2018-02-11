@@ -66,6 +66,12 @@ namespace saac.ViewModels
             _clienteConcurso = clienteConcurso;
             _clientePreferencia = clientePreferencia;
             _clienteAux = clienteAux;
+
+            Concursos = new Concurso();
+            Preferencias = new PreferenciaConcurso();
+            Grupos = new Grupo();
+            Auxiliar = new AuxConcursoGrupo();
+
         }
 
         public async void Salvar()
@@ -75,6 +81,7 @@ namespace saac.ViewModels
             await SalvarPreferencias();
             await SalvarGrupo();
             await SalvarAux();
+
         }
 
         public async Task SalvarPreferencias()
