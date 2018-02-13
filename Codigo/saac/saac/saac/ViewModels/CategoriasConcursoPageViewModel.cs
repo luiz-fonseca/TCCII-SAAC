@@ -129,11 +129,11 @@ namespace saac.ViewModels
 
             if (parameters.ContainsKey("userId"))
             {
-                UserId = (string)parameters["userId"]; ;
+                UserId = (string)parameters["userId"];
+
+                Verificacao(UserId);
+
             }
-
-            Verificacao(UserId);
-
         }
 
         #endregion

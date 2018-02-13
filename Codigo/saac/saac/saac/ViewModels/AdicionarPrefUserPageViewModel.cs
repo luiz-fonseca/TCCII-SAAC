@@ -6,6 +6,7 @@ using saac.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace saac.ViewModels
 {
@@ -23,6 +24,13 @@ namespace saac.ViewModels
         {
             get { return _userId; }
             set { SetProperty(ref _userId, value); }
+        }
+
+        private bool _inicial;
+        public bool Inicial
+        {
+            get { return _inicial; }
+            set { SetProperty(ref _inicial, value); }
         }
 
         private readonly INavigationService _navigationService;
@@ -44,6 +52,19 @@ namespace saac.ViewModels
 
         public async void Salvar()
         {
+            if (Inicial)
+            {
+                await SalvarPreferencia();
+            }
+            else
+            {
+                await AtualizarPreferencia();
+            }
+
+        }
+
+        public async Task SalvarPreferencia()
+        {
             Preferencias.Id = Guid.NewGuid().ToString("N");
             Preferencias.CodUsuario = UserId;
 
@@ -56,11 +77,33 @@ namespace saac.ViewModels
 
         }
 
+        public async Task AtualizarPreferencia()
+        {
+            await _clientePreferencia.AtualizarTable(Preferencias);
+            await _navigationService.GoBackAsync();
+
+        }
+
+        public async void MinhaPreferencia(string codUsuario)
+        {
+            Preferencias = await _clientePreferencia.MinhasPreferencias(codUsuario);
+
+        }
+
         public override void OnNavigatedTo(NavigationParameters parameters)
         {
             if (parameters.ContainsKey("userId"))
             {
-                UserId = (string)parameters["userId"]; ;
+                UserId = (string)parameters["userId"];
+
+                if (parameters.ContainsKey("inicial"))
+                {
+                    Inicial = (bool)parameters["inicial"]; ;
+                }
+                else
+                {
+                    MinhaPreferencia(UserId);
+                }
             }
         }
 

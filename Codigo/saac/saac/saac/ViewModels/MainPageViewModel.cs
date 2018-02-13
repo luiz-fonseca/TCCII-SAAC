@@ -148,14 +148,20 @@ namespace saac.ViewModels
          
                 if (resultado != 0)
                 {
-                    //User.Adm = resultado[1].Adm;
-                    //await _clienteUser.AtualizarTable(User);
+                    /*var aleatorio = new Random();
+                    var resulAleatorio = aleatorio.Next(0, 1);
+
+                    if (resulAleatorio == 0)
+                    {
+                        await _clienteUser.AtualizarTable(User);
+                    }*/
                     await _navigationService.NavigateAsync("../PrincipalPage", navigationParams);
 
                 }
                 else
                 {
-                    User.Administrador = false;
+                    navigationParams.Add("inicial", true);
+                    User.Administrador = true;
 
                     await _clienteUser.AdicionarTable(User);
                     await _dialogService.DisplayAlertAsync("Cadastro Realizado", "Parabéns!! O seu cadastro foi realizado.", "OK");

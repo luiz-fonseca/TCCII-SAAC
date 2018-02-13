@@ -4,6 +4,7 @@ using saac.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace saac.Services
 {
@@ -15,6 +16,23 @@ namespace saac.Services
         {
             _tablePrefUser = _cliente.GetTable<PreferenciaUser>();
 
+        }
+
+        async Task<PreferenciaUser> IAzureServicePrefUser<T>.MinhasPreferencias(string codUsuario)
+        {
+            var resultado = new PreferenciaUser();
+
+            var query = _tablePrefUser
+               .Where(PreferenciaUser => PreferenciaUser.CodUsuario == codUsuario);
+
+            var aux = await query.ToListAsync();
+
+            foreach (var item in aux)
+            {
+                resultado = item;
+            }
+
+            return resultado;
         }
     }
 }

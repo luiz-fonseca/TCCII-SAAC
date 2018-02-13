@@ -161,10 +161,12 @@ namespace saac.ViewModels
 
             if (parameters.ContainsKey("userId"))
             {
-                UserId = (string)parameters["userId"]; ;
-            }
+                UserId = (string)parameters["userId"];
 
-            ExibirMeusGrupos(UserId);
+                ExibirMeusGrupos(UserId);
+
+            }
+            
 
         }
         #endregion

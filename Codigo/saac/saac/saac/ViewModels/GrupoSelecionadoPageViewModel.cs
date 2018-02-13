@@ -337,17 +337,18 @@ namespace saac.ViewModels
 
         public override void OnNavigatedTo(NavigationParameters parameters)
         {
-            if (parameters.ContainsKey("grupo"))
-            {
-                Grupos = (Grupo)parameters["grupo"];
-            }
-
             if (parameters.ContainsKey("userId"))
             {
-                UserId = (string)parameters["userId"]; ;
-            }
+                UserId = (string)parameters["userId"];
 
-            ExibirPublicacoes(Grupos.Id);
+                if (parameters.ContainsKey("grupo"))
+                {
+                    Grupos = (Grupo)parameters["grupo"];
+
+                    ExibirPublicacoes(Grupos.Id);
+                }
+            }
+            
         }
         #endregion
     }

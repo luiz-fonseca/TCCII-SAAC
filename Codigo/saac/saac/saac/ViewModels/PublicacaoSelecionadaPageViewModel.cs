@@ -295,31 +295,30 @@ namespace saac.ViewModels
 
         public override void OnNavigatedTo(NavigationParameters parameters)
         {
-            if (parameters.ContainsKey("publicacao"))
-            {
-                Publication = (Publicacao)parameters["publicacao"];
-
-            }
-
-            if (parameters.ContainsKey("nome"))
-            {
-                Nome = (string)parameters["nome"]; ;
-
-            }
-
-            if (parameters.ContainsKey("foto"))
-            {
-                Foto = (string)parameters["foto"]; ;
-
-            }
-
             if (parameters.ContainsKey("userId"))
             {
-                UserId = (string)parameters["userId"]; ;
+                UserId = (string)parameters["userId"];
 
+                if (parameters.ContainsKey("publicacao"))
+                {
+                    Publication = (Publicacao)parameters["publicacao"];
+
+                    if (parameters.ContainsKey("nome"))
+                    {
+                        Nome = (string)parameters["nome"]; ;
+
+                    }
+
+                    if (parameters.ContainsKey("foto"))
+                    {
+                        Foto = (string)parameters["foto"]; ;
+
+                    }
+
+                    Exibircomentario(Publication.Id);
+
+                }
             }
-
-            Exibircomentario(Publication.Id);
         }
         #endregion
     }
