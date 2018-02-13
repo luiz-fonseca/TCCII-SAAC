@@ -98,7 +98,7 @@ namespace saac.ViewModels
             Grupos.Nome = Concursos.Titulo;
             Grupos.Descricao = Concursos.Descricao;
             Grupos.Categoria = "Padrão";
-            //Grupos.Temporario = true;
+            Grupos.Temporario = true;
 
             await _clienteGrupo.AdicionarTable(Grupos);
         }

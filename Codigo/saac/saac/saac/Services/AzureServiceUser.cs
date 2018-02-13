@@ -56,7 +56,7 @@ namespace saac.Services
 
             var query = _tableUser
                  .Where(Usuario => Usuario.Id == codUser)
-                 .Select(Usuario => Usuario.Sexo);
+                 .Select(Usuario => Usuario.Administrador);
 
             var aux = await query.ToListAsync();
 

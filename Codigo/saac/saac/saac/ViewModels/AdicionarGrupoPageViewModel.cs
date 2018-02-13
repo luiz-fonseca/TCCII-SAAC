@@ -75,6 +75,7 @@ namespace saac.ViewModels
         private async void SalvarGrupo()
         {
             Grupos.Id = Guid.NewGuid().ToString("N");
+            Grupos.Temporario = false;
            
             await _clienteGrupo.AdicionarTable(Grupos);
 
