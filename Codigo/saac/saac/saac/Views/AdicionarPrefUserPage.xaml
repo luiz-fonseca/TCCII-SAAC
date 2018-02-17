@@ -3,38 +3,39 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="saac.Views.AdicionarPrefUserPage">
-    
-    <StackLayout>
+             x:Class="saac.Views.AdicionarPrefUserPage"
+             Title="Preferência de Usuário">
+
+    <StackLayout Padding="10,10,10,10" Spacing="10">
         <Label Text="Preferências" TextColor="Green"/>
 
         <StackLayout Orientation="Horizontal">
-            <Label Text="TI ...................................... : " TextColor="Green"/>
+            <Label Text="TI :        .        .        .        .        .        .        .        .        .        .   : " TextColor="Green"/>
             <Switch IsToggled="{Binding Preferencias.Ti}"/>
         </StackLayout>
 
         <StackLayout Orientation="Horizontal">
-            <Label Text="Saúde ............................. : " TextColor="Green"/>
+            <Label Text="Saúde :        .        .        .        .        .        .        .        .        .    .: " TextColor="Green"/>
             <Switch IsToggled="{Binding Preferencias.Saude}"/>
         </StackLayout>
 
         <StackLayout Orientation="Horizontal">
-            <Label Text="Licenciatura .................. : " TextColor="Green"/>
+            <Label Text="Licenciatura :        .        .        .        .        .        .        .        .    : " TextColor="Green"/>
             <Switch IsToggled="{Binding Preferencias.Licenciatura}"/>
         </StackLayout>
 
         <StackLayout Orientation="Horizontal">
-            <Label Text="Finanças ......................... : " TextColor="Green"/>
+            <Label Text="Finanças :        .        .        .        .        .        .        .        .        . : " TextColor="Green"/>
             <Switch IsToggled="{Binding Preferencias.Financas}"/>
         </StackLayout>
 
         <StackLayout Orientation="Horizontal">
-            <Label Text="Administração ............. : " TextColor="Green"/>
+            <Label Text="Administração :        .        .        .        .        .        .        .        .: " TextColor="Green"/>
             <Switch IsToggled="{Binding Preferencias.Administracao}"/>
         </StackLayout>
 
         <StackLayout Orientation="Horizontal">
-            <Label Text="Militar ............................. : " TextColor="Green"/>
+            <Label Text="Militar :        .        .        .        .        .        .        .        .        .    : " TextColor="Green"/>
             <Switch IsToggled="{Binding Preferencias.Militar}"/>
         </StackLayout>
 

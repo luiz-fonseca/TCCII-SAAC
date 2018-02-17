@@ -7,7 +7,7 @@
              Title="Concursos">
 
     <ContentPage.Content>
-        <StackLayout Spacing="20" Padding="20"
+        <StackLayout Spacing="20" Padding="10, 0, 10, 0"
                          VerticalOptions="Center">
             
             <Entry Placeholder="Nome do Grupo"

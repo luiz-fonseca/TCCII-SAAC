@@ -8,16 +8,15 @@
              Title="Grupo">
 
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Padding="10,10,10,10">
+            
             <Label Font="Medium" TextColor="Green" Text="{Binding Grupos.Nome}"/>
             <Label Text="{Binding Grupos.Descricao}"/>
             <Label TextColor="Green" Text="{Binding Grupos.Categoria}"/>
 
             <Button Text="Seguir" Command="{Binding SeguirGrupoCommand}"/>
 
-
-            <Entry Placeholder="Publicação"
-                       Text="{Binding Texto}"/>
+            <Editor Text="{Binding Texto}" HeightRequest="50"/>
 
             <Button Text="Salvar" TextColor="White"
                         BackgroundColor="#77D065"
@@ -40,7 +39,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Padding="10">
+                            <StackLayout Spacing="10">
                                 <StackLayout Orientation="Horizontal">
                                     <Image Source="{Binding Foto}"  HeightRequest="50"
                                             WidthRequest="50" VerticalOptions="Start"/>

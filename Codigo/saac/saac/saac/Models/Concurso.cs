@@ -37,13 +37,21 @@ namespace saac.Models
             set { SetProperty(ref _detalhes, value); }
         }
 
+        private string _regiao;
+        [JsonProperty(PropertyName = "regiao")]
+        public string Regiao
+        {
+            get { return _regiao; }
+            set { SetProperty(ref _regiao, value); }
+        }
 
-        //[JsonProperty(PropertyName = "estado")]
-        //public string Estado { get; set; }
-
-        //[JsonProperty(PropertyName = "regioes")]
-        //public string Regioes { get; set; }
-
+        private string _estado;
+        [JsonProperty(PropertyName = "estado")]
+        public string Estado
+        {
+            get { return _estado; }
+            set { SetProperty(ref _estado, value); }
+        }
 
         [Version]
         public string Version { get; set; }

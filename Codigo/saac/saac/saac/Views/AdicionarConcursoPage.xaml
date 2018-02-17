@@ -6,21 +6,28 @@
              x:Class="saac.Views.AdicionarConcursoPage"
              Title="Concurso">
 
-    <StackLayout>
-        <Entry Placeholder="Nome do Grupo"
+    <ContentPage.Content>
+        <StackLayout Padding="10, 0, 10, 0" Spacing="10" VerticalOptions="Center">
+            <Entry Placeholder="Título"
                        Text="{Binding Concursos.Titulo}"/>
 
-        <Entry  Placeholder="Descrição"
+            <Entry  Placeholder="Descrição"
                        Text="{Binding Concursos.Descricao}"/>
 
-        <Entry  Placeholder="Categoria"
-                       Text="{Binding Concursos.Detalhes}"/>
+            <Label Text="Detalhes" TextColor="Green"/>
+            <Editor Text="{Binding Concursos.Detalhes}" HeightRequest="150"/>
 
-        <Button Text="Próximo" TextColor="White"
+            <Picker Title="Regiões" TextColor="Green" ItemsSource="{Binding Regioes}" SelectedIndex="{Binding ItemRegioes}"/>
+            <Picker Title="Estados" TextColor="Green" ItemsSource="{Binding Estados}" SelectedIndex="{Binding ItemEstados}"/>
+
+            <Label Text="{Binding Concursos.Regiao}"/>
+            <Label Text="{Binding Concursos.Estado}"/>
+            
+            <Button Text="Próximo" TextColor="White"
                         BackgroundColor="#77D065"
                         Command="{Binding ProximoCommand}"/>
 
-    </StackLayout>
-    
+        </StackLayout>
+    </ContentPage.Content>
   
 </ContentPage>

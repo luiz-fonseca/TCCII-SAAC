@@ -13,7 +13,8 @@
 
 
     <ContentPage.Content>
-        <StackLayout Padding="10">
+        <StackLayout Padding="10,10,10,10">
+            
             <StackLayout Orientation="Horizontal">
                 <Image Source="{Binding Foto}"  HeightRequest="60"
                      WidthRequest="60" VerticalOptions="Start"/>
@@ -40,7 +41,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Padding="10">
+                            <StackLayout Orientation="Vertical" Spacing="50">
                                 <StackLayout Orientation="Horizontal">
                                     <Image Source="{Binding Foto}"  HeightRequest="50"
                                             WidthRequest="50" VerticalOptions="Start"/>
