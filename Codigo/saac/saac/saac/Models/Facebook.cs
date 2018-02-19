@@ -15,9 +15,14 @@ namespace saac.Models
 
         [JsonProperty("id")]
         public string Id { get; set; }
-
+        
+        private DateTime _dtNascimento;
         [JsonProperty("birthday")]
-        public DateTime DtNascimento { get; set; }
+        public DateTime DtNascimento
+        {
+            get { return _dtNascimento; }
+            set { _dtNascimento = value; }
+        }
 
         [JsonProperty("picture")]
         public Picture Picture { get; set; }

@@ -134,7 +134,7 @@ namespace saac.ViewModels
             User.Id = FacebookProfile.Id;
             User.Nome = FacebookProfile.Name;
             User.Foto = FacebookProfile.Picture.Data.Url;
-            User.DtNasci = FacebookProfile.DtNascimento.Date;
+            User.DtNasci = FacebookProfile.DtNascimento;
             User.Sexo = true;
             User.Endereco = "Areia Branca";
 

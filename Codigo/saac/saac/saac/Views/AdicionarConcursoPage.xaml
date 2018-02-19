@@ -7,27 +7,48 @@
              Title="Concurso">
 
     <ContentPage.Content>
-        <StackLayout Padding="10, 0, 10, 0" Spacing="10" VerticalOptions="Center">
-            <Entry Placeholder="Título"
+        <ScrollView>
+            <StackLayout Padding="10, 10, 10, 20" Spacing="10">
+                <Label Text="Adicionar Novo Concurso" TextColor="Green"/>
+                
+                <Entry Placeholder="Título"
                        Text="{Binding Concursos.Titulo}"/>
 
-            <Entry  Placeholder="Descrição"
+                <Entry  Placeholder="Descrição"
                        Text="{Binding Concursos.Descricao}"/>
 
-            <Label Text="Detalhes" TextColor="Green"/>
-            <Editor Text="{Binding Concursos.Detalhes}" HeightRequest="150"/>
+                <Label Text="Detalhes" TextColor="Green"/>
+                <Editor Text="{Binding Concursos.Detalhes}" HeightRequest="400"/>
 
-            <Picker Title="Regiões" TextColor="Green" ItemsSource="{Binding Regioes}" SelectedIndex="{Binding ItemRegioes}"/>
-            <Picker Title="Estados" TextColor="Green" ItemsSource="{Binding Estados}" SelectedIndex="{Binding ItemEstados}"/>
+                <Picker Title="Regiões" TextColor="Green" ItemsSource="{Binding Regioes}" SelectedIndex="{Binding ItemRegioes}"/>
+                <Picker Title="Estados" TextColor="Green" ItemsSource="{Binding Estados}" SelectedIndex="{Binding ItemEstados}"/>
 
-            <Label Text="{Binding Concursos.Regiao}"/>
-            <Label Text="{Binding Concursos.Estado}"/>
-            
-            <Button Text="Próximo" TextColor="White"
+                <Label Text="Data final da inscrição" TextColor="Green"/>
+                
+                <DatePicker
+                    Date="{Binding Concursos.DtInscricao}"
+                    MinimumDate="01/01/2018" 
+                    MaximumDate="01/01/2100"
+                    Format="dd/MM/yyyy"/>
+
+                <Label Text="Data final da realização do concurso" TextColor="Green"/>
+
+                <DatePicker
+                    Date="{Binding Concursos.DtRealizacao}"
+                    MinimumDate="01/01/2018" 
+                    MaximumDate="01/01/2100"
+                    Format="dd-MM-YYYY"/>
+
+
+                <Label Text="{Binding Concursos.DtInscricao}"/>
+                <Label Text="{Binding Concursos.DtRealizacao}"/>
+
+                <Button Text="Próximo" TextColor="White"
                         BackgroundColor="#77D065"
                         Command="{Binding ProximoCommand}"/>
 
-        </StackLayout>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
   
 </ContentPage>

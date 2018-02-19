@@ -53,6 +53,22 @@ namespace saac.Models
             set { SetProperty(ref _estado, value); }
         }
 
+        private DateTime _dtinscricao;
+        [JsonProperty(PropertyName = "dtinscricao")]
+        public DateTime DtInscricao
+        {
+            get { return _dtinscricao; }
+            set { SetProperty(ref _dtinscricao, value); }
+        }
+
+        private DateTime _dtRealizacao;
+        [JsonProperty(PropertyName = "dtRealizacao")]
+        public DateTime DtRealizacao
+        {
+            get { return _dtRealizacao; }
+            set { SetProperty(ref _dtRealizacao, value); }
+        }
+
         [Version]
         public string Version { get; set; }
     }
