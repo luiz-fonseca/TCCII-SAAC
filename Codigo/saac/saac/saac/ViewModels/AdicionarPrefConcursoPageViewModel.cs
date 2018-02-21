@@ -12,6 +12,7 @@ namespace saac.ViewModels
 {
     public class AdicionarPrefConcursoPageViewModel : ViewModelBase
     {
+        #region Propriedades
         private Concurso _concursos;
         public Concurso Concursos
         {
@@ -54,9 +55,9 @@ namespace saac.ViewModels
         private DelegateCommand _voltarCommand;
         public DelegateCommand VoltarCommand =>
             _voltarCommand ?? (_voltarCommand = new DelegateCommand(Voltar));
-   
-        
+        #endregion
 
+        #region Construtor
         public AdicionarPrefConcursoPageViewModel(INavigationService navigationService, IAzureServiceGroup<Grupo> clienteGrupo,
            IAzureServiceConcurso<Concurso> clienteConcurso, IAzureServicePrefConcurso<PreferenciaConcurso> clientePreferencia,
            IAzureServiceAuxConcursoGrupo<AuxConcursoGrupo> clienteAux) : base(navigationService)
@@ -73,7 +74,9 @@ namespace saac.ViewModels
             Auxiliar = new AuxConcursoGrupo();
 
         }
+        #endregion
 
+        #region Métodos
         public async void Salvar()
         {
             await _clienteConcurso.AdicionarTable(Concursos);
@@ -125,5 +128,6 @@ namespace saac.ViewModels
 
             }
         }
+        #endregion
     }
 }

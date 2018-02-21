@@ -69,6 +69,9 @@ namespace saac.Models
             set { SetProperty(ref _dtRealizacao, value); }
         }
 
+        [JsonProperty(PropertyName = "visibilidade")]
+        public bool Visibilidade { get; set; }
+
         [Version]
         public string Version { get; set; }
     }

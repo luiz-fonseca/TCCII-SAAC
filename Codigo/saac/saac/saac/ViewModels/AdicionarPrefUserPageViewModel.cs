@@ -12,6 +12,7 @@ namespace saac.ViewModels
 {
 	public class AdicionarPrefUserPageViewModel : ViewModelBase
 	{
+        #region Propriedades
         private PreferenciaUser _preferencias;
         public PreferenciaUser Preferencias
         {
@@ -39,8 +40,9 @@ namespace saac.ViewModels
         private DelegateCommand _salvarCommand;
         public DelegateCommand SalvarCommand =>
             _salvarCommand ?? (_salvarCommand = new DelegateCommand(Salvar));
+        #endregion
 
-
+        #region Construtor
         public AdicionarPrefUserPageViewModel(INavigationService navigationService, IAzureServicePrefUser<PreferenciaUser> clientePreferencia) : base (navigationService)
         {
             _navigationService = navigationService;
@@ -49,7 +51,9 @@ namespace saac.ViewModels
             Preferencias = new PreferenciaUser();
 
         }
+        #endregion
 
+        #region Métodos
         public async void Salvar()
         {
             if (Inicial)
@@ -106,6 +110,7 @@ namespace saac.ViewModels
                 }
             }
         }
+        #endregion
 
     }
 }

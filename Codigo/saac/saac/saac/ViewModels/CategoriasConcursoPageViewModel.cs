@@ -83,6 +83,7 @@ namespace saac.ViewModels
             var args = ConversaoCategoria(obj);
             var navigationParams = new NavigationParameters();
             navigationParams.Add("categoria", args);
+            navigationParams.Add("userId", UserId);
            
             await _navigationService.NavigateAsync("CategoriaSelecionadaPage", navigationParams, useModalNavigation: false);
 

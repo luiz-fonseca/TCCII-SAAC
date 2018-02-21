@@ -137,7 +137,7 @@
           "lib/dotnet/Validation.dll": {}
         }
       },
-      "Xamarin.Forms/2.5.0.122203": {
+      "Xamarin.Forms/2.5.0.280555": {
         "type": "package",
         "compile": {
           "lib/Xamarin.iOS10/Xamarin.Forms.Core.dll": {},
@@ -266,7 +266,7 @@
         "dependencies": {
           "Microsoft.Azure.Mobile.Client": "4.0.2",
           "Prism.DryIoc.Forms": "7.0.0.396",
-          "Xamarin.Forms": "2.5.0.122203"
+          "Xamarin.Forms": "2.5.0.280555"
         },
         "compile": {
           "bin/placeholder/saac.dll": {}
@@ -412,7 +412,7 @@
           "lib/dotnet/Validation.dll": {}
         }
       },
-      "Xamarin.Forms/2.5.0.122203": {
+      "Xamarin.Forms/2.5.0.280555": {
         "type": "package",
         "compile": {
           "lib/Xamarin.iOS10/Xamarin.Forms.Core.dll": {},
@@ -541,7 +541,7 @@
         "dependencies": {
           "Microsoft.Azure.Mobile.Client": "4.0.2",
           "Prism.DryIoc.Forms": "7.0.0.396",
-          "Xamarin.Forms": "2.5.0.122203"
+          "Xamarin.Forms": "2.5.0.280555"
         },
         "compile": {
           "bin/placeholder/saac.dll": {}
@@ -687,7 +687,7 @@
           "lib/dotnet/Validation.dll": {}
         }
       },
-      "Xamarin.Forms/2.5.0.122203": {
+      "Xamarin.Forms/2.5.0.280555": {
         "type": "package",
         "compile": {
           "lib/Xamarin.iOS10/Xamarin.Forms.Core.dll": {},
@@ -816,7 +816,7 @@
         "dependencies": {
           "Microsoft.Azure.Mobile.Client": "4.0.2",
           "Prism.DryIoc.Forms": "7.0.0.396",
-          "Xamarin.Forms": "2.5.0.122203"
+          "Xamarin.Forms": "2.5.0.280555"
         },
         "compile": {
           "bin/placeholder/saac.dll": {}
@@ -962,7 +962,7 @@
           "lib/dotnet/Validation.dll": {}
         }
       },
-      "Xamarin.Forms/2.5.0.122203": {
+      "Xamarin.Forms/2.5.0.280555": {
         "type": "package",
         "compile": {
           "lib/Xamarin.iOS10/Xamarin.Forms.Core.dll": {},
@@ -1091,7 +1091,7 @@
         "dependencies": {
           "Microsoft.Azure.Mobile.Client": "4.0.2",
           "Prism.DryIoc.Forms": "7.0.0.396",
-          "Xamarin.Forms": "2.5.0.122203"
+          "Xamarin.Forms": "2.5.0.280555"
         },
         "compile": {
           "bin/placeholder/saac.dll": {}
@@ -1321,10 +1321,10 @@
         "validation.nuspec"
       ]
     },
-    "Xamarin.Forms/2.5.0.122203": {
-      "sha512": "qg7A2IXbVV/5u9qqeiDhRMwpVEsbWKBxzeAtD0rTuntmaDB1Z7WuBg5IK2VBklJbKe2Ps8V9zBfEwgJIqPVJUw==",
+    "Xamarin.Forms/2.5.0.280555": {
+      "sha512": "JVmozDJQNKEVhN4NG5EiG2IBua0+xK9b+t1L/VUN9HeIXkc8BubZM6UnnE1CftlGt0U2+JGTQSL79uxpx0KCpQ==",
       "type": "package",
-      "path": "xamarin.forms/2.5.0.122203",
+      "path": "xamarin.forms/2.5.0.280555",
       "files": [
         "build/netstandard1.0/Mono.Cecil.Mdb.dll",
         "build/netstandard1.0/Mono.Cecil.Pdb.dll",
@@ -1349,18 +1349,14 @@
         "lib/MonoAndroid10/Design/Xamarin.Forms.Core.Design.dll",
         "lib/MonoAndroid10/Design/Xamarin.Forms.Xaml.Design.dll",
         "lib/MonoAndroid10/FormsViewGroup.dll",
-        "lib/MonoAndroid10/FormsViewGroup.dll.mdb",
         "lib/MonoAndroid10/FormsViewGroup.pdb",
         "lib/MonoAndroid10/Xamarin.Forms.Core.dll",
-        "lib/MonoAndroid10/Xamarin.Forms.Core.dll.mdb",
         "lib/MonoAndroid10/Xamarin.Forms.Core.pdb",
         "lib/MonoAndroid10/Xamarin.Forms.Core.xml",
         "lib/MonoAndroid10/Xamarin.Forms.Platform.Android.dll",
-        "lib/MonoAndroid10/Xamarin.Forms.Platform.Android.dll.mdb",
         "lib/MonoAndroid10/Xamarin.Forms.Platform.Android.pdb",
         "lib/MonoAndroid10/Xamarin.Forms.Platform.dll",
         "lib/MonoAndroid10/Xamarin.Forms.Xaml.dll",
-        "lib/MonoAndroid10/Xamarin.Forms.Xaml.dll.mdb",
         "lib/MonoAndroid10/Xamarin.Forms.Xaml.pdb",
         "lib/MonoAndroid10/Xamarin.Forms.Xaml.xml",
         "lib/WP80/Design/Xamarin.Forms.Core.Design.dll",
@@ -1503,7 +1499,7 @@
         "lib/wpa81/Xamarin.Forms.Platform.dll",
         "lib/wpa81/Xamarin.Forms.Xaml.dll",
         "lib/wpa81/Xamarin.Forms.Xaml.xml",
-        "xamarin.forms.2.5.0.122203.nupkg.sha512",
+        "xamarin.forms.2.5.0.280555.nupkg.sha512",
         "xamarin.forms.nuspec"
       ]
     },
@@ -1517,7 +1513,7 @@
     "Xamarin.iOS,Version=v1.0": [
       "Microsoft.Azure.Mobile.Client >= 4.0.2",
       "Prism.DryIoc.Forms >= 7.0.0.396",
-      "Xamarin.Forms >= 2.5.0.122203",
+      "Xamarin.Forms >= 2.5.0.280555",
       "saac >= 1.0.0"
     ]
   },
@@ -1573,7 +1569,7 @@
           },
           "Xamarin.Forms": {
             "target": "Package",
-            "version": "[2.5.0.122203, )"
+            "version": "[2.5.0.280555, )"
           }
         }
       }

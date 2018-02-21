@@ -11,6 +11,7 @@ namespace saac.ViewModels
 {
 	public class AdicionarConcursoPageViewModel : ViewModelBase
 	{
+        #region Propriedades
         private Concurso _concursos;
         public Concurso Concursos
         {
@@ -71,7 +72,9 @@ namespace saac.ViewModels
             .ObservesProperty(() => Concursos.Regiao).ObservesProperty(() => Concursos.Estado);
 
         private readonly INavigationService _navigationService;
-        
+        #endregion
+
+        #region Construtor
         public AdicionarConcursoPageViewModel(INavigationService navigationService) : base(navigationService)
         {
             _navigationService = navigationService;
@@ -82,10 +85,13 @@ namespace saac.ViewModels
 
             InicializarRegioes();
         }
+        #endregion
 
+        #region Métodos
         private async void Proximo()
         {
             Concursos.Id = Guid.NewGuid().ToString("N");
+            Concursos.Visibilidade = true;
 
             var navigationParams = new NavigationParameters();
             navigationParams.Add("Concursos", Concursos);
@@ -166,5 +172,6 @@ namespace saac.ViewModels
                 Estados.Add("Mato Grosso do Sul");
             }
         }
+        #endregion
     }
 }
