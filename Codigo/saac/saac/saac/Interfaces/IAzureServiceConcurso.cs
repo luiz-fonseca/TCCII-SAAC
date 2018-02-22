@@ -9,6 +9,7 @@ namespace saac.Interfaces
     public interface IAzureServiceConcurso<T> : IAzureServiceBase<T>
     {
         Task<List<Concurso>> ConcursosDisponiveis(string regiao);
+        Task<List<Concurso>> MeusConcursos(List<string> codConcurso);
 
     }
 }

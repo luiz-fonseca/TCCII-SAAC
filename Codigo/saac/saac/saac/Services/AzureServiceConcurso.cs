@@ -30,5 +30,26 @@ namespace saac.Services
             return itens;
 
         }
+
+        async Task<List<Concurso>> IAzureServiceConcurso<T>.MeusConcursos(List<string> codConcurso)
+        {
+            var concursos = new List<Concurso>();
+
+            foreach (var item in codConcurso)
+            {
+                var query = _tableConcurso
+                    .Where(Concurso => Concurso.Id == item);
+
+                var resultado = await query.ToListAsync();
+
+                foreach (var aux in resultado)
+                {
+                    concursos.Add(aux);
+                }
+
+            }
+
+            return concursos;
+        }
     }
 }

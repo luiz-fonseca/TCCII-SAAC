@@ -102,15 +102,15 @@ namespace saac.ViewModels
             }
             else
             {
-                Mensagem = "Nenhum Concurso Disponível";
+                Mensagem = "Está região ainda não possui nenhum Concurso Disponível";
             }
 
         }
 
-        public IEnumerable<Group<string, Concurso>> Agrupar(List<Concurso> Concursos)
+        public IEnumerable<Group<string, Concurso>> Agrupar(List<Concurso> concursos)
         {
 
-            var resultado = from concurso in Concursos
+            var resultado = from concurso in concursos
                             orderby concurso.Estado
                             group concurso by concurso.Estado into grupos
                             select new Group<string, Concurso>(grupos.Key, grupos);
