@@ -4,6 +4,7 @@ using saac.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace saac.Services
 {
@@ -14,6 +15,24 @@ namespace saac.Services
         public AzureServiceAuxConcursoGrupo()
         {
             _tableAuxConcursoGrupo = _cliente.GetTable<AuxConcursoGrupo>();
+
+        }
+
+        async Task<List<string>> IAzureServiceAuxConcursoGrupo<T>.GruposConcursos(string codConcurso)
+        {
+            var lista = new List<string>();
+
+            var query = _tableAuxConcursoGrupo
+                .Where(Auxiliar => Auxiliar.CodConcurso == codConcurso)
+                .Select(Auxiliar => Auxiliar.CodGrupo);
+
+            var resultado = await query.ToListAsync();
+
+            foreach (var item in resultado)
+            {
+                lista.Add(item);
+            }
+            return lista;
 
         }
     }

@@ -2,7 +2,49 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="saac.Views.ConcursoSelecionadoPage">
+             x:Class="saac.Views.ConcursoSelecionadoPage"
+             Title="Concurso">
+    
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="10,10,10,10" Spacing="10">
+                <Label Text="{Binding Concursos.Titulo}" TextColor="Green"/>
+                <Label Text="{Binding Concursos.Descricao}"/>
+                <Label Text="{Binding Concursos.Detalhes}" BackgroundColor="Green"/>
+
+                <Label Text="Grupos disponíveis" TextColor="Green"/>
+
+                <ListView ItemsSource="{Binding Grupos}" HasUnevenRows="True" 
+                      IsPullToRefreshEnabled="True" RefreshCommand="{Binding AtualizarCommand}"
+                      IsRefreshing="{Binding Atualizando}">
+
+                    <ListView.Behaviors>
+                        <behaviors:EventToCommandBehavior   EventName="ItemTapped" 
+                                                        Command="{Binding GrupoSelectedCommand}"
+                                                        EventArgsParameterPath="Item" />
+                    </ListView.Behaviors>
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Padding="10">
+                                    <Label Font="Small" TextColor="Green" Text="{Binding Nome}"/>
+                                    <Label Text="{Binding Descricao}"/>
+                                    <Label TextColor="Green" Text="{Binding Categoria}"/>
+
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                </ListView>
+
+            </StackLayout>
+
+        </ScrollView>
+        
+    </ContentPage.Content>
   
 </ContentPage>

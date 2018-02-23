@@ -37,7 +37,7 @@
                     Date="{Binding Concursos.DtRealizacao}"
                     MinimumDate="01/01/2018" 
                     MaximumDate="01/01/2100"
-                    Format="dd-MM-YYYY"/>
+                    Format="dd-MM-yyyy"/>
 
 
                 <Label Text="{Binding Concursos.DtInscricao}"/>
