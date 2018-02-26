@@ -4,47 +4,36 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="saac.Views.AdicionarPrefUserPage"
-             Title="Preferência de Usuário">
+             Title="Usuário">
 
-    <StackLayout Padding="10,10,10,10" Spacing="10">
-        <Label Text="Preferências" TextColor="Green"/>
+    <StackLayout Padding="10,10,10,10">
+        <TableView Intent="Form">
+            <TableRoot>
+                <TableSection Title="Preferências de Usuário">
+                    <SwitchCell On="{Binding Preferencias.Ti}" Text="Ti"/>
+                    <SwitchCell On="{Binding Preferencias.Saude}" Text="Saúde"/>
+                    <SwitchCell On="{Binding Preferencias.Licenciatura}" Text="Licenciatura"/>
+                    <SwitchCell On="{Binding Preferencias.Financas}" Text="Finanças"/>
+                    <SwitchCell On="{Binding Preferencias.Administracao}" Text="Administração"/>
+                    <SwitchCell On="{Binding Preferencias.Militar}" Text="Militar"/>
 
-        <StackLayout Orientation="Horizontal">
-            <Label Text="TI :        .        .        .        .        .        .        .        .        .        .   : " TextColor="Green"/>
-            <Switch IsToggled="{Binding Preferencias.Ti}"/>
-        </StackLayout>
+                </TableSection>
+                
+                <TableSection>
+                    <ViewCell>
+                        <StackLayout>
+                            <Button Text="Salvar" TextColor="White"
+                                    BackgroundColor="#77D065"
+                                    Command="{Binding SalvarCommand}"/>
 
-        <StackLayout Orientation="Horizontal">
-            <Label Text="Saúde :        .        .        .        .        .        .        .        .        .    .: " TextColor="Green"/>
-            <Switch IsToggled="{Binding Preferencias.Saude}"/>
-        </StackLayout>
+                        </StackLayout>
 
-        <StackLayout Orientation="Horizontal">
-            <Label Text="Licenciatura :        .        .        .        .        .        .        .        .    : " TextColor="Green"/>
-            <Switch IsToggled="{Binding Preferencias.Licenciatura}"/>
-        </StackLayout>
+                    </ViewCell>
+                </TableSection>
+            </TableRoot>
 
-        <StackLayout Orientation="Horizontal">
-            <Label Text="Finanças :        .        .        .        .        .        .        .        .        . : " TextColor="Green"/>
-            <Switch IsToggled="{Binding Preferencias.Financas}"/>
-        </StackLayout>
+        </TableView>
 
-        <StackLayout Orientation="Horizontal">
-            <Label Text="Administração :        .        .        .        .        .        .        .        .: " TextColor="Green"/>
-            <Switch IsToggled="{Binding Preferencias.Administracao}"/>
-        </StackLayout>
-
-        <StackLayout Orientation="Horizontal">
-            <Label Text="Militar :        .        .        .        .        .        .        .        .        .    : " TextColor="Green"/>
-            <Switch IsToggled="{Binding Preferencias.Militar}"/>
-        </StackLayout>
-
-        
-        <Button Text="Salvar" TextColor="White"
-                BackgroundColor="#77D065"
-                Command="{Binding SalvarCommand}"/>
-
-        
     </StackLayout>
 
 

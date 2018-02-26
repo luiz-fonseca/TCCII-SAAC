@@ -140,6 +140,7 @@ namespace saac.ViewModels
         {
             var navigationParams = new NavigationParameters();
             navigationParams.Add("userId", UserId);
+            navigationParams.Add("temporario", false);
 
             await _navigationService.NavigateAsync("AdicionarGrupoPage", navigationParams, useModalNavigation: false);
 

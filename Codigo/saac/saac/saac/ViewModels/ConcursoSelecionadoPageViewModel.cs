@@ -40,6 +40,10 @@ namespace saac.ViewModels
         private readonly IAzureServiceAuxConcursoGrupo<AuxConcursoGrupo> _clienteConcursoGrupo;
         private readonly IAzureServiceGroup<Grupo> _clienteGrupo;
 
+        private DelegateCommand _adicionarGrupoCommand;
+        public DelegateCommand AdicionarGrupoCommand =>
+            _adicionarGrupoCommand ?? (_adicionarGrupoCommand = new DelegateCommand(AdicionarGrupo));
+
         private DelegateCommand _atualizarCommand;
         public DelegateCommand AtualizarCommand =>
             _atualizarCommand ?? (_atualizarCommand = new DelegateCommand(AtualizarGrupos));
@@ -67,6 +71,18 @@ namespace saac.ViewModels
             GruposConcursos(Concursos.Id);
 
             Atualizando = false;
+        }
+
+        public async void AdicionarGrupo()
+        {
+            var navigationParams = new NavigationParameters();
+            navigationParams.Add("concursoId", Concursos.Id);
+            navigationParams.Add("userId", UserId);
+            navigationParams.Add("temporario", true);
+
+            await _navigationService.NavigateAsync("AdicionarGrupoPage", navigationParams, useModalNavigation: false);
+
+
         }
 
         public async void GruposConcursos(string codConcurso)

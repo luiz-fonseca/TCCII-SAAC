@@ -7,6 +7,7 @@ using saac.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace saac.ViewModels
 {
@@ -15,6 +16,7 @@ namespace saac.ViewModels
         #region Propriedades
         private readonly IAzureServiceGroup<Grupo> _clienteGrupo;
         private readonly IAzureServiceAux<Auxiliar> _clienteAuxiliar;
+        private readonly IAzureServiceAuxConcursoGrupo<AuxConcursoGrupo> _clienteConcursoGrupo;
 
         private readonly INavigationService _navigationService;
         private readonly IPageDialogService _dialogService;
@@ -33,6 +35,14 @@ namespace saac.ViewModels
             set { SetProperty(ref _aux, value); }
         }
 
+        private AuxConcursoGrupo _auxiliar;
+        public AuxConcursoGrupo Auxiliar
+        {
+            get { return _auxiliar; }
+            set { SetProperty(ref _auxiliar, value); }
+        }
+
+
         private string _userId;
         public string UserId
         {
@@ -40,20 +50,25 @@ namespace saac.ViewModels
             set { SetProperty(ref _userId, value); }
         }
 
+        public bool Temporario { get; set; }
+
+        public string ConcursoId { get; set; }
+
         private DelegateCommand _salvarGrupoCommand;
         public DelegateCommand SalvarGrupoCommand =>
-            _salvarGrupoCommand ?? (_salvarGrupoCommand = new DelegateCommand(SalvarGrupo, CondicaoSalvarGrupo))
+            _salvarGrupoCommand ?? (_salvarGrupoCommand = new DelegateCommand(Salvar, CondicaoSalvarGrupo))
             .ObservesProperty(() => Grupos.Nome).ObservesProperty(() => Grupos.Descricao).ObservesProperty(() => Grupos.Categoria);
 
         #endregion
 
         #region Construtor
         public AdicionarGrupoPageViewModel(INavigationService navigationService, IPageDialogService dialogService,
-            IAzureServiceGroup<Grupo> clienteGrupo, IAzureServiceAux<Auxiliar> clienteAuxiliar
-            ) : base(navigationService)
+            IAzureServiceGroup<Grupo> clienteGrupo, IAzureServiceAux<Auxiliar> clienteAuxiliar, 
+            IAzureServiceAuxConcursoGrupo<AuxConcursoGrupo> clienteConcursoGrupo) : base(navigationService)
         {
             _clienteGrupo = clienteGrupo;
             _clienteAuxiliar = clienteAuxiliar;
+            _clienteConcursoGrupo = clienteConcursoGrupo;
 
             Grupos = new Grupo();
             Aux = new Auxiliar();
@@ -72,18 +87,16 @@ namespace saac.ViewModels
                 !string.IsNullOrWhiteSpace(Grupos.Categoria);
         }
 
-        private async void SalvarGrupo()
+        private async void Salvar()
         {
-            Grupos.Id = Guid.NewGuid().ToString("N");
-            Grupos.Temporario = false;
-           
-            await _clienteGrupo.AdicionarTable(Grupos);
+            var codGrupo = await SalvarGrupo();
+            await SalvarAuxiliar(codGrupo, true);
 
-            SalvarAuxiliar(Grupos.Id, true);
+            if (Temporario)
+            {
+                await SalvarConcursoGrupo(codGrupo);
 
-            Grupos.Nome = string.Empty;
-            Grupos.Descricao = string.Empty;
-            Grupos.Categoria = string.Empty;
+            }
 
             await _dialogService.DisplayAlertAsync("Grupo Cadastrado", "Parabéns!! O cadastro" +
                 " do seu grupo foi realizado.", "OK");
@@ -91,13 +104,41 @@ namespace saac.ViewModels
             await _navigationService.GoBackAsync();
         }
 
-        private async void SalvarAuxiliar(string IdGrupo, bool adm)
+        private async Task<string> SalvarGrupo()
         {
-            Aux.CodGrupo = IdGrupo;
+            Grupos.Id = Guid.NewGuid().ToString("N");
+            Grupos.Temporario = Temporario;
+           
+            await _clienteGrupo.AdicionarTable(Grupos);
+
+            Grupos.Nome = string.Empty;
+            Grupos.Descricao = string.Empty;
+            Grupos.Categoria = string.Empty;
+
+
+            return Grupos.Id;
+        }
+
+        private async Task SalvarAuxiliar(string codGrupo, bool adm)
+        {
+            Aux.Id = Guid.NewGuid().ToString("N");
+            Aux.CodGrupo = codGrupo;
             Aux.CodUsuario = UserId;
             Aux.Adiministrador = adm;
 
             await _clienteAuxiliar.AdicionarTable(Aux);
+        }
+
+        private async Task SalvarConcursoGrupo(string codGrupo)
+        {
+            Auxiliar = new AuxConcursoGrupo();
+
+            Auxiliar.Id = Guid.NewGuid().ToString("N"); ;
+            Auxiliar.CodConcurso = ConcursoId;
+            Auxiliar.CodGrupo = codGrupo;
+
+            await _clienteConcursoGrupo.AdicionarTable(Auxiliar);
+
         }
 
         /*
@@ -129,22 +170,27 @@ namespace saac.ViewModels
 
         public override void OnNavigatedTo(NavigationParameters parameters)
         {
-            UserId = parameters.GetValue<string>("userId");
+            if (parameters.ContainsKey("userId"))
+            {
+                UserId = (string)parameters["userId"];
 
-            /*if (parameters.ContainsKey("userId"))
-            {
-                UserId = (string)parameters["userId"]; ;
-            }
-            if (parameters.ContainsKey("condicao"))
-            {
-                Condicao = (string)parameters["condicao"]; ;
-            }
-            if (parameters.ContainsKey("grupo"))
-            {
-                Grupos = (string)parameters["grupo"]; ;
-            }
-             */
+                if (parameters.ContainsKey("temporario"))
+                {
+                    Temporario = (bool)parameters["temporario"];
 
+                    if (Temporario)
+                    {
+                        if (parameters.ContainsKey("concursoId"))
+                        {
+                            ConcursoId = (string)parameters["concursoId"];
+
+                        }
+
+                    }
+
+                }
+            }
+            
         }
         #endregion
     }

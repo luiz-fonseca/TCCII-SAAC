@@ -25,20 +25,17 @@
 
                 <Label Text="Data final da inscrição" TextColor="Green"/>
                 
-                <DatePicker
-                    Date="{Binding Concursos.DtInscricao}"
-                    MinimumDate="01/01/2018" 
-                    MaximumDate="01/01/2100"
-                    Format="dd/MM/yyyy"/>
+                <DatePicker Date="{Binding Concursos.DtInscricao}"
+                            MinimumDate="01/01/2018" 
+                            MaximumDate="01/01/2100"
+                            Format="dd/MM/yyyy"/>
 
                 <Label Text="Data final da realização do concurso" TextColor="Green"/>
 
-                <DatePicker
-                    Date="{Binding Concursos.DtRealizacao}"
-                    MinimumDate="01/01/2018" 
-                    MaximumDate="01/01/2100"
-                    Format="dd-MM-yyyy"/>
-
+                <DatePicker Date="{Binding Concursos.DtRealizacao}"
+                            MinimumDate="01/01/2018" 
+                            MaximumDate="01/01/2100"
+                            Format="dd-MM-yyyy"/>
 
                 <Label Text="{Binding Concursos.DtInscricao}"/>
                 <Label Text="{Binding Concursos.DtRealizacao}"/>

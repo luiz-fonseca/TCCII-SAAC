@@ -77,6 +77,7 @@ namespace saac.ViewModels
             MeusConcursosPreferidos(UserId);
 
             Atualizando = false;
+
         }
 
         public async void ItemTapped(Concurso obj)
