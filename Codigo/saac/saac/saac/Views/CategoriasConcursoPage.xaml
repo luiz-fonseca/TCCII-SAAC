@@ -8,7 +8,7 @@
              Title="Concursos">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Novo Concurso" Order="Secondary" Command="{Binding AdministradorCommand}"/>
+        <ToolbarItem Text="Gerenciar Concursos" Order="Secondary" Command="{Binding AdministradorCommand}"/>
     </ContentPage.ToolbarItems>
         
     <ContentPage.Content>
@@ -21,6 +21,12 @@
                                                         Command="{Binding CategoriaSelectedCommand}"
                                                         EventArgsParameterPath="Item" />
                 </ListView.Behaviors>
+
+                <ListView.Header>
+                    <StackLayout Orientation="Horizontal">
+                        <Label  Text="Regiões" TextColor="Green" />
+                    </StackLayout>
+                </ListView.Header>
 
                 <ListView.ItemTemplate>
                     <DataTemplate>

@@ -49,6 +49,8 @@ namespace saac
             containerRegistry.RegisterForNavigation<AdicionarPrefUserPage>();
             containerRegistry.RegisterForNavigation<NotificacoesPage>();
             containerRegistry.RegisterForNavigation<ConcursoSelecionadoPage>();
+            containerRegistry.RegisterForNavigation<GerenciarConcursoPage>();
+            containerRegistry.RegisterForNavigation<GerenciarListaConcursoPage>();
 
 
             //registrando interfaces
@@ -63,6 +65,7 @@ namespace saac
             containerRegistry.Register<IAzureServicePrefConcurso<PreferenciaConcurso>, AzureServicePrefConcurso<PreferenciaConcurso>>();
             containerRegistry.Register<IAzureServicePrefUser<PreferenciaUser>, AzureServicePrefUser<PreferenciaUser>>();
 
+           
         }
     }
 }

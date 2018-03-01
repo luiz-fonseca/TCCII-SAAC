@@ -37,9 +37,6 @@
                             MaximumDate="01/01/2100"
                             Format="dd-MM-yyyy"/>
 
-                <Label Text="{Binding Concursos.DtInscricao}"/>
-                <Label Text="{Binding Concursos.DtRealizacao}"/>
-
                 <Button Text="Próximo" TextColor="White"
                         BackgroundColor="#77D065"
                         Command="{Binding ProximoCommand}"/>

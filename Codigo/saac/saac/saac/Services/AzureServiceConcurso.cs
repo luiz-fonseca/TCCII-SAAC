@@ -31,6 +31,32 @@ namespace saac.Services
 
         }
 
+        async Task<List<Concurso>> IAzureServiceConcurso<T>.ConcursosFinalizados(DateTime dataAtual)
+        {
+            var itens = new List<Concurso>();
+
+            var query = _tableConcurso
+                .Where(Concurso => Concurso.DtRealizacao < dataAtual && Concurso.Visibilidade == false);
+
+            itens = await query.ToListAsync();
+
+            return itens;
+
+        }
+
+        async Task<List<Concurso>> IAzureServiceConcurso<T>.InscricoesFinalizadas(DateTime dataAtual)
+        {
+            var itens = new List<Concurso>();
+
+            var query = _tableConcurso
+                .Where(Concurso => Concurso.DtInscricao < dataAtual && Concurso.Visibilidade == true);
+
+            itens = await query.ToListAsync();
+
+            return itens;
+
+        }
+
         async Task<List<Concurso>> IAzureServiceConcurso<T>.MeusConcursos(List<string> codConcurso)
         {
             var concursos = new List<Concurso>();
@@ -38,7 +64,7 @@ namespace saac.Services
             foreach (var item in codConcurso)
             {
                 var query = _tableConcurso
-                    .Where(Concurso => Concurso.Id == item);
+                    .Where(Concurso => Concurso.Id == item && Concurso.Visibilidade == true);
 
                 var resultado = await query.ToListAsync();
 

@@ -6,32 +6,45 @@
              x:Class="saac.Views.SobrePage"
              Title="Sobre">
     
-    <StackLayout>
+    <StackLayout Padding="10,10,10,10" Spacing="10">
+        <TableView Intent="Form" HasUnevenRows="True">
+            <TableRoot>
+                <TableSection Title="Sistema Auxiliar de Apoio ao Concurseiro (SaaC)" >
 
-        <Label Text="Universidade Federal de Sergipe - UFS " TextColor="Green"/>
-        <Label Text="Campus Universitário Prof. Alberto Carvalho" TextColor="Green"/>
+                    <ViewCell>
+                        <StackLayout>
+                            <Label Text="Universidade Federal de Sergipe - UFS " TextColor="Green"/>
+                            <Label Text="Campus Universitário Prof. Alberto Carvalho" TextColor="Green"/>
+                            <Label Text="Departamento de Sistemas de Informação - DSI" TextColor="Green"/>
+                        </StackLayout>
+                    </ViewCell>
+                        
 
-        <StackLayout Orientation="Horizontal">
-            <Label Text="Departamento de Sistemas de Informação - DSI" TextColor="Green"/>
-            <Label Text=""/>
-        </StackLayout>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Disciplina: " TextColor="Green"/>
+                            <Label Text="Trabalho de Conclusão de Curso II"/>
+                        </StackLayout>
+                    </ViewCell>
 
-        <StackLayout Orientation="Horizontal">
-            <Label Text="Disciplina: " TextColor="Green"/>
-            <Label Text="Trabalho de Conclusão de Curso II"/>
-        </StackLayout>
 
-        <StackLayout Orientation="Horizontal">
-            <Label Text="Orientador: " TextColor="Green"/>
-            <Label Text="Dr. José Aélio"/>
-        </StackLayout>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Orientador: " TextColor="Green"/>
+                            <Label Text="Dr. José Aélio"/>
+                        </StackLayout>
+                    </ViewCell>
 
-        <StackLayout Orientation="Horizontal">
-            <Label Text="Discente: " TextColor="Green"/>
-            <Label Text="Luiz Antônio Fonsêca Sobrinho"/>
-        </StackLayout>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Discente: " TextColor="Green"/>
+                            <Label Text="Luiz Antônio Fonsêca Sobrinho"/>
+                        </StackLayout>
+                    </ViewCell>
 
-        <Label Text="Sistema Auxiliar de Apoio ao Concurseiro (SaaC)" TextColor="Green"/>
+                </TableSection>
+            </TableRoot>
+        </TableView>
 
     </StackLayout>
   
