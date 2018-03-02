@@ -1,6 +1,7 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
+using Prism.Services;
 using saac.Interfaces;
 using saac.Models;
 using System;
@@ -42,6 +43,7 @@ namespace saac.ViewModels
         }
 
         private readonly INavigationService _navigationService;
+        private readonly IPageDialogService _dialogService;
 
         private readonly IAzureServiceGroup<Grupo> _clienteGrupo;
         private readonly IAzureServiceConcurso<Concurso> _clienteConcurso;
@@ -60,9 +62,11 @@ namespace saac.ViewModels
         #region Construtor
         public AdicionarPrefConcursoPageViewModel(INavigationService navigationService, IAzureServiceGroup<Grupo> clienteGrupo,
            IAzureServiceConcurso<Concurso> clienteConcurso, IAzureServicePrefConcurso<PreferenciaConcurso> clientePreferencia,
-           IAzureServiceAuxConcursoGrupo<AuxConcursoGrupo> clienteAux) : base(navigationService)
+           IAzureServiceAuxConcursoGrupo<AuxConcursoGrupo> clienteAux, IPageDialogService dialogService) : base(navigationService)
         {
             _navigationService = navigationService;
+            _dialogService = dialogService;
+
             _clienteGrupo = clienteGrupo;
             _clienteConcurso = clienteConcurso;
             _clientePreferencia = clientePreferencia;
@@ -84,6 +88,13 @@ namespace saac.ViewModels
             await SalvarPreferencias();
             await SalvarGrupo();
             await SalvarAux();
+
+            await _dialogService.DisplayAlertAsync("Concurso","Concurso Salvo","Ok");
+
+            var navigationParams = new NavigationParameters();
+            navigationParams.Add("voltar", "");
+            await _navigationService.GoBackAsync(navigationParams);
+
 
         }
 

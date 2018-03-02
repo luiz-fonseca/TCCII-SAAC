@@ -9,8 +9,6 @@
 
     <ContentPage.Content>
         <StackLayout Padding="10,10,10,10" Spacing="10">
-            <Label Text="Concursos Disponíveis" TextColor="Green" Font="Small"/>
-            <Label Text="{Binding Mensagem}"/>
 
             <ListView ItemsSource="{Binding ConcursosAgrupados}" HasUnevenRows="True" 
                       IsPullToRefreshEnabled="True" RefreshCommand="{Binding AtualizarCommand}"
@@ -22,6 +20,23 @@
                                                         Command="{Binding ConcursoSelectedCommand}"
                                                         EventArgsParameterPath="Item" />
                 </ListView.Behaviors>
+
+                <ListView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout BackgroundColor="#77D065">
+                                <Label Text="{Binding Key}" TextColor="White" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>
+
+                <ListView.Header>
+                    <StackLayout>
+                        <Label Text="Concursos Disponíveis" TextColor="Green" Font="Small"/>
+                        <Label Text="{Binding Mensagem}"/>
+                    </StackLayout>
+                </ListView.Header>
 
                 <ListView.ItemTemplate>
                     <DataTemplate>

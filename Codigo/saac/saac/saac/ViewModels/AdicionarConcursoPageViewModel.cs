@@ -95,7 +95,7 @@ namespace saac.ViewModels
 
             var navigationParams = new NavigationParameters();
             navigationParams.Add("Concursos", Concursos);
-            await _navigationService.NavigateAsync("AdicionarPrefConcursoPage", navigationParams);
+            await _navigationService.NavigateAsync("AdicionarPrefConcursoPage", navigationParams, useModalNavigation: false);
 
         }
 
@@ -126,7 +126,7 @@ namespace saac.ViewModels
             if (item == 0)
             {
                 Estados.Add("");
-                Estados.Add("Padrão");
+                Estados.Add("Nacional");
             }
             else if (item == 1)
             { 
@@ -170,6 +170,20 @@ namespace saac.ViewModels
                 Estados.Add("Goiás");
                 Estados.Add("Mato Grosso");
                 Estados.Add("Mato Grosso do Sul");
+            }
+        }
+
+        public async void Voltar()
+        {
+            await _navigationService.GoBackAsync();
+        }
+
+        public override void OnNavigatedTo(NavigationParameters parameters)
+        {
+            if (parameters.ContainsKey("voltar"))
+            {
+                Voltar();
+
             }
         }
         #endregion

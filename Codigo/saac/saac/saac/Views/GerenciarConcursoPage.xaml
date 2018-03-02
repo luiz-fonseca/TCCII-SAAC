@@ -18,6 +18,12 @@
                                                         EventArgsParameterPath="Item" />
                 </ListView.Behaviors>
 
+                <ListView.Header>
+                    <StackLayout Orientation="Horizontal">
+                        <Label  Text="Gerenciar Concursos" TextColor="Green" />
+                    </StackLayout>
+                </ListView.Header>
+
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

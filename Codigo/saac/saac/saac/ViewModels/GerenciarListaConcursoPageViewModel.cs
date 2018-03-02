@@ -1,6 +1,7 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
+using Prism.Services;
 using saac.Interfaces;
 using saac.Models;
 using System;
@@ -13,6 +14,7 @@ namespace saac.ViewModels
 {
     public class GerenciarListaConcursoPageViewModel : ViewModelBase
     {
+        #region Propriedades
         private bool _atualizando = false;
         public bool Atualizando
         {
@@ -42,23 +44,30 @@ namespace saac.ViewModels
         }
 
         private readonly INavigationService _navigationService;
+        private readonly IPageDialogService _dialogService;
+
         private readonly IAzureServiceConcurso<Concurso> _clienteConcurso;
 
         private DelegateCommand _opcaoCommand;
         public DelegateCommand OpcaoCommand =>
             _opcaoCommand ?? (_opcaoCommand = new DelegateCommand(Opcao));
 
+        #endregion
 
-        public GerenciarListaConcursoPageViewModel(INavigationService navigationService, IAzureServiceConcurso<Concurso> clienteConcurso) : base (navigationService)
+        #region Construtor
+        public GerenciarListaConcursoPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IAzureServiceConcurso<Concurso> clienteConcurso) : base (navigationService)
         {
             _navigationService = navigationService;
+            _dialogService = dialogService;
 
             _clienteConcurso = clienteConcurso;
 
             ListaConcursos = new ObservableCollection<Concurso>();
 
         }
+        #endregion
 
+        #region Métodos
         public void AtualizarGrupos()
         {
             Atualizando = true;
@@ -146,6 +155,9 @@ namespace saac.ViewModels
                 item.Visibilidade = false;
                 await _clienteConcurso.AtualizarTable(item);
             }
+
+            await _dialogService.DisplayAlertAsync("Alterados","Os concursos foram alterados","Ok");
+            await _navigationService.GoBackAsync();
         }
 
 
@@ -158,5 +170,6 @@ namespace saac.ViewModels
                 ExibirConcursos(Titulo);
             }
         }
+        #endregion
     }
 }
