@@ -39,8 +39,8 @@ namespace saac.ViewModels
             set { SetProperty(ref _message, value); }
         }
 
-        private ObservableCollection<Grupo> _meusGroups;
-        public ObservableCollection<Grupo> MeusGroups
+        private ObservableCollection<Group<string, Grupo>> _meusGroups;
+        public ObservableCollection<Group<string, Grupo>> MeusGroups
         {
             get { return _meusGroups; }
             set { SetProperty(ref _meusGroups, value); }
@@ -77,7 +77,7 @@ namespace saac.ViewModels
             _clienteAux = clienteAux;
             _clienteGroup = clienteGroup;
 
-            MeusGroups = new ObservableCollection<Grupo>();
+            MeusGroups = new ObservableCollection<Group<string, Grupo>>();
 
         }
         #endregion
@@ -109,13 +109,8 @@ namespace saac.ViewModels
                     Message = string.Empty;
 
                     var resultado = await _clienteGroup.MeusGrupos(aux);
-
-                    MeusGroups.Clear();
-                    foreach (var item in resultado)
-                    {
-                        MeusGroups.Add(item);
-
-                    }
+                    var resultadoAgrupar = Agrupar(resultado);
+                    Converter(resultadoAgrupar);
                 }
             }
             catch (MobileServiceInvalidOperationException)
@@ -125,6 +120,31 @@ namespace saac.ViewModels
             }
 
         }
+
+
+        public IEnumerable<Group<string, Grupo>> Agrupar(List<Grupo> Grupos)
+        {
+
+           var resultado = from grupos in Grupos
+                           orderby grupos.Nome
+                           group grupos by grupos.Nome.Substring(0,1) into grupos
+                           select new Group<string, Grupo>(grupos.Key, grupos);
+
+           return resultado;
+
+
+       }
+
+       public void Converter(IEnumerable<Group<string, Grupo>> listaAgrupada)
+       {
+           MeusGroups.Clear();
+           foreach (var item in listaAgrupada)
+           {
+               MeusGroups.Add(item);
+
+           }
+
+       }
 
         public async void ItemTapped(Grupo args)
         {

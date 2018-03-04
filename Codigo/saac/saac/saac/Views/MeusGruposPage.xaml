@@ -18,13 +18,31 @@
             
             <ListView ItemsSource="{Binding MeusGroups}" HasUnevenRows="True" 
                       IsPullToRefreshEnabled="True" RefreshCommand="{Binding AtualizarCommand}"
-                      IsRefreshing="{Binding Atualizando}">
+                      IsRefreshing="{Binding Atualizando}" IsGroupingEnabled="True" 
+                      GroupDisplayBinding="{Binding Key}" GroupShortNameBinding="{Binding Key}">
 
                 <ListView.Behaviors>
                     <behaviors:EventToCommandBehavior   EventName="ItemTapped" 
                                                         Command="{Binding GrupoSelectedCommand}"
                                                         EventArgsParameterPath="Item" />
                 </ListView.Behaviors>
+
+                <ListView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout BackgroundColor="#77D065">
+                                <Label Text="{Binding Key}" TextColor="White" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>
+
+                <ListView.Header>
+                    <StackLayout>
+                        <Label Text="Meus Grupos" TextColor="Green" Font="Small"/>
+                        <Label Text="{Binding Mensagem}"/>
+                    </StackLayout>
+                </ListView.Header>
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
