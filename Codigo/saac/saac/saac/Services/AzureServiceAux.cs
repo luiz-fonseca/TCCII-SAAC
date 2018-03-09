@@ -72,5 +72,18 @@ namespace saac.Services
             return resultado;
 
         }
+
+        async Task<List<Auxiliar>> IAzureServiceAux<T>.SeguidoresGrupo(string idGrupo)
+        {
+            var lista = new List<Auxiliar>();
+
+            var query = _tableAux
+                .Where(Auxiliar => Auxiliar.CodGrupo == idGrupo);
+
+            lista = await query.ToListAsync();
+
+            return lista;
+
+        }
     }
 }

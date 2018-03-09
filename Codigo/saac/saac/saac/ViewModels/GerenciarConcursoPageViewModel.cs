@@ -43,36 +43,30 @@ namespace saac.ViewModels
             var aux = ConversaoCategoria(obj);
             var resultado = OpcaoSelecionada(aux);
 
-            var navigationParams = new NavigationParameters();
-            navigationParams.Add("titulo", resultado[1]);
-
-            await _navigationService.NavigateAsync(resultado[0], navigationParams, useModalNavigation: false);
+            await _navigationService.NavigateAsync(resultado, useModalNavigation: false);
 
         }
 
-        public string[] OpcaoSelecionada(string obj)
+        public string OpcaoSelecionada(string obj)
         {
-            string[] resultado = new string[2];
+            string resultado;
             
             switch (obj)
             {
                 case "Novo Concurso":
-                    resultado[0] = "AdicionarConcursoPage";
-                    resultado[1] = "";
+                    resultado = "AdicionarConcursoPage";
                     return resultado;
 
                 case "Inscrições Finalizadas":
-                    resultado[0] = "GerenciarListaConcursoPage";
-                    resultado[1] = "Inscrições Finalizadas";
+                    resultado = "ConcursoInscricoesFinalizadasPage";
                     return resultado;
 
                 case "Concursos Finalizados":
-                    resultado[0] = "GerenciarListaConcursoPage";
-                    resultado[1] = "Concursos Finalizados";
+                    resultado = "ConcursoFinalizadosPage";
                     return resultado;
 
                 default:
-                    return resultado;
+                    return resultado = "";
                     
             }
 

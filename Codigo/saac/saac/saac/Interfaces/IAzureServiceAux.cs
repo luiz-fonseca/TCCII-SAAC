@@ -12,6 +12,7 @@ namespace saac.Interfaces
         Task<int> ExisteSeguirAux(string idGrupo, string idUser);
         Task<Auxiliar> GetAuxiliar(string idGrupo, string idUser);
         Task<int> QuantidadeRegistros(string idGrupo);
+        Task<List<Auxiliar>> SeguidoresGrupo(string idGrupo);
 
     }
 }

@@ -18,8 +18,6 @@
                 <Label Text="{Binding Concursos.Descricao}"/>
                 <Label Text="{Binding Concursos.Detalhes}" BackgroundColor="LightGreen"/>
 
-                <Label Text="Grupos disponíveis" TextColor="Green"/>
-
                 <ListView ItemsSource="{Binding Grupos}" HasUnevenRows="True" 
                       IsPullToRefreshEnabled="True" RefreshCommand="{Binding AtualizarCommand}"
                       IsRefreshing="{Binding Atualizando}">
@@ -29,6 +27,12 @@
                                                         Command="{Binding GrupoSelectedCommand}"
                                                         EventArgsParameterPath="Item" />
                     </ListView.Behaviors>
+
+                    <ListView.Header>
+                        <StackLayout BackgroundColor="#77D065">
+                            <Label Text="Grupos disponíveis" TextColor="White" Font="Small"/>
+                        </StackLayout>
+                    </ListView.Header>
 
                     <ListView.ItemTemplate>
                         <DataTemplate>

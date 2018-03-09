@@ -133,7 +133,7 @@ namespace saac.ViewModels
            return resultado;
 
 
-       }
+        }
 
        public void Converter(IEnumerable<Group<string, Grupo>> listaAgrupada)
        {

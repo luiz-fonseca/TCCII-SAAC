@@ -8,7 +8,7 @@
              Title="Gerenciar Concursos">
 
     <ContentPage.Content>
-        <StackLayout Padding="10">
+        <StackLayout Padding="10,10,10,10" Spacing="10">
 
             <ListView ItemsSource="{Binding GerenciarConcursos}">
 
@@ -20,7 +20,7 @@
 
                 <ListView.Header>
                     <StackLayout Orientation="Horizontal">
-                        <Label  Text="Gerenciar Concursos" TextColor="Green" />
+                        <Label  Text="Gerenciar Concursos &#10;" TextColor="Green" />
                     </StackLayout>
                 </ListView.Header>
 

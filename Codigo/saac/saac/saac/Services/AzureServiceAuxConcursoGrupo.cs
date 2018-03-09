@@ -35,5 +35,18 @@ namespace saac.Services
             return lista;
 
         }
+
+        async Task<List<AuxConcursoGrupo>> IAzureServiceAuxConcursoGrupo<T>.ListaGruposConcursos(string codConcurso)
+        {
+            var lista = new List<AuxConcursoGrupo>();
+
+            var query = _tableAuxConcursoGrupo
+                .Where(Auxiliar => Auxiliar.CodConcurso == codConcurso);
+
+            lista = await query.ToListAsync();
+            
+            return lista;
+
+        }
     }
 }

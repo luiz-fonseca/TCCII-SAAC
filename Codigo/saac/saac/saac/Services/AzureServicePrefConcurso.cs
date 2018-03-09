@@ -18,6 +18,23 @@ namespace saac.Services
 
         }
 
+        async Task<PreferenciaConcurso> IAzureServicePrefConcurso<T>.ConcursoPreferencia(string codConcurso)
+        {
+            var preferencia = new PreferenciaConcurso();
+
+            var query = _tablePrefConcurso
+                .Where(PrefConcurso => PrefConcurso.CodConcurso == codConcurso);
+
+            var resultado = await query.ToListAsync();
+
+            foreach (var item in resultado)
+            {
+                preferencia = item;
+            }
+
+            return preferencia;
+        }
+
         async Task<List<string>> IAzureServicePrefConcurso<T>.MeusConcursosPreferidos(PreferenciaUser user)
         {
             var itens = new List<string>();

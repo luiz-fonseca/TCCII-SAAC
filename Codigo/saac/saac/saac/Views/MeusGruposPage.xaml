@@ -13,9 +13,8 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="{Binding Message}"/>
-            
+        <StackLayout Padding="10,10,10,10" Spacing="10">
+           
             <ListView ItemsSource="{Binding MeusGroups}" HasUnevenRows="True" 
                       IsPullToRefreshEnabled="True" RefreshCommand="{Binding AtualizarCommand}"
                       IsRefreshing="{Binding Atualizando}" IsGroupingEnabled="True" 
@@ -40,7 +39,7 @@
                 <ListView.Header>
                     <StackLayout>
                         <Label Text="Meus Grupos" TextColor="Green" Font="Small"/>
-                        <Label Text="{Binding Mensagem}"/>
+                        <Label Text="{Binding Message}"/>
                     </StackLayout>
                 </ListView.Header>
 
