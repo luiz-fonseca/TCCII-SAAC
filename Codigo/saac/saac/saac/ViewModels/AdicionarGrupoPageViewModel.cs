@@ -54,9 +54,16 @@ namespace saac.ViewModels
 
         public string ConcursoId { get; set; }
 
+        private string _mensagem;
+        public string Mensagem
+        {
+            get { return _mensagem; }
+            set { SetProperty(ref _mensagem, value); }
+        }
+
         private DelegateCommand _salvarGrupoCommand;
         public DelegateCommand SalvarGrupoCommand =>
-            _salvarGrupoCommand ?? (_salvarGrupoCommand = new DelegateCommand(Salvar, CondicaoSalvarGrupo))
+            _salvarGrupoCommand ?? (_salvarGrupoCommand = new DelegateCommand(SelecionarOpcao, CondicaoSalvarGrupo))
             .ObservesProperty(() => Grupos.Nome).ObservesProperty(() => Grupos.Descricao).ObservesProperty(() => Grupos.Categoria);
 
         #endregion
@@ -87,7 +94,7 @@ namespace saac.ViewModels
                 !string.IsNullOrWhiteSpace(Grupos.Categoria);
         }
 
-        private async void Salvar()
+        private async Task Salvar()
         {
             var codGrupo = await SalvarGrupo();
             await SalvarAuxiliar(codGrupo, true);
@@ -141,32 +148,27 @@ namespace saac.ViewModels
 
         }
 
-        /*
+        
          private async void SelecionarOpcao(){
-            if(condicao == "adicionar")
+            if(Mensagem.Contains("Adicionar Grupo"))
             {
-                Message = "Adicionar Grupo";
-                await SalvarGrupo();
+                 await Salvar();
 
-            }else if(condicao == "alterar")
-            {
-                Message = "Alterar Grupo";
+            }else if(Mensagem.Contains("Editar Grupo"))
+            {  
                 await AlterarGrupo();
+
             }
          }
 
-        /*private async Task AlterarGrupo()
+        
+        private async Task AlterarGrupo()
         {
+            await _clienteGrupo.AtualizarTable(Grupos);
 
-            await  _clienteGrupo.AlterarTable(Grupos);
-            var navigationParams = new NavigationParameters();
-            navigationParams.Add("grupo", Grupos);
-            navigationParams.Add("userId", UserId);
+            await _navigationService.GoBackAsync();
 
-
-            await _navigationService.GoBackAsync(parameters);
-
-        }*/
+        }
 
         public override void OnNavigatedTo(NavigationParameters parameters)
         {
@@ -189,8 +191,17 @@ namespace saac.ViewModels
                     }
 
                 }
+
+                Mensagem = "Adicionar Grupo";
+
             }
-            
+            else if (parameters.ContainsKey("grupo"))
+            {
+                Grupos = (Grupo)parameters["grupo"];
+
+                Mensagem = "Editar Grupo";
+            }
+
         }
         #endregion
     }

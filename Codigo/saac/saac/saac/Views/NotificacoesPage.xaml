@@ -7,6 +7,7 @@
              x:Class="saac.Views.NotificacoesPage"
              Title="Notificações">
 
+
     <ContentPage.Content>
         <StackLayout Padding="10,10,10,10" Spacing="10">
             

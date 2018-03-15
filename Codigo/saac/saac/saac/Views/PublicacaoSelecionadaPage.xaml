@@ -24,10 +24,6 @@
                 
             </StackLayout>
 
-            <Label Text="Comentários" TextColor="Green"/>
-
-            <Label Text="{Binding Message}"/>
-
             <ListView ItemsSource="{Binding ComentariosPublication}" HasUnevenRows="True"
                       IsPullToRefreshEnabled="True" RefreshCommand="{Binding AtualizarCommand}"
                       IsRefreshing="{Binding Atualizando}">
@@ -37,6 +33,14 @@
                                                     Command="{Binding ComentarioSelectedCommand}"
                                                     EventArgsParameterPath="Item" />
                 </ListView.Behaviors>
+
+                <ListView.Header>
+                    <StackLayout>
+                        <Label Text="Comentários" TextColor="Green"/>
+                        <Label Text="{Binding Message}"/>
+                    </StackLayout>
+                </ListView.Header>
+
 
                 <ListView.ItemTemplate>
                     <DataTemplate>

@@ -95,8 +95,8 @@ namespace saac.ViewModels
 
         public async void ExibirMeusGrupos(string id)
         {
-            try
-            {
+           // try
+            //{
                 var aux = await _clienteAux.MeusGrupos(id);
                 if (aux.Count == 0)
                 {
@@ -112,12 +112,12 @@ namespace saac.ViewModels
                     var resultadoAgrupar = Agrupar(resultado);
                     Converter(resultadoAgrupar);
                 }
-            }
-            catch (MobileServiceInvalidOperationException)
-            {
-                Message = "Ocorreu algum problema, por favor tente novamente mais tarde.";
+           // }
+            //catch (MobileServiceInvalidOperationException)
+            //{
+              //  Message = "Ocorreu algum problema, por favor tente novamente mais tarde.";
 
-            }
+            //}
 
         }
 

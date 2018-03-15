@@ -61,6 +61,10 @@ namespace saac.ViewModels
                     resultado = "ConcursoInscricoesFinalizadasPage";
                     return resultado;
 
+                case "Concursos em Espera":
+                    resultado = "ConcursoInscricoesFinalizadasPage";
+                    return resultado;
+
                 case "Concursos Finalizados":
                     resultado = "ConcursoFinalizadosPage";
                     return resultado;
@@ -74,9 +78,11 @@ namespace saac.ViewModels
 
         public void ExibirOpcoes()
         {
-            GerenciarConcursos.Add(new {Nome= "Novo Concurso" });
+            GerenciarConcursos.Add(new { Nome= "Novo Concurso" });
             GerenciarConcursos.Add(new { Nome = "Inscrições Finalizadas" });
+            GerenciarConcursos.Add(new { Nome = "Concursos em Espera"});
             GerenciarConcursos.Add(new { Nome = "Concursos Finalizados" });
+
         }
 
         public string ConversaoCategoria(object args)

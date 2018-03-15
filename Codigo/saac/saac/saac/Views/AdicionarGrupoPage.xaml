@@ -9,7 +9,9 @@
     <ContentPage.Content>
         <StackLayout Spacing="20" Padding="10, 0, 10, 0"
                          VerticalOptions="Center">
-            
+
+            <Label Text="{Binding Mensagem}" TextColor="Green"/>
+
             <Entry Placeholder="Nome do Grupo"
                        Text="{Binding Grupos.Nome}"/>
 

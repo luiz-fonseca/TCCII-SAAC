@@ -14,9 +14,9 @@
                       IsRefreshing="{Binding Atualizando}">
 
                 <ListView.Header>
-                    <StackLayout Orientation="Horizontal">
+                    <StackLayout    Orientation="Horizontal">
                         <Label  Text="Concurso Finalizados" TextColor="Green" />
-                        <Label Text="{Binding Mensagem}"/>
+                        <Label  Text="{Binding Mensagem}"/>
                     </StackLayout>
                 </ListView.Header>
 
@@ -34,7 +34,7 @@
 
             </ListView>
 
-            <Button Text="Alterar" Command="{Binding AlterarCommand}" TextColor="White" BackgroundColor="#77D065"/>
+            <Button Text="Alterar" Command="{Binding RemoverCommand}" TextColor="White" BackgroundColor="#77D065"/>
 
         </StackLayout>
 

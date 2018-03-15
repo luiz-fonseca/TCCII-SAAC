@@ -7,6 +7,10 @@
              x:Class="saac.Views.GrupoSelecionadoPage"
              Title="Grupo">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Editar" Order="Secondary"  Command="{Binding EditarGrupoCommand}"/>
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
         <StackLayout Padding="10,10,10,10">
             
@@ -18,13 +22,9 @@
 
             <Editor Text="{Binding Texto}" HeightRequest="50"/>
 
-            <Button Text="Salvar" TextColor="White"
+            <Button Text="Publicar" TextColor="White"
                         BackgroundColor="#77D065"
                         Command="{Binding SalvarPublicacaoCommand}"/>
-
-            <Label Text="Publicações" TextColor="Green"/>
-
-            <Label Text="{Binding Message}"/>
 
             <ListView ItemsSource="{Binding PublicacoesGrupo}" HasUnevenRows="True"
                       IsPullToRefreshEnabled="True" RefreshCommand="{Binding AtualizarCommand}"
@@ -35,6 +35,14 @@
                                                     Command="{Binding PublicacaoSelectedCommand}"
                                                     EventArgsParameterPath="Item" />
                 </ListView.Behaviors>
+
+                <ListView.Header>
+                    <StackLayout>
+                        <Label Text="Publicações" TextColor="Green"/>
+                        <Label Text="{Binding Message}"/>
+                    </StackLayout>
+                </ListView.Header>
+
 
                 <ListView.ItemTemplate>
                     <DataTemplate>

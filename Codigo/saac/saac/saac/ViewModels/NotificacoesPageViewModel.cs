@@ -98,16 +98,24 @@ namespace saac.ViewModels
             {
                 var listaConcurso = await _clienteConcurso.MeusConcursos(resulPrefConcurso);
 
-                var resulAgrupar = Agrupar(listaConcurso);
-                Converter(resulAgrupar);
+                if (listaConcurso.Count != 0)
+                {
+                    var resulAgrupar = Agrupar(listaConcurso);
+                    Converter(resulAgrupar);
+                }
+                else
+                {
+                    Mensagem = "Ainda não existe concursos baseado em suas preferências";
 
+                }
+                
             }
             else
             {
                 Mensagem = "Ainda não existe concursos baseado em suas preferências";
             }
-            
-        
+
+
         }
 
         public IEnumerable<Group<string, Concurso>> Agrupar(List<Concurso> concursos)

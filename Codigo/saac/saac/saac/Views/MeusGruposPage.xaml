@@ -14,7 +14,7 @@
 
     <ContentPage.Content>
         <StackLayout Padding="10,10,10,10" Spacing="10">
-           
+
             <ListView ItemsSource="{Binding MeusGroups}" HasUnevenRows="True" 
                       IsPullToRefreshEnabled="True" RefreshCommand="{Binding AtualizarCommand}"
                       IsRefreshing="{Binding Atualizando}" IsGroupingEnabled="True" 

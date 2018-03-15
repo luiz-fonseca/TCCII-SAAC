@@ -8,7 +8,7 @@
              Title="Grupos">
 
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Padding="10,10,10,10">
             <SearchBar Placeholder="Grupos" Text="{Binding Pesquisar}" SearchCommand="{Binding PesquisarGrupoCommand}" />
 
             <ListView ItemsSource="{Binding Groups}" HasUnevenRows="True"

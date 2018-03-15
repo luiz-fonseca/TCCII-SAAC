@@ -9,6 +9,8 @@
     
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Novo Grupo" Order="Secondary" Command="{Binding AdicionarGrupoCommand}"/>
+        <ToolbarItem Text="Excluir" Order="Secondary" Command="{Binding ExcluirConcursoCommand}"/>
+        <ToolbarItem Text="Editar" Order="Secondary" Command="{Binding EditarConcursoCommand}"/>
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>

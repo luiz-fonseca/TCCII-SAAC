@@ -40,9 +40,6 @@ namespace saac.Models
         [JsonProperty(PropertyName = "temporario")]
         public bool Temporario { get; set; }
 
-        //[JsonProperty(PropertyName = "visivel")]
-        //public bool Visivel { get; set; }
-
         [Version]
         public string Version { get; set; }
 

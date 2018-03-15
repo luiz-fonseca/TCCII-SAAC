@@ -54,9 +54,9 @@ namespace saac.ViewModels
         private readonly IAzureServiceComment<Comentario> _clienteComentario;
         private readonly IAzureServiceAux<Auxiliar> _clienteAuxiliar;
 
-        private DelegateCommand _alterarCommand;
-        public DelegateCommand AlterarCommand =>
-            _alterarCommand ?? (_alterarCommand = new DelegateCommand(Alterar));
+        private DelegateCommand _removerCommand;
+        public DelegateCommand RemoverCommand =>
+            _removerCommand ?? (_removerCommand = new DelegateCommand(Remover));
 
         #endregion
 
@@ -113,7 +113,7 @@ namespace saac.ViewModels
 
         }
 
-        public async void Alterar()
+        public async void Remover()
         {
             foreach (var itemConcurso in ListaConcursos)
             {
@@ -132,7 +132,7 @@ namespace saac.ViewModels
                 await _clienteConcurso.RemoverTable(itemConcurso);
             }
 
-            await _dialogService.DisplayAlertAsync("Alterados", "Os concursos foram alterados", "Ok");
+            await _dialogService.DisplayAlertAsync("Excluídos", "Esses concursos foram excluídos", "Ok");
             await _navigationService.GoBackAsync();
         }
 

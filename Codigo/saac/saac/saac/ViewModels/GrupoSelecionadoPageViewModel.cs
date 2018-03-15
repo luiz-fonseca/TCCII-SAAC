@@ -69,6 +69,18 @@ namespace saac.ViewModels
             }
         }
 
+        private bool _verificar = false;
+        public bool Verificar
+        {
+            get { return _verificar; }
+            set
+            {
+                SetProperty(ref _verificar, value);
+                EditarGrupoCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+
 
         private ObservableCollection<object> _publicacoesGrupo;
         public ObservableCollection<object> PublicacoesGrupo
@@ -87,6 +99,10 @@ namespace saac.ViewModels
 
         private readonly INavigationService _navigationService;
         private readonly IPageDialogService _dialogService;
+
+        private DelegateCommand _editarGrupoCommand;
+        public DelegateCommand EditarGrupoCommand =>
+            _editarGrupoCommand ?? (_editarGrupoCommand = new DelegateCommand(EditarGrupo, CondicaoEditarGrupo));
 
         private DelegateCommand _salvarPublicacaoCommand;
         public DelegateCommand SalvarPublicacaoCommand =>
@@ -144,6 +160,39 @@ namespace saac.ViewModels
             ExibirPublicacoes(Grupos.Id);
 
             Atualizando = false;
+
+        }
+
+
+        public bool CondicaoEditarGrupo()
+        {
+            return Verificar;
+
+        }
+
+        public async void Verificacao(string IdGrupo, string IdUsuario)
+        {
+            var resultado = await _clienteAuxiliar.ExisteSeguirAux(IdGrupo, IdUsuario);
+
+            if (resultado == 0)
+            {
+                Verificar = false;
+            }
+            else
+            {
+               Verificar = true;
+
+            }
+
+        }
+
+        public async void EditarGrupo()
+        {
+
+            var navigationParams = new NavigationParameters();
+            navigationParams.Add("grupo", Grupos);
+
+            await _navigationService.NavigateAsync("AdicionarGrupoPage", navigationParams);
 
         }
 
@@ -346,6 +395,8 @@ namespace saac.ViewModels
                     Grupos = (Grupo)parameters["grupo"];
 
                     ExibirPublicacoes(Grupos.Id);
+
+                    Verificacao(Grupos.Id, UserId);
                 }
             }
             

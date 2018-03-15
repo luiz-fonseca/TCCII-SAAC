@@ -31,6 +31,19 @@ namespace saac.Services
 
         }
 
+        async Task<List<Concurso>> IAzureServiceConcurso<T>.ConcursosEmEspera(DateTime dataAutual)
+        {
+            var itens = new List<Concurso>();
+
+            var query = _tableConcurso
+                .Where(Concurso => Concurso.DtRealizacao >= dataAutual && Concurso.Visibilidade == false);
+
+            itens = await query.ToListAsync();
+
+            return itens;
+
+        }
+
         async Task<List<Concurso>> IAzureServiceConcurso<T>.ConcursosFinalizados(DateTime dataAtual)
         {
             var itens = new List<Concurso>();

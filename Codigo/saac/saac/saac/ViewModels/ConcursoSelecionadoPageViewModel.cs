@@ -19,6 +19,13 @@ namespace saac.ViewModels
             set { SetProperty(ref _atualizando, value); }
         }
 
+        private bool _verificadorAdm = false;
+        public bool VerificadorAdm
+        {
+            get { return _verificadorAdm; }
+            set { SetProperty(ref _verificadorAdm, value); }
+        }
+
         private Concurso _concurso;
         public Concurso Concursos
         {
@@ -39,6 +46,15 @@ namespace saac.ViewModels
 
         private readonly IAzureServiceAuxConcursoGrupo<AuxConcursoGrupo> _clienteConcursoGrupo;
         private readonly IAzureServiceGroup<Grupo> _clienteGrupo;
+        private readonly IAzureServiceUser<Usuario> _clienteUser;
+
+        private DelegateCommand _editarConcurso;
+        public DelegateCommand EditarConcursoCommand =>
+            _editarConcurso ?? (_editarConcurso = new DelegateCommand(EditarConcurso, CondicaoAdministrador)).ObservesProperty(() => VerificadorAdm);
+
+        private DelegateCommand _excluirConcurso;
+        public DelegateCommand ExcluirConcursoCommand =>
+            _excluirConcurso ?? (_excluirConcurso = new DelegateCommand(ExcluirConcurso, CondicaoAdministrador)).ObservesProperty(() => VerificadorAdm);
 
         private DelegateCommand _adicionarGrupoCommand;
         public DelegateCommand AdicionarGrupoCommand =>
@@ -54,12 +70,13 @@ namespace saac.ViewModels
 
 
         public ConcursoSelecionadoPageViewModel(INavigationService navigationService, IAzureServiceAuxConcursoGrupo<AuxConcursoGrupo> clienteConcursoGrupo,
-            IAzureServiceGroup<Grupo> clienteGrupo) : base(navigationService)
+            IAzureServiceGroup<Grupo> clienteGrupo, IAzureServiceUser<Usuario> clienteUser) : base(navigationService)
         {
             _navigationService = navigationService;
 
             _clienteConcursoGrupo = clienteConcursoGrupo;
             _clienteGrupo = clienteGrupo;
+            _clienteUser = clienteUser;
 
             Grupos = new ObservableCollection<Grupo>();
         }
@@ -103,6 +120,29 @@ namespace saac.ViewModels
 
         }
 
+        private void EditarConcurso()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ExcluirConcurso()
+        {
+            throw new NotImplementedException();
+        }
+
+        private bool CondicaoAdministrador()
+        {
+            return VerificadorAdm;
+
+        }
+
+        public async void Verificacao(string id)
+        {
+           VerificadorAdm = await _clienteUser.VerificarAdministrador(id);
+
+        }
+
+
         public async void ItemTapped(Grupo args)
         {
             var navigationParams = new NavigationParameters();
@@ -124,6 +164,8 @@ namespace saac.ViewModels
                     Concursos = (Concurso)parameters["concurso"];
 
                     GruposConcursos(Concursos.Id);
+
+                    Verificacao(UserId);
 
                 }
 
