@@ -1,12 +1,14 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
+using Prism.Services;
 using saac.Interfaces;
 using saac.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace saac.ViewModels
 {
@@ -43,10 +45,16 @@ namespace saac.ViewModels
         public string UserId { get; set; }
 
         private readonly INavigationService _navigationService;
+        private readonly IPageDialogService _dialogService;
 
         private readonly IAzureServiceAuxConcursoGrupo<AuxConcursoGrupo> _clienteConcursoGrupo;
         private readonly IAzureServiceGroup<Grupo> _clienteGrupo;
         private readonly IAzureServiceUser<Usuario> _clienteUser;
+        private readonly IAzureServicePublication<Publicacao> _clientePublicacao;
+        private readonly IAzureServiceComment<Comentario> _clienteComentario;
+        private readonly IAzureServiceAux<Auxiliar> _clienteAuxiliar;
+        private readonly IAzureServicePrefConcurso<PreferenciaConcurso> _clientePreferencia;
+        private readonly IAzureServiceConcurso<Concurso> _clienteConcurso;
 
         private DelegateCommand _editarConcurso;
         public DelegateCommand EditarConcursoCommand =>
@@ -69,14 +77,22 @@ namespace saac.ViewModels
             _grupoSelectedCommand != null ? _grupoSelectedCommand : (_grupoSelectedCommand = new DelegateCommand<Grupo>(ItemTapped));
 
 
-        public ConcursoSelecionadoPageViewModel(INavigationService navigationService, IAzureServiceAuxConcursoGrupo<AuxConcursoGrupo> clienteConcursoGrupo,
-            IAzureServiceGroup<Grupo> clienteGrupo, IAzureServiceUser<Usuario> clienteUser) : base(navigationService)
+        public ConcursoSelecionadoPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IAzureServiceAuxConcursoGrupo<AuxConcursoGrupo> clienteConcursoGrupo,
+            IAzureServiceGroup<Grupo> clienteGrupo, IAzureServiceUser<Usuario> clienteUser, IAzureServicePublication<Publicacao> clientePublicacao,
+            IAzureServiceComment<Comentario> clienteComentario, IAzureServiceAux<Auxiliar> clienteAuxiliar, IAzureServicePrefConcurso<PreferenciaConcurso> clientePreferencia,
+            IAzureServiceConcurso<Concurso> clienteConcurso) : base(navigationService)
         {
             _navigationService = navigationService;
+            _dialogService = dialogService;
 
             _clienteConcursoGrupo = clienteConcursoGrupo;
             _clienteGrupo = clienteGrupo;
             _clienteUser = clienteUser;
+            _clientePublicacao = clientePublicacao;
+            _clienteComentario = clienteComentario;
+            _clienteAuxiliar = clienteAuxiliar;
+            _clientePreferencia = clientePreferencia;
+            _clienteConcurso = clienteConcurso;
 
             Grupos = new ObservableCollection<Grupo>();
         }
@@ -125,10 +141,66 @@ namespace saac.ViewModels
             throw new NotImplementedException();
         }
 
-        private void ExcluirConcurso()
+        private async void ExcluirConcurso()
         {
-            throw new NotImplementedException();
+            var resultado = await _dialogService.DisplayAlertAsync("Excluir Concurso", "Deseja realmente remover este concurso?", "Sim", "Não");
+
+            if (resultado)
+            {
+                await RemoverGrupo();
+
+                var Preferencia = await _clientePreferencia.ConcursoPreferencia(Concursos.Id);
+
+                var ListaAuxConcurso = await _clienteConcursoGrupo.ListaGruposConcursos(Concursos.Id);
+                foreach (var itemListaAuxConcurso in ListaAuxConcurso)
+                {
+                    await _clienteConcursoGrupo.RemoverTable(itemListaAuxConcurso);
+
+                }
+
+                await _clientePreferencia.RemoverTable(Preferencia);
+                await _clienteConcurso.RemoverTable(Concursos);
+
+                await _dialogService.DisplayAlertAsync("Concurso", "Concurso excluído", "Ok");
+                await _navigationService.GoBackAsync();
+            }
+
+            
         }
+
+
+        public async Task RemoverGrupo()
+        {
+            foreach (var itemGrupo in Grupos)
+            {
+                var Publicacoes = await _clientePublicacao.Publicacoes(itemGrupo.Id);
+
+                foreach (var itemPublicaco in Publicacoes)
+                {
+                    var Comentarios = await _clienteComentario.Comentarios(itemPublicaco.Id);
+
+                    foreach (var itemComentario in Comentarios)
+                    {
+                        await _clienteComentario.RemoverTable(itemComentario);
+                    }
+
+                    await _clientePublicacao.RemoverTable(itemPublicaco);
+                }
+
+                var Aux = await _clienteAuxiliar.SeguidoresGrupo(itemGrupo.Id);
+
+                foreach (var itemAux in Aux)
+                {
+                    await _clienteAuxiliar.RemoverTable(itemAux);
+
+                }
+
+                await _clienteGrupo.RemoverTable(itemGrupo);
+            }
+
+        }
+
+
 
         private bool CondicaoAdministrador()
         {

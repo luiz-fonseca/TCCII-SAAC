@@ -105,6 +105,7 @@ namespace saac.ViewModels
                 }
                 else
                 {
+                    ConcursosAgrupados.Clear();
                     Mensagem = "Ainda não existe concursos baseado em suas preferências";
 
                 }
@@ -112,7 +113,9 @@ namespace saac.ViewModels
             }
             else
             {
+                ConcursosAgrupados.Clear();
                 Mensagem = "Ainda não existe concursos baseado em suas preferências";
+
             }
 
 

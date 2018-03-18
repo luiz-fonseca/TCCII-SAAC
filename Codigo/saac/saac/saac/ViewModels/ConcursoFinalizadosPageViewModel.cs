@@ -50,7 +50,7 @@ namespace saac.ViewModels
         private readonly IAzureServiceConcurso<Concurso> _clienteConcurso;
         private readonly IAzureServicePrefConcurso<PreferenciaConcurso> _clientePreferencia;
         private readonly IAzureServiceAuxConcursoGrupo<AuxConcursoGrupo> _clienteAuxConcurso;
-        private readonly IAzureServicePublication<Publicacao> _clientePublicaco;
+        private readonly IAzureServicePublication<Publicacao> _clientePublicacao;
         private readonly IAzureServiceComment<Comentario> _clienteComentario;
         private readonly IAzureServiceAux<Auxiliar> _clienteAuxiliar;
 
@@ -63,7 +63,7 @@ namespace saac.ViewModels
         #region Construtor
         public ConcursoFinalizadosPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IAzureServiceConcurso<Concurso> clienteConcurso,
             IAzureServiceGroup<Grupo> clienteGrupo, IAzureServicePrefConcurso<PreferenciaConcurso> clientePreferencia, IAzureServiceAuxConcursoGrupo<AuxConcursoGrupo> clienteAuxConcurso,
-            IAzureServicePublication<Publicacao> clientePublicaco, IAzureServiceComment<Comentario> clienteComentario, IAzureServiceAux<Auxiliar> clienteAuxiliar) : base(navigationService)
+            IAzureServicePublication<Publicacao> clientePublicacao, IAzureServiceComment<Comentario> clienteComentario, IAzureServiceAux<Auxiliar> clienteAuxiliar) : base(navigationService)
         {
             _navigationService = navigationService;
             _dialogService = dialogService;
@@ -72,7 +72,7 @@ namespace saac.ViewModels
             _clienteConcurso = clienteConcurso;
             _clientePreferencia = clientePreferencia;
             _clienteAuxConcurso = clienteAuxConcurso;
-            _clientePublicaco = clientePublicaco;
+            _clientePublicacao = clientePublicacao;
             _clienteComentario = clienteComentario;
             _clienteAuxiliar = clienteAuxiliar;
 
@@ -142,7 +142,7 @@ namespace saac.ViewModels
 
             foreach (var itemGrupo in Grupos)
             {
-                var Publicacoes = await _clientePublicaco.Publicacoes(itemGrupo.Id);
+                var Publicacoes = await _clientePublicacao.Publicacoes(itemGrupo.Id);
 
                 foreach (var itemPublicaco in Publicacoes)
                 {
@@ -153,7 +153,7 @@ namespace saac.ViewModels
                         await _clienteComentario.RemoverTable(itemComentario);
                     }
 
-                    await _clientePublicaco.RemoverTable(itemPublicaco);
+                    await _clientePublicacao.RemoverTable(itemPublicaco);
                 }
 
                 var Aux = await _clienteAuxiliar.SeguidoresGrupo(itemGrupo.Id);

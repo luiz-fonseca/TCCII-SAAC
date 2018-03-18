@@ -102,6 +102,7 @@ namespace saac.ViewModels
             }
             else
             {
+                ConcursosAgrupados.Clear();
                 Mensagem = "Está região ainda não possui nenhum Concurso Disponível";
             }
 
