@@ -64,7 +64,8 @@ namespace saac
             containerRegistry.Register<IAzureServiceConcurso<Concurso>, AzureServiceConcurso<Concurso>>();
             containerRegistry.Register<IAzureServicePrefConcurso<PreferenciaConcurso>, AzureServicePrefConcurso<PreferenciaConcurso>>();
             containerRegistry.Register<IAzureServicePrefUser<PreferenciaUser>, AzureServicePrefUser<PreferenciaUser>>();
-            
+
+            containerRegistry.RegisterForNavigation<ConcursoEmEsperaPage>();
         }
     }
 }

@@ -67,7 +67,7 @@ namespace saac.ViewModels
                     return resultado;
 
                 case "Concursos em Espera":
-                    resultado = "ConcursoInscricoesFinalizadasPage";
+                    resultado = "ConcursoEmEsperaPage";
                     return resultado;
 
                 case "Concursos Finalizados":

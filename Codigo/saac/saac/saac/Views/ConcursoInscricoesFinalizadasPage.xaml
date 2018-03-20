@@ -21,7 +21,7 @@
                 </ListView.Behaviors>
 
                 <ListView.Header>
-                    <StackLayout Orientation="Horizontal">
+                    <StackLayout>
                         <Label  Text="Concurso: Inscrições Finalizadas" TextColor="Green" />
                         <Label Text="{Binding Mensagem}"/>
                     </StackLayout>

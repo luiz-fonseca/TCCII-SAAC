@@ -125,7 +125,7 @@ namespace saac.ViewModels
             }
             else
             {
-                Mensagem = "0";
+                Mensagem = "Não contém nenhum concurso";
             }
 
         }

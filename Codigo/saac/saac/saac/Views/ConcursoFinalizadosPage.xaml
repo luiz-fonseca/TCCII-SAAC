@@ -21,7 +21,7 @@
                 </ListView.Behaviors>
 
                 <ListView.Header>
-                    <StackLayout Orientation="Horizontal">
+                    <StackLayout>
                         <Label  Text="Concurso Finalizados" TextColor="Green" />
                         <Label  Text="{Binding Mensagem}"/>
                     </StackLayout>
@@ -41,7 +41,7 @@
 
             </ListView>
 
-            <Button Text="Alterar" Command="{Binding RemoverCommand}" TextColor="White" BackgroundColor="#77D065"/>
+            <Button Text="Finalizar" Command="{Binding RemoverCommand}" TextColor="White" BackgroundColor="#77D065"/>
 
         </StackLayout>
 
