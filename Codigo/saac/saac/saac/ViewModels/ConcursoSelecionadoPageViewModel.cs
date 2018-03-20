@@ -56,6 +56,10 @@ namespace saac.ViewModels
         private readonly IAzureServicePrefConcurso<PreferenciaConcurso> _clientePreferencia;
         private readonly IAzureServiceConcurso<Concurso> _clienteConcurso;
 
+        private DelegateCommand _editarPreferenciaConcurso;
+        public DelegateCommand EditarPreferenciaConcursoCommand =>
+            _editarPreferenciaConcurso ?? (_editarPreferenciaConcurso = new DelegateCommand(EditarPreferenciaConcurso, CondicaoAdministrador)).ObservesProperty(() => VerificadorAdm);
+
         private DelegateCommand _editarConcurso;
         public DelegateCommand EditarConcursoCommand =>
             _editarConcurso ?? (_editarConcurso = new DelegateCommand(EditarConcurso, CondicaoAdministrador)).ObservesProperty(() => VerificadorAdm);
@@ -136,9 +140,14 @@ namespace saac.ViewModels
 
         }
 
-        private void EditarConcurso()
+        private async void EditarConcurso()
         {
-            throw new NotImplementedException();
+            var navigationParams = new NavigationParameters();
+            navigationParams.Add("Concursos", Concursos);
+            navigationParams.Add("alterar","");
+
+            await _navigationService.NavigateAsync("AdicionarConcursoPage", navigationParams, useModalNavigation: false);
+
         }
 
         private async void ExcluirConcurso()
@@ -166,6 +175,15 @@ namespace saac.ViewModels
             }
 
             
+        }
+
+        private async void EditarPreferenciaConcurso()
+        {
+            var navigationParams = new NavigationParameters();
+            navigationParams.Add("Concursos", Concursos);
+            navigationParams.Add("alterar", "");
+
+           await _navigationService.NavigateAsync("AdicionarPrefConcursoPage", navigationParams, useModalNavigation: false);
         }
 
 

@@ -42,6 +42,8 @@ namespace saac.ViewModels
             set { SetProperty(ref _auxiliar, value); }
         }
 
+        public string Opcao { get; set; }
+
         private readonly INavigationService _navigationService;
         private readonly IPageDialogService _dialogService;
 
@@ -52,7 +54,7 @@ namespace saac.ViewModels
 
         private DelegateCommand _salvarCommand;
         public DelegateCommand SalvarCommand =>
-            _salvarCommand ?? (_salvarCommand = new DelegateCommand(Salvar));
+            _salvarCommand ?? (_salvarCommand = new DelegateCommand(OpcaoSelecionada));
 
         private DelegateCommand _voltarCommand;
         public DelegateCommand VoltarCommand =>
@@ -81,7 +83,20 @@ namespace saac.ViewModels
         #endregion
 
         #region Métodos
-        public async void Salvar()
+        public async void OpcaoSelecionada()
+        {
+            if (Opcao.Contains("Alterar"))
+            {
+                await Alterar();
+            }
+            else if(Opcao.Contains("Salvar"))
+            {
+                await Salvar();
+            }
+
+        }
+
+        public async Task Salvar()
         {
             await _clienteConcurso.AdicionarTable(Concursos);
 
@@ -111,7 +126,6 @@ namespace saac.ViewModels
             Grupos.Id = Guid.NewGuid().ToString("N");
             Grupos.Nome = Concursos.Titulo;
             Grupos.Descricao = Concursos.Descricao;
-            Grupos.Categoria = "Padrão";
             Grupos.Temporario = true;
 
             await _clienteGrupo.AdicionarTable(Grupos);
@@ -126,6 +140,19 @@ namespace saac.ViewModels
             await _clienteAux.AdicionarTable(Auxiliar);
         }
 
+        public async Task Alterar()
+        {
+            await _clientePreferencia.AtualizarTable(Preferencias);
+
+            await _dialogService.DisplayAlertAsync("Alteração","A preferência foi atualizada","Ok");
+            await _navigationService.GoBackAsync();
+        }
+
+        public async void ConcursoPreferencia(string codConcurso)
+        {
+            Preferencias = await _clientePreferencia.ConcursoPreferencia(codConcurso);
+        }
+
         public async void Voltar()
         {
             await _navigationService.GoBackAsync();
@@ -137,7 +164,20 @@ namespace saac.ViewModels
             {
                 Concursos = (Concurso)parameters["Concursos"];
 
+                if (parameters.ContainsKey("alterar"))
+                {
+                    Opcao = "Alterar";
+                    ConcursoPreferencia(Concursos.Id);
+
+                }
+                else
+                {
+                    Opcao = "Salvar";
+
+                }
+
             }
+           
         }
         #endregion
     }

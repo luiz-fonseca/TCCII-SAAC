@@ -11,6 +11,7 @@
         <ToolbarItem Text="Novo Grupo" Order="Secondary" Command="{Binding AdicionarGrupoCommand}"/>
         <ToolbarItem Text="Excluir" Order="Secondary" Command="{Binding ExcluirConcursoCommand}"/>
         <ToolbarItem Text="Editar" Order="Secondary" Command="{Binding EditarConcursoCommand}"/>
+        <ToolbarItem Text="Editar Preferência" Order="Secondary" Command="{Binding EditarPreferenciaConcursoCommand}"/>
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
@@ -42,7 +43,6 @@
                                 <StackLayout Padding="10">
                                     <Label Font="Small" TextColor="Green" Text="{Binding Nome}"/>
                                     <Label Text="{Binding Descricao}"/>
-                                    <Label TextColor="Green" Text="{Binding Categoria}"/>
 
                                 </StackLayout>
                             </ViewCell>

@@ -21,7 +21,18 @@
                 <Editor Text="{Binding Concursos.Detalhes}" HeightRequest="400"/>
 
                 <Picker Title="Regiões" TextColor="Green" ItemsSource="{Binding Regioes}" SelectedIndex="{Binding ItemRegioes}"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Região Atual: " TextColor="Green"/>
+                    <Label Text="{Binding Concursos.Regiao}"/>
+                </StackLayout>
+                <Label/>
+                
                 <Picker Title="Estados" TextColor="Green" ItemsSource="{Binding Estados}" SelectedIndex="{Binding ItemEstados}"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Estado Atual: " TextColor="Green"/>
+                    <Label Text="{Binding Concursos.Estado}"/>
+                </StackLayout>
+                <Label/>
 
                 <Label Text="Data final da inscrição" TextColor="Green"/>
                 
@@ -37,7 +48,7 @@
                             MaximumDate="01/01/2100"
                             Format="dd-MM-yyyy"/>
 
-                <Button Text="Próximo" TextColor="White"
+                <Button Text="{Binding Opcao}" TextColor="White"
                         BackgroundColor="#77D065"
                         Command="{Binding ProximoCommand}"/>
 

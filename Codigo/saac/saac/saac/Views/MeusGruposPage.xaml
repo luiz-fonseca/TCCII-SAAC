@@ -49,7 +49,6 @@
                             <StackLayout Padding="10">
                                 <Label Font="Small" TextColor="Green" Text="{Binding Nome}"/>
                                 <Label Text="{Binding Descricao}"/>
-                                <Label TextColor="Green" Text="{Binding Categoria}"/>
 
                             </StackLayout>
                         </ViewCell>

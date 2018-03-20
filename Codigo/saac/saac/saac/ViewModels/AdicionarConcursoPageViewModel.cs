@@ -1,16 +1,19 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
+using Prism.Services;
+using saac.Interfaces;
 using saac.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace saac.ViewModels
 {
-	public class AdicionarConcursoPageViewModel : ViewModelBase
-	{
+    public class AdicionarConcursoPageViewModel : ViewModelBase
+    {
         #region Propriedades
         private Concurso _concursos;
         public Concurso Concursos
@@ -45,7 +48,7 @@ namespace saac.ViewModels
                     Concursos.Regiao = Regioes[_itemRegioes];
                     InicializarEstados(_itemRegioes);
                 }
-                
+
             }
         }
 
@@ -61,23 +64,38 @@ namespace saac.ViewModels
                     Concursos.Estado = Estados[_itemEstados];
 
                 }
-                
+
             }
         }
 
+        private string _opcao;
+        public string Opcao
+        {
+            get { return _opcao; }
+            set { SetProperty(ref _opcao, value); }
+        }
+
+        private readonly INavigationService _navigationService;
+        private readonly IPageDialogService _dialogService;
+
+        private readonly IAzureServiceConcurso<Concurso> _clienteConcurso;
+
         private DelegateCommand _proximoCommand;
         public DelegateCommand ProximoCommand =>
-            _proximoCommand ?? (_proximoCommand = new DelegateCommand(Proximo, CondicaoProximo))
+            _proximoCommand ?? (_proximoCommand = new DelegateCommand(OpcaoSelecionada, CondicaoProximo))
             .ObservesProperty(() => Concursos.Titulo).ObservesProperty(() => Concursos.Descricao).ObservesProperty(() => Concursos.Detalhes)
             .ObservesProperty(() => Concursos.Regiao).ObservesProperty(() => Concursos.Estado);
 
-        private readonly INavigationService _navigationService;
         #endregion
 
         #region Construtor
-        public AdicionarConcursoPageViewModel(INavigationService navigationService) : base(navigationService)
+        public AdicionarConcursoPageViewModel(INavigationService navigationService, IAzureServiceConcurso<Concurso> clienteConcurso, 
+            IPageDialogService dialogService) : base(navigationService)
         {
             _navigationService = navigationService;
+            _dialogService = dialogService;
+
+            _clienteConcurso = clienteConcurso;
 
             Concursos = new Concurso();
             Regioes = new ObservableCollection<string>();
@@ -88,7 +106,20 @@ namespace saac.ViewModels
         #endregion
 
         #region Métodos
-        private async void Proximo()
+        private async void OpcaoSelecionada()
+        {
+            if (Opcao.Contains("alterar"))
+            {
+                await Alterar();
+            }
+            else
+            {
+                await Proximo();
+            }
+
+        }
+
+        private async Task Proximo()
         {
             Concursos.Id = Guid.NewGuid().ToString("N");
             Concursos.Visibilidade = true;
@@ -114,7 +145,7 @@ namespace saac.ViewModels
             Regioes.Add("Nordeste");
             Regioes.Add("Norte");
             Regioes.Add("Sudeste");
-            Regioes.Add("Sul" );
+            Regioes.Add("Sul");
             Regioes.Add("Centro-Oeste");
 
         }
@@ -129,7 +160,7 @@ namespace saac.ViewModels
                 Estados.Add("Nacional");
             }
             else if (item == 1)
-            { 
+            {
                 Estados.Add("Alagoas");
                 Estados.Add("Bahia");
                 Estados.Add("Ceará");
@@ -173,6 +204,14 @@ namespace saac.ViewModels
             }
         }
 
+        public async Task Alterar()
+        {
+            await _clienteConcurso.AtualizarTable(Concursos);
+
+            await _dialogService.DisplayAlertAsync("Alteração", "A preferência foi atualizada", "Ok");
+            await _navigationService.GoBackAsync();
+        }
+
         public async void Voltar()
         {
             await _navigationService.GoBackAsync();
@@ -180,12 +219,27 @@ namespace saac.ViewModels
 
         public override void OnNavigatedTo(NavigationParameters parameters)
         {
-            if (parameters.ContainsKey("voltar"))
+            if (parameters.ContainsKey("alterar"))
+            {
+                Opcao = "Alterar";
+
+                if (parameters.ContainsKey("Concursos"))
+                {
+                    Concursos = (Concurso)parameters["Concursos"];
+
+                }
+            }
+            else if (parameters.ContainsKey("voltar"))
             {
                 Voltar();
 
             }
+            else
+            {
+                Opcao = "Próximo";
+
+            }
+            #endregion
         }
-        #endregion
     }
 }

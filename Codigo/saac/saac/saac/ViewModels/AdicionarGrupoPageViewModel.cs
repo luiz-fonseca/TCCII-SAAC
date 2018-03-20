@@ -64,7 +64,7 @@ namespace saac.ViewModels
         private DelegateCommand _salvarGrupoCommand;
         public DelegateCommand SalvarGrupoCommand =>
             _salvarGrupoCommand ?? (_salvarGrupoCommand = new DelegateCommand(SelecionarOpcao, CondicaoSalvarGrupo))
-            .ObservesProperty(() => Grupos.Nome).ObservesProperty(() => Grupos.Descricao).ObservesProperty(() => Grupos.Categoria);
+            .ObservesProperty(() => Grupos.Nome).ObservesProperty(() => Grupos.Descricao);
 
         #endregion
 
@@ -90,8 +90,7 @@ namespace saac.ViewModels
         private bool CondicaoSalvarGrupo()
         {
             return !string.IsNullOrWhiteSpace(Grupos.Nome) &&
-                !string.IsNullOrWhiteSpace(Grupos.Descricao) &&
-                !string.IsNullOrWhiteSpace(Grupos.Categoria);
+                !string.IsNullOrWhiteSpace(Grupos.Descricao);
         }
 
         private async Task Salvar()
@@ -120,9 +119,7 @@ namespace saac.ViewModels
 
             Grupos.Nome = string.Empty;
             Grupos.Descricao = string.Empty;
-            Grupos.Categoria = string.Empty;
-
-
+            
             return Grupos.Id;
         }
 

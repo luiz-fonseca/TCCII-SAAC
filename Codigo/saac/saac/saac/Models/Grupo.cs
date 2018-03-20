@@ -29,14 +29,6 @@ namespace saac.Models
             set { SetProperty(ref _descricao, value); }
         }
 
-        private string _categoria;
-        [JsonProperty(PropertyName = "categoria")]
-        public string Categoria
-        {
-            get { return _categoria; }
-            set { SetProperty(ref _categoria, value); }
-        }
-
         [JsonProperty(PropertyName = "temporario")]
         public bool Temporario { get; set; }
 
