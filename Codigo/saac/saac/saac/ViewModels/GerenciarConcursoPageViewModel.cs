@@ -11,6 +11,8 @@ namespace saac.ViewModels
 	public class GerenciarConcursoPageViewModel : ViewModelBase
 	{
         #region Propriedades
+        public string UserId { get; set; }
+
         private ObservableCollection<object> _gerenciarConcursos;
         public ObservableCollection<object> GerenciarConcursos
         {
@@ -40,10 +42,13 @@ namespace saac.ViewModels
         #region Métodos
         private async void ItemTapped(object obj)
         {
+            var navigationParams = new NavigationParameters();
+            navigationParams.Add("userId", UserId);
+
             var aux = ConversaoCategoria(obj);
             var resultado = OpcaoSelecionada(aux);
 
-            await _navigationService.NavigateAsync(resultado, useModalNavigation: false);
+            await _navigationService.NavigateAsync(resultado, navigationParams, useModalNavigation: false);
 
         }
 
@@ -100,6 +105,17 @@ namespace saac.ViewModels
             return (T)objeto;
 
         }
+
+        public override void OnNavigatedTo(NavigationParameters parameters)
+        {
+            if (parameters.ContainsKey("userId"))
+            {
+                UserId = (string)parameters["userId"];
+
+            }
+
+        }
+
         #endregion
     }
 }

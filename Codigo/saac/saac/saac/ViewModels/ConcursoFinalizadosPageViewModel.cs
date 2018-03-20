@@ -29,6 +29,8 @@ namespace saac.ViewModels
             set { SetProperty(ref _titulo, value); }
         }
 
+        public string UserId { get; set; }
+
         private string _mensagem;
         public string Mensagem
         {
@@ -58,6 +60,10 @@ namespace saac.ViewModels
         public DelegateCommand RemoverCommand =>
             _removerCommand ?? (_removerCommand = new DelegateCommand(Remover));
 
+        private DelegateCommand<Concurso> _concursoSelectedCommand;
+        public DelegateCommand<Concurso> ConcursoSelectedCommand =>
+            _concursoSelectedCommand != null ? _concursoSelectedCommand : (_concursoSelectedCommand = new DelegateCommand<Concurso>(ItemTapped));
+
         #endregion
 
         #region Construtor
@@ -82,6 +88,7 @@ namespace saac.ViewModels
         #endregion
 
         #region Métodos
+        
         public void AtualizarConcursos()
         {
             Atualizando = true;
@@ -89,6 +96,16 @@ namespace saac.ViewModels
             ConcursosFinalizados();
 
             Atualizando = false;
+
+        }
+
+        public async void ItemTapped(Concurso obj)
+        {
+            var navigationParams = new NavigationParameters();
+            navigationParams.Add("concurso", obj);
+            navigationParams.Add("userId", UserId);
+
+            await _navigationService.NavigateAsync("ConcursoSelecionadoPage", navigationParams, useModalNavigation: false);
 
         }
 
@@ -172,7 +189,13 @@ namespace saac.ViewModels
 
         public override void OnNavigatedTo(NavigationParameters parameters)
         {
-            ConcursosFinalizados();
+            if (parameters.ContainsKey("userId"))
+            {
+                UserId = (string)parameters["userId"];
+
+                ConcursosFinalizados();
+
+            }
         }
 
         #endregion

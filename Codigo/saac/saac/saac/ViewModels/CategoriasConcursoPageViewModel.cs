@@ -91,7 +91,10 @@ namespace saac.ViewModels
 
         private async void Administrador()
         {
-            await _navigationService.NavigateAsync("GerenciarConcursoPage", useModalNavigation: false);
+            var navigationParams = new NavigationParameters();
+            navigationParams.Add("userId", UserId);
+
+            await _navigationService.NavigateAsync("GerenciarConcursoPage", navigationParams, useModalNavigation: false);
         }
 
         private bool CondicaoAdministrador()
