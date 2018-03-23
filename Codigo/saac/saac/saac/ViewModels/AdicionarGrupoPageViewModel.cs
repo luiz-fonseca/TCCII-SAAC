@@ -61,6 +61,13 @@ namespace saac.ViewModels
             set { SetProperty(ref _mensagem, value); }
         }
 
+        private string _opcao;
+        public string Opcao
+        {
+            get { return _opcao; }
+            set { SetProperty(ref _opcao, value); }
+        }
+
         private DelegateCommand _salvarGrupoCommand;
         public DelegateCommand SalvarGrupoCommand =>
             _salvarGrupoCommand ?? (_salvarGrupoCommand = new DelegateCommand(SelecionarOpcao, CondicaoSalvarGrupo))
@@ -147,11 +154,11 @@ namespace saac.ViewModels
 
         
          private async void SelecionarOpcao(){
-            if(Mensagem.Contains("Adicionar Grupo"))
+            if(Opcao.Contains("adicionar"))
             {
                  await Salvar();
 
-            }else if(Mensagem.Contains("Editar Grupo"))
+            }else if(Opcao.Contains("editar"))
             {  
                 await AlterarGrupo();
 
@@ -169,36 +176,44 @@ namespace saac.ViewModels
 
         public override void OnNavigatedTo(NavigationParameters parameters)
         {
-            if (parameters.ContainsKey("userId"))
+            if (parameters.ContainsKey("adicionar"))
             {
-                UserId = (string)parameters["userId"];
+                Opcao = (string)parameters["adicionar"];
 
-                if (parameters.ContainsKey("temporario"))
+                if (parameters.ContainsKey("userId"))
                 {
-                    Temporario = (bool)parameters["temporario"];
+                    UserId = (string)parameters["userId"];
 
-                    if (Temporario)
+                    if (parameters.ContainsKey("temporario"))
                     {
-                        if (parameters.ContainsKey("concursoId"))
+                        Temporario = (bool)parameters["temporario"];
+
+                        if (Temporario)
                         {
-                            ConcursoId = (string)parameters["concursoId"];
+                            if (parameters.ContainsKey("concursoId"))
+                            {
+                                ConcursoId = (string)parameters["concursoId"];
 
+                            }
                         }
-
                     }
+                    Mensagem = "Adicionar Grupo";
 
                 }
-
-                Mensagem = "Adicionar Grupo";
-
             }
-            else if (parameters.ContainsKey("grupo"))
+            else if (parameters.ContainsKey("editar"))
             {
-                Grupos = (Grupo)parameters["grupo"];
+                Opcao = (string)parameters["editar"];
 
-                Mensagem = "Editar Grupo";
+                if (parameters.ContainsKey("grupo"))
+                {
+                    Grupos = (Grupo)parameters["grupo"];
+
+                    Mensagem = "Editar Grupo";
+
+                }
             }
-
+   
         }
         #endregion
     }

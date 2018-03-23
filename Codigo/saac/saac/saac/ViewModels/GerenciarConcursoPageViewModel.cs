@@ -42,40 +42,49 @@ namespace saac.ViewModels
         #region Métodos
         private async void ItemTapped(object obj)
         {
-            var navigationParams = new NavigationParameters();
-            navigationParams.Add("userId", UserId);
-
             var aux = ConversaoCategoria(obj);
             var resultado = OpcaoSelecionada(aux);
 
-            await _navigationService.NavigateAsync(resultado, navigationParams, useModalNavigation: false);
+            var navigationParams = new NavigationParameters();
+            navigationParams.Add("userId", UserId);
+            navigationParams.Add(resultado[1], resultado[2]);
+
+            await _navigationService.NavigateAsync(resultado[0], navigationParams, useModalNavigation: false);
 
         }
 
-        public string OpcaoSelecionada(string obj)
+        public string[] OpcaoSelecionada(string obj)
         {
-            string resultado;
+            string[] resultado = new string[3];
             
             switch (obj)
             {
                 case "Novo Concurso":
-                    resultado = "AdicionarConcursoPage";
+                    resultado[0] = "AdicionarConcursoPage";
+                    resultado[1] = "proximo";
+                    resultado[2] = "Próximo";
                     return resultado;
 
                 case "Inscrições Finalizadas":
-                    resultado = "ConcursoInscricoesFinalizadasPage";
+                    resultado[0] = "ConcursoInscricoesFinalizadasPage";
+                    resultado[1] = "";
+                    resultado[2] = "";
                     return resultado;
 
                 case "Concursos em Espera":
-                    resultado = "ConcursoEmEsperaPage";
+                    resultado[0] = "ConcursoEmEsperaPage";
+                    resultado[1] = "";
+                    resultado[2] = "";
                     return resultado;
 
                 case "Concursos Finalizados":
-                    resultado = "ConcursoFinalizadosPage";
+                    resultado[0] = "ConcursoFinalizadosPage";
+                    resultado[1] = "";
+                    resultado[2] = "";
                     return resultado;
 
                 default:
-                    return resultado = "";
+                    return resultado;
                     
             }
 

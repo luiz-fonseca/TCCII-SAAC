@@ -1,6 +1,7 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
+using Prism.Services;
 using saac.Interfaces;
 using saac.Models;
 using System;
@@ -27,14 +28,16 @@ namespace saac.ViewModels
             set { SetProperty(ref _userId, value); }
         }
 
-        private bool _inicial;
-        public bool Inicial
+        private string _opcao;
+        public string Opcao
         {
-            get { return _inicial; }
-            set { SetProperty(ref _inicial, value); }
+            get { return _opcao; }
+            set { SetProperty(ref _opcao, value); }
         }
 
         private readonly INavigationService _navigationService;
+        private readonly IPageDialogService _dialogService;
+
         private readonly IAzureServicePrefUser<PreferenciaUser> _clientePreferencia;
 
         private DelegateCommand _salvarCommand;
@@ -43,9 +46,12 @@ namespace saac.ViewModels
         #endregion
 
         #region Construtor
-        public AdicionarPrefUserPageViewModel(INavigationService navigationService, IAzureServicePrefUser<PreferenciaUser> clientePreferencia) : base (navigationService)
+        public AdicionarPrefUserPageViewModel(INavigationService navigationService, IAzureServicePrefUser<PreferenciaUser> clientePreferencia,
+            IPageDialogService dialogService) : base (navigationService)
         {
             _navigationService = navigationService;
+            _dialogService = dialogService;
+
             _clientePreferencia = clientePreferencia;
 
             Preferencias = new PreferenciaUser();
@@ -56,11 +62,11 @@ namespace saac.ViewModels
         #region Métodos
         public async void Salvar()
         {
-            if (Inicial)
+            if (Opcao.Contains("adicionar"))
             {
                 await SalvarPreferencia();
             }
-            else
+            else if(Opcao.Contains("editar"))
             {
                 await AtualizarPreferencia();
             }
@@ -84,6 +90,8 @@ namespace saac.ViewModels
         public async Task AtualizarPreferencia()
         {
             await _clientePreferencia.AtualizarTable(Preferencias);
+
+            await _dialogService.DisplayAlertAsync("Preferência do usuário", "As suas preferências de concursos foram atualizadas", "Ok");
             await _navigationService.GoBackAsync();
 
         }
@@ -100,13 +108,17 @@ namespace saac.ViewModels
             {
                 UserId = (string)parameters["userId"];
 
-                if (parameters.ContainsKey("inicial"))
+                if (parameters.ContainsKey("adicionar"))
                 {
-                    Inicial = (bool)parameters["inicial"]; ;
+                    Opcao = (string)parameters["adicionar"];
+
                 }
-                else
+                else if (parameters.ContainsKey("editar"))
                 {
+                    Opcao = (string)parameters["editar"];
+
                     MinhaPreferencia(UserId);
+
                 }
             }
         }

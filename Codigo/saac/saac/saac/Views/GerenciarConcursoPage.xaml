@@ -19,7 +19,7 @@
                 </ListView.Behaviors>
 
                 <ListView.Header>
-                    <StackLayout Orientation="Horizontal">
+                    <StackLayout>
                         <Label  Text="Gerenciar Concursos &#10;" TextColor="Green" />
                     </StackLayout>
                 </ListView.Header>

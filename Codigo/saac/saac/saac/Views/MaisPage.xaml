@@ -2,13 +2,41 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="saac.Views.MaisPage"
              Title="+ Mais">
 
-    <StackLayout Padding="20,50,20,20">
-        <Label Text="{Binding UserId}"/>
+    <ContentPage.Content>
+        <StackLayout Padding="10,10,10,10" Spacing="10">
 
-    </StackLayout>
-  
+            <ListView ItemsSource="{Binding MinhasOpcoesDePerfil}">
+
+                <ListView.Behaviors>
+                    <behaviors:EventToCommandBehavior   EventName="ItemTapped" 
+                                                        Command="{Binding OpcaoSelectedCommand}"
+                                                        EventArgsParameterPath="Item" />
+                </ListView.Behaviors>
+
+                <ListView.Header>
+                    <StackLayout>
+                        <Label  Text="Perfil &#10;" TextColor="Green" />
+                    </StackLayout>
+                </ListView.Header>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10">
+                                <Label Font="Small" TextColor="Green" Text="{Binding Nome}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+        </StackLayout>
+
+    </ContentPage.Content>
+
 </ContentPage>

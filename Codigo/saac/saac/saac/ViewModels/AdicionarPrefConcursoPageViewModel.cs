@@ -85,11 +85,11 @@ namespace saac.ViewModels
         #region Métodos
         public async void OpcaoSelecionada()
         {
-            if (Opcao.Contains("Alterar"))
+            if (Opcao.Contains("editar"))
             {
                 await Alterar();
             }
-            else if(Opcao.Contains("Salvar"))
+            else if(Opcao.Contains("adicionar"))
             {
                 await Salvar();
             }
@@ -164,20 +164,21 @@ namespace saac.ViewModels
             {
                 Concursos = (Concurso)parameters["Concursos"];
 
-                if (parameters.ContainsKey("alterar"))
+                if (parameters.ContainsKey("adicionar"))
                 {
-                    Opcao = "Alterar";
-                    ConcursoPreferencia(Concursos.Id);
+                    Opcao = (string)parameters["adicionar"];
 
                 }
-                else
+                else if (parameters.ContainsKey("editar"))
                 {
-                    Opcao = "Salvar";
+                    Opcao = (string)parameters["editar"];
+              
+                    ConcursoPreferencia(Concursos.Id);
 
                 }
 
             }
-           
+
         }
         #endregion
     }

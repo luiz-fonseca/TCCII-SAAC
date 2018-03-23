@@ -190,6 +190,7 @@ namespace saac.ViewModels
         {
 
             var navigationParams = new NavigationParameters();
+            navigationParams.Add("editar", "editar");
             navigationParams.Add("grupo", Grupos);
 
             await _navigationService.NavigateAsync("AdicionarGrupoPage", navigationParams);

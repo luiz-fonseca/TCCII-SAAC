@@ -144,7 +144,7 @@ namespace saac.ViewModels
         {
             var navigationParams = new NavigationParameters();
             navigationParams.Add("Concursos", Concursos);
-            navigationParams.Add("alterar","");
+            navigationParams.Add("editar", "Editar");
 
             await _navigationService.NavigateAsync("AdicionarConcursoPage", navigationParams, useModalNavigation: false);
 
@@ -181,7 +181,7 @@ namespace saac.ViewModels
         {
             var navigationParams = new NavigationParameters();
             navigationParams.Add("Concursos", Concursos);
-            navigationParams.Add("alterar", "");
+            navigationParams.Add("editar", "editar");
 
            await _navigationService.NavigateAsync("AdicionarPrefConcursoPage", navigationParams, useModalNavigation: false);
         }

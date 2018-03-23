@@ -25,14 +25,12 @@
                     <Label Text="Região Atual: " TextColor="Green"/>
                     <Label Text="{Binding Concursos.Regiao}"/>
                 </StackLayout>
-                <Label/>
-                
+
                 <Picker Title="Estados" TextColor="Green" ItemsSource="{Binding Estados}" SelectedIndex="{Binding ItemEstados}"/>
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Estado Atual: " TextColor="Green"/>
                     <Label Text="{Binding Concursos.Estado}"/>
                 </StackLayout>
-                <Label/>
 
                 <Label Text="Data final da inscrição" TextColor="Green"/>
                 

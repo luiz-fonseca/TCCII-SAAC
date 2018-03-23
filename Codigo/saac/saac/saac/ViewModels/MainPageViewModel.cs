@@ -160,8 +160,8 @@ namespace saac.ViewModels
                 }
                 else
                 {
-                    navigationParams.Add("inicial", true);
-                    User.Administrador = true;
+                    navigationParams.Add("adicionar", "adicionar");
+                    User.Administrador = false;
 
                     await _clienteUser.AdicionarTable(User);
                     await _dialogService.DisplayAlertAsync("Cadastro Realizado", "Parabéns!! O seu cadastro foi realizado.", "OK");

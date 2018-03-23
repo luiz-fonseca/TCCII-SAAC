@@ -108,11 +108,11 @@ namespace saac.ViewModels
         #region Métodos
         private async void OpcaoSelecionada()
         {
-            if (Opcao.Contains("alterar"))
+            if (Opcao.Contains("Editar"))
             {
                 await Alterar();
             }
-            else
+            else if (Opcao.Contains("Próximo"))
             {
                 await Proximo();
             }
@@ -126,6 +126,7 @@ namespace saac.ViewModels
 
             var navigationParams = new NavigationParameters();
             navigationParams.Add("Concursos", Concursos);
+            navigationParams.Add("adicionar", "adicionar");
             await _navigationService.NavigateAsync("AdicionarPrefConcursoPage", navigationParams, useModalNavigation: false);
 
         }
@@ -153,7 +154,7 @@ namespace saac.ViewModels
         public void InicializarEstados(int item)
         {
             Estados.Clear();
-
+            
             if (item == 0)
             {
                 Estados.Add("");
@@ -219,9 +220,9 @@ namespace saac.ViewModels
 
         public override void OnNavigatedTo(NavigationParameters parameters)
         {
-            if (parameters.ContainsKey("alterar"))
+            if (parameters.ContainsKey("editar"))
             {
-                Opcao = "Alterar";
+                Opcao = (string)parameters["editar"];
 
                 if (parameters.ContainsKey("Concursos"))
                 {
@@ -229,14 +230,14 @@ namespace saac.ViewModels
 
                 }
             }
+            else if (parameters.ContainsKey("proximo"))
+            {
+                Opcao = (string)parameters["proximo"];
+
+            }
             else if (parameters.ContainsKey("voltar"))
             {
                 Voltar();
-
-            }
-            else
-            {
-                Opcao = "Próximo";
 
             }
             #endregion
