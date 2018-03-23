@@ -57,7 +57,8 @@ namespace saac.ViewModels
             _salvarCommand ?? (_salvarCommand = new DelegateCommand(OpcaoSelecionada, CondicaoOpcaoSelecionada))
             .ObservesProperty(() => Preferencias.Administracao).ObservesProperty(() => Preferencias.Financas)
             .ObservesProperty(() => Preferencias.Licenciatura).ObservesProperty(() => Preferencias.Militar)
-            .ObservesProperty(() => Preferencias.Saude).ObservesProperty(() => Preferencias.Ti);
+            .ObservesProperty(() => Preferencias.Saude).ObservesProperty(() => Preferencias.Ti)
+            .ObservesProperty(() => Preferencias.Outra);
 
         private DelegateCommand _voltarCommand;
         public DelegateCommand VoltarCommand =>
@@ -103,7 +104,7 @@ namespace saac.ViewModels
         {
             return Preferencias.Administracao || Preferencias.Financas
                 || Preferencias.Licenciatura || Preferencias.Militar
-                || Preferencias.Saude || Preferencias.Ti;
+                || Preferencias.Saude || Preferencias.Ti || Preferencias.Outra;
         }
 
         public async Task Salvar()

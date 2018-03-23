@@ -16,6 +16,7 @@
                     <SwitchCell On="{Binding Preferencias.Financas}" Text="Finanças"/>
                     <SwitchCell On="{Binding Preferencias.Administracao}" Text="Administração"/>
                     <SwitchCell On="{Binding Preferencias.Militar}" Text="Militar"/>
+                    <SwitchCell On="{Binding Preferencias.Outra}" Text="Outra"/>
 
                 </TableSection>
                 

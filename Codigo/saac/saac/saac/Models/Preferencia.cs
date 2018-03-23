@@ -60,5 +60,13 @@ namespace saac.Models
             set { SetProperty(ref _militar, value); }
         }
 
+        public bool _outra;
+        [JsonProperty(PropertyName = "outra")]
+        public bool Outra
+        {
+            get { return _outra; }
+            set { SetProperty(ref _outra, value); }
+        }
+
     }
 }

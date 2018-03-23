@@ -17,7 +17,7 @@
             <Label Font="Medium" TextColor="Green" Text="{Binding Grupos.Nome}"/>
             <Label Text="{Binding Grupos.Descricao}"/>
 
-            <Button Text="Seguir" Command="{Binding SeguirGrupoCommand}"/>
+            <Button Text="{Binding Seguir}" Command="{Binding SeguirGrupoCommand}" BackgroundColor="{Binding CorSeguir}" TextColor="White"/>
 
             <Editor Text="{Binding Texto}" HeightRequest="50"/>
 

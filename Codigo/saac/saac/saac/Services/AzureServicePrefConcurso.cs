@@ -45,7 +45,8 @@ namespace saac.Services
                 || (PrefConcurso.Financas == user.Financas && PrefConcurso.Financas == true)
                 || (PrefConcurso.Administracao == user.Administracao && PrefConcurso.Administracao == true)
                 || (PrefConcurso.Saude == user.Saude && PrefConcurso.Saude == true)
-                || (PrefConcurso.Militar == user.Militar && PrefConcurso.Militar == true))
+                || (PrefConcurso.Militar == user.Militar && PrefConcurso.Militar == true)
+                || (PrefConcurso.Outra == user.Outra && PrefConcurso.Outra == true))
                 .Select(PrefConcurso => PrefConcurso.CodConcurso);
 
             itens = await query.ToListAsync();
