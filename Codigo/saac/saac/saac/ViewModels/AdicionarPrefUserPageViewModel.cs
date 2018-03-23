@@ -42,7 +42,10 @@ namespace saac.ViewModels
 
         private DelegateCommand _salvarCommand;
         public DelegateCommand SalvarCommand =>
-            _salvarCommand ?? (_salvarCommand = new DelegateCommand(Salvar));
+            _salvarCommand ?? (_salvarCommand = new DelegateCommand(Salvar, CondicaoSalvar))
+            .ObservesProperty(() => Preferencias.Administracao).ObservesProperty(() => Preferencias.Financas)
+            .ObservesProperty(() => Preferencias.Licenciatura).ObservesProperty(() => Preferencias.Militar)
+            .ObservesProperty(() => Preferencias.Saude).ObservesProperty(() => Preferencias.Ti);
         #endregion
 
         #region Construtor
@@ -71,6 +74,13 @@ namespace saac.ViewModels
                 await AtualizarPreferencia();
             }
 
+        }
+
+        private bool CondicaoSalvar()
+        {
+            return Preferencias.Administracao || Preferencias.Financas
+                || Preferencias.Licenciatura || Preferencias.Militar
+                || Preferencias.Saude || Preferencias.Ti;
         }
 
         public async Task SalvarPreferencia()
