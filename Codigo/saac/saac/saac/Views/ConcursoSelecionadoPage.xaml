@@ -15,46 +15,43 @@
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout Padding="10,10,10,10" Spacing="10">
-                <Label Text="{Binding Concursos.Titulo}" TextColor="Green"/>
-                <Label Text="{Binding Concursos.Descricao}"/>
-                <Label Text="{Binding Concursos.Detalhes}" BackgroundColor="LightGreen"/>
-
-                <ListView ItemsSource="{Binding Grupos}" HasUnevenRows="True" 
+        <StackLayout Padding="10,10,10,10">
+            <ListView ItemsSource="{Binding Grupos}" HasUnevenRows="True" 
                       IsPullToRefreshEnabled="True" RefreshCommand="{Binding AtualizarCommand}"
                       IsRefreshing="{Binding Atualizando}">
 
-                    <ListView.Behaviors>
-                        <behaviors:EventToCommandBehavior   EventName="ItemTapped" 
+                <ListView.Behaviors>
+                    <behaviors:EventToCommandBehavior   EventName="ItemTapped" 
                                                         Command="{Binding GrupoSelectedCommand}"
                                                         EventArgsParameterPath="Item" />
-                    </ListView.Behaviors>
+                </ListView.Behaviors>
 
-                    <ListView.Header>
-                        <StackLayout BackgroundColor="#77D065">
-                            <Label Text="Grupos disponíveis" TextColor="White" Font="Small"/>
-                        </StackLayout>
-                    </ListView.Header>
+                <ListView.Header>
+                    <StackLayout Spacing="10">
+                        <Label Text="{Binding Concursos.Titulo}" TextColor="Green"/>
+                        <Label Text="{Binding Concursos.Descricao}"/>
+                        <Label Text="{Binding Concursos.Detalhes}" BackgroundColor="LightGreen"/>
 
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <StackLayout Padding="10">
-                                    <Label Font="Small" TextColor="Green" Text="{Binding Nome}"/>
-                                    <Label Text="{Binding Descricao}"/>
+                        <Label BackgroundColor="#77D065" Text="Grupos disponíveis" TextColor="White" Font="Small"/>
 
-                                </StackLayout>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
+                    </StackLayout>
+                </ListView.Header>
 
-                </ListView>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10">
+                                <Label Font="Small" TextColor="Green" Text="{Binding Nome}"/>
+                                <Label Text="{Binding Descricao}"/>
 
-            </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
 
-        </ScrollView>
-        
+            </ListView>
+
+        </StackLayout>
     </ContentPage.Content>
   
 </ContentPage>

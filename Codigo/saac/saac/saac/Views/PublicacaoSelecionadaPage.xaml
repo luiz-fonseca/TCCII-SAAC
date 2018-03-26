@@ -14,15 +14,6 @@
 
     <ContentPage.Content>
         <StackLayout Padding="10,10,10,10">
-            
-            <StackLayout Orientation="Horizontal">
-                <Image Source="{Binding Foto}"  HeightRequest="60"
-                     WidthRequest="60" VerticalOptions="Start"/>
-
-                <Label TextColor="Green" Text="{Binding Nome}"/>
-                <Label Text="{Binding Publication.Texto}"/>
-                
-            </StackLayout>
 
             <ListView ItemsSource="{Binding ComentariosPublication}" HasUnevenRows="True"
                       IsPullToRefreshEnabled="True" RefreshCommand="{Binding AtualizarCommand}"
@@ -35,9 +26,19 @@
                 </ListView.Behaviors>
 
                 <ListView.Header>
-                    <StackLayout>
+                    <StackLayout Spacing="10">
+                        <StackLayout Orientation="Horizontal">
+                            <Image Source="{Binding Foto}"  HeightRequest="60"
+                                    WidthRequest="60" VerticalOptions="Start"/>
+
+                            <Label TextColor="Green" Text="{Binding Nome}"/>
+
+                        </StackLayout>
+                        <Label Text="{Binding Publication.Texto}"/>
+                        
                         <Label Text="Comentários" TextColor="Green"/>
                         <Label Text="{Binding Message}"/>
+                        
                     </StackLayout>
                 </ListView.Header>
 
@@ -45,14 +46,16 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Orientation="Vertical" Spacing="50">
+                            <StackLayout>
                                 <StackLayout Orientation="Horizontal">
                                     <Image Source="{Binding Foto}"  HeightRequest="50"
                                             WidthRequest="50" VerticalOptions="Start"/>
 
                                     <Label TextColor="Green" Text="{Binding Nome}"/>
-                                    <Label Text="{Binding Texto}"/>
+                                    
                                 </StackLayout>
+                                <Label Text="{Binding Texto}"/>
+                                <Label/>
                                 
                             </StackLayout>
                         </ViewCell>
@@ -61,13 +64,15 @@
 
             </ListView>
 
-            <Entry VerticalOptions="End"  Placeholder="Comentário"
+            <StackLayout Orientation="Horizontal">
+                <Entry HorizontalOptions="FillAndExpand" VerticalOptions="End"  Placeholder="Comentário"
                        Text="{Binding Texto}"/>
 
-            <Button VerticalOptions="End" Text="Salvar" TextColor="White"
+                <Button VerticalOptions="End" Text="Salvar" TextColor="White"
                         BackgroundColor="#77D065"
                         Command="{Binding SalvarComentarioCommand}"/>
 
+            </StackLayout>
 
         </StackLayout>
 

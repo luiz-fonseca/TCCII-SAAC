@@ -76,6 +76,17 @@ namespace saac.ViewModels
             }
         }
 
+        private bool _verificarExcluirPublicaco = false;
+        public bool VerificarExcluirPublicaco
+        {
+            get { return _verificarExcluirPublicaco; }
+            set
+            {
+                SetProperty(ref _verificarExcluirPublicaco, value);
+                ExcluirPublicacaoCommand.RaiseCanExecuteChanged();
+            }
+        }
+
         private ObservableCollection<object> _comentariosPublication;
         public ObservableCollection<object> ComentariosPublication
         {
@@ -94,7 +105,7 @@ namespace saac.ViewModels
 
         private DelegateCommand _excluirPublicacaoCommand;
         public DelegateCommand ExcluirPublicacaoCommand =>
-            _excluirPublicacaoCommand ?? (_excluirPublicacaoCommand = new DelegateCommand(ExcluirPublicacao));
+            _excluirPublicacaoCommand ?? (_excluirPublicacaoCommand = new DelegateCommand(ExcluirPublicacao, CondicaoExcluirPublicacao));
 
 
         private DelegateCommand<object> _comentarioSelectedCommand;
@@ -187,9 +198,9 @@ namespace saac.ViewModels
 
         public async void ExcluirPublicacao()
         {
-            var aux = await _clientePublication.MinhaPublicaco(Publication.Id, UserId);
-            if (aux != 0)
-            {
+            //var aux = await _clientePublication.MinhaPublicaco(Publication.Id, UserId);
+            //if (aux != 0)
+            //{
                 var resulPublicacao = await _dialogService.DisplayAlertAsync("Excluir Publicação", "A exclusão desta publicação," +
                     " também irá excluir todos os comentários relacionados a está publicação. Deseja Continuar?", " Sim ", " Não ");
 
@@ -207,6 +218,28 @@ namespace saac.ViewModels
                     await _navigationService.GoBackAsync();
 
                 }
+            //}
+
+        }
+
+        public bool CondicaoExcluirPublicacao()
+        {
+            return VerificarExcluirPublicaco;
+        }
+
+        public async void Verificacao(string idPublicacao, string idUsuario)
+        {
+            var resultado = await _clientePublication.MinhaPublicaco(idPublicacao, idUsuario);
+
+            if (resultado != 0)
+            {
+                VerificarExcluirPublicaco = true;
+
+            }
+            else
+            {
+                VerificarExcluirPublicaco = false;
+
             }
 
         }
@@ -316,6 +349,7 @@ namespace saac.ViewModels
                     }
 
                     Exibircomentario(Publication.Id);
+                    Verificacao(Publication.Id, UserId);
 
                 }
             }

@@ -13,17 +13,6 @@
 
     <ContentPage.Content>
         <StackLayout Padding="10,10,10,10">
-            
-            <Label Font="Medium" TextColor="Green" Text="{Binding Grupos.Nome}"/>
-            <Label Text="{Binding Grupos.Descricao}"/>
-
-            <Button Text="{Binding Seguir}" Command="{Binding SeguirGrupoCommand}" BackgroundColor="{Binding CorSeguir}" TextColor="White"/>
-
-            <Editor Text="{Binding Texto}" HeightRequest="50"/>
-
-            <Button Text="Publicar" TextColor="White"
-                        BackgroundColor="#77D065"
-                        Command="{Binding SalvarPublicacaoCommand}"/>
 
             <ListView ItemsSource="{Binding PublicacoesGrupo}" HasUnevenRows="True"
                       IsPullToRefreshEnabled="True" RefreshCommand="{Binding AtualizarCommand}"
@@ -36,9 +25,24 @@
                 </ListView.Behaviors>
 
                 <ListView.Header>
-                    <StackLayout>
+                    <StackLayout Spacing="10">
+                        <Label Font="Medium" TextColor="Green" Text="{Binding Grupos.Nome}"/>
+
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding Grupos.Descricao}"/>
+                            <Button Text="{Binding Seguir}" Command="{Binding SeguirGrupoCommand}" BackgroundColor="{Binding CorSeguir}" TextColor="White"/>
+
+                        </StackLayout>
+
+                        <Editor Text="{Binding Texto}" HeightRequest="75"/>
+
+                        <Button Text="Publicar" TextColor="White" 
+                                BackgroundColor="#77D065"
+                                Command="{Binding SalvarPublicacaoCommand}"/>
+
                         <Label Text="Publicações" TextColor="Green"/>
                         <Label Text="{Binding Message}"/>
+                        
                     </StackLayout>
                 </ListView.Header>
 
@@ -46,14 +50,16 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Spacing="10">
+                            <StackLayout>
                                 <StackLayout Orientation="Horizontal">
                                     <Image Source="{Binding Foto}"  HeightRequest="50"
                                             WidthRequest="50" VerticalOptions="Start"/>
 
                                     <Label TextColor="Green" Text="{Binding Nome}"/>
-                                    <Label Text="{Binding Texto}"/>
+                                  
                                 </StackLayout>
+                                <Label Text="{Binding Texto}"/>
+                                <Label/>
 
                             </StackLayout>
                         </ViewCell>

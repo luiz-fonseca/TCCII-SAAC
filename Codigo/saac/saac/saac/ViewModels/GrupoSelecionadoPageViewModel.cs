@@ -199,7 +199,7 @@ namespace saac.ViewModels
             {
                 Verificar = true;
                 Seguir = "Seguindo";
-                CorSeguir = Color.Blue;
+                CorSeguir = Color.FromHex("#77D065");
 
             }
 
