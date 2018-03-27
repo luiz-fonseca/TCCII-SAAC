@@ -207,6 +207,14 @@ namespace saac.ViewModels
 
         public async Task Alterar()
         {
+            var dataAtual = DateTime.Now.Date;
+
+            if (dataAtual >= Concursos.DtInscricao.Date)
+            {
+                Concursos.Visibilidade = true;
+
+            }
+
             await _clienteConcurso.AtualizarTable(Concursos);
 
             await _dialogService.DisplayAlertAsync("Alteração", "A preferência foi atualizada", "Ok");

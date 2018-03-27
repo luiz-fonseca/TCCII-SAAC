@@ -26,13 +26,15 @@
 
                 <ListView.Header>
                     <StackLayout Spacing="10">
-                        <Label Font="Medium" TextColor="Green" Text="{Binding Grupos.Nome}"/>
-
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="{Binding Grupos.Descricao}"/>
+                            <Label HorizontalOptions="FillAndExpand" Font="Medium" TextColor="Green" Text="{Binding Grupos.Nome}"/>
                             <Button Text="{Binding Seguir}" Command="{Binding SeguirGrupoCommand}" BackgroundColor="{Binding CorSeguir}" TextColor="White"/>
 
                         </StackLayout>
+                        <Label Text="{Binding Grupos.Descricao}"/>
+                           
+
+                       
 
                         <Editor Text="{Binding Texto}" HeightRequest="75"/>
 
