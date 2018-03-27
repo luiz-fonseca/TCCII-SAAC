@@ -212,7 +212,7 @@ namespace saac.ViewModels
             navigationParams.Add("editar", "editar");
             navigationParams.Add("grupo", Grupos);
 
-            await _navigationService.NavigateAsync("AdicionarGrupoPage", navigationParams);
+            await _navigationService.NavigateAsync("AdicionarGrupoPage", navigationParams, useModalNavigation: false);
 
         }
 
@@ -374,7 +374,7 @@ namespace saac.ViewModels
             navigationParams.Add("foto", foto);
             navigationParams.Add("userId", UserId);
 
-            await _navigationService.NavigateAsync("PublicacaoSelecionadaPage", navigationParams);
+            await _navigationService.NavigateAsync("PublicacaoSelecionadaPage", navigationParams, useModalNavigation: false);
 
         }
 

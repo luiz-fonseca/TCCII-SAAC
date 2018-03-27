@@ -14,6 +14,7 @@ namespace saac.ViewModels
 {
 	public class ConcursoSelecionadoPageViewModel : ViewModelBase
 	{
+        #region Propriedades
         private bool _atualizando = false;
         public bool Atualizando
         {
@@ -79,8 +80,9 @@ namespace saac.ViewModels
         private DelegateCommand<Grupo> _grupoSelectedCommand;
         public DelegateCommand<Grupo> GrupoSelectedCommand =>
             _grupoSelectedCommand != null ? _grupoSelectedCommand : (_grupoSelectedCommand = new DelegateCommand<Grupo>(ItemTapped));
+        #endregion
 
-
+        #region Construtor
         public ConcursoSelecionadoPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IAzureServiceAuxConcursoGrupo<AuxConcursoGrupo> clienteConcursoGrupo,
             IAzureServiceGroup<Grupo> clienteGrupo, IAzureServiceUser<Usuario> clienteUser, IAzureServicePublication<Publicacao> clientePublicacao,
             IAzureServiceComment<Comentario> clienteComentario, IAzureServiceAux<Auxiliar> clienteAuxiliar, IAzureServicePrefConcurso<PreferenciaConcurso> clientePreferencia,
@@ -100,7 +102,9 @@ namespace saac.ViewModels
 
             Grupos = new ObservableCollection<Grupo>();
         }
+        #endregion
 
+        #region Métodos
         public void AtualizarGrupos()
         {
             Atualizando = true;
@@ -261,5 +265,6 @@ namespace saac.ViewModels
 
             }
         }
+        #endregion
     }
 }

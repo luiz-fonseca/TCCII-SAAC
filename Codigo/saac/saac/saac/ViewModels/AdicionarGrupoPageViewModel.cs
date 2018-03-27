@@ -80,16 +80,16 @@ namespace saac.ViewModels
             IAzureServiceGroup<Grupo> clienteGrupo, IAzureServiceAux<Auxiliar> clienteAuxiliar, 
             IAzureServiceAuxConcursoGrupo<AuxConcursoGrupo> clienteConcursoGrupo) : base(navigationService)
         {
+            _navigationService = navigationService;
+            _dialogService = dialogService;
+
             _clienteGrupo = clienteGrupo;
             _clienteAuxiliar = clienteAuxiliar;
             _clienteConcursoGrupo = clienteConcursoGrupo;
 
             Grupos = new Grupo();
             Aux = new Auxiliar();
-
-            _navigationService = navigationService;
-            _dialogService = dialogService;
-
+            
         }
         #endregion
 

@@ -37,7 +37,7 @@ namespace saac.ViewModels
         public async void Logout()
         {
             _facebookLogout.Logout();
-            await _navigationService.NavigateAsync("../MainPage");
+            await _navigationService.NavigateAsync("../MainPage", useModalNavigation: false);
 
         }
 

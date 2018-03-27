@@ -26,22 +26,26 @@
 
                 <ListView.Header>
                     <StackLayout Spacing="10">
-                        <StackLayout Orientation="Horizontal">
-                            <Label HorizontalOptions="FillAndExpand" Font="Medium" TextColor="Green" Text="{Binding Grupos.Nome}"/>
-                            <Button Text="{Binding Seguir}" Command="{Binding SeguirGrupoCommand}" BackgroundColor="{Binding CorSeguir}" TextColor="White"/>
 
-                        </StackLayout>
+                        <Label Font="Medium" TextColor="Green" Text="{Binding Grupos.Nome}"/>
                         <Label Text="{Binding Grupos.Descricao}"/>
-                           
-
-                       
-
                         <Editor Text="{Binding Texto}" HeightRequest="75"/>
 
-                        <Button Text="Publicar" TextColor="White" 
-                                BackgroundColor="#77D065"
-                                Command="{Binding SalvarPublicacaoCommand}"/>
+                        <StackLayout Orientation="Horizontal">
+                            <Button Text="Publicar" 
+                                    TextColor="White" 
+                                    BackgroundColor="#77D065"
+                                    HorizontalOptions="FillAndExpand"
+                                    Command="{Binding SalvarPublicacaoCommand}"/>
 
+                            <Button Text="{Binding Seguir}" 
+                                    Command="{Binding SeguirGrupoCommand}" 
+                                    BackgroundColor="{Binding CorSeguir}"
+                                    HorizontalOptions="FillAndExpand"
+                                    TextColor="White"/>
+
+                        </StackLayout>
+                        
                         <Label Text="Publicações" TextColor="Green"/>
                         <Label Text="{Binding Message}"/>
                         

@@ -54,7 +54,7 @@ namespace saac.ViewModels
             var navigationParams = new NavigationParameters();
             navigationParams.Add("usuario", User);
 
-           await _navigationService.NavigateAsync("AdicionarUsuarioPage", navigationParams);
+           await _navigationService.NavigateAsync("AdicionarUsuarioPage", navigationParams, useModalNavigation: false);
 
 
         }

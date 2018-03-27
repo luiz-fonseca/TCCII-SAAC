@@ -94,7 +94,7 @@ namespace saac.ViewModels
             var navigationParams = new NavigationParameters();
             navigationParams.Add("userId", UserId);
 
-            await _navigationService.NavigateAsync("../PrincipalPage", navigationParams);
+            await _navigationService.NavigateAsync("../PrincipalPage", navigationParams, useModalNavigation: false);
 
         }
 

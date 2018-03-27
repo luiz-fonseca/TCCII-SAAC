@@ -22,17 +22,8 @@ namespace saac.ViewModels
         public Facebook FacebookProfile
         {
             get { return _facebookProfile; }
-            set
-            {
-                SetProperty(ref _facebookProfile, value);
-            }
+            set { SetProperty(ref _facebookProfile, value); }
         }
-
-        private readonly IAzureServiceUser<Usuario> _clienteUser;
-        private readonly IFacebookService _clienteFacebook;
-
-        private readonly INavigationService _navigationService;
-        private readonly IPageDialogService _dialogService;
 
         private Usuario _user;
         public Usuario User
@@ -41,10 +32,12 @@ namespace saac.ViewModels
             set { SetProperty(ref _user, value); }
         }
 
-        private DelegateCommand _criarUsuarioCommand;
-        public DelegateCommand CriarUsuarioCommand =>
-            _criarUsuarioCommand ?? (_criarUsuarioCommand = new DelegateCommand(CriarUsuario));
+        private readonly IAzureServiceUser<Usuario> _clienteUser;
+        private readonly IFacebookService _clienteFacebook;
 
+        private readonly INavigationService _navigationService;
+        private readonly IPageDialogService _dialogService;
+        
         #endregion
 
         #region Construtor
@@ -53,17 +46,20 @@ namespace saac.ViewModels
             IFacebookService clienteFacebook)
             : base(navigationService)
         {
+            _navigationService = navigationService;
+            _dialogService = dialogService;
+
             _clienteUser = clienteUser;
             _clienteFacebook = clienteFacebook;
-            _dialogService = dialogService;
-            _navigationService = navigationService;
+            
+            User = new Usuario();
 
         }
         #endregion
 
         #region Métodos
 
-        #region facebook
+        #region Facebook
         public async Task SetFacebookUserProfileAsync(string accessToken)
         {
             FacebookProfile = await _clienteFacebook.GetFacebookProfileAsync(accessToken);
@@ -121,16 +117,15 @@ namespace saac.ViewModels
 
                 //chamar o método aqui
 
-                CriarUsuario();
+                await CriarUsuario();
 
             }
         }
         #endregion
 
 
-        private async void CriarUsuario()
+        private async Task CriarUsuario()
         {
-            User = new Usuario();
             User.Id = FacebookProfile.Id;
             User.Nome = FacebookProfile.Name;
             User.Foto = FacebookProfile.Picture.Data.Url;
@@ -155,7 +150,7 @@ namespace saac.ViewModels
                     {
                         await _clienteUser.AtualizarTable(User);
                     }*/
-                    await _navigationService.NavigateAsync("../PrincipalPage", navigationParams);
+                    await _navigationService.NavigateAsync("../PrincipalPage", navigationParams, useModalNavigation: false);
 
                 }
                 else
@@ -165,7 +160,7 @@ namespace saac.ViewModels
 
                     await _clienteUser.AdicionarTable(User);
                     await _dialogService.DisplayAlertAsync("Cadastro Realizado", "Parabéns!! O seu cadastro foi realizado.", "OK");
-                    await _navigationService.NavigateAsync("../AdicionarPrefUserPage", navigationParams);
+                    await _navigationService.NavigateAsync("../AdicionarPrefUserPage", navigationParams, useModalNavigation: false);
                 }
 
 

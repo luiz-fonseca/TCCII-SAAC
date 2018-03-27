@@ -11,6 +11,7 @@ namespace saac.ViewModels
 {
 	public class AdicionarUsuarioPageViewModel : ViewModelBase
 	{
+        #region Propriedades
         private Usuario _user;
         public Usuario User
         {
@@ -25,7 +26,9 @@ namespace saac.ViewModels
         private DelegateCommand _salvarUsuarioCommand;
         public DelegateCommand SalvarUsuarioCommand =>
             _salvarUsuarioCommand ?? (_salvarUsuarioCommand = new DelegateCommand(SalvarUsuario));
+        #endregion
 
+        #region Construtor
         public AdicionarUsuarioPageViewModel(INavigationService navigationService, IAzureServiceUser<Usuario> clienteUsuario) : base(navigationService)
         {
             _navigationService = navigationService;
@@ -35,7 +38,9 @@ namespace saac.ViewModels
             User = new Usuario();
 
         }
+        #endregion
 
+        #region Métodos
         public async void SalvarUsuario()
         {
             await _clienteUsuario.AtualizarTable(User);
@@ -50,5 +55,6 @@ namespace saac.ViewModels
             }
 
         }
+        #endregion
     }
 }
