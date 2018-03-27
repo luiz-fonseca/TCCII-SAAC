@@ -26,22 +26,22 @@
                                                         EventArgsParameterPath="Item" />
                 </ListView.Behaviors>
 
-                <ListView.GroupHeaderTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout BackgroundColor="#77D065">
-                                <Label Text="{Binding Key}" TextColor="White" />
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.GroupHeaderTemplate>
-
                 <ListView.Header>
                     <StackLayout>
                         <Label Text="Meus Grupos" TextColor="Green" Font="Small"/>
                         <Label Text="{Binding Message}"/>
                     </StackLayout>
                 </ListView.Header>
+
+                <ListView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout BackgroundColor="#77D065">
+                                <Label Text="{Binding Key}" TextColor="White" Font="Small" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>
 
                 <ListView.ItemTemplate>
                     <DataTemplate>

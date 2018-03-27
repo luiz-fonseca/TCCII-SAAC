@@ -66,6 +66,10 @@ namespace saac.ViewModels
 
             switch (obj)
             {
+                case "Meu Perfil":
+                    resultado[0] = "UsuarioSelecionadoPage";
+                    return resultado;
+
                 case "Minhas Preferências":
                     resultado[0] = "AdicionarPrefUserPage";
                     resultado[1] = "editar";
@@ -81,6 +85,7 @@ namespace saac.ViewModels
 
         public void ExibirOpcoes()
         {
+            MinhasOpcoesDePerfil.Add(new { Nome = "Meu Perfil" });
             MinhasOpcoesDePerfil.Add(new { Nome = "Minhas Preferências" });
             
         }

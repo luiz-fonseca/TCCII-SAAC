@@ -67,5 +67,23 @@ namespace saac.Services
 
             return resultado;
         }
+
+        async Task<Usuario> IAzureServiceUser<T>.UsuarioSelecionado(string codUser)
+        {
+            var resultado = new Usuario();
+
+            var query = _tableUser
+                .Where(Usuario => Usuario.Id == codUser);
+
+            var aux = await query.ToListAsync();
+
+            foreach (var item in aux)
+            {
+                resultado = item;
+
+            }
+            return resultado;
+
+        }
     }
 }

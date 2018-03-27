@@ -11,5 +11,7 @@ namespace saac.Interfaces
         Task<List<Usuario>> Usuarios(List<string> codUser);
         Task<int> ExisteUsuario(string codUser);
         Task<bool> VerificarAdministrador(string codUser);
+        Task<Usuario> UsuarioSelecionado(string codUser);
+
     }
 }
