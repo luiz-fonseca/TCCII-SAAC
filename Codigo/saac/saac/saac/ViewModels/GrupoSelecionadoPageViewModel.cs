@@ -11,6 +11,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Acr.UserDialogs;
 
 namespace saac.ViewModels
 {
@@ -247,12 +248,15 @@ namespace saac.ViewModels
 
                         if (resulGrupo)
                         {
-                            var resultadoAux = await _clienteAuxiliar.GetAuxiliar(Grupos.Id, UserId);
+                            using (var Dialog = UserDialogs.Instance.Loading("Excluindo...", null, null, true, MaskType.Black))
+                            {
+                                var resultadoAux = await _clienteAuxiliar.GetAuxiliar(Grupos.Id, UserId);
 
-                            await RemoverGrupo();
+                                await RemoverGrupo();
 
-                            await _clienteAuxiliar.RemoverTable(resultadoAux);
+                                await _clienteAuxiliar.RemoverTable(resultadoAux);
 
+                            }
                             await _dialogService.DisplayAlertAsync("Grupo", "Este grupo e suas publicações foram excluídos", "OK");
 
                             await _navigationService.GoBackAsync();

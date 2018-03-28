@@ -209,7 +209,7 @@ namespace saac.ViewModels
         {
             var dataAtual = DateTime.Now.Date;
 
-            if (dataAtual >= Concursos.DtInscricao.Date)
+            if (dataAtual <= Concursos.DtInscricao.Date)
             {
                 Concursos.Visibilidade = true;
 
@@ -217,13 +217,15 @@ namespace saac.ViewModels
 
             await _clienteConcurso.AtualizarTable(Concursos);
 
-            await _dialogService.DisplayAlertAsync("Alteração", "A preferência foi atualizada", "Ok");
+            await _dialogService.DisplayAlertAsync("Alteração", "Os detalhes deste concurso foi atualizados", "Ok");
             await _navigationService.GoBackAsync();
+
         }
 
         public async void Voltar()
         {
             await _navigationService.GoBackAsync();
+
         }
 
         public override void OnNavigatedTo(NavigationParameters parameters)

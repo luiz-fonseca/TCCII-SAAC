@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using Acr.UserDialogs;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using Prism.Services;
@@ -111,14 +112,17 @@ namespace saac.ViewModels
 
         public async void Alterar()
         {
-            foreach (var item in ListaConcursos)
+            using (var Dialog = UserDialogs.Instance.Loading("Alterando...", null, null, true, MaskType.Black))
             {
-                item.Visibilidade = false;
-                await _clienteConcurso.AtualizarTable(item);
+                foreach (var item in ListaConcursos)
+                {
+                    item.Visibilidade = false;
+                    await _clienteConcurso.AtualizarTable(item);
+                }
             }
-
             await _dialogService.DisplayAlertAsync("Alterados", "Os concursos foram alterados", "Ok");
             await _navigationService.GoBackAsync();
+
         }
 
         public override void OnNavigatedTo(NavigationParameters parameters)

@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Acr.UserDialogs;
 
 namespace saac.ViewModels
 {
@@ -113,12 +114,13 @@ namespace saac.ViewModels
 
             if (accessToken != "")
             {
-                await SetFacebookUserProfileAsync(accessToken);
-
-                //chamar o método aqui
-
-                await CriarUsuario();
-
+                using (var Dialog = UserDialogs.Instance.Loading("Carregando...", null, null, true, MaskType.Black))
+                {
+                    await SetFacebookUserProfileAsync(accessToken);
+                    
+                    await CriarUsuario();
+                    
+                }
             }
         }
         #endregion

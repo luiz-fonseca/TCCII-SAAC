@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using Acr.UserDialogs;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using Prism.Services;
@@ -132,25 +133,30 @@ namespace saac.ViewModels
 
         public async void Remover()
         {
-            foreach (var itemConcurso in ListaConcursos)
+            using (var Dialog = UserDialogs.Instance.Loading("Excluindo Concursos...", null, null, true, MaskType.Black))
             {
-                var Preferencia = await _clientePreferencia.ConcursoPreferencia(itemConcurso.Id);
-                var ListaAux = await _clienteAuxConcurso.ListaGruposConcursos(itemConcurso.Id);
-                var AuxConcurso = await _clienteAuxConcurso.GruposConcursos(itemConcurso.Id);
-
-                await RemoverGrupo(AuxConcurso);
-                
-                foreach (var itemListaAux in ListaAux)
+                foreach (var itemConcurso in ListaConcursos)
                 {
-                    await _clienteAuxConcurso.RemoverTable(itemListaAux);
-                }
-               
-                await _clientePreferencia.RemoverTable(Preferencia);
-                await _clienteConcurso.RemoverTable(itemConcurso);
-            }
+                    var Preferencia = await _clientePreferencia.ConcursoPreferencia(itemConcurso.Id);
+                    var ListaAux = await _clienteAuxConcurso.ListaGruposConcursos(itemConcurso.Id);
+                    var AuxConcurso = await _clienteAuxConcurso.GruposConcursos(itemConcurso.Id);
 
+                    await RemoverGrupo(AuxConcurso);
+
+                    foreach (var itemListaAux in ListaAux)
+                    {
+                        await _clienteAuxConcurso.RemoverTable(itemListaAux);
+                    }
+
+                    await _clientePreferencia.RemoverTable(Preferencia);
+                    await _clienteConcurso.RemoverTable(itemConcurso);
+
+                }
+            }
+            
             await _dialogService.DisplayAlertAsync("Excluídos", "Esses concursos foram excluídos", "Ok");
             await _navigationService.GoBackAsync();
+
         }
 
         public async Task RemoverGrupo(List<string> AuxConcurso)
