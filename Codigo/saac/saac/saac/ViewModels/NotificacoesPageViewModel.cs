@@ -20,6 +20,13 @@ namespace saac.ViewModels
             set { SetProperty(ref _atualizando, value); }
         }
 
+        private bool _isLoading = false;
+        public bool IsLoading
+        {
+            get { return _isLoading; }
+            set { SetProperty(ref _isLoading, value); }
+        }
+
         private string _mensagem;
         public string Mensagem
         {
@@ -91,6 +98,8 @@ namespace saac.ViewModels
 
         public async void MeusConcursosPreferidos(string codUsuario)
         {
+            IsLoading = true;
+
             var resulPrefUser = await _clientePrefUser.MinhasPreferencias(codUsuario);
             var resulPrefConcurso = await _clientePrefConcurso.MeusConcursosPreferidos(resulPrefUser);
 
@@ -117,7 +126,7 @@ namespace saac.ViewModels
                 Mensagem = "Ainda não existe concursos baseado em suas preferências";
 
             }
-
+            IsLoading = false;
 
         }
 

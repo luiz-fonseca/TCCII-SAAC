@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using Acr.UserDialogs;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using Prism.Services;
@@ -20,6 +21,13 @@ namespace saac.ViewModels
         {
             get { return _atualizando; }
             set { SetProperty(ref _atualizando, value); }
+        }
+
+        private bool _isLoading = false;
+        public bool IsLoading
+        {
+            get { return _isLoading; }
+            set { SetProperty(ref _isLoading, value); }
         }
 
         private bool _verificadorAdm = false;
@@ -112,6 +120,7 @@ namespace saac.ViewModels
             GruposConcursos(Concursos.Id);
 
             Atualizando = false;
+
         }
 
         public async void AdicionarGrupo()
@@ -123,11 +132,12 @@ namespace saac.ViewModels
 
             await _navigationService.NavigateAsync("AdicionarGrupoPage", navigationParams, useModalNavigation: false);
 
-
         }
 
         public async void GruposConcursos(string codConcurso)
         {
+            IsLoading = true;
+
             var resultado = await _clienteConcursoGrupo.GruposConcursos(codConcurso);
 
             if (resultado.Count != 0)
@@ -141,7 +151,7 @@ namespace saac.ViewModels
 
                 }
             }
-
+            IsLoading = false;
         }
 
         private async void EditarConcurso()
@@ -160,25 +170,28 @@ namespace saac.ViewModels
 
             if (resultado)
             {
-                await RemoverGrupo();
-
-                var Preferencia = await _clientePreferencia.ConcursoPreferencia(Concursos.Id);
-
-                var ListaAuxConcurso = await _clienteConcursoGrupo.ListaGruposConcursos(Concursos.Id);
-                foreach (var itemListaAuxConcurso in ListaAuxConcurso)
+                using (var Dialog = UserDialogs.Instance.Loading("Excluindo...", null, null, true, MaskType.Black))
                 {
-                    await _clienteConcursoGrupo.RemoverTable(itemListaAuxConcurso);
+                    await RemoverGrupo();
+
+                    var Preferencia = await _clientePreferencia.ConcursoPreferencia(Concursos.Id);
+
+                    var ListaAuxConcurso = await _clienteConcursoGrupo.ListaGruposConcursos(Concursos.Id);
+                    foreach (var itemListaAuxConcurso in ListaAuxConcurso)
+                    {
+                        await _clienteConcursoGrupo.RemoverTable(itemListaAuxConcurso);
+
+                    }
+
+                    await _clientePreferencia.RemoverTable(Preferencia);
+                    await _clienteConcurso.RemoverTable(Concursos);
 
                 }
-
-                await _clientePreferencia.RemoverTable(Preferencia);
-                await _clienteConcurso.RemoverTable(Concursos);
-
+                
                 await _dialogService.DisplayAlertAsync("Concurso", "Concurso excluído", "Ok");
                 await _navigationService.GoBackAsync();
-            }
 
-            
+            }
         }
 
         private async void EditarPreferenciaConcurso()
@@ -187,7 +200,8 @@ namespace saac.ViewModels
             navigationParams.Add("Concursos", Concursos);
             navigationParams.Add("editar", "editar");
 
-           await _navigationService.NavigateAsync("AdicionarPrefConcursoPage", navigationParams, useModalNavigation: false);
+            await _navigationService.NavigateAsync("AdicionarPrefConcursoPage", navigationParams, useModalNavigation: false);
+
         }
 
 
@@ -204,6 +218,7 @@ namespace saac.ViewModels
                     foreach (var itemComentario in Comentarios)
                     {
                         await _clienteComentario.RemoverTable(itemComentario);
+
                     }
 
                     await _clientePublicacao.RemoverTable(itemPublicaco);
@@ -218,8 +233,8 @@ namespace saac.ViewModels
                 }
 
                 await _clienteGrupo.RemoverTable(itemGrupo);
-            }
 
+            }
         }
 
 

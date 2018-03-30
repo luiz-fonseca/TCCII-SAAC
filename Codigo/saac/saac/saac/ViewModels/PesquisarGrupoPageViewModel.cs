@@ -21,6 +21,13 @@ namespace saac.ViewModels
             set { SetProperty(ref _atualizando, value); }
         }
 
+        private bool _isLoading = false;
+        public bool IsLoading
+        {
+            get { return _isLoading; }
+            set { SetProperty(ref _isLoading, value); }
+        }
+
         private string _userId;
         public string UserId
         {
@@ -101,6 +108,8 @@ namespace saac.ViewModels
 
         public async void PesquisarGrupo()
         {
+            IsLoading = true;
+
             var auxList = await _clienteGroup.PesquisarGrupos(Pesquisar);
 
             Groups.Clear();
@@ -109,12 +118,13 @@ namespace saac.ViewModels
                 Groups.Add(item);
 
             }
-
+            IsLoading = false;
 
         }
 
         public async void ExibirGrupos()
         {
+            IsLoading = true;
             try
             {
                 var resultado = await _clienteGroup.GetTable();
@@ -142,6 +152,7 @@ namespace saac.ViewModels
                 Message = "Ocorreu algum problema, por favor tente novamente mais tarde.";
 
             }
+            IsLoading = false;
 
         }
 

@@ -34,6 +34,8 @@
                 <ListView.Header>
                     <StackLayout>
                         <Label Text="Concursos Disponíveis" TextColor="Green" Font="Small"/>
+                        <ActivityIndicator  IsRunning="{Binding IsLoading}"
+                                            IsVisible="{Binding IsLoading}" Color="Green"/>
                         <Label Text="{Binding Mensagem}"/>
                     </StackLayout>
                 </ListView.Header>

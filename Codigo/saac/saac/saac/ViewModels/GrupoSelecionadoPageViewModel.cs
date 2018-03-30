@@ -25,6 +25,13 @@ namespace saac.ViewModels
             set { SetProperty(ref _atualizando, value); }
         }
 
+        private bool _isLoading = false;
+        public bool IsLoading
+        {
+            get { return _isLoading; }
+            set { SetProperty(ref _isLoading, value); }
+        }
+
         private Publicacao _publication;
         public Publicacao Publication
         {
@@ -317,6 +324,7 @@ namespace saac.ViewModels
 
         public async void ExibirPublicacoes(string codGrupo)
         {
+            IsLoading = true;
             List<string> auxList = new List<string>();
 
             try
@@ -361,6 +369,7 @@ namespace saac.ViewModels
                 Message = "Ocorreu algum problema, por favor tente novamente mais tarde.";
 
             }
+            IsLoading = false;
 
         }
 

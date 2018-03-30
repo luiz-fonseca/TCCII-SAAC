@@ -20,6 +20,13 @@ namespace saac.ViewModels
             set { SetProperty(ref _atualizando, value); }
         }
 
+        private bool _isLoading = false;
+        public bool IsLoading
+        {
+            get { return _isLoading; }
+            set { SetProperty(ref _isLoading, value); }
+        }
+
         public string Regiao { get; set; }
 
         public string UserId { get; set; }
@@ -77,7 +84,11 @@ namespace saac.ViewModels
 
         public void ExibirConcursos(string args)
         {
+            IsLoading = true;
+
             ConcursosDisponiveis(args);
+
+            IsLoading = false;
 
         }
 

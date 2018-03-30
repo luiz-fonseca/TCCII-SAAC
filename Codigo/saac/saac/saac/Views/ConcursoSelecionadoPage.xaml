@@ -33,6 +33,8 @@
                         <Label Text="{Binding Concursos.Detalhes}" BackgroundColor="LightGreen"/>
 
                         <Label BackgroundColor="#77D065" Text="Grupos disponíveis" TextColor="White" Font="Small"/>
+                        <ActivityIndicator  IsRunning="{Binding IsLoading}"
+                                            IsVisible="{Binding IsLoading}" Color="Green"/>
 
                     </StackLayout>
                 </ListView.Header>

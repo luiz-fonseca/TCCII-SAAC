@@ -29,7 +29,10 @@
                 <ListView.Header>
                     <StackLayout>
                         <Label Text="Meus Grupos" TextColor="Green" Font="Small"/>
+                        <ActivityIndicator  IsRunning="{Binding IsLoading}"
+                                            IsVisible="{Binding IsLoading}" Color="Green"/>
                         <Label Text="{Binding Message}"/>
+                        
                     </StackLayout>
                 </ListView.Header>
 

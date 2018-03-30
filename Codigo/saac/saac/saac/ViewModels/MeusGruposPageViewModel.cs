@@ -24,6 +24,12 @@ namespace saac.ViewModels
             set { SetProperty(ref _atualizando, value); }
         }
 
+        private bool _isLoading = false;
+        public bool IsLoading
+        {
+            get { return _isLoading; }
+            set { SetProperty(ref _isLoading, value); }
+        }
 
         private string _userId;
         public string UserId
@@ -66,7 +72,6 @@ namespace saac.ViewModels
         private DelegateCommand<Grupo> _grupoSelectedCommand;
         public DelegateCommand<Grupo> GrupoSelectedCommand =>
             _grupoSelectedCommand != null ? _grupoSelectedCommand : (_grupoSelectedCommand = new DelegateCommand<Grupo>(ItemTapped));
-
         #endregion
 
         #region Construtor
@@ -95,8 +100,10 @@ namespace saac.ViewModels
 
         public async void ExibirMeusGrupos(string id)
         {
-           // try
+            // try
             //{
+            IsLoading = true;
+
                 var aux = await _clienteAux.MeusGrupos(id);
                 if (aux.Count == 0)
                 {
@@ -112,12 +119,13 @@ namespace saac.ViewModels
                     var resultadoAgrupar = Agrupar(resultado);
                     Converter(resultadoAgrupar);
                 }
-           // }
+            // }
             //catch (MobileServiceInvalidOperationException)
             //{
-              //  Message = "Ocorreu algum problema, por favor tente novamente mais tarde.";
+            //  Message = "Ocorreu algum problema, por favor tente novamente mais tarde.";
 
             //}
+            IsLoading = false;
 
         }
 

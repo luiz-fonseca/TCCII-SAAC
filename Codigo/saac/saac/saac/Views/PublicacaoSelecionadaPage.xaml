@@ -37,6 +37,8 @@
                         <Label Text="{Binding Publication.Texto}"/>
                         
                         <Label Text="Comentários" TextColor="Green"/>
+                        <ActivityIndicator  IsRunning="{Binding IsLoading}"
+                                            IsVisible="{Binding IsLoading}" Color="Green"/>
                         <Label Text="{Binding Message}"/>
                         
                     </StackLayout>

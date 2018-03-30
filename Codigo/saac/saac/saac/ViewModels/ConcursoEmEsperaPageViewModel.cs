@@ -20,6 +20,13 @@ namespace saac.ViewModels
             set { SetProperty(ref _atualizando, value); }
         }
 
+        private bool _isLoading = false;
+        public bool IsLoading
+        {
+            get { return _isLoading; }
+            set { SetProperty(ref _isLoading, value); }
+        }
+
         private string _mensagem;
         public string Mensagem
         {
@@ -80,6 +87,8 @@ namespace saac.ViewModels
 
         public async void ConcursosEmEspera()
         {
+            IsLoading = true;
+
             var dataAtual = DateTime.Now.Date;
             var lista = await _clienteConcurso.ConcursosEmEspera(dataAtual);
 
@@ -97,6 +106,7 @@ namespace saac.ViewModels
                 Mensagem = "Não contém nenhum concurso";
 
             }
+            IsLoading = false;
 
         }
 

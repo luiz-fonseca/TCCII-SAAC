@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using Acr.UserDialogs;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using Prism.Services;
@@ -92,10 +93,12 @@ namespace saac.ViewModels
             if (Opcao.Contains("editar"))
             {
                 await Alterar();
+
             }
             else if(Opcao.Contains("adicionar"))
             {
                 await Salvar();
+
             }
 
         }
@@ -105,22 +108,26 @@ namespace saac.ViewModels
             return Preferencias.Administracao || Preferencias.Financas
                 || Preferencias.Licenciatura || Preferencias.Militar
                 || Preferencias.Saude || Preferencias.Ti || Preferencias.Outra;
+
         }
 
         public async Task Salvar()
         {
-            await _clienteConcurso.AdicionarTable(Concursos);
+            using (var Dialog = UserDialogs.Instance.Loading("Salvando...", null, null, true, MaskType.Black))
+            {
+                await _clienteConcurso.AdicionarTable(Concursos);
 
-            await SalvarPreferencias();
-            await SalvarGrupo();
-            await SalvarAux();
+                await SalvarPreferencias();
+                await SalvarGrupo();
+                await SalvarAux();
 
+            }
+            
             await _dialogService.DisplayAlertAsync("Concurso","Concurso Salvo","Ok");
 
             var navigationParams = new NavigationParameters();
             navigationParams.Add("voltar", "");
             await _navigationService.GoBackAsync(navigationParams);
-
 
         }
 
@@ -130,6 +137,7 @@ namespace saac.ViewModels
             Preferencias.CodConcurso = Concursos.Id;
 
             await _clientePreferencia.AdicionarTable(Preferencias);
+
         }
 
         public async Task SalvarGrupo()
@@ -140,6 +148,7 @@ namespace saac.ViewModels
             Grupos.Temporario = true;
 
             await _clienteGrupo.AdicionarTable(Grupos);
+
         }
 
         public async Task SalvarAux()
@@ -149,6 +158,7 @@ namespace saac.ViewModels
             Auxiliar.CodGrupo = Grupos.Id;
 
             await _clienteAux.AdicionarTable(Auxiliar);
+
         }
 
         public async Task Alterar()
@@ -157,16 +167,19 @@ namespace saac.ViewModels
 
             await _dialogService.DisplayAlertAsync("Alteração","A preferência foi atualizada","Ok");
             await _navigationService.GoBackAsync();
+
         }
 
         public async void ConcursoPreferencia(string codConcurso)
         {
             Preferencias = await _clientePreferencia.ConcursoPreferencia(codConcurso);
+
         }
 
         public async void Voltar()
         {
             await _navigationService.GoBackAsync();
+
         }
 
         public override void OnNavigatedTo(NavigationParameters parameters)

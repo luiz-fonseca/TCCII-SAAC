@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Acr.UserDialogs;
 
 namespace saac.ViewModels
 {
@@ -20,6 +21,13 @@ namespace saac.ViewModels
         {
             get { return _atualizando; }
             set { SetProperty(ref _atualizando, value); }
+        }
+
+        private bool _isLoading = false;
+        public bool IsLoading
+        {
+            get { return _isLoading; }
+            set { SetProperty(ref _isLoading, value); }
         }
 
         private Publicacao _publication;
@@ -95,6 +103,13 @@ namespace saac.ViewModels
 
         }
 
+        private readonly IAzureServiceUser<Usuario> _clienteUser;
+        private readonly IAzureServicePublication<Publicacao> _clientePublication;
+        private readonly IAzureServiceComment<Comentario> _clienteComment;
+
+        private readonly INavigationService _navigationService;
+        private readonly IPageDialogService _dialogService;
+
         private DelegateCommand _salvarComentarioCommand;
         public DelegateCommand SalvarComentarioCommand =>
             _salvarComentarioCommand ?? (_salvarComentarioCommand = new DelegateCommand(AdicionarComentario, CondicaoAdicionarComentario));
@@ -111,15 +126,7 @@ namespace saac.ViewModels
         private DelegateCommand<object> _comentarioSelectedCommand;
         public DelegateCommand<object> ComentarioSelectedCommand =>
             _comentarioSelectedCommand != null ? _comentarioSelectedCommand : (_comentarioSelectedCommand = new DelegateCommand<object>(ItemTapped));
-
-
-        private readonly IAzureServiceUser<Usuario> _clienteUser;
-        private readonly IAzureServicePublication<Publicacao> _clientePublication;
-        private readonly IAzureServiceComment<Comentario> _clienteComment;
-
-        private readonly INavigationService _navigationService;
-        private readonly IPageDialogService _dialogService;
-
+        
         #endregion
 
         #region Construtor
@@ -146,6 +153,7 @@ namespace saac.ViewModels
         private bool CondicaoAdicionarComentario()
         {
             return !string.IsNullOrWhiteSpace(Texto);
+
         }
 
         public async void ItemTapped(object args)
@@ -198,14 +206,14 @@ namespace saac.ViewModels
 
         public async void ExcluirPublicacao()
         {
-            //var aux = await _clientePublication.MinhaPublicaco(Publication.Id, UserId);
-            //if (aux != 0)
-            //{
-                var resulPublicacao = await _dialogService.DisplayAlertAsync("Excluir Publicação", "A exclusão desta publicação," +
+            var resulPublicacao = await _dialogService.DisplayAlertAsync("Excluir Publicação", "A exclusão desta publicação," +
                     " também irá excluir todos os comentários relacionados a está publicação. Deseja Continuar?", " Sim ", " Não ");
 
-                if (resulPublicacao)
+            if (resulPublicacao)
+            {
+                using (var Dialog = UserDialogs.Instance.Loading("Salvando...", null, null, true, MaskType.Black))
                 {
+
                     foreach (var item in ComentariosPublication)
                     {
                         var comment = ConversaoComentario(item);
@@ -214,12 +222,11 @@ namespace saac.ViewModels
                     }
 
                     await _clientePublication.RemoverTable(Publication);
-
-                    await _navigationService.GoBackAsync();
-
                 }
-            //}
+                await _dialogService.DisplayAlertAsync("Publicação Excluida", "Está publicação e os seus comentários foram excluídos", "Ok");
+                await _navigationService.GoBackAsync();
 
+            }
         }
 
         public bool CondicaoExcluirPublicacao()
@@ -253,6 +260,7 @@ namespace saac.ViewModels
 
         public async void Exibircomentario(string codPublicacao)
         {
+            IsLoading = true;
             List<string> auxList = new List<string>();
 
             try
@@ -300,6 +308,7 @@ namespace saac.ViewModels
                 Message = "Ocorreu algum problema, por favor tente novamente mais tarde.";
 
             }
+            IsLoading = false;
 
         }
 

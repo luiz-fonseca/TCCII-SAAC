@@ -23,6 +23,13 @@ namespace saac.ViewModels
             set { SetProperty(ref _atualizando, value); }
         }
 
+        private bool _isLoading = false;
+        public bool IsLoading
+        {
+            get { return _isLoading; }
+            set { SetProperty(ref _isLoading, value); }
+        }
+
         private string _titulo;
         public string Titulo
         {
@@ -112,6 +119,8 @@ namespace saac.ViewModels
 
         public async void ConcursosFinalizados()
         {
+            IsLoading = true;
+
             var dataAtual = DateTime.Now.Date;
 
             var lista = await _clienteConcurso.ConcursosFinalizados(dataAtual);
@@ -128,6 +137,7 @@ namespace saac.ViewModels
             {
                 Mensagem = "Não contém nenhum concurso";
             }
+            IsLoading = false;
 
         }
 

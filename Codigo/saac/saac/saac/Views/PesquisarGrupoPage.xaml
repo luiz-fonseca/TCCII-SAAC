@@ -21,6 +21,15 @@
                                                         EventArgsParameterPath="Item" />
                 </ListView.Behaviors>
 
+                <ListView.Header>
+                    <StackLayout Spacing="10">
+                        <ActivityIndicator  IsRunning="{Binding IsLoading}"
+                                            IsVisible="{Binding IsLoading}" Color="Green"/>
+                        <!--<Label Text="{Binding Message}"/>-->
+
+                    </StackLayout>
+                </ListView.Header>
+
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

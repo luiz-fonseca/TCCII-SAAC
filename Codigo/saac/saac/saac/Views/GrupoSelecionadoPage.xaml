@@ -47,6 +47,8 @@
                         </StackLayout>
                         
                         <Label Text="Publicações" TextColor="Green"/>
+                        <ActivityIndicator  IsRunning="{Binding IsLoading}"
+                                            IsVisible="{Binding IsLoading}" Color="Green"/>
                         <Label Text="{Binding Message}"/>
                         
                     </StackLayout>
