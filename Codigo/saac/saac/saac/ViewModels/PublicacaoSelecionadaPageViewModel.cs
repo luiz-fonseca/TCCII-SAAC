@@ -123,9 +123,9 @@ namespace saac.ViewModels
             _excluirPublicacaoCommand ?? (_excluirPublicacaoCommand = new DelegateCommand(ExcluirPublicacao, CondicaoExcluirPublicacao));
 
 
-        private DelegateCommand<object> _comentarioSelectedCommand;
-        public DelegateCommand<object> ComentarioSelectedCommand =>
-            _comentarioSelectedCommand != null ? _comentarioSelectedCommand : (_comentarioSelectedCommand = new DelegateCommand<object>(ItemTapped));
+        private DelegateCommand<object> _excluirComentarioSelectedCommand;
+        public DelegateCommand<object> ExcluirComentarioSelectedCommand =>
+            _excluirComentarioSelectedCommand != null ? _excluirComentarioSelectedCommand : (_excluirComentarioSelectedCommand = new DelegateCommand<object>(ExcluirComentarioSelecionado));
         
         #endregion
 
@@ -156,7 +156,7 @@ namespace saac.ViewModels
 
         }
 
-        public async void ItemTapped(object args)
+        public async void ExcluirComentarioSelecionado(object args)
         {
             var comment = ConversaoComentario(args);
 

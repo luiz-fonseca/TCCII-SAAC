@@ -2,7 +2,6 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-             xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="saac.Views.PublicacaoSelecionadaPage"
              Title="Comentarios">
@@ -15,15 +14,9 @@
     <ContentPage.Content>
         <StackLayout Padding="10,10,10,10">
 
-            <ListView ItemsSource="{Binding ComentariosPublication}" HasUnevenRows="True"
+            <ListView x:Name="ListaComentario" ItemsSource="{Binding ComentariosPublication}" HasUnevenRows="True"
                       IsPullToRefreshEnabled="True" RefreshCommand="{Binding AtualizarCommand}"
                       IsRefreshing="{Binding Atualizando}">
-
-                <ListView.Behaviors>
-                    <behaviors:EventToCommandBehavior   EventName="ItemTapped" 
-                                                    Command="{Binding ComentarioSelectedCommand}"
-                                                    EventArgsParameterPath="Item" />
-                </ListView.Behaviors>
 
                 <ListView.Header>
                     <StackLayout Spacing="10">
@@ -48,6 +41,9 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="Excluir" Command="{Binding BindingContext.ExcluirComentarioSelectedCommand, Source={x:Reference ListaComentario}}" CommandParameter="{Binding .}" />
+                            </ViewCell.ContextActions>
                             <StackLayout>
                                 <StackLayout Orientation="Horizontal">
                                     <Image Source="{Binding Foto}"  HeightRequest="50"
