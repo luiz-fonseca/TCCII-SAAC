@@ -23,8 +23,8 @@
                 <TableSection>
                     <ViewCell>
                         <StackLayout>
-                            <Button Text="Salvar" TextColor="White"
-                                    BackgroundColor="#77D065"
+                            <Button Text="Salvar" 
+                                    Style="{StaticResource BotaoStyle}"
                                     Command="{Binding SalvarCommand}"/>
 
                         </StackLayout>

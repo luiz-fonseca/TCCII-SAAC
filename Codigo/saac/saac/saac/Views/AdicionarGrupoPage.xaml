@@ -10,20 +10,20 @@
         <StackLayout Spacing="20" Padding="10, 0, 10, 0"
                          VerticalOptions="Center">
 
-            <Label Text="{Binding Mensagem}" TextColor="Green"/>
+            <Label Text="{Binding Mensagem}" Style="{StaticResource TitleStyle}"/>
 
             <Entry Placeholder="Nome do Grupo"
                        Text="{Binding Grupos.Nome}"/>
 
             <StackLayout Spacing="10">
-                <Label Text="Descrição" TextColor="Green"/>
+                <Label Text="Descrição" TextColor="{StaticResource CorPrincipal}"/>
                 <Editor Text="{Binding Grupos.Descricao}" HeightRequest="100"/>
 
             </StackLayout>
 
-            <Button Text="Salvar" TextColor="White"
-                        BackgroundColor="#77D065"
-                        Command="{Binding SalvarGrupoCommand}"/>
+            <Button Text="Salvar" 
+                    Style="{StaticResource BotaoStyle}"
+                    Command="{Binding SalvarGrupoCommand}"/>
 
         </StackLayout>
 

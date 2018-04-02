@@ -22,9 +22,9 @@
 
                 <ListView.Header>
                     <StackLayout>
-                        <Label  Text="Concurso Finalizados" TextColor="Green" />
+                        <Label  Text="Concurso Finalizados: " Style="{StaticResource TitleStyle}" />
                         <ActivityIndicator  IsRunning="{Binding IsLoading}"
-                                            IsVisible="{Binding IsLoading}" Color="Green"/>
+                                            IsVisible="{Binding IsLoading}" Color="{StaticResource CorPrincipal}"/>
                         <Label  Text="{Binding Mensagem}"/>
                     </StackLayout>
                 </ListView.Header>
@@ -33,7 +33,7 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Padding="10">
-                                <Label Font="Small" TextColor="Green" Text="{Binding Titulo}"/>
+                                <Label Style="{StaticResource TitleStyle}" Text="{Binding Titulo}"/>
                                 <Label Text="{Binding Descricao}"/>
 
                             </StackLayout>
@@ -43,7 +43,9 @@
 
             </ListView>
 
-            <Button Text="Finalizar" Command="{Binding RemoverCommand}" TextColor="White" BackgroundColor="#77D065"/>
+            <Button Text="Finalizar"
+                    Style="{StaticResource BotaoStyle}"
+                    Command="{Binding RemoverCommand}"/>
 
         </StackLayout>
 

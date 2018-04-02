@@ -23,13 +23,13 @@
                 <TableSection>
                     <ViewCell>
                         <StackLayout Orientation="Horizontal">
-                            <Button Text="Voltar" TextColor="White"
-                                    BackgroundColor="#77D065"
+                            <Button Text="Voltar"
+                                    Style="{StaticResource BotaoStyle}"
                                     HorizontalOptions="FillAndExpand"    
                                     Command="{Binding VoltarCommand}"/>
 
-                            <Button Text="Salvar" TextColor="White"
-                                    BackgroundColor="#77D065"
+                            <Button Text="Salvar" 
+                                    Style="{StaticResource BotaoStyle}"
                                     HorizontalOptions="FillAndExpand"
                                     Command="{Binding SalvarCommand}"/>
 

@@ -28,9 +28,10 @@
 
                 <ListView.Header>
                     <StackLayout>
-                        <Label Text="Meus Grupos" TextColor="Green" Font="Small"/>
+                        <Label Text="Meus Grupos" Style="{StaticResource TitleStyle}"/>
                         <ActivityIndicator  IsRunning="{Binding IsLoading}"
-                                            IsVisible="{Binding IsLoading}" Color="Green"/>
+                                            IsVisible="{Binding IsLoading}" 
+                                            Color="{StaticResource CorPrincipal}"/>
                         <Label Text="{Binding Message}"/>
                         
                     </StackLayout>
@@ -39,8 +40,8 @@
                 <ListView.GroupHeaderTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout BackgroundColor="#77D065">
-                                <Label Text="{Binding Key}" TextColor="White" Font="Small" />
+                            <StackLayout BackgroundColor="{StaticResource CorPrincipal}">
+                                <Label Text="{Binding Key}" Style="{StaticResource TitleDivisoriaStyle}" />
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
@@ -50,7 +51,7 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Padding="10">
-                                <Label Font="Small" TextColor="Green" Text="{Binding Nome}"/>
+                                <Label Style="{StaticResource TitleStyle}" Text="{Binding Nome}"/>
                                 <Label Text="{Binding Descricao}"/>
                                 <Label/>
 

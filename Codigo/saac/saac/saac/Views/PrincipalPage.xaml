@@ -6,8 +6,8 @@
             prism:ViewModelLocator.AutowireViewModel="True"
             x:Class="saac.Views.PrincipalPage"
             Title="Saac"
-            BarBackgroundColor="#77D065"
-            BarTextColor="White">
+            BarBackgroundColor="{StaticResource CorPrincipal}"
+            BarTextColor="{StaticResource CorDestaqueDoPrincipal}">
 
     <TabbedPage.ToolbarItems>
         <ToolbarItem Text="Sobre" Order="Secondary" Command="{Binding SobreCommand}"/>

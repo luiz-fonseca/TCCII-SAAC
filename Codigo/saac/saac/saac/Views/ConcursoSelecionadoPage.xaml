@@ -28,13 +28,17 @@
 
                 <ListView.Header>
                     <StackLayout Spacing="10">
-                        <Label Text="{Binding Concursos.Titulo}" TextColor="Green"/>
-                        <Label Text="{Binding Concursos.Descricao}"/>
-                        <Label Text="{Binding Concursos.Detalhes}" BackgroundColor="LightGreen"/>
+                        <Label Text="{Binding Concursos.Titulo}" Style="{StaticResource TitleStyle}"/>
+                        <Label Text="{Binding Concursos.Descricao}"
+                               FontSize="{StaticResource FonteTitulo}"/>
+                        <Label Text="{Binding Concursos.Detalhes}" TextColor="{StaticResource CorDestaqueDoPrincipal}" 
+                               BackgroundColor="{StaticResource CorPrincipal}"
+                               FontSize="{StaticResource FonteTitulo}"/>
 
-                        <Label BackgroundColor="#77D065" Text="Grupos disponíveis" TextColor="White" Font="Small"/>
+                        <Label/>
+                        <Label BackgroundColor="{StaticResource CorPrincipal}" Text="Grupos disponíveis" Style="{StaticResource TitleDivisoriaStyle}"/>
                         <ActivityIndicator  IsRunning="{Binding IsLoading}"
-                                            IsVisible="{Binding IsLoading}" Color="Green"/>
+                                            IsVisible="{Binding IsLoading}" Color="{StaticResource CorPrincipal}"/>
 
                     </StackLayout>
                 </ListView.Header>
@@ -43,7 +47,7 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Padding="10">
-                                <Label Font="Small" TextColor="Green" Text="{Binding Nome}"/>
+                                <Label Style="{StaticResource TitleStyle}" Text="{Binding Nome}"/>
                                 <Label Text="{Binding Descricao}"/>
 
                             </StackLayout>

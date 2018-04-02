@@ -24,7 +24,7 @@
 
                 <ListView.Header>
                     <StackLayout Orientation="Horizontal">
-                        <Label  Text="Regiões" TextColor="Green" />
+                        <Label  Text="Regiões: " Style="{StaticResource TitleStyle}" />
                     </StackLayout>
                 </ListView.Header>
 
@@ -32,13 +32,11 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Padding="10">
-                                <Label Font="Small" TextColor="Green" Text="{Binding Nome}"/>
+                                <Label Style="{StaticResource TitleStyle}" Text="{Binding Nome}"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-
-
             </ListView>
         </StackLayout>
     </ContentPage.Content>

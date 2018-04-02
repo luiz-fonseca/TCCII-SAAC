@@ -6,11 +6,40 @@
 	<Application.Resources>
 
 		<!-- Application resource dictionary -->
+
         <ResourceDictionary>
+
+            <!--Cores-->
+            <Color x:Key="CorPrincipal">#77D065</Color>
+            <Color x:Key="CorDestaqueDoPrincipal">White</Color>
+
+            <!--Label-->
+            <OnPlatform x:TypeArguments="x:Double" x:Key="FonteTitulo">
+                <On Platform="Android" Value="18"></On>
+                <On Platform="iOS" Value="18"></On>
+                <On Platform="UWP" Value="20"></On>
+            </OnPlatform>
+
+            <!--Styles-->
+            <Style x:Key="BotaoStyle" TargetType="Button">
+                <Setter Property="TextColor" Value="{StaticResource CorDestaqueDoPrincipal}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource CorPrincipal}" />
+            </Style>
+
+            <Style x:Key="TitleStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource CorPrincipal}" />
+                <Setter Property="FontSize" Value="{StaticResource FonteTitulo}" />
+            </Style>
+
+            <Style x:Key="TitleDivisoriaStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource CorDestaqueDoPrincipal}" />
+                <Setter Property="FontSize" Value="{StaticResource FonteTitulo}" />
+            </Style>
+
             <Style TargetType="NavigationPage">
                 <Setter Property="HasNavigationBar" Value="True" />
-                <Setter Property="BarTextColor" Value="White" />
-                <Setter Property="BarBackgroundColor" Value="#77D065" />
+                <Setter Property="BarTextColor" Value="{StaticResource CorDestaqueDoPrincipal}" />
+                <Setter Property="BarBackgroundColor" Value="{StaticResource CorPrincipal}" />
             </Style>
         </ResourceDictionary>
 

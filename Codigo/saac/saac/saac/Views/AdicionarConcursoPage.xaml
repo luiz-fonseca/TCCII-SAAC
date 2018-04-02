@@ -9,7 +9,7 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Padding="10, 10, 10, 20" Spacing="20">
-                <Label Text="Adicionar Novo Concurso" TextColor="Green"/>
+                <Label Text="Adicionar Novo Concurso" Style="{StaticResource TitleStyle}"/>
                 
                 <Entry Placeholder="Título"
                        Text="{Binding Concursos.Titulo}"/>
@@ -17,45 +17,45 @@
                 <Entry  Placeholder="Descrição"
                        Text="{Binding Concursos.Descricao}"/>
 
-                <Label Text="Detalhes" TextColor="Green"/>
+                <Label Text="Detalhes" TextColor="{StaticResource CorPrincipal}"/>
                 <Editor Text="{Binding Concursos.Detalhes}" HeightRequest="400"/>
 
                 <StackLayout Spacing="10">
-                    <Picker Title="Regiões" TextColor="Green" ItemsSource="{Binding Regioes}" SelectedIndex="{Binding ItemRegioes}"/>
+                    <Picker Title="Regiões" TextColor="{StaticResource CorPrincipal}" ItemsSource="{Binding Regioes}" SelectedIndex="{Binding ItemRegioes}"/>
                     
                     <StackLayout Orientation="Horizontal">
-                        <Label Text="Região Atual: " TextColor="Green"/>
+                        <Label Text="Região Atual: " TextColor="{StaticResource CorPrincipal}"/>
                         <Label Text="{Binding Concursos.Regiao}"/>
                     </StackLayout>
 
                 </StackLayout>
 
                 <StackLayout Spacing="10">
-                    <Picker Title="Estados" TextColor="Green" ItemsSource="{Binding Estados}" SelectedIndex="{Binding ItemEstados}"/>
+                    <Picker Title="Estados" TextColor="{StaticResource CorPrincipal}" ItemsSource="{Binding Estados}" SelectedIndex="{Binding ItemEstados}"/>
                     
                     <StackLayout Orientation="Horizontal">
-                        <Label Text="Estado Atual: " TextColor="Green"/>
+                        <Label Text="Estado Atual: " TextColor="{StaticResource CorPrincipal}"/>
                         <Label Text="{Binding Concursos.Estado}"/>
                     </StackLayout>
 
                 </StackLayout>
-                
-                <Label Text="Data final da inscrição" TextColor="Green"/>
+
+                <Label Text="Data final da inscrição" TextColor="{StaticResource CorPrincipal}"/>
                 
                 <DatePicker Date="{Binding Concursos.DtInscricao}"
                             MinimumDate="01/01/2018" 
                             MaximumDate="01/01/2100"
                             Format="dd/MM/yyyy"/>
 
-                <Label Text="Data final da realização do concurso" TextColor="Green"/>
+                <Label Text="Data final da realização do concurso" TextColor="{StaticResource CorPrincipal}"/>
 
                 <DatePicker Date="{Binding Concursos.DtRealizacao}"
                             MinimumDate="01/01/2018" 
                             MaximumDate="01/01/2100"
                             Format="dd/MM/yyyy"/>
 
-                <Button Text="{Binding Opcao}" TextColor="White"
-                        BackgroundColor="#77D065"
+                <Button Text="{Binding Opcao}" 
+                        Style="{StaticResource BotaoStyle}"
                         Command="{Binding ProximoCommand}"/>
 
             </StackLayout>

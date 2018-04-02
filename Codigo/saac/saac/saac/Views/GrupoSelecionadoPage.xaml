@@ -27,14 +27,13 @@
                 <ListView.Header>
                     <StackLayout Spacing="10">
 
-                        <Label Font="Medium" TextColor="Green" Text="{Binding Grupos.Nome}"/>
-                        <Label Text="{Binding Grupos.Descricao}"/>
+                        <Label Style="{StaticResource TitleStyle}" Text="{Binding Grupos.Nome}"/>
+                        <Label Text="{Binding Grupos.Descricao}" FontSize="{StaticResource FonteTitulo}"/>
                         <Editor Text="{Binding Texto}" HeightRequest="75"/>
 
                         <StackLayout Orientation="Horizontal">
                             <Button Text="Publicar" 
-                                    TextColor="White" 
-                                    BackgroundColor="#77D065"
+                                    Style="{StaticResource BotaoStyle}"
                                     HorizontalOptions="FillAndExpand"
                                     Command="{Binding SalvarPublicacaoCommand}"/>
 
@@ -45,10 +44,10 @@
                                     TextColor="White"/>
 
                         </StackLayout>
-                        
-                        <Label Text="Publicações" TextColor="Green"/>
+
+                        <Label Text="Publicações" Style="{StaticResource TitleStyle}"/>
                         <ActivityIndicator  IsRunning="{Binding IsLoading}"
-                                            IsVisible="{Binding IsLoading}" Color="Green"/>
+                                            IsVisible="{Binding IsLoading}" Color="{StaticResource CorPrincipal}"/>
                         <Label Text="{Binding Message}"/>
                         
                     </StackLayout>
@@ -63,7 +62,7 @@
                                     <Image Source="{Binding Foto}"  HeightRequest="50"
                                             WidthRequest="50" VerticalOptions="Start"/>
 
-                                    <Label TextColor="Green" Text="{Binding Nome}"/>
+                                    <Label TextColor="{StaticResource CorPrincipal}" Text="{Binding Nome}"/>
                                   
                                 </StackLayout>
                                 <Label Text="{Binding Texto}"/>

@@ -24,7 +24,7 @@
                 <ListView.Header>
                     <StackLayout Spacing="10">
                         <ActivityIndicator  IsRunning="{Binding IsLoading}"
-                                            IsVisible="{Binding IsLoading}" Color="Green"/>
+                                            IsVisible="{Binding IsLoading}" Color="{StaticResource CorPrincipal}"/>
                         <!--<Label Text="{Binding Message}"/>-->
 
                     </StackLayout>
@@ -34,7 +34,7 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Padding="10">
-                                <Label Font="Small" TextColor="Green" Text="{Binding Nome}"/>
+                                <Label Style="{StaticResource TitleStyle}" Text="{Binding Nome}"/>
                                 <Label Text="{Binding Descricao}"/>
 
                             </StackLayout>

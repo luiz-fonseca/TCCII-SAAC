@@ -16,7 +16,7 @@
                 <Image Source="{Binding User.Foto}"  HeightRequest="100"
                        WidthRequest="100" VerticalOptions="Start"/>
 
-                <Label TextColor="Green" Text="{Binding User.Nome}"/>
+                <Label Style="{StaticResource TitleStyle}" Text="{Binding User.Nome}"/>
 
             </StackLayout>
         </StackLayout>

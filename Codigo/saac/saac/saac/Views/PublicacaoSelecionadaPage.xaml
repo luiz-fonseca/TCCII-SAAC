@@ -10,7 +10,6 @@
         <ToolbarItem Text="Excluir" Order="Secondary" Command="{Binding ExcluirPublicacaoCommand}"/>
     </ContentPage.ToolbarItems>
 
-
     <ContentPage.Content>
         <StackLayout Padding="10,10,10,10">
 
@@ -24,14 +23,14 @@
                             <Image Source="{Binding Foto}"  HeightRequest="60"
                                     WidthRequest="60" VerticalOptions="Start"/>
 
-                            <Label TextColor="Green" Text="{Binding Nome}"/>
+                            <Label Style="{StaticResource TitleStyle}" Text="{Binding Nome}"/>
 
                         </StackLayout>
-                        <Label Text="{Binding Publication.Texto}"/>
-                        
-                        <Label Text="Comentários" TextColor="Green"/>
+                        <Label Text="{Binding Publication.Texto}" FontSize="{StaticResource FonteTitulo}"/>
+
+                        <Label Text="Comentários" Style="{StaticResource TitleStyle}"/>
                         <ActivityIndicator  IsRunning="{Binding IsLoading}"
-                                            IsVisible="{Binding IsLoading}" Color="Green"/>
+                                            IsVisible="{Binding IsLoading}" Color="{StaticResource CorPrincipal}"/>
                         <Label Text="{Binding Message}"/>
                         
                     </StackLayout>
@@ -49,7 +48,7 @@
                                     <Image Source="{Binding Foto}"  HeightRequest="50"
                                             WidthRequest="50" VerticalOptions="Start"/>
 
-                                    <Label TextColor="Green" Text="{Binding Nome}"/>
+                                    <Label TextColor="{StaticResource CorPrincipal}" Text="{Binding Nome}"/>
                                     
                                 </StackLayout>
                                 <Label Text="{Binding Texto}"/>
@@ -66,8 +65,8 @@
                 <Entry HorizontalOptions="FillAndExpand" VerticalOptions="End"  Placeholder="Comentário"
                        Text="{Binding Texto}"/>
 
-                <Button VerticalOptions="End" Text="Salvar" TextColor="White"
-                        BackgroundColor="#77D065"
+                <Button VerticalOptions="End" Text="Salvar"
+                        Style="{StaticResource BotaoStyle}"
                         Command="{Binding SalvarComentarioCommand}"/>
 
             </StackLayout>

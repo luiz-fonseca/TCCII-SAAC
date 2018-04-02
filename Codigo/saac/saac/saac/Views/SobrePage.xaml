@@ -13,16 +13,16 @@
 
                     <ViewCell>
                         <StackLayout>
-                            <Label Text="Universidade Federal de Sergipe - UFS " TextColor="Green"/>
-                            <Label Text="Campus Universitário Prof. Alberto Carvalho" TextColor="Green"/>
-                            <Label Text="Departamento de Sistemas de Informação - DSI" TextColor="Green"/>
+                            <Label Text="Universidade Federal de Sergipe - UFS " TextColor="{StaticResource CorPrincipal}"/>
+                            <Label Text="Campus Universitário Prof. Alberto Carvalho" TextColor="{StaticResource CorPrincipal}"/>
+                            <Label Text="Departamento de Sistemas de Informação - DSI" TextColor="{StaticResource CorPrincipal}"/>
                         </StackLayout>
                     </ViewCell>
                         
 
                     <ViewCell>
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="Disciplina: " TextColor="Green"/>
+                            <Label Text="Disciplina: " TextColor="{StaticResource CorPrincipal}"/>
                             <Label Text="Trabalho de Conclusão de Curso II"/>
                         </StackLayout>
                     </ViewCell>
@@ -30,14 +30,14 @@
 
                     <ViewCell>
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="Orientador: " TextColor="Green"/>
+                            <Label Text="Orientador: " TextColor="{StaticResource CorPrincipal}"/>
                             <Label Text="Dr. José Aélio"/>
                         </StackLayout>
                     </ViewCell>
 
                     <ViewCell>
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="Discente: " TextColor="Green"/>
+                            <Label Text="Discente: " TextColor="{StaticResource CorPrincipal}"/>
                             <Label Text="Luiz Antônio Fonsêca Sobrinho"/>
                         </StackLayout>
                     </ViewCell>
