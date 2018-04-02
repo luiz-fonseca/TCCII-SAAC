@@ -6,6 +6,13 @@
 	<Application.Resources>
 
 		<!-- Application resource dictionary -->
+        <ResourceDictionary>
+            <Style TargetType="NavigationPage">
+                <Setter Property="HasNavigationBar" Value="True" />
+                <Setter Property="BarTextColor" Value="White" />
+                <Setter Property="BarBackgroundColor" Value="#77D065" />
+            </Style>
+        </ResourceDictionary>
 
 	</Application.Resources>
 </prism:PrismApplication>

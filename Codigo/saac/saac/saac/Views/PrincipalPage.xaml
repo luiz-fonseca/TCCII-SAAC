@@ -5,7 +5,9 @@
             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
             prism:ViewModelLocator.AutowireViewModel="True"
             x:Class="saac.Views.PrincipalPage"
-            Title="Saac">
+            Title="Saac"
+            BarBackgroundColor="#77D065"
+            BarTextColor="White">
 
     <TabbedPage.ToolbarItems>
         <ToolbarItem Text="Sobre" Order="Secondary" Command="{Binding SobreCommand}"/>
