@@ -16,7 +16,10 @@
                        Text="{Binding Grupos.Nome}"/>
 
             <StackLayout Spacing="10">
-                <Label Text="Descrição" TextColor="{StaticResource CorPrincipal}"/>
+                <Label Text="Descrição" 
+                       FontAttributes="{StaticResource FonteNegrito}"
+                       TextColor="{StaticResource CorPrincipal}"/>
+                
                 <Editor Text="{Binding Grupos.Descricao}" HeightRequest="100"/>
 
             </StackLayout>

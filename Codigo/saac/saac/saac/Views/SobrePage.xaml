@@ -13,32 +13,40 @@
 
                     <ViewCell>
                         <StackLayout>
-                            <Label Text="Universidade Federal de Sergipe - UFS " TextColor="{StaticResource CorPrincipal}"/>
-                            <Label Text="Campus Universitário Prof. Alberto Carvalho" TextColor="{StaticResource CorPrincipal}"/>
-                            <Label Text="Departamento de Sistemas de Informação - DSI" TextColor="{StaticResource CorPrincipal}"/>
-                        </StackLayout>
-                    </ViewCell>
-                        
-
-                    <ViewCell>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="Disciplina: " TextColor="{StaticResource CorPrincipal}"/>
-                            <Label Text="Trabalho de Conclusão de Curso II"/>
+                            <Label Text="Universidade Federal de Sergipe - UFS &#10;" Style="{StaticResource TitleStyle}"/>
                         </StackLayout>
                     </ViewCell>
 
+                    <ViewCell>
+                        <StackLayout>
+                            <Label Text="Campus Universitário Prof. Alberto Carvalho &#10;" Style="{StaticResource TitleStyle}"/>
+                        </StackLayout>
+                    </ViewCell>
 
                     <ViewCell>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="Orientador: " TextColor="{StaticResource CorPrincipal}"/>
-                            <Label Text="Dr. José Aélio"/>
+                        <StackLayout>
+                            <Label Text="Departamento de Sistemas de Informação - DSI &#10;" Style="{StaticResource TitleStyle}"/>
                         </StackLayout>
                     </ViewCell>
 
                     <ViewCell>
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="Discente: " TextColor="{StaticResource CorPrincipal}"/>
-                            <Label Text="Luiz Antônio Fonsêca Sobrinho"/>
+                            <Label Text="Disciplina: " Style="{StaticResource TitleStyle}"/>
+                            <Label Text="Trabalho de Conclusão de Curso II &#10;" FontSize="{StaticResource FonteSubTitulo}"/>
+                        </StackLayout>
+                    </ViewCell>
+
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Orientador: " Style="{StaticResource TitleStyle}"/>
+                            <Label Text="Dr. José Aélio &#10;" FontSize="{StaticResource FonteSubTitulo}"/>
+                        </StackLayout>
+                    </ViewCell>
+
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Discente: " Style="{StaticResource TitleStyle}"/>
+                            <Label Text="Luiz Antônio Fonsêca Sobrinho &#10;" FontSize="{StaticResource FonteSubTitulo}"/>
                         </StackLayout>
                     </ViewCell>
 

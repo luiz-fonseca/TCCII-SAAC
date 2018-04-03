@@ -6,9 +6,23 @@
 
     <StackLayout Padding="20,50,20,20">
 
-        <Label HorizontalOptions="Center" Style="{StaticResource TitleStyle}" Text="SaaC" />
-        <Label HorizontalOptions="Center" TextColor="{StaticResource CorPrincipal}" Text="Sistema Auxiliar de Apoio ao Concurseiro" />
-        <Button VerticalOptions="CenterAndExpand"  Text="Facebook" BackgroundColor="Blue" TextColor="White" Clicked="LoginWithFacebook_Clicked"></Button>
+        <Label HorizontalOptions="Center" 
+               TextColor="{StaticResource CorPrincipal}"
+               FontAttributes="{StaticResource FonteNegrito}"
+               FontSize="25"
+               Text="SaaC" />
+        
+        <Label HorizontalOptions="Center"
+               FontSize="{StaticResource FonteSubTitulo}"
+               TextColor="{StaticResource CorPrincipal}" 
+               Text="Sistema Auxiliar de Apoio ao Concurseiro" />
+        
+        <Button VerticalOptions="CenterAndExpand" 
+                Text="Facebook" BackgroundColor="Blue" 
+                TextColor="White" 
+                Clicked="LoginWithFacebook_Clicked">
+            
+        </Button>
 
     </StackLayout>
 

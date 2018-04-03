@@ -52,7 +52,7 @@
                         <ViewCell>
                             <StackLayout Padding="10">
                                 <Label Style="{StaticResource TitleStyle}" Text="{Binding Nome}"/>
-                                <Label Text="{Binding Descricao}"/>
+                                <Label Text="{Binding Descricao}" FontSize="{StaticResource FonteSubTitulo}"/>
                                 <Label/>
 
                             </StackLayout>

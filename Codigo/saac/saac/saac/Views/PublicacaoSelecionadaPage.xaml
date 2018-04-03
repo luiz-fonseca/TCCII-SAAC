@@ -7,51 +7,71 @@
              Title="Comentarios">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Excluir" Order="Secondary" Command="{Binding ExcluirPublicacaoCommand}"/>
+        <ToolbarItem Text="Excluir" 
+                     Order="Secondary" 
+                     Command="{Binding ExcluirPublicacaoCommand}"/>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
         <StackLayout Padding="10,10,10,10">
 
-            <ListView x:Name="ListaComentario" ItemsSource="{Binding ComentariosPublication}" HasUnevenRows="True"
-                      IsPullToRefreshEnabled="True" RefreshCommand="{Binding AtualizarCommand}"
+            <ListView x:Name="ListaComentario" 
+                      ItemsSource="{Binding ComentariosPublication}" 
+                      HasUnevenRows="True"
+                      IsPullToRefreshEnabled="True" 
+                      RefreshCommand="{Binding AtualizarCommand}"
                       IsRefreshing="{Binding Atualizando}">
 
                 <ListView.Header>
                     <StackLayout Spacing="10">
                         <StackLayout Orientation="Horizontal">
-                            <Image Source="{Binding Foto}"  HeightRequest="60"
-                                    WidthRequest="60" VerticalOptions="Start"/>
+                            <Image Source="{Binding Foto}"  
+                                   HeightRequest="60"
+                                   WidthRequest="60" 
+                                   VerticalOptions="Start"/>
 
-                            <Label Style="{StaticResource TitleStyle}" Text="{Binding Nome}"/>
+                            <Label Style="{StaticResource TitleStyle}" 
+                                   Text="{Binding Nome}"/>
 
                         </StackLayout>
-                        <Label Text="{Binding Publication.Texto}" FontSize="{StaticResource FonteTitulo}"/>
+                        <Label Text="{Binding Publication.Texto}" 
+                               FontSize="{StaticResource FonteTitulo}"/>
 
-                        <Label Text="Comentários" Style="{StaticResource TitleStyle}"/>
-                        <ActivityIndicator  IsRunning="{Binding IsLoading}"
-                                            IsVisible="{Binding IsLoading}" Color="{StaticResource CorPrincipal}"/>
-                        <Label Text="{Binding Message}"/>
+                        <Label Text="Comentários"
+                               Style="{StaticResource TitleStyle}"/>
                         
+                        <ActivityIndicator  IsRunning="{Binding IsLoading}"
+                                            IsVisible="{Binding IsLoading}" 
+                                            Color="{StaticResource CorPrincipal}"/>
+                        <Label Text="{Binding Message}"/>
+
                     </StackLayout>
                 </ListView.Header>
-
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.ContextActions>
-                                <MenuItem Text="Excluir" Command="{Binding BindingContext.ExcluirComentarioSelectedCommand, Source={x:Reference ListaComentario}}" CommandParameter="{Binding .}" />
+                                <MenuItem Text="Excluir" 
+                                          Command="{Binding BindingContext.ExcluirComentarioSelectedCommand, Source={x:Reference ListaComentario}}" 
+                                          CommandParameter="{Binding .}" />
+                                
                             </ViewCell.ContextActions>
                             <StackLayout>
                                 <StackLayout Orientation="Horizontal">
-                                    <Image Source="{Binding Foto}"  HeightRequest="50"
-                                            WidthRequest="50" VerticalOptions="Start"/>
+                                    <Image Source="{Binding Foto}"  
+                                           HeightRequest="50"
+                                           WidthRequest="50" 
+                                           VerticalOptions="Start"/>
 
-                                    <Label TextColor="{StaticResource CorPrincipal}" Text="{Binding Nome}"/>
+                                    <Label TextColor="{StaticResource CorPrincipal}" 
+                                           FontSize="{StaticResource FonteSubTitulo}"
+                                           FontAttributes ="{StaticResource FonteNegrito}"
+                                           Text="{Binding Nome}"/>
                                     
                                 </StackLayout>
-                                <Label Text="{Binding Texto}"/>
+                                <Label Text="{Binding Texto}" 
+                                       FontSize="{StaticResource FonteSubTitulo}"/>
                                 <Label/>
                                 
                             </StackLayout>
@@ -62,10 +82,13 @@
             </ListView>
 
             <StackLayout Orientation="Horizontal">
-                <Entry HorizontalOptions="FillAndExpand" VerticalOptions="End"  Placeholder="Comentário"
+                <Entry HorizontalOptions="FillAndExpand" 
+                       VerticalOptions="End" 
+                       Placeholder="Comentário"
                        Text="{Binding Texto}"/>
 
-                <Button VerticalOptions="End" Text="Salvar"
+                <Button VerticalOptions="End" 
+                        Text="Salvar"
                         Style="{StaticResource BotaoStyle}"
                         Command="{Binding SalvarComentarioCommand}"/>
 

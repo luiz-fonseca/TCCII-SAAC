@@ -24,7 +24,7 @@
 
                 <ListView.Header>
                     <StackLayout Orientation="Horizontal">
-                        <Label  Text="Regiões: " Style="{StaticResource TitleStyle}" />
+                        <Label  Text="Regiões: &#10;" Style="{StaticResource TitleStyle}" />
                     </StackLayout>
                 </ListView.Header>
 

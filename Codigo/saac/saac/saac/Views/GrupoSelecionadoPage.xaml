@@ -28,7 +28,7 @@
                     <StackLayout Spacing="10">
 
                         <Label Style="{StaticResource TitleStyle}" Text="{Binding Grupos.Nome}"/>
-                        <Label Text="{Binding Grupos.Descricao}" FontSize="{StaticResource FonteTitulo}"/>
+                        <Label Text="{Binding Grupos.Descricao}" FontSize="{StaticResource FonteSubTitulo}"/>
                         <Editor Text="{Binding Texto}" HeightRequest="75"/>
 
                         <StackLayout Orientation="Horizontal">
@@ -48,7 +48,7 @@
                         <Label Text="Publicações" Style="{StaticResource TitleStyle}"/>
                         <ActivityIndicator  IsRunning="{Binding IsLoading}"
                                             IsVisible="{Binding IsLoading}" Color="{StaticResource CorPrincipal}"/>
-                        <Label Text="{Binding Message}"/>
+                        <Label Text="{Binding Message}" FontSize="{StaticResource FonteSubTitulo}"/>
                         
                     </StackLayout>
                 </ListView.Header>
@@ -62,10 +62,13 @@
                                     <Image Source="{Binding Foto}"  HeightRequest="50"
                                             WidthRequest="50" VerticalOptions="Start"/>
 
-                                    <Label TextColor="{StaticResource CorPrincipal}" Text="{Binding Nome}"/>
+                                    <Label TextColor="{StaticResource CorPrincipal}"
+                                           FontSize="{StaticResource FonteSubTitulo}"
+                                           FontAttributes ="{StaticResource FonteNegrito}"
+                                           Text="{Binding Nome}"/>
                                   
                                 </StackLayout>
-                                <Label Text="{Binding Texto}"/>
+                                <Label Text="{Binding Texto}" FontSize="{StaticResource FonteSubTitulo}"/>
                                 <Label/>
 
                             </StackLayout>

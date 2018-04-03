@@ -20,7 +20,7 @@
 
                 <ListView.Header>
                     <StackLayout>
-                        <Label  Text="Gerenciar Concursos: " Style="{StaticResource TitleStyle}" />
+                        <Label  Text="Gerenciar Concursos: &#10;" Style="{StaticResource TitleStyle}" />
                     </StackLayout>
                 </ListView.Header>
 

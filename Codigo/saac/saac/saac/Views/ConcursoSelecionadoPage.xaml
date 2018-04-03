@@ -16,8 +16,10 @@
     
     <ContentPage.Content>
         <StackLayout Padding="10,10,10,10">
-            <ListView ItemsSource="{Binding Grupos}" HasUnevenRows="True" 
-                      IsPullToRefreshEnabled="True" RefreshCommand="{Binding AtualizarCommand}"
+            <ListView ItemsSource="{Binding Grupos}" 
+                      HasUnevenRows="True" 
+                      IsPullToRefreshEnabled="True" 
+                      RefreshCommand="{Binding AtualizarCommand}"
                       IsRefreshing="{Binding Atualizando}">
 
                 <ListView.Behaviors>
@@ -28,17 +30,25 @@
 
                 <ListView.Header>
                     <StackLayout Spacing="10">
-                        <Label Text="{Binding Concursos.Titulo}" Style="{StaticResource TitleStyle}"/>
+                        <Label Text="{Binding Concursos.Titulo}"
+                               Style="{StaticResource TitleStyle}"/>
+                        
                         <Label Text="{Binding Concursos.Descricao}"
                                FontSize="{StaticResource FonteTitulo}"/>
-                        <Label Text="{Binding Concursos.Detalhes}" TextColor="{StaticResource CorDestaqueDoPrincipal}" 
+                        
+                        <Label Text="{Binding Concursos.Detalhes}" 
+                               TextColor="{StaticResource CorDestaqueDoPrincipal}" 
                                BackgroundColor="{StaticResource CorPrincipal}"
                                FontSize="{StaticResource FonteTitulo}"/>
 
                         <Label/>
-                        <Label BackgroundColor="{StaticResource CorPrincipal}" Text="Grupos disponíveis" Style="{StaticResource TitleDivisoriaStyle}"/>
+                        <Label BackgroundColor="{StaticResource CorPrincipal}" 
+                               Text="Grupos disponíveis"
+                               Style="{StaticResource TitleDivisoriaStyle}"/>
+                        
                         <ActivityIndicator  IsRunning="{Binding IsLoading}"
-                                            IsVisible="{Binding IsLoading}" Color="{StaticResource CorPrincipal}"/>
+                                            IsVisible="{Binding IsLoading}" 
+                                            Color="{StaticResource CorPrincipal}"/>
 
                     </StackLayout>
                 </ListView.Header>
@@ -47,8 +57,11 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Padding="10">
-                                <Label Style="{StaticResource TitleStyle}" Text="{Binding Nome}"/>
-                                <Label Text="{Binding Descricao}"/>
+                                <Label Style="{StaticResource TitleStyle}" 
+                                       Text="{Binding Nome}"/>
+                                
+                                <Label Text="{Binding Descricao}" 
+                                       FontSize="{StaticResource FonteSubTitulo}"/>
 
                             </StackLayout>
                         </ViewCell>

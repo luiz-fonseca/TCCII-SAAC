@@ -20,7 +20,7 @@
 
                 <ListView.Header>
                     <StackLayout>
-                        <Label  Text="Perfil: " Style="{StaticResource TitleStyle}"/>
+                        <Label  Text="Perfil: &#10;" Style="{StaticResource TitleStyle}"/>
                     </StackLayout>
                 </ListView.Header>
 
