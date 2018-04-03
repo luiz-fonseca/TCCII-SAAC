@@ -135,7 +135,7 @@ namespace saac.ViewModels
 
            var resultado = from grupos in Grupos
                            orderby grupos.Nome
-                           group grupos by grupos.Nome.Substring(0,1) into grupos
+                           group grupos by grupos.Nome[0].ToString().ToUpper() into grupos
                            select new Group<string, Grupo>(grupos.Key, grupos);
 
            return resultado;

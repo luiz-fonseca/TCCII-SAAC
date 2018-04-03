@@ -37,13 +37,10 @@
                                FontSize="{StaticResource FonteTitulo}"/>
                         
                         <Label Text="{Binding Concursos.Detalhes}" 
-                               TextColor="{StaticResource CorDestaqueDoPrincipal}" 
-                               BackgroundColor="{StaticResource CorPrincipal}"
-                               FontSize="{StaticResource FonteTitulo}"/>
+                               Style="{StaticResource TitleDivisoriaStyle}"/>
 
                         <Label/>
-                        <Label BackgroundColor="{StaticResource CorPrincipal}" 
-                               Text="Grupos disponíveis"
+                        <Label Text="Grupos Disponíveis"
                                Style="{StaticResource TitleDivisoriaStyle}"/>
                         
                         <ActivityIndicator  IsRunning="{Binding IsLoading}"

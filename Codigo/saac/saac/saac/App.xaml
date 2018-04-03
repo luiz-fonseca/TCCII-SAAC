@@ -44,6 +44,8 @@
             <Style x:Key="TitleDivisoriaStyle" TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource CorDestaqueDoPrincipal}" />
                 <Setter Property="FontSize" Value="{StaticResource FonteTitulo}" />
+                <Setter Property="FontAttributes" Value="{StaticResource FonteNegrito}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource CorPrincipal}" />
             </Style>
 
             <Style TargetType="NavigationPage">

@@ -24,7 +24,7 @@
                 <ListView.GroupHeaderTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout BackgroundColor="{StaticResource CorPrincipal}">
+                            <StackLayout>
                                 <Label Text="{Binding Key}" Style="{StaticResource TitleDivisoriaStyle}" />
                             </StackLayout>
                         </ViewCell>
