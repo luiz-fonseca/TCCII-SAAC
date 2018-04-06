@@ -1,6 +1,7 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
+using saac.Helpers;
 using saac.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -37,6 +38,7 @@ namespace saac.ViewModels
         public async void Logout()
         {
             _facebookLogout.Logout();
+            Settings.IdUser = string.Empty;
             await _navigationService.NavigateAsync("../MainPage", useModalNavigation: false);
 
         }

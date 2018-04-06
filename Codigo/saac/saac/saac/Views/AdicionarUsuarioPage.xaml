@@ -8,13 +8,12 @@
 
     <ContentPage.Content>
         <StackLayout Padding="10,10,10,10">
-            <StackLayout Orientation="Horizontal">
-                <Image Source="{Binding User.Foto}"  HeightRequest="100"
-                       WidthRequest="100" VerticalOptions="Start"/>
+            
+            <Image Source="{Binding User.Foto}"
+                   HeightRequest="100"
+                   WidthRequest="100" VerticalOptions="Start"/>
 
-                <Entry Text="{Binding User.Nome}"/>
-
-            </StackLayout>
+            <Entry Text="{Binding User.Nome}"/>
 
             <Button Text="Salvar" 
                     Style="{StaticResource BotaoStyle}"

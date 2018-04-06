@@ -519,6 +519,7 @@
       <RootProperty Name="OnContent" />
       <RootProperty Name="OffContent" />
       <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="IsEnabled" />
     </RootType>
     <RootType FullName="Xamarin.Forms.Platform.UWP.EntryCellTextBox">
       <RootProperty Name="IsEnabled" />

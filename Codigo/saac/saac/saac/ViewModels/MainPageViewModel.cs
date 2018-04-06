@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Acr.UserDialogs;
+using saac.Helpers;
 
 namespace saac.ViewModels
 {
@@ -128,7 +129,7 @@ namespace saac.ViewModels
 
         private async Task CriarUsuario()
         {
-            User.Id = FacebookProfile.Id;
+            User.Id = Settings.IdUser = FacebookProfile.Id;
             User.Nome = FacebookProfile.Name;
             User.Foto = FacebookProfile.Picture.Data.Url;
             User.DtNasci = FacebookProfile.DtNascimento;
@@ -174,6 +175,18 @@ namespace saac.ViewModels
 
             }
 
+        }
+
+        public async override void OnNavigatedTo(NavigationParameters parameters)
+        {
+            if (Settings.IsLoggedIn)
+            {
+                var navigationParams = new NavigationParameters();
+                navigationParams.Add("userId", Settings.IdUser);
+
+                await _navigationService.NavigateAsync("../PrincipalPage", navigationParams, useModalNavigation: false);
+
+            }
         }
 
         #endregion

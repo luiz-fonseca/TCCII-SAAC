@@ -84,7 +84,8 @@ namespace saac.ViewModels
         public DelegateCommand ProximoCommand =>
             _proximoCommand ?? (_proximoCommand = new DelegateCommand(OpcaoSelecionada, CondicaoProximo))
             .ObservesProperty(() => Concursos.Titulo).ObservesProperty(() => Concursos.Descricao).ObservesProperty(() => Concursos.Detalhes)
-            .ObservesProperty(() => Concursos.Regiao).ObservesProperty(() => Concursos.Estado);
+            .ObservesProperty(() => Concursos.Regiao).ObservesProperty(() => Concursos.Estado).ObservesProperty(() => Concursos.DtInscricao)
+            .ObservesProperty(() => Concursos.DtRealizacao);
 
         #endregion
 
@@ -137,7 +138,9 @@ namespace saac.ViewModels
                 !string.IsNullOrWhiteSpace(Concursos.Descricao) &&
                 !string.IsNullOrWhiteSpace(Concursos.Detalhes) &&
                 !string.IsNullOrWhiteSpace(Concursos.Regiao) &&
-                !string.IsNullOrWhiteSpace(Concursos.Estado);
+                !string.IsNullOrWhiteSpace(Concursos.Estado) && 
+                Concursos.DtInscricao <= Concursos.DtRealizacao;
+
         }
 
         public void InicializarRegioes()
