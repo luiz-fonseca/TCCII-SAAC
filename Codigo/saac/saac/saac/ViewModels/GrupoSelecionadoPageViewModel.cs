@@ -238,8 +238,8 @@ namespace saac.ViewModels
 
                 await _clienteAuxiliar.AdicionarTable(Aux);
 
-                await _dialogService.DisplayAlertAsync("Seguindo Grupo", "Parabéns!! você agora " +
-                   " está seguindo este grupo.", "OK");
+                UserDialogs.Instance.Toast("Parabéns!! você agora " +
+                    "está seguindo este grupo.", TimeSpan.FromSeconds(2));
 
             }
             else
@@ -264,7 +264,7 @@ namespace saac.ViewModels
                                 await _clienteAuxiliar.RemoverTable(resultadoAux);
 
                             }
-                            await _dialogService.DisplayAlertAsync("Grupo", "Este grupo e suas publicações foram excluídos", "OK");
+                            UserDialogs.Instance.Toast("Este grupo e suas publicações foram excluídos", TimeSpan.FromSeconds(2));
 
                             await _navigationService.GoBackAsync();
 
@@ -277,7 +277,7 @@ namespace saac.ViewModels
 
                         await _clienteAuxiliar.RemoverTable(resultadoAux);
 
-                        await _dialogService.DisplayAlertAsync("Seguindo Grupo", "Você deixou de seguir este grupo.", "OK");
+                        UserDialogs.Instance.Toast("Você deixou de seguir este grupo.", TimeSpan.FromSeconds(2));
 
                     }
 

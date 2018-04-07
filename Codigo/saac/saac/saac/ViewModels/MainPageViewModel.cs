@@ -162,7 +162,7 @@ namespace saac.ViewModels
                     User.Administrador = false;
 
                     await _clienteUser.AdicionarTable(User);
-                    await _dialogService.DisplayAlertAsync("Cadastro Realizado", "Parabéns!! O seu cadastro foi realizado.", "OK");
+                    UserDialogs.Instance.Toast("Parabéns!! O seu cadastro foi realizado.", TimeSpan.FromSeconds(2));
                     await _navigationService.NavigateAsync("../AdicionarPrefUserPage", navigationParams, useModalNavigation: false);
                 }
 
@@ -171,20 +171,26 @@ namespace saac.ViewModels
             }
             catch (Exception)
             {
-                await _dialogService.DisplayAlertAsync("Ops!", "Ocorreu algum problema.", "OK");
+                UserDialogs.Instance.Toast("Ops! Ocorreu algum problema.", TimeSpan.FromSeconds(2));
 
             }
 
         }
 
-        public async override void OnNavigatedTo(NavigationParameters parameters)
+        public async void Logado()
+        {
+            var navigationParams = new NavigationParameters();
+            navigationParams.Add("userId", Settings.IdUser);
+
+            await _navigationService.NavigateAsync("../PrincipalPage", navigationParams, useModalNavigation: false);
+
+        }
+
+        public override void OnNavigatedTo(NavigationParameters parameters)
         {
             if (Settings.IsLoggedIn)
             {
-                var navigationParams = new NavigationParameters();
-                navigationParams.Add("userId", Settings.IdUser);
-
-                await _navigationService.NavigateAsync("../PrincipalPage", navigationParams, useModalNavigation: false);
+                Logado();
 
             }
         }

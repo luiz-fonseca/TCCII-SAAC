@@ -168,7 +168,7 @@ namespace saac.ViewModels
                 if (resulComment)
                 {
                     ExcluirComentario(comment);
-
+                    UserDialogs.Instance.Toast("Este comentário foi excluído", TimeSpan.FromSeconds(2));
                     AtualizarComentarios();
 
                 }
@@ -223,7 +223,7 @@ namespace saac.ViewModels
 
                     await _clientePublication.RemoverTable(Publication);
                 }
-                await _dialogService.DisplayAlertAsync("Publicação Excluida", "Está publicação e os seus comentários foram excluídos", "Ok");
+                UserDialogs.Instance.Toast("Está publicação e os seus comentários foram excluídos", TimeSpan.FromSeconds(2));
                 await _navigationService.GoBackAsync();
 
             }

@@ -46,7 +46,6 @@ namespace saac.ViewModels
         public string Opcao { get; set; }
 
         private readonly INavigationService _navigationService;
-        private readonly IPageDialogService _dialogService;
 
         private readonly IAzureServiceGroup<Grupo> _clienteGrupo;
         private readonly IAzureServiceConcurso<Concurso> _clienteConcurso;
@@ -69,10 +68,9 @@ namespace saac.ViewModels
         #region Construtor
         public AdicionarPrefConcursoPageViewModel(INavigationService navigationService, IAzureServiceGroup<Grupo> clienteGrupo,
            IAzureServiceConcurso<Concurso> clienteConcurso, IAzureServicePrefConcurso<PreferenciaConcurso> clientePreferencia,
-           IAzureServiceAuxConcursoGrupo<AuxConcursoGrupo> clienteAux, IPageDialogService dialogService) : base(navigationService)
+           IAzureServiceAuxConcursoGrupo<AuxConcursoGrupo> clienteAux) : base(navigationService)
         {
             _navigationService = navigationService;
-            _dialogService = dialogService;
 
             _clienteGrupo = clienteGrupo;
             _clienteConcurso = clienteConcurso;
@@ -122,9 +120,9 @@ namespace saac.ViewModels
                 await SalvarAux();
 
             }
-            
-            await _dialogService.DisplayAlertAsync("Concurso","Concurso Salvo","Ok");
 
+            UserDialogs.Instance.Toast("Concurso Salvo", TimeSpan.FromSeconds(2));
+           
             var navigationParams = new NavigationParameters();
             navigationParams.Add("voltar", "");
             await _navigationService.GoBackAsync(navigationParams);
@@ -165,7 +163,7 @@ namespace saac.ViewModels
         {
             await _clientePreferencia.AtualizarTable(Preferencias);
 
-            await _dialogService.DisplayAlertAsync("Alteração","A preferência foi atualizada","Ok");
+            UserDialogs.Instance.Toast("A preferência do concurso foi atualizada", TimeSpan.FromSeconds(2));
             await _navigationService.GoBackAsync();
 
         }

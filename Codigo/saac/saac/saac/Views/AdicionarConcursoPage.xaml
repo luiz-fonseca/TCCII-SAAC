@@ -28,12 +28,12 @@
                             TextColor="{StaticResource CorPrincipal}"
                             ItemsSource="{Binding Regioes}" 
                             SelectedIndex="{Binding ItemRegioes}"/>
-                    
+
                     <StackLayout Orientation="Horizontal">
                         <Label Text="Região Atual: " 
                                FontAttributes="{StaticResource FonteNegrito}"
                                TextColor="{StaticResource CorPrincipal}"/>
-                        
+
                         <Label Text="{Binding Concursos.Regiao}"/>
                     </StackLayout>
 

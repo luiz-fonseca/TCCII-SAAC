@@ -187,8 +187,8 @@ namespace saac.ViewModels
                     await _clienteConcurso.RemoverTable(Concursos);
 
                 }
-                
-                await _dialogService.DisplayAlertAsync("Concurso", "Concurso excluído", "Ok");
+
+                UserDialogs.Instance.Toast("Este concurso foi excluído", TimeSpan.FromSeconds(2));
                 await _navigationService.GoBackAsync();
 
             }

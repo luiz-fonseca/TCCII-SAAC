@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Acr.UserDialogs;
 
 namespace saac.ViewModels
 {
@@ -19,7 +20,6 @@ namespace saac.ViewModels
         private readonly IAzureServiceAuxConcursoGrupo<AuxConcursoGrupo> _clienteConcursoGrupo;
 
         private readonly INavigationService _navigationService;
-        private readonly IPageDialogService _dialogService;
 
         private Grupo _grupos;
         public Grupo Grupos
@@ -76,12 +76,10 @@ namespace saac.ViewModels
         #endregion
 
         #region Construtor
-        public AdicionarGrupoPageViewModel(INavigationService navigationService, IPageDialogService dialogService,
-            IAzureServiceGroup<Grupo> clienteGrupo, IAzureServiceAux<Auxiliar> clienteAuxiliar, 
-            IAzureServiceAuxConcursoGrupo<AuxConcursoGrupo> clienteConcursoGrupo) : base(navigationService)
+        public AdicionarGrupoPageViewModel(INavigationService navigationService, IAzureServiceGroup<Grupo> clienteGrupo, 
+            IAzureServiceAux<Auxiliar> clienteAuxiliar, IAzureServiceAuxConcursoGrupo<AuxConcursoGrupo> clienteConcursoGrupo) : base(navigationService)
         {
             _navigationService = navigationService;
-            _dialogService = dialogService;
 
             _clienteGrupo = clienteGrupo;
             _clienteAuxiliar = clienteAuxiliar;
@@ -111,8 +109,8 @@ namespace saac.ViewModels
 
             }
 
-            await _dialogService.DisplayAlertAsync("Grupo Cadastrado", "Parabéns!! O cadastro" +
-                " do seu grupo foi realizado.", "OK");
+            UserDialogs.Instance.Toast("Parabéns!! O cadastro" +
+                " do seu grupo foi realizado.", TimeSpan.FromSeconds(2));
 
             await _navigationService.GoBackAsync();
         }
@@ -169,6 +167,8 @@ namespace saac.ViewModels
         private async Task AlterarGrupo()
         {
             await _clienteGrupo.AtualizarTable(Grupos);
+
+            UserDialogs.Instance.Toast("Alteração do grupo foi realizada", TimeSpan.FromSeconds(2));
 
             await _navigationService.GoBackAsync();
 

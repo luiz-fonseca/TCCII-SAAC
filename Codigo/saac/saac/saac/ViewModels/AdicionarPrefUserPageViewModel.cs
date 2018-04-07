@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using Acr.UserDialogs;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using Prism.Services;
@@ -36,7 +37,6 @@ namespace saac.ViewModels
         }
 
         private readonly INavigationService _navigationService;
-        private readonly IPageDialogService _dialogService;
 
         private readonly IAzureServicePrefUser<PreferenciaUser> _clientePreferencia;
 
@@ -50,11 +50,10 @@ namespace saac.ViewModels
         #endregion
 
         #region Construtor
-        public AdicionarPrefUserPageViewModel(INavigationService navigationService, IAzureServicePrefUser<PreferenciaUser> clientePreferencia,
-            IPageDialogService dialogService) : base (navigationService)
+        public AdicionarPrefUserPageViewModel(INavigationService navigationService, 
+            IAzureServicePrefUser<PreferenciaUser> clientePreferencia) : base (navigationService)
         {
             _navigationService = navigationService;
-            _dialogService = dialogService;
 
             _clientePreferencia = clientePreferencia;
 
@@ -91,6 +90,8 @@ namespace saac.ViewModels
 
             await _clientePreferencia.AdicionarTable(Preferencias);
 
+            UserDialogs.Instance.Toast("As suas preferências foram salvas", TimeSpan.FromSeconds(2));
+
             var navigationParams = new NavigationParameters();
             navigationParams.Add("userId", UserId);
 
@@ -102,7 +103,7 @@ namespace saac.ViewModels
         {
             await _clientePreferencia.AtualizarTable(Preferencias);
 
-            await _dialogService.DisplayAlertAsync("Preferência do usuário", "As suas preferências de concursos foram atualizadas", "Ok");
+            UserDialogs.Instance.Toast("As suas preferências de concursos foram atualizadas", TimeSpan.FromSeconds(2));
             await _navigationService.GoBackAsync();
 
         }

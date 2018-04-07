@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using Acr.UserDialogs;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using saac.Interfaces;
@@ -44,6 +45,8 @@ namespace saac.ViewModels
         public async void SalvarUsuario()
         {
             await _clienteUsuario.AtualizarTable(User);
+            UserDialogs.Instance.Toast("Os seus dados foram atualizados", TimeSpan.FromSeconds(2));
+
         }
 
         public override void OnNavigatedTo(NavigationParameters parameters)

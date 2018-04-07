@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using Acr.UserDialogs;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using Prism.Services;
@@ -76,8 +77,7 @@ namespace saac.ViewModels
         }
 
         private readonly INavigationService _navigationService;
-        private readonly IPageDialogService _dialogService;
-
+       
         private readonly IAzureServiceConcurso<Concurso> _clienteConcurso;
 
         private DelegateCommand _proximoCommand;
@@ -90,19 +90,16 @@ namespace saac.ViewModels
         #endregion
 
         #region Construtor
-        public AdicionarConcursoPageViewModel(INavigationService navigationService, IAzureServiceConcurso<Concurso> clienteConcurso, 
-            IPageDialogService dialogService) : base(navigationService)
+        public AdicionarConcursoPageViewModel(INavigationService navigationService, IAzureServiceConcurso<Concurso> clienteConcurso) : base(navigationService)
         {
             _navigationService = navigationService;
-            _dialogService = dialogService;
 
             _clienteConcurso = clienteConcurso;
 
             Concursos = new Concurso();
             Regioes = new ObservableCollection<string>();
             Estados = new ObservableCollection<string>();
-
-            InicializarRegioes();
+            
         }
         #endregion
 
@@ -220,7 +217,7 @@ namespace saac.ViewModels
 
             await _clienteConcurso.AtualizarTable(Concursos);
 
-            await _dialogService.DisplayAlertAsync("Alteração", "Os detalhes deste concurso foi atualizados", "Ok");
+            UserDialogs.Instance.Toast("Os detalhes deste concurso foi atualizados", TimeSpan.FromSeconds(2));
             await _navigationService.GoBackAsync();
 
         }
@@ -241,11 +238,15 @@ namespace saac.ViewModels
                 {
                     Concursos = (Concurso)parameters["Concursos"];
 
+                    InicializarRegioes();
+
                 }
             }
             else if (parameters.ContainsKey("proximo"))
             {
                 Opcao = (string)parameters["proximo"];
+
+                InicializarRegioes();
 
             }
             else if (parameters.ContainsKey("voltar"))
@@ -253,7 +254,8 @@ namespace saac.ViewModels
                 Voltar();
 
             }
-            #endregion
         }
+                
+        #endregion
     }
 }

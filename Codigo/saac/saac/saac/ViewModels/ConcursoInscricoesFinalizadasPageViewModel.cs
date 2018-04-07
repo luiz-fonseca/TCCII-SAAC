@@ -46,7 +46,6 @@ namespace saac.ViewModels
         }
 
         private readonly INavigationService _navigationService;
-        private readonly IPageDialogService _dialogService;
 
         private readonly IAzureServiceConcurso<Concurso> _clienteConcurso;
 
@@ -62,11 +61,10 @@ namespace saac.ViewModels
         #endregion
 
         #region Construtor
-        public ConcursoInscricoesFinalizadasPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IAzureServiceConcurso<Concurso> clienteConcurso) : base(navigationService)
+        public ConcursoInscricoesFinalizadasPageViewModel(INavigationService navigationService, IAzureServiceConcurso<Concurso> clienteConcurso) : base(navigationService)
         {
             _navigationService = navigationService;
-            _dialogService = dialogService;
-
+           
             _clienteConcurso = clienteConcurso;
 
             ListaConcursos = new ObservableCollection<Concurso>();
@@ -130,7 +128,7 @@ namespace saac.ViewModels
                     await _clienteConcurso.AtualizarTable(item);
                 }
             }
-            await _dialogService.DisplayAlertAsync("Alterados", "Os concursos foram alterados", "Ok");
+            UserDialogs.Instance.Toast("As inscrições destes concursos foram finalizadas", TimeSpan.FromSeconds(2));
             await _navigationService.GoBackAsync();
 
         }

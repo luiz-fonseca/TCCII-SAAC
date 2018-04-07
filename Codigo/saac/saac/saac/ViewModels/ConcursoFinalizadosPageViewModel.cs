@@ -54,7 +54,6 @@ namespace saac.ViewModels
         }
 
         private readonly INavigationService _navigationService;
-        private readonly IPageDialogService _dialogService;
 
         private readonly IAzureServiceGroup<Grupo> _clienteGrupo;
         private readonly IAzureServiceConcurso<Concurso> _clienteConcurso;
@@ -75,12 +74,11 @@ namespace saac.ViewModels
         #endregion
 
         #region Construtor
-        public ConcursoFinalizadosPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IAzureServiceConcurso<Concurso> clienteConcurso,
-            IAzureServiceGroup<Grupo> clienteGrupo, IAzureServicePrefConcurso<PreferenciaConcurso> clientePreferencia, IAzureServiceAuxConcursoGrupo<AuxConcursoGrupo> clienteAuxConcurso,
+        public ConcursoFinalizadosPageViewModel(INavigationService navigationService, IAzureServiceConcurso<Concurso> clienteConcurso, IAzureServiceGroup<Grupo> clienteGrupo, 
+            IAzureServicePrefConcurso<PreferenciaConcurso> clientePreferencia, IAzureServiceAuxConcursoGrupo<AuxConcursoGrupo> clienteAuxConcurso,
             IAzureServicePublication<Publicacao> clientePublicacao, IAzureServiceComment<Comentario> clienteComentario, IAzureServiceAux<Auxiliar> clienteAuxiliar) : base(navigationService)
         {
             _navigationService = navigationService;
-            _dialogService = dialogService;
 
             _clienteGrupo = clienteGrupo;
             _clienteConcurso = clienteConcurso;
@@ -163,8 +161,8 @@ namespace saac.ViewModels
 
                 }
             }
-            
-            await _dialogService.DisplayAlertAsync("Excluídos", "Esses concursos foram excluídos", "Ok");
+
+            UserDialogs.Instance.Toast("Esses concursos foram finalizados", TimeSpan.FromSeconds(2));
             await _navigationService.GoBackAsync();
 
         }
