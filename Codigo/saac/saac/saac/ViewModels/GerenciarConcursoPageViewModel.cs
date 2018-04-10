@@ -34,7 +34,6 @@ namespace saac.ViewModels
 
             GerenciarConcursos = new ObservableCollection<object>();
 
-            ExibirOpcoes();
 
         }
         #endregion
@@ -115,11 +114,13 @@ namespace saac.ViewModels
 
         }
 
-        public override void OnNavigatedTo(NavigationParameters parameters)
+        public override void OnNavigatingTo(NavigationParameters parameters)
         {
             if (parameters.ContainsKey("userId"))
             {
                 UserId = (string)parameters["userId"];
+                
+                ExibirOpcoes();
 
             }
 

@@ -420,7 +420,7 @@ namespace saac.ViewModels
 
         }
 
-        public override void OnNavigatedTo(NavigationParameters parameters)
+        public override void OnNavigatingTo(NavigationParameters parameters)
         {
             if (parameters.ContainsKey("userId"))
             {

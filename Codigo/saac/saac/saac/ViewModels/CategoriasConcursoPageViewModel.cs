@@ -60,7 +60,6 @@ namespace saac.ViewModels
 
             Categorias = new ObservableCollection<object>();
 
-            ExibirCategorias();
 
         }
         #endregion
@@ -134,9 +133,11 @@ namespace saac.ViewModels
             if (parameters.ContainsKey("userId"))
             {
                 UserId = (string)parameters["userId"];
+                
+                ExibirCategorias();
 
                 Verificacao(UserId);
-
+                
             }
         }
 
