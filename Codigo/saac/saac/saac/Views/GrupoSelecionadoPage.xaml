@@ -37,11 +37,19 @@
                                     HorizontalOptions="FillAndExpand"
                                     Command="{Binding SalvarPublicacaoCommand}"/>
 
-                            <Button Text="{Binding Seguir}" 
-                                    Command="{Binding SeguirGrupoCommand}" 
-                                    BackgroundColor="{Binding CorSeguir}"
+                            <Button Text="Seguir" 
+                                    Command="{Binding SeguirGrupoCommand}"
                                     HorizontalOptions="FillAndExpand"
-                                    TextColor="White"/>
+                                    TextColor="White">
+                                <Button.Triggers>
+                                    <DataTrigger TargetType="Button"
+                                                 Binding="{Binding Verificar}"
+                                                 Value="True">
+                                        <Setter Property="Style" Value="{StaticResource BotaoStyle}"/>
+                                        <Setter Property="Text" Value="Seguindo"/>
+                                    </DataTrigger>
+                                </Button.Triggers>
+                            </Button>
 
                         </StackLayout>
 

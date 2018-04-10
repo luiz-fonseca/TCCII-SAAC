@@ -10,7 +10,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 using Acr.UserDialogs;
 
 namespace saac.ViewModels
@@ -66,21 +65,7 @@ namespace saac.ViewModels
             get { return _userId; }
             set { SetProperty(ref _userId, value); }
         }
-
-        private string _seguir;
-        public string Seguir
-        {
-            get { return _seguir; }
-            set { SetProperty(ref _seguir, value); }
-        }
-
-        private Color _corSeguir;
-        public Color CorSeguir
-        {
-            get { return _corSeguir; }
-            set { SetProperty(ref _corSeguir, value); }
-        }
-
+        
         private string _texto;
         public string Texto
         {
@@ -200,14 +185,11 @@ namespace saac.ViewModels
             if (resultado == 0)
             {
                 Verificar = false;
-                Seguir = "Seguir";
-                CorSeguir = Color.Silver;
+               
             }
             else
             {
                 Verificar = true;
-                Seguir = "Seguindo";
-                CorSeguir = Color.FromHex("#0BC433");
 
             }
 
