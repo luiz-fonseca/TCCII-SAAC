@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Plugin.Connectivity;
 
 namespace saac.ViewModels
 {
@@ -100,9 +101,9 @@ namespace saac.ViewModels
 
         public async void ExibirMeusGrupos(string id)
         {
-            // try
-            //{
-            IsLoading = true;
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                IsLoading = true;
 
                 var aux = await _clienteAux.MeusGrupos(id);
                 if (aux.Count == 0)
@@ -119,14 +120,16 @@ namespace saac.ViewModels
                     var resultadoAgrupar = Agrupar(resultado);
                     Converter(resultadoAgrupar);
                 }
-            // }
-            //catch (MobileServiceInvalidOperationException)
-            //{
-            //  Message = "Ocorreu algum problema, por favor tente novamente mais tarde.";
+                
+                IsLoading = false;
 
-            //}
-            IsLoading = false;
+            }
+            else
+            {
+                MeusGroups.Clear();
+                Message = "Você está sem conexão.";
 
+            }
         }
 
 
