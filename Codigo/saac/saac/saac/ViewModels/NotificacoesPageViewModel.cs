@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using Plugin.Connectivity;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using saac.Interfaces;
@@ -98,19 +99,29 @@ namespace saac.ViewModels
 
         public async void MeusConcursosPreferidos(string codUsuario)
         {
-            IsLoading = true;
-
-            var resulPrefUser = await _clientePrefUser.MinhasPreferencias(codUsuario);
-            var resulPrefConcurso = await _clientePrefConcurso.MeusConcursosPreferidos(resulPrefUser);
-
-            if (resulPrefConcurso.Count != 0)
+            if (CrossConnectivity.Current.IsConnected)
             {
-                var listaConcurso = await _clienteConcurso.MeusConcursos(resulPrefConcurso);
+                IsLoading = true;
 
-                if (listaConcurso.Count != 0)
+                var resulPrefUser = await _clientePrefUser.MinhasPreferencias(codUsuario);
+                var resulPrefConcurso = await _clientePrefConcurso.MeusConcursosPreferidos(resulPrefUser);
+
+                if (resulPrefConcurso.Count != 0)
                 {
-                    var resulAgrupar = Agrupar(listaConcurso);
-                    Converter(resulAgrupar);
+                    var listaConcurso = await _clienteConcurso.MeusConcursos(resulPrefConcurso);
+
+                    if (listaConcurso.Count != 0)
+                    {
+                        var resulAgrupar = Agrupar(listaConcurso);
+                        Converter(resulAgrupar);
+                    }
+                    else
+                    {
+                        ConcursosAgrupados.Clear();
+                        Mensagem = "Ainda não existe concursos baseado em suas preferências";
+
+                    }
+
                 }
                 else
                 {
@@ -118,15 +129,15 @@ namespace saac.ViewModels
                     Mensagem = "Ainda não existe concursos baseado em suas preferências";
 
                 }
-                
+                IsLoading = false;
+
             }
             else
             {
                 ConcursosAgrupados.Clear();
-                Mensagem = "Ainda não existe concursos baseado em suas preferências";
+                Mensagem = "Você está sem conexão.";
 
             }
-            IsLoading = false;
 
         }
 

@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Acr.UserDialogs;
+using Plugin.Connectivity;
 
 namespace saac.ViewModels
 {
@@ -158,20 +159,28 @@ namespace saac.ViewModels
 
         public async void ExcluirComentarioSelecionado(object args)
         {
-            var comment = ConversaoComentario(args);
-
-            var auxResul = await _clienteComment.MeuCometario(comment.Id, UserId);
-            if (auxResul != 0)
+            if (CrossConnectivity.Current.IsConnected)
             {
-                var resulComment = await _dialogService.DisplayAlertAsync("Excluir Comentário", "Deseja excluir este cometário?", " Sim ", " Não ");
+                var comment = ConversaoComentario(args);
 
-                if (resulComment)
+                var auxResul = await _clienteComment.MeuCometario(comment.Id, UserId);
+                if (auxResul != 0)
                 {
-                    ExcluirComentario(comment);
-                    UserDialogs.Instance.Toast("Este comentário foi excluído", TimeSpan.FromSeconds(2));
-                    AtualizarComentarios();
+                    var resulComment = await _dialogService.DisplayAlertAsync("Excluir Comentário", "Deseja excluir este cometário?", " Sim ", " Não ");
+
+                    if (resulComment)
+                    {
+                        ExcluirComentario(comment);
+                        UserDialogs.Instance.Toast("Este comentário foi excluído", TimeSpan.FromSeconds(2));
+                        AtualizarComentarios();
+
+                    }
 
                 }
+            }
+            else
+            {
+                 UserDialogs.Instance.Toast("Você está sem conexão", TimeSpan.FromSeconds(2));
 
             }
 
@@ -206,25 +215,33 @@ namespace saac.ViewModels
 
         public async void ExcluirPublicacao()
         {
-            var resulPublicacao = await _dialogService.DisplayAlertAsync("Excluir Publicação", "A exclusão desta publicação," +
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                var resulPublicacao = await _dialogService.DisplayAlertAsync("Excluir Publicação", "A exclusão desta publicação," +
                     " também irá excluir todos os comentários relacionados a está publicação. Deseja Continuar?", " Sim ", " Não ");
 
-            if (resulPublicacao)
-            {
-                using (var Dialog = UserDialogs.Instance.Loading("Salvando...", null, null, true, MaskType.Black))
+                if (resulPublicacao)
                 {
-
-                    foreach (var item in ComentariosPublication)
+                    using (var Dialog = UserDialogs.Instance.Loading("Salvando...", null, null, true, MaskType.Black))
                     {
-                        var comment = ConversaoComentario(item);
-                        ExcluirComentario(comment);
 
+                        foreach (var item in ComentariosPublication)
+                        {
+                            var comment = ConversaoComentario(item);
+                            ExcluirComentario(comment);
+
+                        }
+
+                        await _clientePublication.RemoverTable(Publication);
                     }
+                    UserDialogs.Instance.Toast("Está publicação e os seus comentários foram excluídos", TimeSpan.FromSeconds(2));
+                    await _navigationService.GoBackAsync();
 
-                    await _clientePublication.RemoverTable(Publication);
                 }
-                UserDialogs.Instance.Toast("Está publicação e os seus comentários foram excluídos", TimeSpan.FromSeconds(2));
-                await _navigationService.GoBackAsync();
+            }
+            else
+            {
+                UserDialogs.Instance.Toast("Você está sem conexão", TimeSpan.FromSeconds(2));
 
             }
         }
@@ -260,11 +277,12 @@ namespace saac.ViewModels
 
         public async void Exibircomentario(string codPublicacao)
         {
-            IsLoading = true;
-            List<string> auxList = new List<string>();
-
-            try
+            if (CrossConnectivity.Current.IsConnected)
             {
+                IsLoading = true;
+                List<string> auxList = new List<string>();
+
+
                 var resulComment = await _clienteComment.Comentarios(codPublicacao);
 
                 if (resulComment.Count != 0)
@@ -283,7 +301,7 @@ namespace saac.ViewModels
                     var resulUser = await _clienteUser.Usuarios(auxList);
 
                     var resultado = resulComment.Join(resulUser, c => c.CodUsuario, u => u.Id,
-                                                        (c, u) => new { c.Id, c.CodPublicacao, c.CodUsuario, c.Texto, u.Nome, u.Foto });
+                                                            (c, u) => new { c.Id, c.CodPublicacao, c.CodUsuario, c.Texto, u.Nome, u.Foto });
 
                     ComentariosPublication.Clear();
                     foreach (var item in resultado)
@@ -291,24 +309,22 @@ namespace saac.ViewModels
                         ComentariosPublication.Add(item);
 
                     }
-
-
                 }
                 else
                 {
                     ComentariosPublication.Clear();
-
                     Message = "Está publicação ainda não possui nenhum comentário.";
 
                 }
+                IsLoading = false;
 
             }
-            catch (MobileServiceInvalidOperationException)
+            else
             {
-                Message = "Ocorreu algum problema, por favor tente novamente mais tarde.";
+                ComentariosPublication.Clear();
+                Message = "Você está sem conexão.";
 
             }
-            IsLoading = false;
 
         }
 

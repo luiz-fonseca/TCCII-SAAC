@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using Plugin.Connectivity;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -117,54 +118,71 @@ namespace saac.ViewModels
 
         public async void ConcursosFinalizados()
         {
-            IsLoading = true;
-
-            var dataAtual = DateTime.Now.Date;
-
-            var lista = await _clienteConcurso.ConcursosFinalizados(dataAtual);
-
-            if (lista.Count != 0)
+            if (CrossConnectivity.Current.IsConnected)
             {
-                ListaConcursos.Clear();
-                foreach (var item in lista)
+                IsLoading = true;
+
+                var dataAtual = DateTime.Now.Date;
+
+                var lista = await _clienteConcurso.ConcursosFinalizados(dataAtual);
+
+                if (lista.Count != 0)
                 {
-                    ListaConcursos.Add(item);
+                    ListaConcursos.Clear();
+                    foreach (var item in lista)
+                    {
+                        ListaConcursos.Add(item);
+                    }
                 }
+                else
+                {
+                    Mensagem = "Não contém nenhum concurso";
+                }
+                IsLoading = false;
+
             }
             else
             {
-                Mensagem = "Não contém nenhum concurso";
+                Mensagem = "Você está sem conexão";
+
             }
-            IsLoading = false;
 
         }
 
         public async void Remover()
         {
-            using (var Dialog = UserDialogs.Instance.Loading("Excluindo Concursos...", null, null, true, MaskType.Black))
+            if (CrossConnectivity.Current.IsConnected)
             {
-                foreach (var itemConcurso in ListaConcursos)
+                using (var Dialog = UserDialogs.Instance.Loading("Excluindo Concursos...", null, null, true, MaskType.Black))
                 {
-                    var Preferencia = await _clientePreferencia.ConcursoPreferencia(itemConcurso.Id);
-                    var ListaAux = await _clienteAuxConcurso.ListaGruposConcursos(itemConcurso.Id);
-                    var AuxConcurso = await _clienteAuxConcurso.GruposConcursos(itemConcurso.Id);
-
-                    await RemoverGrupo(AuxConcurso);
-
-                    foreach (var itemListaAux in ListaAux)
+                    foreach (var itemConcurso in ListaConcursos)
                     {
-                        await _clienteAuxConcurso.RemoverTable(itemListaAux);
+                        var Preferencia = await _clientePreferencia.ConcursoPreferencia(itemConcurso.Id);
+                        var ListaAux = await _clienteAuxConcurso.ListaGruposConcursos(itemConcurso.Id);
+                        var AuxConcurso = await _clienteAuxConcurso.GruposConcursos(itemConcurso.Id);
+
+                        await RemoverGrupo(AuxConcurso);
+
+                        foreach (var itemListaAux in ListaAux)
+                        {
+                            await _clienteAuxConcurso.RemoverTable(itemListaAux);
+                        }
+
+                        await _clientePreferencia.RemoverTable(Preferencia);
+                        await _clienteConcurso.RemoverTable(itemConcurso);
+
                     }
-
-                    await _clientePreferencia.RemoverTable(Preferencia);
-                    await _clienteConcurso.RemoverTable(itemConcurso);
-
                 }
+
+                UserDialogs.Instance.Toast("Esses concursos foram finalizados", TimeSpan.FromSeconds(2));
+                await _navigationService.GoBackAsync();
+
             }
+            else
+            {
+                UserDialogs.Instance.Toast("Você está sem conexão", TimeSpan.FromSeconds(2));
 
-            UserDialogs.Instance.Toast("Esses concursos foram finalizados", TimeSpan.FromSeconds(2));
-            await _navigationService.GoBackAsync();
-
+            }
         }
 
         public async Task RemoverGrupo(List<string> AuxConcurso)

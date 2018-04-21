@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using Plugin.Connectivity;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using saac.Interfaces;
@@ -87,27 +88,34 @@ namespace saac.ViewModels
 
         public async void ConcursosEmEspera()
         {
-            IsLoading = true;
-
-            var dataAtual = DateTime.Now.Date;
-            var lista = await _clienteConcurso.ConcursosEmEspera(dataAtual);
-
-            if (lista.Count != 0)
+            if (CrossConnectivity.Current.IsConnected)
             {
-                ListaConcursos.Clear();
-                foreach (var item in lista)
+                IsLoading = true;
+
+                var dataAtual = DateTime.Now.Date;
+                var lista = await _clienteConcurso.ConcursosEmEspera(dataAtual);
+
+                if (lista.Count != 0)
                 {
-                    ListaConcursos.Add(item);
+                    ListaConcursos.Clear();
+                    foreach (var item in lista)
+                    {
+                        ListaConcursos.Add(item);
+
+                    }
+                }
+                else
+                {
+                    Mensagem = "Não contém nenhum concurso";
 
                 }
+                IsLoading = false;
             }
             else
             {
-                Mensagem = "Não contém nenhum concurso";
+                Mensagem = "Você está sem conexão";
 
             }
-            IsLoading = false;
-
         }
 
         public override void OnNavigatingTo(NavigationParameters parameters)

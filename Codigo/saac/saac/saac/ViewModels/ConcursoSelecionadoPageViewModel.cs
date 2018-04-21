@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using Plugin.Connectivity;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -136,22 +137,29 @@ namespace saac.ViewModels
 
         public async void GruposConcursos(string codConcurso)
         {
-            IsLoading = true;
-
-            var resultado = await _clienteConcursoGrupo.GruposConcursos(codConcurso);
-
-            if (resultado.Count != 0)
+            if (CrossConnectivity.Current.IsConnected)
             {
-                var resulGrupos = await _clienteGrupo.MeusGrupos(resultado);
+                IsLoading = true;
 
-                Grupos.Clear();
-                foreach (var item in resulGrupos)
+                var resultado = await _clienteConcursoGrupo.GruposConcursos(codConcurso);
+
+                if (resultado.Count != 0)
                 {
-                    Grupos.Add(item);
+                    var resulGrupos = await _clienteGrupo.MeusGrupos(resultado);
 
+                    Grupos.Clear();
+                    foreach (var item in resulGrupos)
+                    {
+                        Grupos.Add(item);
+
+                    }
                 }
+                IsLoading = false;
             }
-            IsLoading = false;
+            else
+            {
+
+            }
         }
 
         private async void EditarConcurso()
@@ -166,30 +174,38 @@ namespace saac.ViewModels
 
         private async void ExcluirConcurso()
         {
-            var resultado = await _dialogService.DisplayAlertAsync("Excluir Concurso", "Deseja realmente remover este concurso?", "Sim", "Não");
-
-            if (resultado)
+            if (CrossConnectivity.Current.IsConnected)
             {
-                using (var Dialog = UserDialogs.Instance.Loading("Excluindo...", null, null, true, MaskType.Black))
+                var resultado = await _dialogService.DisplayAlertAsync("Excluir Concurso", "Deseja realmente remover este concurso?", "Sim", "Não");
+
+                if (resultado)
                 {
-                    await RemoverGrupo();
-
-                    var Preferencia = await _clientePreferencia.ConcursoPreferencia(Concursos.Id);
-
-                    var ListaAuxConcurso = await _clienteConcursoGrupo.ListaGruposConcursos(Concursos.Id);
-                    foreach (var itemListaAuxConcurso in ListaAuxConcurso)
+                    using (var Dialog = UserDialogs.Instance.Loading("Excluindo...", null, null, true, MaskType.Black))
                     {
-                        await _clienteConcursoGrupo.RemoverTable(itemListaAuxConcurso);
+                        await RemoverGrupo();
+
+                        var Preferencia = await _clientePreferencia.ConcursoPreferencia(Concursos.Id);
+
+                        var ListaAuxConcurso = await _clienteConcursoGrupo.ListaGruposConcursos(Concursos.Id);
+                        foreach (var itemListaAuxConcurso in ListaAuxConcurso)
+                        {
+                            await _clienteConcursoGrupo.RemoverTable(itemListaAuxConcurso);
+
+                        }
+
+                        await _clientePreferencia.RemoverTable(Preferencia);
+                        await _clienteConcurso.RemoverTable(Concursos);
 
                     }
 
-                    await _clientePreferencia.RemoverTable(Preferencia);
-                    await _clienteConcurso.RemoverTable(Concursos);
+                    UserDialogs.Instance.Toast("Este concurso foi excluído", TimeSpan.FromSeconds(2));
+                    await _navigationService.GoBackAsync();
+                }
+                else
+                {
+                    UserDialogs.Instance.Toast("Você está sem conexão", TimeSpan.FromSeconds(2));
 
                 }
-
-                UserDialogs.Instance.Toast("Este concurso foi excluído", TimeSpan.FromSeconds(2));
-                await _navigationService.GoBackAsync();
 
             }
         }

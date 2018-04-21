@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using Plugin.Connectivity;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -95,41 +96,59 @@ namespace saac.ViewModels
 
         public async void InscricoesFinalizadas()
         {
-            IsLoading = true;
-
-            var dataAtual = DateTime.Now.Date;
-            var lista = await _clienteConcurso.InscricoesFinalizadas(dataAtual);
-
-            if (lista.Count != 0)
+            if (CrossConnectivity.Current.IsConnected)
             {
-                ListaConcursos.Clear();
-                foreach (var item in lista)
+                IsLoading = true;
+
+                var dataAtual = DateTime.Now.Date;
+                var lista = await _clienteConcurso.InscricoesFinalizadas(dataAtual);
+
+                if (lista.Count != 0)
                 {
-                    ListaConcursos.Add(item);
+                    ListaConcursos.Clear();
+                    foreach (var item in lista)
+                    {
+                        ListaConcursos.Add(item);
+
+                    }
+                }
+                else
+                {
+                    Mensagem = "Não contém nenhum concurso";
 
                 }
+                IsLoading = false;
+
             }
             else
             {
-                Mensagem = "Não contém nenhum concurso";
+                Mensagem = "Você está sem conexão";
 
             }
-            IsLoading = false;
 
         }
 
         public async void Alterar()
         {
-            using (var Dialog = UserDialogs.Instance.Loading("Alterando...", null, null, true, MaskType.Black))
+            if (CrossConnectivity.Current.IsConnected)
             {
-                foreach (var item in ListaConcursos)
+                using (var Dialog = UserDialogs.Instance.Loading("Alterando...", null, null, true, MaskType.Black))
                 {
-                    item.Visibilidade = false;
-                    await _clienteConcurso.AtualizarTable(item);
+                    foreach (var item in ListaConcursos)
+                    {
+                        item.Visibilidade = false;
+                        await _clienteConcurso.AtualizarTable(item);
+                    }
                 }
+                UserDialogs.Instance.Toast("As inscrições destes concursos foram finalizadas", TimeSpan.FromSeconds(2));
+                await _navigationService.GoBackAsync();
+
             }
-            UserDialogs.Instance.Toast("As inscrições destes concursos foram finalizadas", TimeSpan.FromSeconds(2));
-            await _navigationService.GoBackAsync();
+            else
+            {
+                UserDialogs.Instance.Toast("Você está sem conexão", TimeSpan.FromSeconds(2));
+
+            }
 
         }
 

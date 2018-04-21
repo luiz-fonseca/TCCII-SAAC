@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using Plugin.Connectivity;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using saac.Interfaces;
@@ -103,18 +104,26 @@ namespace saac.ViewModels
 
         public async void ConcursosDisponiveis(string regiao)
         {
-            var resultado = await _clienteConcurso.ConcursosDisponiveis(regiao);
-
-            if (resultado.Count != 0)
+            if (CrossConnectivity.Current.IsConnected)
             {
-                var listaAgrupada = Agrupar(resultado);
+                var resultado = await _clienteConcurso.ConcursosDisponiveis(regiao);
 
-                Converter(listaAgrupada);
+                if (resultado.Count != 0)
+                {
+                    var listaAgrupada = Agrupar(resultado);
+
+                    Converter(listaAgrupada);
+                }
+                else
+                {
+                    ConcursosAgrupados.Clear();
+                    Mensagem = "Está região ainda não possui nenhum Concurso Disponível";
+                }
             }
             else
             {
-                ConcursosAgrupados.Clear();
-                Mensagem = "Está região ainda não possui nenhum Concurso Disponível";
+                Mensagem = "Você está sem conexão";
+
             }
 
         }

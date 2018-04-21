@@ -11,6 +11,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
+using Plugin.Connectivity;
 
 namespace saac.ViewModels
 {
@@ -208,64 +209,73 @@ namespace saac.ViewModels
 
         public async void SeguirGrupo()
         {
-            //var resultado = await _clienteAuxiliar.ExisteSeguirAux(Grupos.Id, UserId);
-            //Verificacao(Grupos.Id, UserId);
-
-            //if (resultado == 0)
-            if(!Verificar)
+            if (CrossConnectivity.Current.IsConnected)
             {
-                Aux.CodGrupo = Grupos.Id;
-                Aux.CodUsuario = UserId;
-                Aux.Adiministrador = false;
+                //var resultado = await _clienteAuxiliar.ExisteSeguirAux(Grupos.Id, UserId);
+                //Verificacao(Grupos.Id, UserId);
 
-                await _clienteAuxiliar.AdicionarTable(Aux);
-
-                UserDialogs.Instance.Toast("Parabéns!! você agora " +
-                    "está seguindo este grupo.", TimeSpan.FromSeconds(2));
-
-            }
-            else
-            {
-                var resulSeguir = await _dialogService.DisplayAlertAsync("Seguindo Grupo", "Deseja deixar de seguir este grupo?", " Sim ", " Não ");
-                if (resulSeguir)
+                //if (resultado == 0)
+                if (!Verificar)
                 {
-                    var quantidade = await _clienteAuxiliar.QuantidadeRegistros(Grupos.Id);
-                    if (quantidade == 1 && Grupos.Temporario == false)
+                    Aux.CodGrupo = Grupos.Id;
+                    Aux.CodUsuario = UserId;
+                    Aux.Adiministrador = false;
+
+                    await _clienteAuxiliar.AdicionarTable(Aux);
+
+                    UserDialogs.Instance.Toast("Parabéns!! você agora " +
+                        "está seguindo este grupo.", TimeSpan.FromSeconds(2));
+
+                }
+                else
+                {
+                    var resulSeguir = await _dialogService.DisplayAlertAsync("Seguindo Grupo", "Deseja deixar de seguir este grupo?", " Sim ", " Não ");
+                    if (resulSeguir)
                     {
-                        var resulGrupo = await _dialogService.DisplayAlertAsync("Excluir Grupo", "Você é a última pessoa a seguir este grupo," +
-                            " se você deixar de segui-lo, este grupo e todas as suas publicações serão excluidas. Deseja Continuar?", " Sim ", " Não ");
-
-                        if (resulGrupo)
+                        var quantidade = await _clienteAuxiliar.QuantidadeRegistros(Grupos.Id);
+                        if (quantidade == 1 && Grupos.Temporario == false)
                         {
-                            using (var Dialog = UserDialogs.Instance.Loading("Excluindo...", null, null, true, MaskType.Black))
+                            var resulGrupo = await _dialogService.DisplayAlertAsync("Excluir Grupo", "Você é a última pessoa a seguir este grupo," +
+                                " se você deixar de segui-lo, este grupo e todas as suas publicações serão excluidas. Deseja Continuar?", " Sim ", " Não ");
+
+                            if (resulGrupo)
                             {
-                                var resultadoAux = await _clienteAuxiliar.GetAuxiliar(Grupos.Id, UserId);
+                                using (var Dialog = UserDialogs.Instance.Loading("Excluindo...", null, null, true, MaskType.Black))
+                                {
+                                    var resultadoAux = await _clienteAuxiliar.GetAuxiliar(Grupos.Id, UserId);
 
-                                await RemoverGrupo();
+                                    await RemoverGrupo();
 
-                                await _clienteAuxiliar.RemoverTable(resultadoAux);
+                                    await _clienteAuxiliar.RemoverTable(resultadoAux);
+
+                                }
+                                UserDialogs.Instance.Toast("Este grupo e suas publicações foram excluídos", TimeSpan.FromSeconds(2));
+
+                                await _navigationService.GoBackAsync();
 
                             }
-                            UserDialogs.Instance.Toast("Este grupo e suas publicações foram excluídos", TimeSpan.FromSeconds(2));
 
-                            await _navigationService.GoBackAsync();
+                        }
+                        else
+                        {
+                            var resultadoAux = await _clienteAuxiliar.GetAuxiliar(Grupos.Id, UserId);
+
+                            await _clienteAuxiliar.RemoverTable(resultadoAux);
+
+                            UserDialogs.Instance.Toast("Você deixou de seguir este grupo.", TimeSpan.FromSeconds(2));
 
                         }
 
                     }
-                    else
-                    {
-                        var resultadoAux = await _clienteAuxiliar.GetAuxiliar(Grupos.Id, UserId);
-
-                        await _clienteAuxiliar.RemoverTable(resultadoAux);
-
-                        UserDialogs.Instance.Toast("Você deixou de seguir este grupo.", TimeSpan.FromSeconds(2));
-
-                    }
-
                 }
+                Verificacao(Grupos.Id, UserId);
+
             }
-            Verificacao(Grupos.Id, UserId);
+            else
+            {
+                UserDialogs.Instance.Toast("Você está sem conexão.", TimeSpan.FromSeconds(2));
+
+            }
 
         }
 
@@ -306,11 +316,11 @@ namespace saac.ViewModels
 
         public async void ExibirPublicacoes(string codGrupo)
         {
-            IsLoading = true;
-            List<string> auxList = new List<string>();
-
-            try
+            if (CrossConnectivity.Current.IsConnected)
             {
+                IsLoading = true;
+                List<string> auxList = new List<string>();
+
                 var resulPublication = await _clientePublication.Publicacoes(codGrupo);
 
                 if (resulPublication.Count != 0)
@@ -329,7 +339,7 @@ namespace saac.ViewModels
                     var resulUser = await _clienteUser.Usuarios(auxList);
 
                     var resulatdo = resulPublication.Join(resulUser, p => p.CodUsuario, u => u.Id,
-                                                        (p, u) => new { p.Id, p.CodGrupo, p.CodUsuario, p.Texto, u.Nome, u.Foto });
+                                                            (p, u) => new { p.Id, p.CodGrupo, p.CodUsuario, p.Texto, u.Nome, u.Foto });
 
                     PublicacoesGrupo.Clear();
                     foreach (var item in resulatdo)
@@ -345,13 +355,16 @@ namespace saac.ViewModels
                     Message = "Este grupo ainda não possui nehuma publicação.";
 
                 }
-            }
-            catch (MobileServiceInvalidOperationException)
-            {
-                Message = "Ocorreu algum problema, por favor tente novamente mais tarde.";
+
+                IsLoading = false;
 
             }
-            IsLoading = false;
+            else
+            {
+                PublicacoesGrupo.Clear();
+                Message = "Você está sem conexão.";
+
+            }
 
         }
 
