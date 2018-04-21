@@ -1,4 +1,6 @@
-﻿using Prism.Commands;
+﻿using Acr.UserDialogs;
+using Plugin.Connectivity;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using saac.Interfaces;
@@ -49,15 +51,23 @@ namespace saac.ViewModels
         #region Métodos
         private async void ItemTapped(object obj)
         {
-            var aux = ConversaoCategoria(obj);
-            var resultado = OpcaoSelecionada(aux);
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                var aux = ConversaoCategoria(obj);
+                var resultado = OpcaoSelecionada(aux);
 
-            var navigationParams = new NavigationParameters();
-            navigationParams.Add("userId", UserId);
-            navigationParams.Add(resultado[1], resultado[2]);
+                var navigationParams = new NavigationParameters();
+                navigationParams.Add("userId", UserId);
+                navigationParams.Add(resultado[1], resultado[2]);
 
-            await _navigationService.NavigateAsync(resultado[0], navigationParams, useModalNavigation: false);
+                await _navigationService.NavigateAsync(resultado[0], navigationParams, useModalNavigation: false);
 
+            }
+            else
+            {
+                UserDialogs.Instance.Toast("Você está sem conexão.", TimeSpan.FromSeconds(2));
+
+            }
         }
 
         public string[] OpcaoSelecionada(string obj)

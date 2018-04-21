@@ -1,4 +1,6 @@
-﻿using Prism.Commands;
+﻿using Acr.UserDialogs;
+using Plugin.Connectivity;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using saac.Interfaces;
@@ -45,7 +47,16 @@ namespace saac.ViewModels
         #region Métodos
         public async void UsuarioSelecionado(string codUsuario)
         {
-            User = await _clienteUsuario.UsuarioSelecionado(codUsuario);
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                User = await _clienteUsuario.UsuarioSelecionado(codUsuario);
+
+            }
+            else
+            {
+                UserDialogs.Instance.Toast("Você está sem conexão", TimeSpan.FromSeconds(2));
+
+            }
 
         }
 

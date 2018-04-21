@@ -40,7 +40,7 @@ namespace saac.ViewModels
         public string Message
         {
             get { return _message; }
-            set { _message = value; }
+            set { SetProperty(ref _message, value); }
         }
 
         private string _pesquisar;
@@ -112,6 +112,8 @@ namespace saac.ViewModels
             if (CrossConnectivity.Current.IsConnected)
             {
                 IsLoading = true;
+
+                Message = string.Empty;
 
                 var auxList = await _clienteGroup.PesquisarGrupos(Pesquisar);
 

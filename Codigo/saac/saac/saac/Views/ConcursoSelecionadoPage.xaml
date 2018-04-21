@@ -46,6 +46,8 @@
                         <ActivityIndicator  IsRunning="{Binding IsLoading}"
                                             IsVisible="{Binding IsLoading}" 
                                             Color="{StaticResource CorPrincipal}"/>
+                        
+                        <Label Text="{Binding Mensagem}"/>
 
                     </StackLayout>
                 </ListView.Header>

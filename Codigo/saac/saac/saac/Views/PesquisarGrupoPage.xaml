@@ -24,8 +24,9 @@
                 <ListView.Header>
                     <StackLayout Spacing="10">
                         <ActivityIndicator  IsRunning="{Binding IsLoading}"
-                                            IsVisible="{Binding IsLoading}" Color="{StaticResource CorPrincipal}"/>
-                        <!--<Label Text="{Binding Message}"/>-->
+                                            IsVisible="{Binding IsLoading}" 
+                                            Color="{StaticResource CorPrincipal}"/>
+                        <Label Text="{Binding Message}"/>
 
                     </StackLayout>
                 </ListView.Header>

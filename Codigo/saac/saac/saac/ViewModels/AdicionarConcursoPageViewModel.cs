@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using Plugin.Connectivity;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -106,13 +107,21 @@ namespace saac.ViewModels
         #region Métodos
         private async void OpcaoSelecionada()
         {
-            if (Opcao.Contains("Editar"))
+            if (CrossConnectivity.Current.IsConnected)
             {
-                await Alterar();
+                if (Opcao.Contains("Editar"))
+                {
+                    await Alterar();
+                }
+                else if (Opcao.Contains("Próximo"))
+                {
+                    await Proximo();
+                }
             }
-            else if (Opcao.Contains("Próximo"))
+            else
             {
-                await Proximo();
+                UserDialogs.Instance.Toast("Você está sem conexão.", TimeSpan.FromSeconds(2));
+
             }
 
         }

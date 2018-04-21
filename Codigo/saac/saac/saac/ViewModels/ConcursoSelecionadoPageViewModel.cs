@@ -38,6 +38,15 @@ namespace saac.ViewModels
             set { SetProperty(ref _verificadorAdm, value); }
         }
 
+        public bool VerificacaoRealizada { get; set; }
+
+        private string _mensagem;
+        public string Mensagem
+        {
+            get { return _mensagem; }
+            set { SetProperty(ref _mensagem, value); }
+        }
+
         private Concurso _concurso;
         public Concurso Concursos
         {
@@ -120,8 +129,13 @@ namespace saac.ViewModels
 
             GruposConcursos(Concursos.Id);
 
-            Atualizando = false;
+            if (VerificacaoRealizada == false)
+            {
+                Verificacao(UserId);
 
+            }
+            Atualizando = false;
+            
         }
 
         public async void AdicionarGrupo()
@@ -141,6 +155,8 @@ namespace saac.ViewModels
             {
                 IsLoading = true;
 
+                Mensagem = string.Empty;
+
                 var resultado = await _clienteConcursoGrupo.GruposConcursos(codConcurso);
 
                 if (resultado.Count != 0)
@@ -158,6 +174,7 @@ namespace saac.ViewModels
             }
             else
             {
+                Mensagem = "Você está sem conexão";
 
             }
         }
@@ -263,8 +280,18 @@ namespace saac.ViewModels
 
         public async void Verificacao(string id)
         {
-           VerificadorAdm = await _clienteUser.VerificarAdministrador(id);
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                VerificadorAdm = await _clienteUser.VerificarAdministrador(id);
 
+                VerificacaoRealizada = true;
+
+            }
+            else
+            {
+                VerificacaoRealizada = false;
+
+            }
         }
 
 

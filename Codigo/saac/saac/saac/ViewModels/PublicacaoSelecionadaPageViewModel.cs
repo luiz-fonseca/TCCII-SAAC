@@ -96,6 +96,8 @@ namespace saac.ViewModels
             }
         }
 
+        public bool VerificacaoRealizada { get; set; }
+
         private ObservableCollection<object> _comentariosPublication;
         public ObservableCollection<object> ComentariosPublication
         {
@@ -193,6 +195,11 @@ namespace saac.ViewModels
 
             Exibircomentario(Publication.Id);
 
+            if (VerificacaoRealizada == false)
+            {
+                Verificacao(Publication.Id, UserId);
+
+            }
             Atualizando = false;
 
         }
@@ -253,16 +260,26 @@ namespace saac.ViewModels
 
         public async void Verificacao(string idPublicacao, string idUsuario)
         {
-            var resultado = await _clientePublication.MinhaPublicaco(idPublicacao, idUsuario);
-
-            if (resultado != 0)
+            if (CrossConnectivity.Current.IsConnected)
             {
-                VerificarExcluirPublicaco = true;
+                var resultado = await _clientePublication.MinhaPublicaco(idPublicacao, idUsuario);
+
+                if (resultado != 0)
+                {
+                    VerificarExcluirPublicaco = true;
+
+                }
+                else
+                {
+                    VerificarExcluirPublicaco = false;
+
+                }
+                VerificacaoRealizada = true;
 
             }
             else
             {
-                VerificarExcluirPublicaco = false;
+                VerificacaoRealizada = false;
 
             }
 

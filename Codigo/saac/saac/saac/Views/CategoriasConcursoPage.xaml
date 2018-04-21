@@ -14,7 +14,10 @@
     <ContentPage.Content>
         <StackLayout Padding="10,10,10,10" Spacing="10">
 
-            <ListView ItemsSource="{Binding Categorias}">
+            <ListView ItemsSource="{Binding Categorias}"
+                      IsPullToRefreshEnabled="True" 
+                      RefreshCommand="{Binding AtualizarCommand}"
+                      IsRefreshing="{Binding Atualizando}">
 
                 <ListView.Behaviors>
                     <behaviors:EventToCommandBehavior   EventName="ItemTapped" 

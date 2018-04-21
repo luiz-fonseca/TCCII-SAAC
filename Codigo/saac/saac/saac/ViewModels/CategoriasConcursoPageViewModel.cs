@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using Plugin.Connectivity;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using saac.Interfaces;
@@ -26,6 +27,8 @@ namespace saac.ViewModels
             }
         }
 
+        public bool VerificacaoRealizada { get; set; }
+
         private string _userId;
         public string UserId
         {
@@ -33,6 +36,13 @@ namespace saac.ViewModels
             set { SetProperty(ref _userId, value); }
         }
 
+        private bool _atualizando = false;
+        public bool Atualizando
+        {
+            get { return _atualizando; }
+            set { SetProperty(ref _atualizando, value); }
+        }
+        
         private ObservableCollection<object> _categorias;
         public ObservableCollection<object> Categorias
         {
@@ -42,6 +52,10 @@ namespace saac.ViewModels
 
         private readonly INavigationService _navigationService;
         private readonly IAzureServiceUser<Usuario> _clienteUser;
+
+        private DelegateCommand _atualizarCommand;
+        public DelegateCommand AtualizarCommand =>
+            _atualizarCommand ?? (_atualizarCommand = new DelegateCommand(AtualizarVerificador));
 
         private DelegateCommand _administradorCommand;
         public DelegateCommand AdministradorCommand =>
@@ -65,6 +79,17 @@ namespace saac.ViewModels
         #endregion
 
         #region Métodos
+        public void AtualizarVerificador()
+        {
+            Atualizando = true;
+
+            Verificacao(UserId);
+
+            Atualizando = false;
+
+        }
+
+
         public void ExibirCategorias()
         {
             Categorias.Add(new  { Nome="Nacional"});
@@ -104,8 +129,17 @@ namespace saac.ViewModels
 
         public async void Verificacao(string id)
         {
-           VerificadorAdm = await _clienteUser.VerificarAdministrador(id);
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                VerificadorAdm = await _clienteUser.VerificarAdministrador(id);
+                VerificacaoRealizada = true;
 
+            }
+            else
+            {
+                VerificacaoRealizada = false;
+
+            }
         }
 
         

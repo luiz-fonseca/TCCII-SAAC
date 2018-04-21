@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using Plugin.Connectivity;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -88,17 +89,24 @@ namespace saac.ViewModels
         #region Métodos
         public async void OpcaoSelecionada()
         {
-            if (Opcao.Contains("editar"))
+            if (CrossConnectivity.Current.IsConnected)
             {
-                await Alterar();
+                if (Opcao.Contains("editar"))
+                {
+                    await Alterar();
+
+                }
+                else if (Opcao.Contains("adicionar"))
+                {
+                    await Salvar();
+
+                }
+            }
+            else
+            {
+                UserDialogs.Instance.Toast("Você está sem conexão.", TimeSpan.FromSeconds(2));
 
             }
-            else if(Opcao.Contains("adicionar"))
-            {
-                await Salvar();
-
-            }
-
         }
 
         private bool CondicaoOpcaoSelecionada()
@@ -170,8 +178,16 @@ namespace saac.ViewModels
 
         public async void ConcursoPreferencia(string codConcurso)
         {
-            Preferencias = await _clientePreferencia.ConcursoPreferencia(codConcurso);
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                Preferencias = await _clientePreferencia.ConcursoPreferencia(codConcurso);
 
+            }
+            else
+            {
+                UserDialogs.Instance.Toast("Você está sem conexão.", TimeSpan.FromSeconds(2));
+
+            }
         }
 
         public async void Voltar()

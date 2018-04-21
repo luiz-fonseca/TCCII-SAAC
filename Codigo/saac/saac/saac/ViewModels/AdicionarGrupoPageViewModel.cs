@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
+using Plugin.Connectivity;
 
 namespace saac.ViewModels
 {
@@ -152,13 +153,22 @@ namespace saac.ViewModels
 
         
          private async void SelecionarOpcao(){
-            if(Opcao.Contains("adicionar"))
+            if (CrossConnectivity.Current.IsConnected)
             {
-                 await Salvar();
+                if (Opcao.Contains("adicionar"))
+                {
+                    await Salvar();
 
-            }else if(Opcao.Contains("editar"))
-            {  
-                await AlterarGrupo();
+                }
+                else if (Opcao.Contains("editar"))
+                {
+                    await AlterarGrupo();
+
+                }
+            }
+            else
+            {
+                UserDialogs.Instance.Toast("Você está sem conexão.", TimeSpan.FromSeconds(2));
 
             }
          }

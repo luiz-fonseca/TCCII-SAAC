@@ -89,7 +89,7 @@ namespace saac.ViewModels
             }
         }
 
-
+        public bool VerificacaoRealizada { get; set; }
 
         private ObservableCollection<object> _publicacoesGrupo;
         public ObservableCollection<object> PublicacoesGrupo
@@ -168,8 +168,13 @@ namespace saac.ViewModels
 
             ExibirPublicacoes(Grupos.Id);
 
-            Atualizando = false;
+            if (VerificacaoRealizada == false)
+            {
+                Verificacao(Grupos.Id, UserId);
 
+            }
+            Atualizando = false;
+                
         }
 
 
@@ -181,19 +186,28 @@ namespace saac.ViewModels
 
         public async void Verificacao(string IdGrupo, string IdUsuario)
         {
-            var resultado = await _clienteAuxiliar.ExisteSeguirAux(IdGrupo, IdUsuario);
-
-            if (resultado == 0)
+            if (CrossConnectivity.Current.IsConnected)
             {
-                Verificar = false;
-               
+                var resultado = await _clienteAuxiliar.ExisteSeguirAux(IdGrupo, IdUsuario);
+
+                if (resultado == 0)
+                {
+                    Verificar = false;
+
+                }
+                else
+                {
+                    Verificar = true;
+
+                }
+                VerificacaoRealizada = true;
+
             }
             else
             {
-                Verificar = true;
+                VerificacaoRealizada = false;
 
             }
-
         }
 
         public async void EditarGrupo()
@@ -281,16 +295,24 @@ namespace saac.ViewModels
 
         public async void AdicionarPublicacao()
         {
-            Publication.Id = Guid.NewGuid().ToString("N");
-            Publication.CodUsuario = UserId;
-            Publication.CodGrupo = Grupos.Id;
-            Publication.Texto = Texto;
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                Publication.Id = Guid.NewGuid().ToString("N");
+                Publication.CodUsuario = UserId;
+                Publication.CodGrupo = Grupos.Id;
+                Publication.Texto = Texto;
 
-            await _clientePublication.AdicionarTable(Publication);
+                await _clientePublication.AdicionarTable(Publication);
 
-            Texto = string.Empty;
+                Texto = string.Empty;
 
-            AtualizarPublicacoes();
+                AtualizarPublicacoes();
+            }
+            else
+            {
+                UserDialogs.Instance.Toast("Você está sem conexão.", TimeSpan.FromSeconds(2));
+
+            }
 
         }
 

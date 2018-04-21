@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using Plugin.Connectivity;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -44,9 +45,16 @@ namespace saac.ViewModels
         #region Métodos
         public async void SalvarUsuario()
         {
-            await _clienteUsuario.AtualizarTable(User);
-            UserDialogs.Instance.Toast("Os seus dados foram atualizados", TimeSpan.FromSeconds(2));
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                await _clienteUsuario.AtualizarTable(User);
+                UserDialogs.Instance.Toast("Os seus dados foram atualizados", TimeSpan.FromSeconds(2));
+            }
+            else
+            {
+                UserDialogs.Instance.Toast("Você está sem conexão.", TimeSpan.FromSeconds(2));
 
+            }
         }
 
         public override void OnNavigatingTo(NavigationParameters parameters)

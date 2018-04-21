@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using Plugin.Connectivity;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -65,13 +66,21 @@ namespace saac.ViewModels
         #region Métodos
         public async void Salvar()
         {
-            if (Opcao.Contains("adicionar"))
+            if (CrossConnectivity.Current.IsConnected)
             {
-                await SalvarPreferencia();
+                if (Opcao.Contains("adicionar"))
+                {
+                    await SalvarPreferencia();
+                }
+                else if (Opcao.Contains("editar"))
+                {
+                    await AtualizarPreferencia();
+                }
             }
-            else if(Opcao.Contains("editar"))
+            else
             {
-                await AtualizarPreferencia();
+                UserDialogs.Instance.Toast("Você está sem conexão.", TimeSpan.FromSeconds(2));
+
             }
 
         }
@@ -110,8 +119,16 @@ namespace saac.ViewModels
 
         public async void MinhaPreferencia(string codUsuario)
         {
-            Preferencias = await _clientePreferencia.MinhasPreferencias(codUsuario);
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                Preferencias = await _clientePreferencia.MinhasPreferencias(codUsuario);
 
+            }
+            else
+            {
+                UserDialogs.Instance.Toast("Você está sem conexão.", TimeSpan.FromSeconds(2));
+
+            }
         }
 
         public override void OnNavigatingTo(NavigationParameters parameters)
