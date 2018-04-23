@@ -1,4 +1,5 @@
-﻿using Plugin.Connectivity;
+﻿using Acr.UserDialogs;
+using Plugin.Connectivity;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -8,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace saac.ViewModels
 {
@@ -82,9 +84,19 @@ namespace saac.ViewModels
         {
             Atualizando = true;
 
-            MeusConcursosPreferidos(UserId);
+            ExibirMeusConcursosPreferidos(UserId);
 
             Atualizando = false;
+
+        }
+
+        public async void ExibirMeusConcursosPreferidos(string codUsuario)
+        {
+            IsLoading = true;
+
+            await MeusConcursosPreferidos(codUsuario);
+
+            IsLoading = false;
 
         }
 
@@ -97,23 +109,30 @@ namespace saac.ViewModels
             await _navigationService.NavigateAsync("ConcursoSelecionadoPage", navigationParams, useModalNavigation: false);
         }
 
-        public async void MeusConcursosPreferidos(string codUsuario)
+        public async Task MeusConcursosPreferidos(string codUsuario)
         {
-            if (CrossConnectivity.Current.IsConnected)
+            try
             {
-                IsLoading = true;
-
-                var resulPrefUser = await _clientePrefUser.MinhasPreferencias(codUsuario);
-                var resulPrefConcurso = await _clientePrefConcurso.MeusConcursosPreferidos(resulPrefUser);
-
-                if (resulPrefConcurso.Count != 0)
+                if (CrossConnectivity.Current.IsConnected)
                 {
-                    var listaConcurso = await _clienteConcurso.MeusConcursos(resulPrefConcurso);
+                    var resulPrefUser = await _clientePrefUser.MinhasPreferencias(codUsuario);
+                    var resulPrefConcurso = await _clientePrefConcurso.MeusConcursosPreferidos(resulPrefUser);
 
-                    if (listaConcurso.Count != 0)
+                    if (resulPrefConcurso.Count != 0)
                     {
-                        var resulAgrupar = Agrupar(listaConcurso);
-                        Converter(resulAgrupar);
+                        var listaConcurso = await _clienteConcurso.MeusConcursos(resulPrefConcurso);
+
+                        if (listaConcurso.Count != 0)
+                        {
+                            var resulAgrupar = Agrupar(listaConcurso);
+                            Converter(resulAgrupar);
+                        }
+                        else
+                        {
+                            ConcursosAgrupados.Clear();
+                            Mensagem = "Ainda não existe concursos baseado em suas preferências";
+
+                        }
                     }
                     else
                     {
@@ -121,24 +140,19 @@ namespace saac.ViewModels
                         Mensagem = "Ainda não existe concursos baseado em suas preferências";
 
                     }
-
                 }
                 else
                 {
                     ConcursosAgrupados.Clear();
-                    Mensagem = "Ainda não existe concursos baseado em suas preferências";
+                    Mensagem = "Você está sem conexão.";
 
                 }
-                IsLoading = false;
-
             }
-            else
+            catch (Exception)
             {
-                ConcursosAgrupados.Clear();
-                Mensagem = "Você está sem conexão.";
+                UserDialogs.Instance.Toast("Ops! Ocorreu algum problema", TimeSpan.FromSeconds(2));
 
             }
-
         }
 
         public IEnumerable<Group<string, Concurso>> Agrupar(List<Concurso> concursos)
@@ -175,7 +189,7 @@ namespace saac.ViewModels
             {
                 UserId = (string)parameters["userId"];
 
-                MeusConcursosPreferidos(UserId);
+                ExibirMeusConcursosPreferidos(UserId);
 
             }
 

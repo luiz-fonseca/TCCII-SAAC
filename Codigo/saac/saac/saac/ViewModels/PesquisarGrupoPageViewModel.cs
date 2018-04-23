@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Plugin.Connectivity;
+using System.Threading.Tasks;
+using Acr.UserDialogs;
 
 namespace saac.ViewModels
 {
@@ -67,7 +69,7 @@ namespace saac.ViewModels
 
         private DelegateCommand _pesquisarGrupoCommand;
         public DelegateCommand PesquisarGrupoCommand =>
-            _pesquisarGrupoCommand ?? (_pesquisarGrupoCommand = new DelegateCommand(PesquisarGrupo));
+            _pesquisarGrupoCommand ?? (_pesquisarGrupoCommand = new DelegateCommand(ExibirPesquisarGrupo));
 
         private DelegateCommand _atualizarCommand;
         public DelegateCommand AtualizarCommand =>
@@ -101,74 +103,103 @@ namespace saac.ViewModels
         {
             Atualizando = true;
 
-            ExibirGrupos();
+            ExibirGruposDisponiveis();
 
             Atualizando = false;
 
         }
 
-        public async void PesquisarGrupo()
+        public async void ExibirGruposDisponiveis()
         {
-            if (CrossConnectivity.Current.IsConnected)
-            {
-                IsLoading = true;
+            IsLoading = true;
 
-                Message = string.Empty;
+            await GruposDisponiveis();
 
-                var auxList = await _clienteGroup.PesquisarGrupos(Pesquisar);
-
-                Groups.Clear();
-                foreach (var item in auxList)
-                {
-                    Groups.Add(item);
-
-                }
-                IsLoading = false;
-
-            }
-            else
-            {
-                Groups.Clear();
-                Message = "Você está sem conexão.";
-
-            }
+            IsLoading = false;
 
         }
 
-        public async void ExibirGrupos()
+        public async void ExibirPesquisarGrupo()
         {
-            if (CrossConnectivity.Current.IsConnected)
-            {
-                IsLoading = true;
+            IsLoading = true;
 
-                var resultado = await _clienteGroup.GetTable();
-                if (resultado.Count != 0)
+            await PesquisarGrupo();
+
+            IsLoading = false;
+
+        }
+
+        public async Task PesquisarGrupo()
+        {
+            try
+            {
+                if (CrossConnectivity.Current.IsConnected)
                 {
+                    IsLoading = true;
+
                     Message = string.Empty;
 
+                    var auxList = await _clienteGroup.PesquisarGrupos(Pesquisar);
+
                     Groups.Clear();
-                    foreach (var item in resultado)
+                    foreach (var item in auxList)
                     {
                         Groups.Add(item);
 
                     }
+                    IsLoading = false;
 
                 }
                 else
                 {
                     Groups.Clear();
-                    Message = "Ainda não existem Grupos. Crie um novo para começar.";
+                    Message = "Você está sem conexão.";
 
                 }
-                IsLoading = false;
-
             }
-            else
+            catch (Exception)
             {
-                Groups.Clear();
-                Message = "Você está sem conexão.";
-            }
+                UserDialogs.Instance.Toast("Ops! Ocorreu algum problema", TimeSpan.FromSeconds(2));
 
+            }
+        }
+
+        public async Task GruposDisponiveis()
+        {
+            try
+            {
+                if (CrossConnectivity.Current.IsConnected)
+                {
+                    var resultado = await _clienteGroup.GetTable();
+                    if (resultado.Count != 0)
+                    {
+                        Message = string.Empty;
+
+                        Groups.Clear();
+                        foreach (var item in resultado)
+                        {
+                            Groups.Add(item);
+
+                        }
+                    }
+                    else
+                    {
+                        Groups.Clear();
+                        Message = "Ainda não existem Grupos. Crie um novo para começar.";
+
+                    }
+                }
+                else
+                {
+                    Groups.Clear();
+                    Message = "Você está sem conexão.";
+                }
+            }
+            catch (Exception)
+            {
+                UserDialogs.Instance.Toast("Ops! Ocorreu algum problema", TimeSpan.FromSeconds(2));
+
+            }
         }
 
         public async void ItemTapped(Grupo args)
@@ -189,7 +220,7 @@ namespace saac.ViewModels
                 UserId = (string)parameters["userId"]; ;
             }
 
-            ExibirGrupos();
+            ExibirGruposDisponiveis();
         }
         #endregion
     }

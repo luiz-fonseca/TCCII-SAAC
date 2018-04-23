@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace saac.ViewModels
 {
@@ -78,9 +79,19 @@ namespace saac.ViewModels
         {
             Atualizando = true;
 
-            InscricoesFinalizadas();
+            ExibirInscricoesFinalizadas();
 
             Atualizando = false;
+
+        }
+
+        public async void ExibirInscricoesFinalizadas()
+        {
+            IsLoading = true;
+
+            await InscricoesFinalizadas();
+
+            IsLoading = false;
 
         }
 
@@ -94,59 +105,70 @@ namespace saac.ViewModels
 
         }
 
-        public async void InscricoesFinalizadas()
+        public async Task InscricoesFinalizadas()
         {
-            if (CrossConnectivity.Current.IsConnected)
+            try
             {
-                IsLoading = true;
-
-                var dataAtual = DateTime.Now.Date;
-                var lista = await _clienteConcurso.InscricoesFinalizadas(dataAtual);
-
-                if (lista.Count != 0)
+                if (CrossConnectivity.Current.IsConnected)
                 {
-                    ListaConcursos.Clear();
-                    foreach (var item in lista)
+                    var dataAtual = DateTime.Now.Date;
+                    var lista = await _clienteConcurso.InscricoesFinalizadas(dataAtual);
+
+                    if (lista.Count != 0)
                     {
-                        ListaConcursos.Add(item);
+                        ListaConcursos.Clear();
+                        foreach (var item in lista)
+                        {
+                            ListaConcursos.Add(item);
+
+                        }
+                    }
+                    else
+                    {
+                        Mensagem = "Não contém nenhum concurso";
 
                     }
                 }
                 else
                 {
-                    Mensagem = "Não contém nenhum concurso";
+                    Mensagem = "Você está sem conexão";
 
                 }
-                IsLoading = false;
-
             }
-            else
+            catch (Exception)
             {
-                Mensagem = "Você está sem conexão";
+                UserDialogs.Instance.Toast("Ops! Ocorreu algum problema", TimeSpan.FromSeconds(2));
 
             }
-
         }
 
         public async void Alterar()
         {
-            if (CrossConnectivity.Current.IsConnected)
+            try
             {
-                using (var Dialog = UserDialogs.Instance.Loading("Alterando...", null, null, true, MaskType.Black))
+                if (CrossConnectivity.Current.IsConnected)
                 {
-                    foreach (var item in ListaConcursos)
+                    using (var Dialog = UserDialogs.Instance.Loading("Alterando...", null, null, true, MaskType.Black))
                     {
-                        item.Visibilidade = false;
-                        await _clienteConcurso.AtualizarTable(item);
+                        foreach (var item in ListaConcursos)
+                        {
+                            item.Visibilidade = false;
+                            await _clienteConcurso.AtualizarTable(item);
+                        }
                     }
-                }
-                UserDialogs.Instance.Toast("As inscrições destes concursos foram finalizadas", TimeSpan.FromSeconds(2));
-                await _navigationService.GoBackAsync();
+                    UserDialogs.Instance.Toast("As inscrições destes concursos foram finalizadas", TimeSpan.FromSeconds(2));
+                    await _navigationService.GoBackAsync();
 
+                }
+                else
+                {
+                    UserDialogs.Instance.Toast("Você está sem conexão", TimeSpan.FromSeconds(2));
+
+                }
             }
-            else
+            catch (Exception)
             {
-                UserDialogs.Instance.Toast("Você está sem conexão", TimeSpan.FromSeconds(2));
+                UserDialogs.Instance.Toast("Ops! Ocorreu algum problema", TimeSpan.FromSeconds(2));
 
             }
 
@@ -158,7 +180,7 @@ namespace saac.ViewModels
             {
                 UserId = (string)parameters["userId"];
 
-                InscricoesFinalizadas();
+                ExibirInscricoesFinalizadas();
 
             }
 

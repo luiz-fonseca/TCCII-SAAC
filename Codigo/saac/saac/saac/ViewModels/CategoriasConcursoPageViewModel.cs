@@ -1,4 +1,5 @@
-﻿using Plugin.Connectivity;
+﻿using Acr.UserDialogs;
+using Plugin.Connectivity;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -129,15 +130,23 @@ namespace saac.ViewModels
 
         public async void Verificacao(string id)
         {
-            if (CrossConnectivity.Current.IsConnected)
+            try
             {
-                VerificadorAdm = await _clienteUser.VerificarAdministrador(id);
-                VerificacaoRealizada = true;
+                if (CrossConnectivity.Current.IsConnected)
+                {
+                    VerificadorAdm = await _clienteUser.VerificarAdministrador(id);
+                    VerificacaoRealizada = true;
 
+                }
+                else
+                {
+                    VerificacaoRealizada = false;
+
+                }
             }
-            else
+            catch (Exception)
             {
-                VerificacaoRealizada = false;
+                UserDialogs.Instance.Toast("Ops! Ocorreu algum problema", TimeSpan.FromSeconds(2));
 
             }
         }

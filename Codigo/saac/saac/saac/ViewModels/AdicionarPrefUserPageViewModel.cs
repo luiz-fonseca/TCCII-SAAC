@@ -94,39 +94,65 @@ namespace saac.ViewModels
 
         public async Task SalvarPreferencia()
         {
-            Preferencias.Id = Guid.NewGuid().ToString("N");
-            Preferencias.CodUsuario = UserId;
+            try
+            {
+                Preferencias.Id = Guid.NewGuid().ToString("N");
+                Preferencias.CodUsuario = UserId;
 
-            await _clientePreferencia.AdicionarTable(Preferencias);
+                await _clientePreferencia.AdicionarTable(Preferencias);
 
-            UserDialogs.Instance.Toast("As suas preferências foram salvas", TimeSpan.FromSeconds(2));
+                UserDialogs.Instance.Toast("As suas preferências foram salvas", TimeSpan.FromSeconds(2));
 
-            var navigationParams = new NavigationParameters();
-            navigationParams.Add("userId", UserId);
+                var navigationParams = new NavigationParameters();
+                navigationParams.Add("userId", UserId);
 
-            await _navigationService.NavigateAsync("../PrincipalPage", navigationParams, useModalNavigation: false);
+                await _navigationService.NavigateAsync("../PrincipalPage", navigationParams, useModalNavigation: false);
+
+            }
+            catch (Exception)
+            {
+                UserDialogs.Instance.Toast("Ops! Ocorreu algum problema", TimeSpan.FromSeconds(2));
+
+            }
 
         }
 
         public async Task AtualizarPreferencia()
         {
-            await _clientePreferencia.AtualizarTable(Preferencias);
+            try
+            {
+                await _clientePreferencia.AtualizarTable(Preferencias);
 
-            UserDialogs.Instance.Toast("As suas preferências de concursos foram atualizadas", TimeSpan.FromSeconds(2));
-            await _navigationService.GoBackAsync();
+                UserDialogs.Instance.Toast("As suas preferências de concursos foram atualizadas", TimeSpan.FromSeconds(2));
+                await _navigationService.GoBackAsync();
+
+            }
+            catch (Exception)
+            {
+                UserDialogs.Instance.Toast("Ops! Ocorreu algum problema", TimeSpan.FromSeconds(2));
+
+            }
 
         }
 
         public async void MinhaPreferencia(string codUsuario)
         {
-            if (CrossConnectivity.Current.IsConnected)
+            try
             {
-                Preferencias = await _clientePreferencia.MinhasPreferencias(codUsuario);
+                if (CrossConnectivity.Current.IsConnected)
+                {
+                    Preferencias = await _clientePreferencia.MinhasPreferencias(codUsuario);
 
+                }
+                else
+                {
+                    UserDialogs.Instance.Toast("Você está sem conexão.", TimeSpan.FromSeconds(2));
+
+                }
             }
-            else
+            catch (Exception)
             {
-                UserDialogs.Instance.Toast("Você está sem conexão.", TimeSpan.FromSeconds(2));
+                UserDialogs.Instance.Toast("Ops! Ocorreu algum problema", TimeSpan.FromSeconds(2));
 
             }
         }

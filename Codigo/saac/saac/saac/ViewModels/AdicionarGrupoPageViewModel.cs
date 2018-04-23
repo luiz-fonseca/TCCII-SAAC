@@ -101,19 +101,28 @@ namespace saac.ViewModels
 
         private async Task Salvar()
         {
-            var codGrupo = await SalvarGrupo();
-            await SalvarAuxiliar(codGrupo, true);
-
-            if (Temporario)
+            try
             {
-                await SalvarConcursoGrupo(codGrupo);
+                var codGrupo = await SalvarGrupo();
+                await SalvarAuxiliar(codGrupo, true);
+
+                if (Temporario)
+                {
+                    await SalvarConcursoGrupo(codGrupo);
+
+                }
+
+                UserDialogs.Instance.Toast("Parabéns!! O cadastro" +
+                    " do seu grupo foi realizado.", TimeSpan.FromSeconds(2));
+
+                await _navigationService.GoBackAsync();
 
             }
+            catch (Exception)
+            {
+                UserDialogs.Instance.Toast("Ops! Ocorreu algum problema", TimeSpan.FromSeconds(2));
 
-            UserDialogs.Instance.Toast("Parabéns!! O cadastro" +
-                " do seu grupo foi realizado.", TimeSpan.FromSeconds(2));
-
-            await _navigationService.GoBackAsync();
+            }
         }
 
         private async Task<string> SalvarGrupo()
@@ -176,12 +185,20 @@ namespace saac.ViewModels
         
         private async Task AlterarGrupo()
         {
-            await _clienteGrupo.AtualizarTable(Grupos);
+            try
+            {
+                await _clienteGrupo.AtualizarTable(Grupos);
 
-            UserDialogs.Instance.Toast("Alteração do grupo foi realizada", TimeSpan.FromSeconds(2));
+                UserDialogs.Instance.Toast("Alteração do grupo foi realizada", TimeSpan.FromSeconds(2));
 
-            await _navigationService.GoBackAsync();
+                await _navigationService.GoBackAsync();
 
+            }
+            catch (Exception)
+            {
+                UserDialogs.Instance.Toast("Ops! Ocorreu algum problema", TimeSpan.FromSeconds(2));
+
+            }
         }
 
         public override void OnNavigatingTo(NavigationParameters parameters)

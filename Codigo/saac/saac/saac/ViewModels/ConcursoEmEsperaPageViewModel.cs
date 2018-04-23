@@ -1,4 +1,5 @@
-﻿using Plugin.Connectivity;
+﻿using Acr.UserDialogs;
+using Plugin.Connectivity;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -8,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace saac.ViewModels
 {
@@ -70,10 +72,19 @@ namespace saac.ViewModels
         {
             Atualizando = true;
 
-            ConcursosEmEspera();
+            ExibirConcursosEmEspera();
 
             Atualizando = false;
 
+        }
+
+        public async void ExibirConcursosEmEspera()
+        {
+            IsLoading = true;
+
+            await ConcursosEmEspera();
+
+            IsLoading = false;
         }
 
         public async void ItemTapped(Concurso obj)
@@ -86,34 +97,39 @@ namespace saac.ViewModels
 
         }
 
-        public async void ConcursosEmEspera()
+        public async Task ConcursosEmEspera()
         {
-            if (CrossConnectivity.Current.IsConnected)
+            try
             {
-                IsLoading = true;
-
-                var dataAtual = DateTime.Now.Date;
-                var lista = await _clienteConcurso.ConcursosEmEspera(dataAtual);
-
-                if (lista.Count != 0)
+                if (CrossConnectivity.Current.IsConnected)
                 {
-                    ListaConcursos.Clear();
-                    foreach (var item in lista)
+                    var dataAtual = DateTime.Now.Date;
+                    var lista = await _clienteConcurso.ConcursosEmEspera(dataAtual);
+
+                    if (lista.Count != 0)
                     {
-                        ListaConcursos.Add(item);
+                        ListaConcursos.Clear();
+                        foreach (var item in lista)
+                        {
+                            ListaConcursos.Add(item);
+
+                        }
+                    }
+                    else
+                    {
+                        Mensagem = "Não contém nenhum concurso";
 
                     }
                 }
                 else
                 {
-                    Mensagem = "Não contém nenhum concurso";
+                    Mensagem = "Você está sem conexão";
 
                 }
-                IsLoading = false;
             }
-            else
+            catch (Exception)
             {
-                Mensagem = "Você está sem conexão";
+                UserDialogs.Instance.Toast("Ops! Ocorreu algum problema", TimeSpan.FromSeconds(2));
 
             }
         }
@@ -124,7 +140,7 @@ namespace saac.ViewModels
             {
                 UserId = (string)parameters["userId"];
 
-                ConcursosEmEspera();
+                ExibirConcursosEmEspera();
 
             }
 

@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Plugin.Connectivity;
+using Acr.UserDialogs;
+using System.Threading.Tasks;
 
 namespace saac.ViewModels
 {
@@ -101,35 +103,49 @@ namespace saac.ViewModels
 
         public async void ExibirMeusGrupos(string id)
         {
-            if (CrossConnectivity.Current.IsConnected)
+            IsLoading = true;
+
+            await MeusGruposDisponiveis(id);
+
+            IsLoading = false;
+
+        }
+
+        public async Task MeusGruposDisponiveis(string id)
+        {
+            try
             {
-                IsLoading = true;
-
-                var aux = await _clienteAux.MeusGrupos(id);
-                if (aux.Count == 0)
+                if (CrossConnectivity.Current.IsConnected)
                 {
-                    MeusGroups.Clear();
-                    Message = "Você ainda não possui nenhum Grupo. Crie um novo ou Entre em algum.";
+                    var aux = await _clienteAux.MeusGrupos(id);
+                    if (aux.Count == 0)
+                    {
+                        MeusGroups.Clear();
+                        Message = "Você ainda não possui nenhum Grupo. Crie um novo ou Entre em algum.";
 
+                    }
+                    else
+                    {
+                        Message = string.Empty;
+
+                        var resultado = await _clienteGroup.MeusGrupos(aux);
+                        var resultadoAgrupar = Agrupar(resultado);
+                        Converter(resultadoAgrupar);
+                    }
                 }
                 else
                 {
-                    Message = string.Empty;
+                    MeusGroups.Clear();
+                    Message = "Você está sem conexão.";
 
-                    var resultado = await _clienteGroup.MeusGrupos(aux);
-                    var resultadoAgrupar = Agrupar(resultado);
-                    Converter(resultadoAgrupar);
                 }
-                
-                IsLoading = false;
-
             }
-            else
+            catch(Exception)
             {
-                MeusGroups.Clear();
-                Message = "Você está sem conexão.";
+                UserDialogs.Instance.Toast("Ops! Ocorreu algum problema", TimeSpan.FromSeconds(2));
 
             }
+            
         }
 
 

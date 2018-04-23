@@ -127,7 +127,7 @@ namespace saac.ViewModels
         {
             Atualizando = true;
 
-            GruposConcursos(Concursos.Id);
+            ExibirGruposConcursos(Concursos.Id);
 
             if (VerificacaoRealizada == false)
             {
@@ -136,6 +136,16 @@ namespace saac.ViewModels
             }
             Atualizando = false;
             
+        }
+
+        public async void ExibirGruposConcursos(string codConcurso)
+        {
+            IsLoading = true;
+
+            await GruposConcursos(codConcurso);
+
+            IsLoading = false;
+
         }
 
         public async void AdicionarGrupo()
@@ -149,32 +159,37 @@ namespace saac.ViewModels
 
         }
 
-        public async void GruposConcursos(string codConcurso)
+        public async Task GruposConcursos(string codConcurso)
         {
-            if (CrossConnectivity.Current.IsConnected)
+            try
             {
-                IsLoading = true;
-
-                Mensagem = string.Empty;
-
-                var resultado = await _clienteConcursoGrupo.GruposConcursos(codConcurso);
-
-                if (resultado.Count != 0)
+                if (CrossConnectivity.Current.IsConnected)
                 {
-                    var resulGrupos = await _clienteGrupo.MeusGrupos(resultado);
+                    Mensagem = string.Empty;
 
-                    Grupos.Clear();
-                    foreach (var item in resulGrupos)
+                    var resultado = await _clienteConcursoGrupo.GruposConcursos(codConcurso);
+
+                    if (resultado.Count != 0)
                     {
-                        Grupos.Add(item);
+                        var resulGrupos = await _clienteGrupo.MeusGrupos(resultado);
 
+                        Grupos.Clear();
+                        foreach (var item in resulGrupos)
+                        {
+                            Grupos.Add(item);
+
+                        }
                     }
                 }
-                IsLoading = false;
+                else
+                {
+                    Mensagem = "Você está sem conexão";
+
+                }
             }
-            else
+            catch (Exception)
             {
-                Mensagem = "Você está sem conexão";
+                UserDialogs.Instance.Toast("Ops! Ocorreu algum problema", TimeSpan.FromSeconds(2));
 
             }
         }
@@ -191,38 +206,46 @@ namespace saac.ViewModels
 
         private async void ExcluirConcurso()
         {
-            if (CrossConnectivity.Current.IsConnected)
+            try
             {
-                var resultado = await _dialogService.DisplayAlertAsync("Excluir Concurso", "Deseja realmente remover este concurso?", "Sim", "Não");
-
-                if (resultado)
+                if (CrossConnectivity.Current.IsConnected)
                 {
-                    using (var Dialog = UserDialogs.Instance.Loading("Excluindo...", null, null, true, MaskType.Black))
+                    var resultado = await _dialogService.DisplayAlertAsync("Excluir Concurso", "Deseja realmente remover este concurso?", "Sim", "Não");
+
+                    if (resultado)
                     {
-                        await RemoverGrupo();
-
-                        var Preferencia = await _clientePreferencia.ConcursoPreferencia(Concursos.Id);
-
-                        var ListaAuxConcurso = await _clienteConcursoGrupo.ListaGruposConcursos(Concursos.Id);
-                        foreach (var itemListaAuxConcurso in ListaAuxConcurso)
+                        using (var Dialog = UserDialogs.Instance.Loading("Excluindo...", null, null, true, MaskType.Black))
                         {
-                            await _clienteConcursoGrupo.RemoverTable(itemListaAuxConcurso);
+                            await RemoverGrupo();
+
+                            var Preferencia = await _clientePreferencia.ConcursoPreferencia(Concursos.Id);
+
+                            var ListaAuxConcurso = await _clienteConcursoGrupo.ListaGruposConcursos(Concursos.Id);
+                            foreach (var itemListaAuxConcurso in ListaAuxConcurso)
+                            {
+                                await _clienteConcursoGrupo.RemoverTable(itemListaAuxConcurso);
+
+                            }
+
+                            await _clientePreferencia.RemoverTable(Preferencia);
+                            await _clienteConcurso.RemoverTable(Concursos);
 
                         }
 
-                        await _clientePreferencia.RemoverTable(Preferencia);
-                        await _clienteConcurso.RemoverTable(Concursos);
+                        UserDialogs.Instance.Toast("Este concurso foi excluído", TimeSpan.FromSeconds(2));
+                        await _navigationService.GoBackAsync();
+                    }
+                    else
+                    {
+                        UserDialogs.Instance.Toast("Você está sem conexão", TimeSpan.FromSeconds(2));
 
                     }
 
-                    UserDialogs.Instance.Toast("Este concurso foi excluído", TimeSpan.FromSeconds(2));
-                    await _navigationService.GoBackAsync();
                 }
-                else
-                {
-                    UserDialogs.Instance.Toast("Você está sem conexão", TimeSpan.FromSeconds(2));
-
-                }
+            }
+            catch (Exception)
+            {
+                UserDialogs.Instance.Toast("Ops! Ocorreu algum problema", TimeSpan.FromSeconds(2));
 
             }
         }
@@ -280,14 +303,22 @@ namespace saac.ViewModels
 
         public async void Verificacao(string id)
         {
-            if (CrossConnectivity.Current.IsConnected)
+            try
             {
-                VerificadorAdm = await _clienteUser.VerificarAdministrador(id);
+                if (CrossConnectivity.Current.IsConnected)
+                {
+                    VerificadorAdm = await _clienteUser.VerificarAdministrador(id);
 
-                VerificacaoRealizada = true;
+                    VerificacaoRealizada = true;
 
+                }
+                else
+                {
+                    VerificacaoRealizada = false;
+
+                }
             }
-            else
+            catch (Exception)
             {
                 VerificacaoRealizada = false;
 
@@ -315,7 +346,7 @@ namespace saac.ViewModels
                 {
                     Concursos = (Concurso)parameters["concurso"];
 
-                    GruposConcursos(Concursos.Id);
+                    ExibirGruposConcursos(Concursos.Id);
 
                     Verificacao(UserId);
 

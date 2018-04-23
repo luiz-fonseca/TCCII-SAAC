@@ -1,4 +1,5 @@
-﻿using Plugin.Connectivity;
+﻿using Acr.UserDialogs;
+using Plugin.Connectivity;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -8,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace saac.ViewModels
 {
@@ -83,11 +85,11 @@ namespace saac.ViewModels
         }
 
 
-        public void ExibirConcursos(string args)
+        public async void ExibirConcursos(string args)
         {
             IsLoading = true;
 
-            ConcursosDisponiveis(args);
+            await ConcursosDisponiveis(args);
 
             IsLoading = false;
 
@@ -102,27 +104,35 @@ namespace saac.ViewModels
             await _navigationService.NavigateAsync("ConcursoSelecionadoPage",navigationParams, useModalNavigation: false);
         }
 
-        public async void ConcursosDisponiveis(string regiao)
+        public async Task ConcursosDisponiveis(string regiao)
         {
-            if (CrossConnectivity.Current.IsConnected)
+            try
             {
-                var resultado = await _clienteConcurso.ConcursosDisponiveis(regiao);
-
-                if (resultado.Count != 0)
+                if (CrossConnectivity.Current.IsConnected)
                 {
-                    var listaAgrupada = Agrupar(resultado);
+                    var resultado = await _clienteConcurso.ConcursosDisponiveis(regiao);
 
-                    Converter(listaAgrupada);
+                    if (resultado.Count != 0)
+                    {
+                        var listaAgrupada = Agrupar(resultado);
+
+                        Converter(listaAgrupada);
+                    }
+                    else
+                    {
+                        ConcursosAgrupados.Clear();
+                        Mensagem = "Está região ainda não possui nenhum Concurso Disponível";
+                    }
                 }
                 else
                 {
-                    ConcursosAgrupados.Clear();
-                    Mensagem = "Está região ainda não possui nenhum Concurso Disponível";
+                    Mensagem = "Você está sem conexão";
+
                 }
             }
-            else
+            catch (Exception)
             {
-                Mensagem = "Você está sem conexão";
+                UserDialogs.Instance.Toast("Ops! Ocorreu algum problema", TimeSpan.FromSeconds(2));
 
             }
 

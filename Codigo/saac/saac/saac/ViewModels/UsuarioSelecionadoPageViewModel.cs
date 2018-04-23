@@ -47,17 +47,24 @@ namespace saac.ViewModels
         #region Métodos
         public async void UsuarioSelecionado(string codUsuario)
         {
-            if (CrossConnectivity.Current.IsConnected)
+            try
             {
-                User = await _clienteUsuario.UsuarioSelecionado(codUsuario);
+                if (CrossConnectivity.Current.IsConnected)
+                {
+                    User = await _clienteUsuario.UsuarioSelecionado(codUsuario);
 
+                }
+                else
+                {
+                    UserDialogs.Instance.Toast("Você está sem conexão", TimeSpan.FromSeconds(2));
+
+                }
             }
-            else
+            catch (Exception)
             {
-                UserDialogs.Instance.Toast("Você está sem conexão", TimeSpan.FromSeconds(2));
+                UserDialogs.Instance.Toast("Ops! Ocorreu algum problema", TimeSpan.FromSeconds(2));
 
-            }
-
+            }  
         }
 
         public async void EditarUsuario()
@@ -65,7 +72,7 @@ namespace saac.ViewModels
             var navigationParams = new NavigationParameters();
             navigationParams.Add("usuario", User);
 
-           await _navigationService.NavigateAsync("AdicionarUsuarioPage", navigationParams, useModalNavigation: false);
+            await _navigationService.NavigateAsync("AdicionarUsuarioPage", navigationParams, useModalNavigation: false);
 
 
         }

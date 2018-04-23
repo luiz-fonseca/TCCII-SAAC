@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Acr.UserDialogs;
 using saac.Helpers;
+using Plugin.Connectivity;
 
 namespace saac.ViewModels
 {
@@ -117,10 +118,26 @@ namespace saac.ViewModels
             {
                 using (var Dialog = UserDialogs.Instance.Loading("Carregando...", null, null, true, MaskType.Black))
                 {
-                    await SetFacebookUserProfileAsync(accessToken);
-                    
-                    await CriarUsuario();
-                    
+                    try
+                    {
+                        if (CrossConnectivity.Current.IsConnected) {
+                            await SetFacebookUserProfileAsync(accessToken);
+
+                            await CriarUsuario();
+
+                        }
+                        else
+                        {
+                            UserDialogs.Instance.Toast("Você está sem conexão.", TimeSpan.FromSeconds(2));
+
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        UserDialogs.Instance.Toast("Ops! Ocorreu algum problema.", TimeSpan.FromSeconds(2));
+
+                    }
+
                 }
             }
         }
@@ -140,12 +157,11 @@ namespace saac.ViewModels
             navigationParams.Add("userId", User.Id);
 
 
-            try
-            {
-                var resultado = await _clienteUser.ExisteUsuario(User.Id);
+           
+            var resultado = await _clienteUser.ExisteUsuario(User.Id);
          
-                if (resultado != 0)
-                {
+            if (resultado != 0)
+            {
                     /*var aleatorio = new Random();
                     var resulAleatorio = aleatorio.Next(0, 1);
 
@@ -153,28 +169,19 @@ namespace saac.ViewModels
                     {
                         await _clienteUser.AtualizarTable(User);
                     }*/
-                    await _navigationService.NavigateAsync("../PrincipalPage", navigationParams, useModalNavigation: false);
-
-                }
-                else
-                {
-                    navigationParams.Add("adicionar", "adicionar");
-                    User.Administrador = false;
-
-                    await _clienteUser.AdicionarTable(User);
-                    UserDialogs.Instance.Toast("Parabéns!! O seu cadastro foi realizado.", TimeSpan.FromSeconds(2));
-                    await _navigationService.NavigateAsync("../AdicionarPrefUserPage", navigationParams, useModalNavigation: false);
-                }
-
-
+                await _navigationService.NavigateAsync("../PrincipalPage", navigationParams, useModalNavigation: false);
 
             }
-            catch (Exception)
+            else
             {
-                UserDialogs.Instance.Toast("Ops! Ocorreu algum problema.", TimeSpan.FromSeconds(2));
+                navigationParams.Add("adicionar", "adicionar");
+                User.Administrador = false;
+
+                await _clienteUser.AdicionarTable(User);
+                UserDialogs.Instance.Toast("Parabéns!! O seu cadastro foi realizado.", TimeSpan.FromSeconds(2));
+                await _navigationService.NavigateAsync("../AdicionarPrefUserPage", navigationParams, useModalNavigation: false);
 
             }
-
         }
 
         public async void Logado()

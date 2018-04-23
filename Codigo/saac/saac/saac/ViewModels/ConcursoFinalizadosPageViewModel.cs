@@ -100,9 +100,19 @@ namespace saac.ViewModels
         {
             Atualizando = true;
 
-            ConcursosFinalizados();
+            ExibirConcursosFinalizados();
 
             Atualizando = false;
+
+        }
+
+        public async void ExibirConcursosFinalizados()
+        {
+            IsLoading = true;
+
+            await ConcursosFinalizados();
+
+            IsLoading = false;
 
         }
 
@@ -116,71 +126,83 @@ namespace saac.ViewModels
 
         }
 
-        public async void ConcursosFinalizados()
+        public async Task ConcursosFinalizados()
         {
-            if (CrossConnectivity.Current.IsConnected)
+            try
             {
-                IsLoading = true;
-
-                var dataAtual = DateTime.Now.Date;
-
-                var lista = await _clienteConcurso.ConcursosFinalizados(dataAtual);
-
-                if (lista.Count != 0)
+                if (CrossConnectivity.Current.IsConnected)
                 {
-                    ListaConcursos.Clear();
-                    foreach (var item in lista)
+                    var dataAtual = DateTime.Now.Date;
+
+                    var lista = await _clienteConcurso.ConcursosFinalizados(dataAtual);
+
+                    if (lista.Count != 0)
                     {
-                        ListaConcursos.Add(item);
+                        ListaConcursos.Clear();
+                        foreach (var item in lista)
+                        {
+                            ListaConcursos.Add(item);
+                        }
+                    }
+                    else
+                    {
+                        Mensagem = "Não contém nenhum concurso";
+
                     }
                 }
                 else
                 {
-                    Mensagem = "Não contém nenhum concurso";
+                    Mensagem = "Você está sem conexão";
+
                 }
-                IsLoading = false;
-
             }
-            else
+            catch (Exception)
             {
-                Mensagem = "Você está sem conexão";
+                UserDialogs.Instance.Toast("Ops! Ocorreu algum problema", TimeSpan.FromSeconds(2));
 
             }
-
         }
 
         public async void Remover()
         {
-            if (CrossConnectivity.Current.IsConnected)
+            try
             {
-                using (var Dialog = UserDialogs.Instance.Loading("Excluindo Concursos...", null, null, true, MaskType.Black))
+                if (CrossConnectivity.Current.IsConnected)
                 {
-                    foreach (var itemConcurso in ListaConcursos)
+                    using (var Dialog = UserDialogs.Instance.Loading("Excluindo Concursos...", null, null, true, MaskType.Black))
                     {
-                        var Preferencia = await _clientePreferencia.ConcursoPreferencia(itemConcurso.Id);
-                        var ListaAux = await _clienteAuxConcurso.ListaGruposConcursos(itemConcurso.Id);
-                        var AuxConcurso = await _clienteAuxConcurso.GruposConcursos(itemConcurso.Id);
-
-                        await RemoverGrupo(AuxConcurso);
-
-                        foreach (var itemListaAux in ListaAux)
+                        foreach (var itemConcurso in ListaConcursos)
                         {
-                            await _clienteAuxConcurso.RemoverTable(itemListaAux);
+                            var Preferencia = await _clientePreferencia.ConcursoPreferencia(itemConcurso.Id);
+                            var ListaAux = await _clienteAuxConcurso.ListaGruposConcursos(itemConcurso.Id);
+                            var AuxConcurso = await _clienteAuxConcurso.GruposConcursos(itemConcurso.Id);
+
+                            await RemoverGrupo(AuxConcurso);
+
+                            foreach (var itemListaAux in ListaAux)
+                            {
+                                await _clienteAuxConcurso.RemoverTable(itemListaAux);
+                            }
+
+                            await _clientePreferencia.RemoverTable(Preferencia);
+                            await _clienteConcurso.RemoverTable(itemConcurso);
+
                         }
-
-                        await _clientePreferencia.RemoverTable(Preferencia);
-                        await _clienteConcurso.RemoverTable(itemConcurso);
-
                     }
+
+                    UserDialogs.Instance.Toast("Esses concursos foram finalizados", TimeSpan.FromSeconds(2));
+                    await _navigationService.GoBackAsync();
+
                 }
+                else
+                {
+                    UserDialogs.Instance.Toast("Você está sem conexão", TimeSpan.FromSeconds(2));
 
-                UserDialogs.Instance.Toast("Esses concursos foram finalizados", TimeSpan.FromSeconds(2));
-                await _navigationService.GoBackAsync();
-
+                }
             }
-            else
+            catch (Exception)
             {
-                UserDialogs.Instance.Toast("Você está sem conexão", TimeSpan.FromSeconds(2));
+                UserDialogs.Instance.Toast("Ops! Ocorreu algum problema", TimeSpan.FromSeconds(2));
 
             }
         }
@@ -225,7 +247,7 @@ namespace saac.ViewModels
             {
                 UserId = (string)parameters["userId"];
 
-                ConcursosFinalizados();
+                ExibirConcursosFinalizados();
 
             }
         }

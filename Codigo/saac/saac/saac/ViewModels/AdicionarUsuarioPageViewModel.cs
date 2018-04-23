@@ -45,14 +45,22 @@ namespace saac.ViewModels
         #region Métodos
         public async void SalvarUsuario()
         {
-            if (CrossConnectivity.Current.IsConnected)
+            try
             {
-                await _clienteUsuario.AtualizarTable(User);
-                UserDialogs.Instance.Toast("Os seus dados foram atualizados", TimeSpan.FromSeconds(2));
+                if (CrossConnectivity.Current.IsConnected)
+                {
+                    await _clienteUsuario.AtualizarTable(User);
+                    UserDialogs.Instance.Toast("Os seus dados foram atualizados", TimeSpan.FromSeconds(2));
+                }
+                else
+                {
+                    UserDialogs.Instance.Toast("Você está sem conexão.", TimeSpan.FromSeconds(2));
+
+                }
             }
-            else
+            catch (Exception)
             {
-                UserDialogs.Instance.Toast("Você está sem conexão.", TimeSpan.FromSeconds(2));
+                UserDialogs.Instance.Toast("Ops! Ocorreu algum problema", TimeSpan.FromSeconds(2));
 
             }
         }

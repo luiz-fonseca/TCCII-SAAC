@@ -119,21 +119,30 @@ namespace saac.ViewModels
 
         public async Task Salvar()
         {
-            using (var Dialog = UserDialogs.Instance.Loading("Salvando...", null, null, true, MaskType.Black))
+            try
             {
-                await _clienteConcurso.AdicionarTable(Concursos);
+                using (var Dialog = UserDialogs.Instance.Loading("Salvando...", null, null, true, MaskType.Black))
+                {
+                    await _clienteConcurso.AdicionarTable(Concursos);
 
-                await SalvarPreferencias();
-                await SalvarGrupo();
-                await SalvarAux();
+                    await SalvarPreferencias();
+                    await SalvarGrupo();
+                    await SalvarAux();
+
+                }
+
+                UserDialogs.Instance.Toast("Concurso Salvo", TimeSpan.FromSeconds(2));
+
+                var navigationParams = new NavigationParameters();
+                navigationParams.Add("voltar", "");
+                await _navigationService.GoBackAsync(navigationParams);
 
             }
+            catch (Exception)
+            {
+                UserDialogs.Instance.Toast("Ops! Ocorreu algum problema", TimeSpan.FromSeconds(2));
 
-            UserDialogs.Instance.Toast("Concurso Salvo", TimeSpan.FromSeconds(2));
-           
-            var navigationParams = new NavigationParameters();
-            navigationParams.Add("voltar", "");
-            await _navigationService.GoBackAsync(navigationParams);
+            }
 
         }
 
@@ -169,23 +178,40 @@ namespace saac.ViewModels
 
         public async Task Alterar()
         {
-            await _clientePreferencia.AtualizarTable(Preferencias);
+            try
+            {
+                await _clientePreferencia.AtualizarTable(Preferencias);
 
-            UserDialogs.Instance.Toast("A preferência do concurso foi atualizada", TimeSpan.FromSeconds(2));
-            await _navigationService.GoBackAsync();
+                UserDialogs.Instance.Toast("A preferência do concurso foi atualizada", TimeSpan.FromSeconds(2));
+                await _navigationService.GoBackAsync();
+
+            }
+            catch (Exception)
+            {
+                UserDialogs.Instance.Toast("Ops! Ocorreu algum problema", TimeSpan.FromSeconds(2));
+
+            }
 
         }
 
         public async void ConcursoPreferencia(string codConcurso)
         {
-            if (CrossConnectivity.Current.IsConnected)
+            try
             {
-                Preferencias = await _clientePreferencia.ConcursoPreferencia(codConcurso);
+                if (CrossConnectivity.Current.IsConnected)
+                {
+                    Preferencias = await _clientePreferencia.ConcursoPreferencia(codConcurso);
 
+                }
+                else
+                {
+                    UserDialogs.Instance.Toast("Você está sem conexão.", TimeSpan.FromSeconds(2));
+
+                }
             }
-            else
+            catch (Exception)
             {
-                UserDialogs.Instance.Toast("Você está sem conexão.", TimeSpan.FromSeconds(2));
+                UserDialogs.Instance.Toast("Ops! Ocorreu algum problema", TimeSpan.FromSeconds(2));
 
             }
         }

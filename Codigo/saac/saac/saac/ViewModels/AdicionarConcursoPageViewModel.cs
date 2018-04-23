@@ -216,19 +216,26 @@ namespace saac.ViewModels
 
         public async Task Alterar()
         {
-            var dataAtual = DateTime.Now.Date;
+            try{
+                var dataAtual = DateTime.Now.Date;
 
-            if (dataAtual <= Concursos.DtInscricao.Date)
-            {
-                Concursos.Visibilidade = true;
+                if (dataAtual <= Concursos.DtInscricao.Date)
+                {
+                    Concursos.Visibilidade = true;
+
+                }
+
+                await _clienteConcurso.AtualizarTable(Concursos);
+
+                UserDialogs.Instance.Toast("Os detalhes deste concurso foi atualizados", TimeSpan.FromSeconds(2));
+                await _navigationService.GoBackAsync();
 
             }
+            catch (Exception)
+            {
+                UserDialogs.Instance.Toast("Ops! Ocorreu algum problema", TimeSpan.FromSeconds(2));
 
-            await _clienteConcurso.AtualizarTable(Concursos);
-
-            UserDialogs.Instance.Toast("Os detalhes deste concurso foi atualizados", TimeSpan.FromSeconds(2));
-            await _navigationService.GoBackAsync();
-
+            }
         }
 
         public async void Voltar()
