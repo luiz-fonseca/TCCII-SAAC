@@ -469,6 +469,87 @@
           "build/MonoAndroid70/Xamarin.Android.Support.Vector.Drawable.targets": {}
         }
       },
+      "Xamarin.Build.Download/0.4.2": {
+        "type": "package",
+        "build": {
+          "build/Xamarin.Build.Download.props": {},
+          "build/Xamarin.Build.Download.targets": {}
+        }
+      },
+      "Xamarin.Firebase.Ads/42.1021.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Firebase.Analytics": "[42.1021.1]",
+          "Xamarin.GooglePlayServices.Ads": "[42.1021.1]"
+        }
+      },
+      "Xamarin.Firebase.Analytics/42.1021.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Firebase.Analytics.Impl": "[42.1021.1]",
+          "Xamarin.Firebase.Common": "[42.1021.1]",
+          "Xamarin.GooglePlayServices.Basement": "[42.1021.1]"
+        },
+        "compile": {
+          "lib/MonoAndroid70/Xamarin.Firebase.Analytics.dll": {}
+        },
+        "runtime": {
+          "lib/MonoAndroid70/Xamarin.Firebase.Analytics.dll": {}
+        },
+        "build": {
+          "build/MonoAndroid70/Xamarin.Firebase.Analytics.targets": {}
+        }
+      },
+      "Xamarin.Firebase.Analytics.Impl/42.1021.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Firebase.Common": "[42.1021.1]",
+          "Xamarin.Firebase.Iid": "[42.1021.1]",
+          "Xamarin.GooglePlayServices.Basement": "[42.1021.1]",
+          "Xamarin.GooglePlayServices.Tasks": "[42.1021.1]"
+        },
+        "compile": {
+          "lib/MonoAndroid70/Xamarin.Firebase.Analytics.Impl.dll": {}
+        },
+        "runtime": {
+          "lib/MonoAndroid70/Xamarin.Firebase.Analytics.Impl.dll": {}
+        },
+        "build": {
+          "build/MonoAndroid70/Xamarin.Firebase.Analytics.Impl.targets": {}
+        }
+      },
+      "Xamarin.Firebase.Common/42.1021.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.GooglePlayServices.Basement": "[42.1021.1]",
+          "Xamarin.GooglePlayServices.Tasks": "[42.1021.1]"
+        },
+        "compile": {
+          "lib/MonoAndroid70/Xamarin.Firebase.Common.dll": {}
+        },
+        "runtime": {
+          "lib/MonoAndroid70/Xamarin.Firebase.Common.dll": {}
+        },
+        "build": {
+          "build/MonoAndroid70/Xamarin.Firebase.Common.targets": {}
+        }
+      },
+      "Xamarin.Firebase.Iid/42.1021.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Firebase.Common": "[42.1021.1]",
+          "Xamarin.GooglePlayServices.Basement": "[42.1021.1]"
+        },
+        "compile": {
+          "lib/MonoAndroid70/Xamarin.Firebase.Iid.dll": {}
+        },
+        "runtime": {
+          "lib/MonoAndroid70/Xamarin.Firebase.Iid.dll": {}
+        },
+        "build": {
+          "build/MonoAndroid70/Xamarin.Firebase.Iid.targets": {}
+        }
+      },
       "Xamarin.Forms/2.5.1.444934": {
         "type": "package",
         "dependencies": {
@@ -495,6 +576,118 @@
         "build": {
           "build/netstandard1.0/Xamarin.Forms.props": {},
           "build/netstandard1.0/Xamarin.Forms.targets": {}
+        }
+      },
+      "Xamarin.GooglePlayServices.Ads/42.1021.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.GooglePlayServices.Ads.Lite": "[42.1021.1]",
+          "Xamarin.GooglePlayServices.Base": "[42.1021.1]",
+          "Xamarin.GooglePlayServices.Basement": "[42.1021.1]",
+          "Xamarin.GooglePlayServices.Clearcut": "[42.1021.1]",
+          "Xamarin.GooglePlayServices.Gass": "[42.1021.1]"
+        },
+        "compile": {
+          "lib/MonoAndroid70/Xamarin.GooglePlayServices.Ads.dll": {}
+        },
+        "runtime": {
+          "lib/MonoAndroid70/Xamarin.GooglePlayServices.Ads.dll": {}
+        },
+        "build": {
+          "build/MonoAndroid70/Xamarin.GooglePlayServices.Ads.targets": {}
+        }
+      },
+      "Xamarin.GooglePlayServices.Ads.Lite/42.1021.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.GooglePlayServices.Basement": "[42.1021.1]"
+        },
+        "compile": {
+          "lib/MonoAndroid70/Xamarin.GooglePlayServices.Ads.Lite.dll": {}
+        },
+        "runtime": {
+          "lib/MonoAndroid70/Xamarin.GooglePlayServices.Ads.Lite.dll": {}
+        },
+        "build": {
+          "build/MonoAndroid70/Xamarin.GooglePlayServices.Ads.Lite.targets": {}
+        }
+      },
+      "Xamarin.GooglePlayServices.Base/42.1021.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.GooglePlayServices.Basement": "[42.1021.1]",
+          "Xamarin.GooglePlayServices.Tasks": "[42.1021.1]"
+        },
+        "compile": {
+          "lib/MonoAndroid70/Xamarin.GooglePlayServices.Base.dll": {}
+        },
+        "runtime": {
+          "lib/MonoAndroid70/Xamarin.GooglePlayServices.Base.dll": {}
+        },
+        "build": {
+          "build/MonoAndroid70/Xamarin.GooglePlayServices.Base.targets": {}
+        }
+      },
+      "Xamarin.GooglePlayServices.Basement/42.1021.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Android.Support.v4": "25.1.0",
+          "Xamarin.Build.Download": "0.4.2"
+        },
+        "compile": {
+          "lib/MonoAndroid70/Xamarin.GooglePlayServices.Basement.dll": {}
+        },
+        "runtime": {
+          "lib/MonoAndroid70/Xamarin.GooglePlayServices.Basement.dll": {}
+        },
+        "build": {
+          "build/MonoAndroid70/Xamarin.GooglePlayServices.Basement.targets": {}
+        }
+      },
+      "Xamarin.GooglePlayServices.Clearcut/42.1021.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.GooglePlayServices.Base": "[42.1021.1]",
+          "Xamarin.GooglePlayServices.Basement": "[42.1021.1]"
+        },
+        "compile": {
+          "lib/MonoAndroid70/Xamarin.GooglePlayServices.Clearcut.dll": {}
+        },
+        "runtime": {
+          "lib/MonoAndroid70/Xamarin.GooglePlayServices.Clearcut.dll": {}
+        },
+        "build": {
+          "build/MonoAndroid70/Xamarin.GooglePlayServices.Clearcut.targets": {}
+        }
+      },
+      "Xamarin.GooglePlayServices.Gass/42.1021.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.GooglePlayServices.Basement": "[42.1021.1]"
+        },
+        "compile": {
+          "lib/MonoAndroid70/Xamarin.GooglePlayServices.Gass.dll": {}
+        },
+        "runtime": {
+          "lib/MonoAndroid70/Xamarin.GooglePlayServices.Gass.dll": {}
+        },
+        "build": {
+          "build/MonoAndroid70/Xamarin.GooglePlayServices.Gass.targets": {}
+        }
+      },
+      "Xamarin.GooglePlayServices.Tasks/42.1021.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.GooglePlayServices.Basement": "[42.1021.1]"
+        },
+        "compile": {
+          "lib/MonoAndroid70/Xamarin.GooglePlayServices.Tasks.dll": {}
+        },
+        "runtime": {
+          "lib/MonoAndroid70/Xamarin.GooglePlayServices.Tasks.dll": {}
+        },
+        "build": {
+          "build/MonoAndroid70/Xamarin.GooglePlayServices.Tasks.targets": {}
         }
       },
       "saac/1.0.0": {
@@ -1107,6 +1300,75 @@
         "xamarin.android.support.vector.drawable.nuspec"
       ]
     },
+    "Xamarin.Build.Download/0.4.2": {
+      "sha512": "ubHPHMJ7RrfrsG4kHEy925XDMb+P41WOI8Bxkm3RmecGjj1Ew/u6rpWAZSgLv7FxZbmfvl5xAKUJ4onCycvw5g==",
+      "type": "package",
+      "path": "xamarin.build.download/0.4.2",
+      "files": [
+        "THIRD-PARTY-NOTICES.txt",
+        "build/Mono.Cecil.dll",
+        "build/Newtonsoft.Json.dll",
+        "build/System.Net.Http.Formatting.dll",
+        "build/Xamarin.Build.Download.dll",
+        "build/Xamarin.Build.Download.props",
+        "build/Xamarin.Build.Download.targets",
+        "xamarin.build.download.0.4.2.nupkg.sha512",
+        "xamarin.build.download.nuspec"
+      ]
+    },
+    "Xamarin.Firebase.Ads/42.1021.1": {
+      "sha512": "Iq5FgJ08GQ8aafUdBQX0CqCRJPeshEPVFBvuY1LLxlIUbM8sXP5ScAAZ5XwXoXjr9rcCl7zjf6Jsp8DpkEMYyg==",
+      "type": "package",
+      "path": "xamarin.firebase.ads/42.1021.1",
+      "files": [
+        "xamarin.firebase.ads.42.1021.1.nupkg.sha512",
+        "xamarin.firebase.ads.nuspec"
+      ]
+    },
+    "Xamarin.Firebase.Analytics/42.1021.1": {
+      "sha512": "qa9YJoLEK3Qy0QmsJnzmjHa6YqThxug8P7ThrGuZ+q1mPwD9ib44oFhYKeAReH4qF2sKcv4eY6n9PQq5b+Qz2w==",
+      "type": "package",
+      "path": "xamarin.firebase.analytics/42.1021.1",
+      "files": [
+        "build/MonoAndroid70/Xamarin.Firebase.Analytics.targets",
+        "lib/MonoAndroid70/Xamarin.Firebase.Analytics.dll",
+        "xamarin.firebase.analytics.42.1021.1.nupkg.sha512",
+        "xamarin.firebase.analytics.nuspec"
+      ]
+    },
+    "Xamarin.Firebase.Analytics.Impl/42.1021.1": {
+      "sha512": "B9/46wV719Ow9kA0JB8DLYJFGKe4s+MYxhSclytIyCGYhPK74GUMmVV2B8ergJhy4QHTyIYNpBRGRdhvhAk8hQ==",
+      "type": "package",
+      "path": "xamarin.firebase.analytics.impl/42.1021.1",
+      "files": [
+        "build/MonoAndroid70/Xamarin.Firebase.Analytics.Impl.targets",
+        "lib/MonoAndroid70/Xamarin.Firebase.Analytics.Impl.dll",
+        "xamarin.firebase.analytics.impl.42.1021.1.nupkg.sha512",
+        "xamarin.firebase.analytics.impl.nuspec"
+      ]
+    },
+    "Xamarin.Firebase.Common/42.1021.1": {
+      "sha512": "nJ6MmSJK1AYRZL3tw/SnVx9gyg037xlvez5tyi9Nw8Ni8U7hskIN+CI0m0dfEmkL8fgg/FDLsb1VeszZPfHlXA==",
+      "type": "package",
+      "path": "xamarin.firebase.common/42.1021.1",
+      "files": [
+        "build/MonoAndroid70/Xamarin.Firebase.Common.targets",
+        "lib/MonoAndroid70/Xamarin.Firebase.Common.dll",
+        "xamarin.firebase.common.42.1021.1.nupkg.sha512",
+        "xamarin.firebase.common.nuspec"
+      ]
+    },
+    "Xamarin.Firebase.Iid/42.1021.1": {
+      "sha512": "iVCqEPeoiJLnYNy0YTIM8jqcfo66TgG0hTH5UGhIEQA6ImEMAA8e4EfgrbYsNNfQ1lo1bPp36l/2pLvmt61FWw==",
+      "type": "package",
+      "path": "xamarin.firebase.iid/42.1021.1",
+      "files": [
+        "build/MonoAndroid70/Xamarin.Firebase.Iid.targets",
+        "lib/MonoAndroid70/Xamarin.Firebase.Iid.dll",
+        "xamarin.firebase.iid.42.1021.1.nupkg.sha512",
+        "xamarin.firebase.iid.nuspec"
+      ]
+    },
     "Xamarin.Forms/2.5.1.444934": {
       "sha512": "zDbZeFhh62l6cMG9dXrQ/CSbk+NxKAykeL+JcVxLn//Rx678sCa961F+ib0gqzNHkTmT1K3TPLlJZp5WjvnKVA==",
       "type": "package",
@@ -1289,6 +1551,84 @@
         "xamarin.forms.nuspec"
       ]
     },
+    "Xamarin.GooglePlayServices.Ads/42.1021.1": {
+      "sha512": "rXC/iNqxPdubDexbeV65IYWmqYJyNxLqnsXVRkVlvKwTVd8ogVp7wWn4G28iD925MZR6zYr8zUQ8AnivUFMF3Q==",
+      "type": "package",
+      "path": "xamarin.googleplayservices.ads/42.1021.1",
+      "files": [
+        "build/MonoAndroid70/Xamarin.GooglePlayServices.Ads.targets",
+        "lib/MonoAndroid70/Xamarin.GooglePlayServices.Ads.dll",
+        "xamarin.googleplayservices.ads.42.1021.1.nupkg.sha512",
+        "xamarin.googleplayservices.ads.nuspec"
+      ]
+    },
+    "Xamarin.GooglePlayServices.Ads.Lite/42.1021.1": {
+      "sha512": "5uJNgAIbPqoVL/0tVlIJhZTOI8prGuBQHSOUp0gO8G3JHVycDLx6SVL8QHZDQAGUB3wzAk2eQEZMExb0gUXM9A==",
+      "type": "package",
+      "path": "xamarin.googleplayservices.ads.lite/42.1021.1",
+      "files": [
+        "build/MonoAndroid70/Xamarin.GooglePlayServices.Ads.Lite.targets",
+        "lib/MonoAndroid70/Xamarin.GooglePlayServices.Ads.Lite.dll",
+        "xamarin.googleplayservices.ads.lite.42.1021.1.nupkg.sha512",
+        "xamarin.googleplayservices.ads.lite.nuspec"
+      ]
+    },
+    "Xamarin.GooglePlayServices.Base/42.1021.1": {
+      "sha512": "BtzfOXEkHdaQ8NGc8TpAYmjGAf27zWyxMS9dz+YGU2S2oR09KPm/dQ7PzHNlOT90CQLI4JjzKTxfQ7IB5DBsJA==",
+      "type": "package",
+      "path": "xamarin.googleplayservices.base/42.1021.1",
+      "files": [
+        "build/MonoAndroid70/Xamarin.GooglePlayServices.Base.targets",
+        "lib/MonoAndroid70/Xamarin.GooglePlayServices.Base.dll",
+        "xamarin.googleplayservices.base.42.1021.1.nupkg.sha512",
+        "xamarin.googleplayservices.base.nuspec"
+      ]
+    },
+    "Xamarin.GooglePlayServices.Basement/42.1021.1": {
+      "sha512": "jtKUaz3wGQevuewY9i7FYRvfSIZhBHymTZwTx1agr6G2hg6Xx06LkRYICULHTRjUHa+Ee/J44ejf3+hMd2WBeg==",
+      "type": "package",
+      "path": "xamarin.googleplayservices.basement/42.1021.1",
+      "files": [
+        "build/MonoAndroid70/Xamarin.GooglePlayServices.Basement.targets",
+        "build/MonoAndroid70/Xamarin.GooglePlayServices.Tasks.dll",
+        "lib/MonoAndroid70/Xamarin.GooglePlayServices.Basement.dll",
+        "xamarin.googleplayservices.basement.42.1021.1.nupkg.sha512",
+        "xamarin.googleplayservices.basement.nuspec"
+      ]
+    },
+    "Xamarin.GooglePlayServices.Clearcut/42.1021.1": {
+      "sha512": "PYqtajGZNpqC1tUBjB+Acynezo2Dm10hIq01DBS9jotXNw7Svxx2X42Zpuf8kWSRQoXj/M4yX6E6SDLqk40ScQ==",
+      "type": "package",
+      "path": "xamarin.googleplayservices.clearcut/42.1021.1",
+      "files": [
+        "build/MonoAndroid70/Xamarin.GooglePlayServices.Clearcut.targets",
+        "lib/MonoAndroid70/Xamarin.GooglePlayServices.Clearcut.dll",
+        "xamarin.googleplayservices.clearcut.42.1021.1.nupkg.sha512",
+        "xamarin.googleplayservices.clearcut.nuspec"
+      ]
+    },
+    "Xamarin.GooglePlayServices.Gass/42.1021.1": {
+      "sha512": "rAyTl5gDZulXPSIfwV8SUiqHjbnnHsbD5k7udSeLwHXkSZP/gmsZ30PfzAGcLpqvA24fwa1LPjKgtj1RiNQ78Q==",
+      "type": "package",
+      "path": "xamarin.googleplayservices.gass/42.1021.1",
+      "files": [
+        "build/MonoAndroid70/Xamarin.GooglePlayServices.Gass.targets",
+        "lib/MonoAndroid70/Xamarin.GooglePlayServices.Gass.dll",
+        "xamarin.googleplayservices.gass.42.1021.1.nupkg.sha512",
+        "xamarin.googleplayservices.gass.nuspec"
+      ]
+    },
+    "Xamarin.GooglePlayServices.Tasks/42.1021.1": {
+      "sha512": "en5d21P3pIGGWtmqcygJsX74mNX8VZqOkj/ajwrwyIK8EOsbWLI9Cw0+wdE3OYGEwk+74ckX1icLT/zTspf8kg==",
+      "type": "package",
+      "path": "xamarin.googleplayservices.tasks/42.1021.1",
+      "files": [
+        "build/MonoAndroid70/Xamarin.GooglePlayServices.Tasks.targets",
+        "lib/MonoAndroid70/Xamarin.GooglePlayServices.Tasks.dll",
+        "xamarin.googleplayservices.tasks.42.1021.1.nupkg.sha512",
+        "xamarin.googleplayservices.tasks.nuspec"
+      ]
+    },
     "saac/1.0.0": {
       "type": "project",
       "path": "../saac/saac.csproj",
@@ -1307,6 +1647,7 @@
       "Xamarin.Android.Support.v7.AppCompat >= 25.4.0.2",
       "Xamarin.Android.Support.v7.CardView >= 25.4.0.2",
       "Xamarin.Android.Support.v7.MediaRouter >= 25.4.0.2",
+      "Xamarin.Firebase.Ads >= 42.1021.1",
       "Xamarin.Forms >= 2.5.1.444934",
       "saac >= 1.0.0"
     ]
@@ -1392,6 +1733,10 @@
           "Xamarin.Android.Support.v7.MediaRouter": {
             "target": "Package",
             "version": "[25.4.0.2, )"
+          },
+          "Xamarin.Firebase.Ads": {
+            "target": "Package",
+            "version": "[42.1021.1, )"
           },
           "Xamarin.Forms": {
             "target": "Package",

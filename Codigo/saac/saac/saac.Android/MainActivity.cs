@@ -1,6 +1,7 @@
 ﻿using Acr.UserDialogs;
 using Android.App;
 using Android.Content.PM;
+using Android.Gms.Ads;
 using Android.OS;
 using Prism;
 using Prism.Ioc;
@@ -26,6 +27,9 @@ namespace saac.Droid
 
             //Plugin de dialogs
             UserDialogs.Init(this);
+
+            //plugin de publicidade
+            MobileAds.Initialize(ApplicationContext, "ca-app-pub-3940256099942544/6300978111");
 
             LoadApplication(new App(new AndroidInitializer()));
         }

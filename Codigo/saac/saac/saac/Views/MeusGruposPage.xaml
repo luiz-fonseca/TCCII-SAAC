@@ -4,6 +4,7 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:controls="clr-namespace:saac.Controls;assembly=saac"
              x:Class="saac.Views.MeusGruposPage"
              Title="Grupos">
 
@@ -61,6 +62,15 @@
                 </ListView.ItemTemplate>
 
             </ListView>
+
+            <ContentView>
+                <OnPlatform x:TypeArguments="View">
+                    <On Platform="Android">
+                        <controls:AdControlView x:Name="adMobView" VerticalOptions="EndAndExpand"/>
+                    </On>
+                </OnPlatform>
+            </ContentView>
+            
         </StackLayout>
     </ContentPage.Content>
 
