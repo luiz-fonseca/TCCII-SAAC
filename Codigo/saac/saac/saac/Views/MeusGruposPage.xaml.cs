@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using saac.Helpers;
+using Xamarin.Forms;
 
 namespace saac.Views
 {
@@ -9,7 +10,7 @@ namespace saac.Views
             InitializeComponent();
 
             if (Device.RuntimePlatform == Device.Android)
-                adMobView.AdUnitId = "ca-app-pub-3940256099942544/6300978111";
+                adMobView.AdUnitId = Settings.IdAdMobAndroid;
         }
     }
 }

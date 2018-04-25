@@ -4,6 +4,7 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:controls="clr-namespace:saac.Controls;assembly=saac"
              x:Class="saac.Views.CategoriasConcursoPage"
              Title="Concursos">
 
@@ -41,6 +42,17 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+
+            <StackLayout Padding="-10,-10,-10,-10">
+                <ContentView>
+                    <OnPlatform x:TypeArguments="View">
+                        <On Platform="Android">
+                            <controls:AdControlView x:Name="adMobView" VerticalOptions="EndAndExpand"/>
+                        </On>
+                    </OnPlatform>
+                </ContentView>
+            </StackLayout>
+
         </StackLayout>
     </ContentPage.Content>
 

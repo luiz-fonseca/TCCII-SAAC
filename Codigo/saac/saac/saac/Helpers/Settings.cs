@@ -22,5 +22,16 @@ namespace saac.Helpers
 
         public static bool IsLoggedIn => !string.IsNullOrWhiteSpace(IdUser);
 
+        //publicidade android
+        const string AdMobAndroidIdKey = "admobandroidid";
+        static readonly string AdMobAndroidIdDefault = "ca-app-pub-3940256099942544/6300978111";
+
+
+        public static string IdAdMobAndroid
+        {
+            get { return AppSettings.GetValueOrDefault(AdMobAndroidIdKey, AdMobAndroidIdDefault); }
+            set { AppSettings.AddOrUpdateValue(AdMobAndroidIdKey, value); }
+        }
+
     }
 }

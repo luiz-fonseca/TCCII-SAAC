@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using saac.Helpers;
+using Xamarin.Forms;
 
 namespace saac.Views
 {
@@ -7,6 +8,10 @@ namespace saac.Views
         public CategoriasConcursoPage()
         {
             InitializeComponent();
+
+            if (Device.RuntimePlatform == Device.Android)
+                adMobView.AdUnitId = Settings.IdAdMobAndroid;
+
         }
     }
 }

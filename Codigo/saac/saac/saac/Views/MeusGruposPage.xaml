@@ -63,13 +63,15 @@
 
             </ListView>
 
-            <ContentView>
-                <OnPlatform x:TypeArguments="View">
-                    <On Platform="Android">
-                        <controls:AdControlView x:Name="adMobView" VerticalOptions="EndAndExpand"/>
-                    </On>
-                </OnPlatform>
-            </ContentView>
+            <StackLayout Padding="-10,-10,-10,-10">
+                <ContentView>
+                    <OnPlatform x:TypeArguments="View">
+                        <On Platform="Android">
+                            <controls:AdControlView x:Name="adMobView" VerticalOptions="EndAndExpand"/>
+                        </On>
+                    </OnPlatform>
+                </ContentView>
+            </StackLayout>
             
         </StackLayout>
     </ContentPage.Content>

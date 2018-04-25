@@ -7,6 +7,7 @@ using Prism;
 using Prism.Ioc;
 using saac.Droid.Services;
 using saac.Interfaces;
+using saac.Helpers;
 
 namespace saac.Droid
 {
@@ -29,7 +30,7 @@ namespace saac.Droid
             UserDialogs.Init(this);
 
             //plugin de publicidade
-            MobileAds.Initialize(ApplicationContext, "ca-app-pub-3940256099942544/6300978111");
+            MobileAds.Initialize(ApplicationContext, Settings.IdAdMobAndroid);
 
             LoadApplication(new App(new AndroidInitializer()));
         }
