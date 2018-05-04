@@ -189,7 +189,7 @@
           "lib/Xamarin.iOS10/Plugin.Settings.dll": {}
         }
       },
-      "Xamarin.Forms/2.5.1.444934": {
+      "Xamarin.Forms/2.5.1.527436": {
         "type": "package",
         "compile": {
           "lib/Xamarin.iOS10/Xamarin.Forms.Core.dll": {},
@@ -321,7 +321,7 @@
           "Prism.DryIoc.Forms": "7.0.0.396",
           "Xam.Plugin.Connectivity": "3.1.1",
           "Xam.Plugins.Settings": "3.1.1",
-          "Xamarin.Forms": "2.5.1.444934"
+          "Xamarin.Forms": "2.5.1.527436"
         },
         "compile": {
           "bin/placeholder/saac.dll": {}
@@ -519,7 +519,7 @@
           "lib/Xamarin.iOS10/Plugin.Settings.dll": {}
         }
       },
-      "Xamarin.Forms/2.5.1.444934": {
+      "Xamarin.Forms/2.5.1.527436": {
         "type": "package",
         "compile": {
           "lib/Xamarin.iOS10/Xamarin.Forms.Core.dll": {},
@@ -651,7 +651,7 @@
           "Prism.DryIoc.Forms": "7.0.0.396",
           "Xam.Plugin.Connectivity": "3.1.1",
           "Xam.Plugins.Settings": "3.1.1",
-          "Xamarin.Forms": "2.5.1.444934"
+          "Xamarin.Forms": "2.5.1.527436"
         },
         "compile": {
           "bin/placeholder/saac.dll": {}
@@ -849,7 +849,7 @@
           "lib/Xamarin.iOS10/Plugin.Settings.dll": {}
         }
       },
-      "Xamarin.Forms/2.5.1.444934": {
+      "Xamarin.Forms/2.5.1.527436": {
         "type": "package",
         "compile": {
           "lib/Xamarin.iOS10/Xamarin.Forms.Core.dll": {},
@@ -981,7 +981,7 @@
           "Prism.DryIoc.Forms": "7.0.0.396",
           "Xam.Plugin.Connectivity": "3.1.1",
           "Xam.Plugins.Settings": "3.1.1",
-          "Xamarin.Forms": "2.5.1.444934"
+          "Xamarin.Forms": "2.5.1.527436"
         },
         "compile": {
           "bin/placeholder/saac.dll": {}
@@ -1179,7 +1179,7 @@
           "lib/Xamarin.iOS10/Plugin.Settings.dll": {}
         }
       },
-      "Xamarin.Forms/2.5.1.444934": {
+      "Xamarin.Forms/2.5.1.527436": {
         "type": "package",
         "compile": {
           "lib/Xamarin.iOS10/Xamarin.Forms.Core.dll": {},
@@ -1311,7 +1311,7 @@
           "Prism.DryIoc.Forms": "7.0.0.396",
           "Xam.Plugin.Connectivity": "3.1.1",
           "Xam.Plugins.Settings": "3.1.1",
-          "Xamarin.Forms": "2.5.1.444934"
+          "Xamarin.Forms": "2.5.1.527436"
         },
         "compile": {
           "bin/placeholder/saac.dll": {}
@@ -1707,10 +1707,10 @@
         "xam.plugins.settings.nuspec"
       ]
     },
-    "Xamarin.Forms/2.5.1.444934": {
-      "sha512": "zDbZeFhh62l6cMG9dXrQ/CSbk+NxKAykeL+JcVxLn//Rx678sCa961F+ib0gqzNHkTmT1K3TPLlJZp5WjvnKVA==",
+    "Xamarin.Forms/2.5.1.527436": {
+      "sha512": "HY6Kzu7fufV5PYkMcetpFmeQ8/NrOsolBc1XZzzZKqh2UrqWwkHC7UI5LmmZgfwqs/O9eP7tDIwc1lturp1vOw==",
       "type": "package",
-      "path": "xamarin.forms/2.5.1.444934",
+      "path": "xamarin.forms/2.5.1.527436",
       "files": [
         "build/netstandard1.0/Mono.Cecil.Mdb.dll",
         "build/netstandard1.0/Mono.Cecil.Pdb.dll",
@@ -1885,7 +1885,7 @@
         "lib/wpa81/Xamarin.Forms.Platform.dll",
         "lib/wpa81/Xamarin.Forms.Xaml.dll",
         "lib/wpa81/Xamarin.Forms.Xaml.xml",
-        "xamarin.forms.2.5.1.444934.nupkg.sha512",
+        "xamarin.forms.2.5.1.527436.nupkg.sha512",
         "xamarin.forms.nuspec"
       ]
     },
@@ -1902,7 +1902,7 @@
       "Prism.DryIoc.Forms >= 7.0.0.396",
       "Xam.Plugin.Connectivity >= 3.1.1",
       "Xam.Plugins.Settings >= 3.1.1",
-      "Xamarin.Forms >= 2.5.1.444934",
+      "Xamarin.Forms >= 2.5.1.527436",
       "saac >= 1.0.0"
     ]
   },
@@ -1970,7 +1970,7 @@
           },
           "Xamarin.Forms": {
             "target": "Package",
-            "version": "[2.5.1.444934, )"
+            "version": "[2.5.1.527436, )"
           }
         }
       }

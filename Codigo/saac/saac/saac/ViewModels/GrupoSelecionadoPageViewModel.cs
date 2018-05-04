@@ -268,8 +268,8 @@ namespace saac.ViewModels
                             var quantidade = await _clienteAuxiliar.QuantidadeRegistros(Grupos.Id);
                             if (quantidade == 1 && Grupos.Temporario == false)
                             {
-                                var resulGrupo = await _dialogService.DisplayAlertAsync("Excluir Grupo", "Você é a última pessoa a seguir este grupo," +
-                                    " se você deixar de segui-lo, este grupo e todas as suas publicações serão excluidas. Deseja Continuar?", " Sim ", " Não ");
+                                var resulGrupo = await _dialogService.DisplayAlertAsync("Excluir Grupo", "Você é o último membro seguindo este grupo," +
+                                    " Deixando de segui-lo, este grupo e todas as suas publicações serão excluidas. Deseja Continuar?", " Sim ", " Não ");
 
                                 if (resulGrupo)
                                 {
@@ -404,7 +404,7 @@ namespace saac.ViewModels
                     else
                     {
                         PublicacoesGrupo.Clear();
-                        Message = "Este grupo ainda não possui nehuma publicação.";
+                        Message = "Este grupo ainda não possui nenhuma publicação.";
 
                     }
                 }
