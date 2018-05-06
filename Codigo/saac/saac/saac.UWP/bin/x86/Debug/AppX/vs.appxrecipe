@@ -31,13 +31,13 @@
     <AppXManifest Include="C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.UWP\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-05-04T16:43:13.971</Modified>
+      <Modified>2018-05-06T23:43:28.488</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.UWP\bin\x86\Debug\saac.UWP.exe">
       <PackagePath>entrypoint\saac.UWP.exe</PackagePath>
-      <Modified>2018-05-04T16:43:05.039</Modified>
+      <Modified>2018-05-06T23:43:19.278</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\acr.userdialogs\7.0.1\lib\uap10.0.16299\Acr.UserDialogs.dll">
       <PackagePath>Acr.UserDialogs.dll</PackagePath>
@@ -739,13 +739,9 @@
       <PackagePath>Plugin.Connectivity.dll</PackagePath>
       <Modified>2018-01-31T15:06:12.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xam.plugins.settings\3.1.1\lib\UAP10\Plugin.Settings.Abstractions.dll">
-      <PackagePath>Plugin.Settings.Abstractions.dll</PackagePath>
-      <Modified>2017-10-18T02:03:16.000</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xam.plugins.settings\3.1.1\lib\UAP10\Plugin.Settings.dll">
+    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xam.plugins.settings\4.0.0.7\lib\uap10.0.15063\Plugin.Settings.dll">
       <PackagePath>Plugin.Settings.dll</PackagePath>
-      <Modified>2017-10-18T02:03:16.000</Modified>
+      <Modified>2018-05-04T23:54:32.000</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.forms\2.5.1.527436\lib\uap10.0\Xamarin.Forms.Core.dll">
       <PackagePath>Xamarin.Forms.Core.dll</PackagePath>
@@ -765,7 +761,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac\bin\Debug\netstandard2.0\saac.dll">
       <PackagePath>saac.dll</PackagePath>
-      <Modified>2018-05-04T16:38:57.762</Modified>
+      <Modified>2018-05-06T23:43:09.218</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.UWP\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
@@ -852,11 +848,11 @@
     <AppxPackagedFile Include="C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.UWP\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-05-04T16:43:10.545</Modified>
+      <Modified>2018-05-06T23:43:25.459</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.UWP\bin\x86\Debug\Core\saac.UWP.exe">
       <PackagePath>saac.UWP.exe</PackagePath>
-      <Modified>2018-05-04T16:43:13.961</Modified>
+      <Modified>2018-05-06T23:43:28.473</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
