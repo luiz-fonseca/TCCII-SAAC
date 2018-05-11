@@ -71,22 +71,21 @@ namespace saac.ViewModels
         public string Texto
         {
             get { return _texto; }
-            set
-            {
-                SetProperty(ref _texto, value);
-                SalvarPublicacaoCommand.RaiseCanExecuteChanged();
-            }
+            set { SetProperty(ref _texto, value); }
         }
 
         private bool _verificar = false;
         public bool Verificar
         {
             get { return _verificar; }
-            set
-            {
-                SetProperty(ref _verificar, value);
-                EditarGrupoCommand.RaiseCanExecuteChanged();
-            }
+            set { SetProperty(ref _verificar, value); }
+        }
+
+        private bool _administrador = false;
+        public bool Administrador
+        {
+            get { return _administrador; }
+            set { SetProperty(ref _administrador, value); }
         }
 
         public bool VerificacaoRealizada { get; set; }
@@ -99,7 +98,6 @@ namespace saac.ViewModels
 
         }
 
-
         private readonly IAzureServiceUser<Usuario> _clienteUser;
         private readonly IAzureServicePublication<Publicacao> _clientePublication;
         private readonly IAzureServiceAux<Auxiliar> _clienteAuxiliar;
@@ -109,17 +107,24 @@ namespace saac.ViewModels
         private readonly INavigationService _navigationService;
         private readonly IPageDialogService _dialogService;
 
+        private DelegateCommand _excluirGrupoCommand;
+        public DelegateCommand ExcluirGrupoCommand =>
+            _excluirGrupoCommand ?? (_excluirGrupoCommand = new DelegateCommand(ExcluirGrupo, CondicaoExcluirGrupo))
+            .ObservesProperty(() => Administrador);
+
         private DelegateCommand _editarGrupoCommand;
         public DelegateCommand EditarGrupoCommand =>
-            _editarGrupoCommand ?? (_editarGrupoCommand = new DelegateCommand(EditarGrupo, CondicaoEditarGrupo));
+            _editarGrupoCommand ?? (_editarGrupoCommand = new DelegateCommand(EditarGrupo, CondicaoEditarGrupo))
+            .ObservesProperty(() => Administrador);
 
         private DelegateCommand _salvarPublicacaoCommand;
         public DelegateCommand SalvarPublicacaoCommand =>
-            _salvarPublicacaoCommand ?? (_salvarPublicacaoCommand = new DelegateCommand(AdicionarPublicacao, CondicaoAdicionarPublicacao));
+            _salvarPublicacaoCommand ?? (_salvarPublicacaoCommand = new DelegateCommand(AdicionarPublicacao, CondicaoAdicionarPublicacao))
+            .ObservesProperty(() => Texto);
 
         private DelegateCommand _seguirGrupoCommand;
         public DelegateCommand SeguirGrupoCommand =>
-            _seguirGrupoCommand ?? (_seguirGrupoCommand = new DelegateCommand(SeguirGrupo));
+            _seguirGrupoCommand ?? (_seguirGrupoCommand = new DelegateCommand(Seguir));
 
 
         private DelegateCommand _atualizarCommand;
@@ -162,6 +167,19 @@ namespace saac.ViewModels
             return !string.IsNullOrWhiteSpace(Texto);
         }
 
+
+        public bool CondicaoEditarGrupo()
+        {
+            return Administrador;
+
+        }
+
+        public bool CondicaoExcluirGrupo()
+        {
+            return Administrador;
+
+        }
+
         public void AtualizarPublicacoes()
         {
             Atualizando = true;
@@ -187,10 +205,13 @@ namespace saac.ViewModels
 
         }
 
-
-        public bool CondicaoEditarGrupo()
+        public async void ExcluirGrupo()
         {
-            return Verificar;
+            await RemoverGrupo();
+
+            UserDialogs.Instance.Toast("Este grupo e suas publicações foram excluídos", TimeSpan.FromSeconds(2));
+
+            await _navigationService.GoBackAsync();
 
         }
 
@@ -200,9 +221,9 @@ namespace saac.ViewModels
             {
                 if (CrossConnectivity.Current.IsConnected)
                 {
-                    var resultado = await _clienteAuxiliar.ExisteSeguirAux(IdGrupo, IdUsuario);
+                    var resultado = await _clienteAuxiliar.GetAuxiliar(IdGrupo, IdUsuario);
 
-                    if (resultado == 0)
+                    if (resultado.CodUsuario != IdUsuario)
                     {
                         Verificar = false;
 
@@ -210,6 +231,11 @@ namespace saac.ViewModels
                     else
                     {
                         Verificar = true;
+                        Administrador = resultado.Adiministrador;
+
+                        var aux = resultado;
+                        aux.DtVisualizacao = DateTime.Now;
+                        await _clienteAuxiliar.AtualizarTable(aux);
 
                     }
                     VerificacaoRealizada = true;
@@ -238,7 +264,7 @@ namespace saac.ViewModels
 
         }
 
-        public async void SeguirGrupo()
+        public async void Seguir()
         {
             try
             {
@@ -250,54 +276,13 @@ namespace saac.ViewModels
                     //if (resultado == 0)
                     if (!Verificar)
                     {
-                        Aux.CodGrupo = Grupos.Id;
-                        Aux.CodUsuario = UserId;
-                        Aux.Adiministrador = false;
-
-                        await _clienteAuxiliar.AdicionarTable(Aux);
-
-                        UserDialogs.Instance.Toast("Parabéns!! você agora " +
-                            "está seguindo este grupo.", TimeSpan.FromSeconds(2));
+                        await SeguirGrupo();
 
                     }
                     else
                     {
-                        var resulSeguir = await _dialogService.DisplayAlertAsync("Seguindo Grupo", "Deseja deixar de seguir este grupo?", " Sim ", " Não ");
-                        if (resulSeguir)
-                        {
-                            var quantidade = await _clienteAuxiliar.QuantidadeRegistros(Grupos.Id);
-                            if (quantidade == 1 && Grupos.Temporario == false)
-                            {
-                                var resulGrupo = await _dialogService.DisplayAlertAsync("Excluir Grupo", "Você é o último membro seguindo este grupo," +
-                                    " Deixando de segui-lo, este grupo e todas as suas publicações serão excluidas. Deseja Continuar?", " Sim ", " Não ");
+                        await DeixarSeguirGrupo();
 
-                                if (resulGrupo)
-                                {
-                                    using (var Dialog = UserDialogs.Instance.Loading("Excluindo...", null, null, true, MaskType.Black))
-                                    {
-                                        var resultadoAux = await _clienteAuxiliar.GetAuxiliar(Grupos.Id, UserId);
-
-                                        await RemoverGrupo();
-
-                                        await _clienteAuxiliar.RemoverTable(resultadoAux);
-
-                                    }
-                                    UserDialogs.Instance.Toast("Este grupo e suas publicações foram excluídos", TimeSpan.FromSeconds(2));
-
-                                    await _navigationService.GoBackAsync();
-
-                                }
-                            }
-                            else
-                            {
-                                var resultadoAux = await _clienteAuxiliar.GetAuxiliar(Grupos.Id, UserId);
-
-                                await _clienteAuxiliar.RemoverTable(resultadoAux);
-
-                                UserDialogs.Instance.Toast("Você deixou de seguir este grupo.", TimeSpan.FromSeconds(2));
-
-                            }
-                        }
                     }
                     Verificacao(Grupos.Id, UserId);
 
@@ -316,6 +301,62 @@ namespace saac.ViewModels
 
         }
 
+        public async Task SeguirGrupo()
+        {
+            Aux.CodGrupo = Grupos.Id;
+            Aux.CodUsuario = UserId;
+            Aux.Adiministrador = false;
+            Aux.DtInscricao = DateTime.Now;
+            Aux.DtVisualizacao = DateTime.Now;
+
+            await _clienteAuxiliar.AdicionarTable(Aux);
+
+            UserDialogs.Instance.Toast("Parabéns!! você agora " +
+                "está seguindo este grupo.", TimeSpan.FromSeconds(2));
+
+        }
+
+        public async Task DeixarSeguirGrupo()
+        {
+            var resulSeguir = await _dialogService.DisplayAlertAsync("Seguindo Grupo", "Deseja deixar de seguir este grupo?", " Sim ", " Não ");
+            if (resulSeguir)
+            {
+                var quantidade = await _clienteAuxiliar.QuantidadeRegistros(Grupos.Id);
+                if (quantidade == 1 && Grupos.Temporario == false)
+                {
+                    var resulGrupo = await _dialogService.DisplayAlertAsync("Excluir Grupo", "Você é o último membro seguindo este grupo," +
+                        " Deixando de segui-lo, este grupo e todas as suas publicações serão excluidas. Deseja Continuar?", " Sim ", " Não ");
+
+                    if (resulGrupo)
+                    {
+                        using (var Dialog = UserDialogs.Instance.Loading("Excluindo...", null, null, true, MaskType.Black))
+                        {
+                            var resultadoAux = await _clienteAuxiliar.GetAuxiliar(Grupos.Id, UserId);
+
+                            await RemoverGrupo();
+
+                            await _clienteAuxiliar.RemoverTable(resultadoAux);
+
+                        }
+                        UserDialogs.Instance.Toast("Este grupo e suas publicações foram excluídos", TimeSpan.FromSeconds(2));
+
+                        await _navigationService.GoBackAsync();
+
+                    }
+                }
+                else
+                {
+                    var resultadoAux = await _clienteAuxiliar.GetAuxiliar(Grupos.Id, UserId);
+
+                    await _clienteAuxiliar.RemoverTable(resultadoAux);
+
+                    UserDialogs.Instance.Toast("Você deixou de seguir este grupo.", TimeSpan.FromSeconds(2));
+
+                }
+            }
+
+        }
+
         public async void AdicionarPublicacao()
         {
             try
@@ -326,6 +367,8 @@ namespace saac.ViewModels
                     Publication.CodUsuario = UserId;
                     Publication.CodGrupo = Grupos.Id;
                     Publication.Texto = Texto;
+                    Publication.DtPublicacao = DateTime.Now;
+                    Publication.DtVisualizacao = DateTime.Now;
 
                     await _clientePublication.AdicionarTable(Publication);
 

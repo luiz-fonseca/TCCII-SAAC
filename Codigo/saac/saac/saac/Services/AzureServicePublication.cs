@@ -41,5 +41,19 @@ namespace saac.Services
             return itens;
 
         }
+
+        async Task<int> IAzureServicePublication<T>.QtdPublicacoesPendentes(string codGrupo, string codUsuario, DateTime dataVerificacao)
+        {
+            var query = _tablePublication
+                .Where(Publicacao => Publicacao.CodGrupo == codGrupo && Publicacao.DtPublicacao > dataVerificacao
+                       && Publicacao.CodUsuario != codUsuario);
+
+            var aux = await query.ToListAsync();
+            var resultado = aux.Count;
+
+            return resultado;
+
+        }
+
     }
 }

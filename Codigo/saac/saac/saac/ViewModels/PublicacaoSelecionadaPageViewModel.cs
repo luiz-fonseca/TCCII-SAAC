@@ -231,6 +231,7 @@ namespace saac.ViewModels
                     Comentarios.CodUsuario = UserId;
                     Comentarios.CodPublicacao = Publication.Id;
                     Comentarios.Texto = Texto;
+                    Comentarios.DtPublicacao = DateTime.Now;
 
                     await _clienteComment.AdicionarTable(Comentarios);
 
@@ -263,7 +264,7 @@ namespace saac.ViewModels
 
                     if (resulPublicacao)
                     {
-                        using (var Dialog = UserDialogs.Instance.Loading("Salvando...", null, null, true, MaskType.Black))
+                        using (var Dialog = UserDialogs.Instance.Loading("Excluindo...", null, null, true, MaskType.Black))
                         {
 
                             foreach (var item in ComentariosPublication)

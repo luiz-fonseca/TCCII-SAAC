@@ -12,6 +12,7 @@
             <!--Cores-->
             <Color x:Key="CorPrincipal">#0BC433</Color>
             <Color x:Key="CorDestaqueDoPrincipal">White</Color>
+            <Color x:Key="CorNotificacao">Red</Color>
 
             <!--Label-->
             <OnPlatform x:TypeArguments="x:Double" x:Key="FonteTitulo">

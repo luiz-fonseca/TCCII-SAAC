@@ -18,6 +18,18 @@ namespace saac.ViewModels
     {
         #region Propriedades
 
+        public struct GrupoAux
+        {
+            public string Id { get; set; }
+            public string Nome { get; set; }
+            public string Descricao { get; set; }
+            public bool Temporario { get; set; }
+            public int QtdPubPendente { get; set; }
+
+        }
+
+        public GrupoAux _grupoAux;
+
         protected bool HasInitialized { get; set; }
 
         private bool _atualizando = false;
@@ -48,8 +60,8 @@ namespace saac.ViewModels
             set { SetProperty(ref _message, value); }
         }
 
-        private ObservableCollection<Group<string, Grupo>> _meusGroups;
-        public ObservableCollection<Group<string, Grupo>> MeusGroups
+        private ObservableCollection<Group<string, GrupoAux>> _meusGroups;
+        public ObservableCollection<Group<string, GrupoAux>> MeusGroups
         {
             get { return _meusGroups; }
             set { SetProperty(ref _meusGroups, value); }
@@ -57,6 +69,7 @@ namespace saac.ViewModels
 
         private readonly IAzureServiceAux<Auxiliar> _clienteAux;
         private readonly IAzureServiceGroup<Grupo> _clienteGroup;
+        private readonly IAzureServicePublication<Publicacao> _clientePublication;
 
         private readonly INavigationService _navigationService;
 
@@ -72,20 +85,21 @@ namespace saac.ViewModels
         public DelegateCommand AtualizarCommand =>
             _atualizarCommand ?? (_atualizarCommand = new DelegateCommand(AtualizarGrupos));
 
-        private DelegateCommand<Grupo> _grupoSelectedCommand;
-        public DelegateCommand<Grupo> GrupoSelectedCommand =>
-            _grupoSelectedCommand != null ? _grupoSelectedCommand : (_grupoSelectedCommand = new DelegateCommand<Grupo>(ItemTapped));
+        private DelegateCommand<object> _grupoSelectedCommand;
+        public DelegateCommand<object> GrupoSelectedCommand =>
+            _grupoSelectedCommand != null ? _grupoSelectedCommand : (_grupoSelectedCommand = new DelegateCommand<object>(ItemTapped));
         #endregion
 
         #region Construtor
         public MeusGruposPageViewModel(INavigationService navigationService, IAzureServiceAux<Auxiliar> clienteAux,
-            IAzureServiceGroup<Grupo> clienteGroup) : base(navigationService)
+            IAzureServiceGroup<Grupo> clienteGroup, IAzureServicePublication<Publicacao> clientePublication) : base(navigationService)
         {
             _navigationService = navigationService;
             _clienteAux = clienteAux;
             _clienteGroup = clienteGroup;
+            _clientePublication = clientePublication;
 
-            MeusGroups = new ObservableCollection<Group<string, Grupo>>();
+            MeusGroups = new ObservableCollection<Group<string, GrupoAux>>();
 
         }
         #endregion
@@ -129,7 +143,8 @@ namespace saac.ViewModels
                         Message = string.Empty;
 
                         var resultado = await _clienteGroup.MeusGrupos(aux);
-                        var resultadoAgrupar = Agrupar(resultado);
+                        var resulPublicacao = await PublicacoesPendentes(resultado);
+                        var resultadoAgrupar = Agrupar(resulPublicacao);
                         Converter(resultadoAgrupar);
                     }
                 }
@@ -149,20 +164,42 @@ namespace saac.ViewModels
         }
 
 
-        public IEnumerable<Group<string, Grupo>> Agrupar(List<Grupo> Grupos)
+        public async Task<List<GrupoAux>> PublicacoesPendentes(List<Grupo> meusGrupos)
+        {
+            var lista = new List<GrupoAux>();
+
+            foreach (var item in meusGrupos)
+            {
+                var resultadoAux = await _clienteAux.GetAuxiliar(item.Id, UserId);
+                var qtdPublicacao = await _clientePublication.QtdPublicacoesPendentes(item.Id, UserId, resultadoAux.DtVisualizacao);
+
+                _grupoAux.Id = item.Id;
+                _grupoAux.Nome = item.Nome;
+                _grupoAux.Descricao = item.Descricao;
+                _grupoAux.Temporario = item.Temporario;
+                _grupoAux.QtdPubPendente = qtdPublicacao;
+
+                lista.Add(_grupoAux);
+
+            }
+            return lista;
+
+        }
+
+        public IEnumerable<Group<string, GrupoAux>> Agrupar(List<GrupoAux> Grupos)
         {
 
            var resultado = from grupos in Grupos
                            orderby grupos.Nome
                            group grupos by grupos.Nome[0].ToString().ToUpper() into grupos
-                           select new Group<string, Grupo>(grupos.Key, grupos);
+                           select new Group<string, GrupoAux>(grupos.Key, grupos);
 
            return resultado;
 
 
         }
 
-       public void Converter(IEnumerable<Group<string, Grupo>> listaAgrupada)
+       public void Converter(IEnumerable<Group<string, GrupoAux>> listaAgrupada)
        {
            MeusGroups.Clear();
            foreach (var item in listaAgrupada)
@@ -173,10 +210,28 @@ namespace saac.ViewModels
 
        }
 
-        public async void ItemTapped(Grupo args)
+        public Grupo ConverterGrupo(object args)
+        {
+            var aux = (GrupoAux)args;
+
+            var GrupoSelecionado = new Grupo();
+
+            GrupoSelecionado.Id = aux.Id;
+            GrupoSelecionado.Nome = aux.Nome;
+            GrupoSelecionado.Descricao = aux.Descricao;
+            GrupoSelecionado.Temporario = aux.Temporario;
+            
+            return GrupoSelecionado;
+
+        }
+
+        public async void ItemTapped(object args)
         {
             var navigationParams = new NavigationParameters();
-            navigationParams.Add("grupo", args);
+
+           var resultado = ConverterGrupo(args);
+
+            navigationParams.Add("grupo", resultado);
             navigationParams.Add("userId", UserId);
 
             await _navigationService.NavigateAsync("GrupoSelecionadoPage", navigationParams, useModalNavigation: false);

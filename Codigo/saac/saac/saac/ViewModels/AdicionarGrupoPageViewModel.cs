@@ -144,6 +144,8 @@ namespace saac.ViewModels
             Aux.CodGrupo = codGrupo;
             Aux.CodUsuario = UserId;
             Aux.Adiministrador = adm;
+            Aux.DtInscricao = DateTime.Now;
+            Aux.DtVisualizacao = DateTime.Now;
 
             await _clienteAuxiliar.AdicionarTable(Aux);
         }

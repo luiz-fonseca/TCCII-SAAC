@@ -52,7 +52,10 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Padding="10">
-                                <Label Style="{StaticResource TitleStyle}" Text="{Binding Nome}"/>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Style="{StaticResource TitleStyle}" Text="{Binding Nome}"/>
+                                    <Label HorizontalOptions="End" TextColor="{StaticResource CorNotificacao}" Text="{Binding QtdPubPendente}"/>
+                                </StackLayout>
                                 <Label Text="{Binding Descricao}" FontSize="{StaticResource FonteSubTitulo}"/>
                                 <Label/>
 

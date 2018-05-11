@@ -21,6 +21,22 @@ namespace saac.Models
         [JsonProperty(PropertyName = "administrador")]
         public bool Adiministrador { get; set; }
 
+        private DateTime _dtInscricao;
+        [JsonProperty(PropertyName = "dtInscricao")]
+        public DateTime DtInscricao
+        {
+            get { return _dtInscricao; }
+            set { _dtInscricao = value; }
+        }
+
+        private DateTime _dtVisualizacao;
+        [JsonProperty(PropertyName = "dtVisualizacao")]
+        public DateTime DtVisualizacao
+        {
+            get { return _dtVisualizacao; }
+            set { _dtVisualizacao = value; }
+        }
+
         [Version]
         public string Version { get; set; }
     }
