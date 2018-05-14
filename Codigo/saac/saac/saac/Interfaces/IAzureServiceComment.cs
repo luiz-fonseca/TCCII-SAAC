@@ -10,6 +10,7 @@ namespace saac.Interfaces
     {
         Task<List<Comentario>> Comentarios(string codPublicacao);
         Task<int> MeuCometario(string codComentario, string codUsuario);
+        Task<int> QtdComentariosPendentes(string codPublicacao, DateTime dataVisualizacao);
 
     }
 }

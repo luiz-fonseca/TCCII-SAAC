@@ -29,6 +29,7 @@ namespace saac.Services
             return resultado;
         }
 
+       
         async Task<List<Publicacao>> IAzureServicePublication<T>.Publicacoes(string codGrupo)
         {
             List<Publicacao> itens = new List<Publicacao>();
@@ -53,6 +54,16 @@ namespace saac.Services
 
             return resultado;
 
+        }
+
+        async Task<List<Publicacao>> IAzureServicePublication<T>.MinhasPublicacoes(string codUsuario)
+        {
+            var query = _tablePublication
+                .Where(Publicacao => Publicacao.CodUsuario == codUsuario);
+
+            var resultado = await query.ToListAsync();
+
+            return resultado;
         }
 
     }

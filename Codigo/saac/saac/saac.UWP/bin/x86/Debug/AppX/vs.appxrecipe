@@ -31,13 +31,13 @@
     <AppXManifest Include="C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.UWP\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-05-11T01:59:14.195</Modified>
+      <Modified>2018-05-13T00:36:51.374</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.UWP\bin\x86\Debug\saac.UWP.exe">
       <PackagePath>entrypoint\saac.UWP.exe</PackagePath>
-      <Modified>2018-05-11T01:59:11.762</Modified>
+      <Modified>2018-05-13T00:36:48.201</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\acr.userdialogs\7.0.1\lib\uap10.0.16299\Acr.UserDialogs.dll">
       <PackagePath>Acr.UserDialogs.dll</PackagePath>
@@ -761,7 +761,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac\bin\Debug\netstandard2.0\saac.dll">
       <PackagePath>saac.dll</PackagePath>
-      <Modified>2018-05-11T01:59:03.927</Modified>
+      <Modified>2018-05-13T00:36:39.658</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.UWP\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
@@ -848,11 +848,11 @@
     <AppxPackagedFile Include="C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.UWP\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-05-11T01:59:12.786</Modified>
+      <Modified>2018-05-13T00:36:49.384</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.UWP\bin\x86\Debug\Core\saac.UWP.exe">
       <PackagePath>saac.UWP.exe</PackagePath>
-      <Modified>2018-05-11T01:59:14.186</Modified>
+      <Modified>2018-05-13T00:36:51.345</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

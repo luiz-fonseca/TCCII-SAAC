@@ -1,12 +1,12 @@
 {
   "version": 3,
   "targets": {
-    "MonoAndroid,Version=v7.1": {
+    "MonoAndroid,Version=v8.1": {
       "Acr.UserDialogs/7.0.1": {
         "type": "package",
         "dependencies": {
           "AndHUD": "1.2.0",
-          "Xamarin.Android.Support.Design": "25.4.0.2"
+          "Xamarin.Android.Support.Design": "26.1.0.1"
         },
         "frameworkAssemblies": [
           "Java.Interop",
@@ -23,10 +23,10 @@
           "System.Xml.Linq"
         ],
         "compile": {
-          "lib/monoandroid70/Acr.UserDialogs.dll": {}
+          "lib/monoandroid80/Acr.UserDialogs.dll": {}
         },
         "runtime": {
-          "lib/monoandroid70/Acr.UserDialogs.dll": {}
+          "lib/monoandroid80/Acr.UserDialogs.dll": {}
         }
       },
       "AndHUD/1.2.0": {
@@ -1570,7 +1570,7 @@
     }
   },
   "projectFileDependencyGroups": {
-    "MonoAndroid,Version=v7.1": [
+    "MonoAndroid,Version=v8.1": [
       "Acr.UserDialogs >= 7.0.1",
       "Microsoft.Azure.Mobile.Client >= 4.0.2",
       "Prism.DryIoc.Forms >= 7.0.0.396",
@@ -1587,8 +1587,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\luizf\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {}
+    "C:\\Users\\luizf\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
@@ -1600,23 +1599,19 @@
       "outputPath": "C:\\Users\\luizf\\source\\repos\\TCCII-SAAC\\Codigo\\saac\\saac\\saac.Android\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\"
-      ],
       "configFilePaths": [
         "C:\\Users\\luizf\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "monoandroid71"
+        "monoandroid81"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "monoandroid71": {
+        "monoandroid81": {
           "projectReferences": {
             "C:\\Users\\luizf\\source\\repos\\TCCII-SAAC\\Codigo\\saac\\saac\\saac\\saac.csproj": {
               "projectPath": "C:\\Users\\luizf\\source\\repos\\TCCII-SAAC\\Codigo\\saac\\saac\\saac\\saac.csproj"
@@ -1626,7 +1621,7 @@
       }
     },
     "frameworks": {
-      "monoandroid71": {
+      "monoandroid81": {
         "dependencies": {
           "Acr.UserDialogs": {
             "target": "Package",
@@ -1688,7 +1683,17 @@
       "message": "Versão detectada do pacote fora da restrição de dependência: Xamarin.Android.Support.CustomTabs 23.3.0 requer Xamarin.Android.Support.v4 (= 23.3.0), mas a versão Xamarin.Android.Support.v4 25.4.0.2 foi resolvida.",
       "libraryId": "Xamarin.Android.Support.v4",
       "targetGraphs": [
-        "MonoAndroid,Version=v7.1"
+        "MonoAndroid,Version=v8.1"
+      ]
+    },
+    {
+      "code": "NU1605",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Downgrade de pacote detectado: Xamarin.Android.Support.Design de 26.1.0.1 para 25.4.0.2. Referencie o pacote diretamente do projeto para selecionar uma versão diferente. \r\n saac.Android -> Acr.UserDialogs 7.0.1 -> Xamarin.Android.Support.Design (>= 26.1.0.1) \r\n saac.Android -> Xamarin.Android.Support.Design (>= 25.4.0.2)",
+      "libraryId": "Xamarin.Android.Support.Design",
+      "targetGraphs": [
+        "MonoAndroid,Version=v8.1"
       ]
     }
   ]

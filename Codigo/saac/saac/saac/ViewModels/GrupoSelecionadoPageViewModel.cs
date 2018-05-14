@@ -185,12 +185,9 @@ namespace saac.ViewModels
             Atualizando = true;
 
             ExibirPublicacoesDisponiveis(Grupos.Id);
+            
+            Verificacao(Grupos.Id, UserId, true);
 
-            if (VerificacaoRealizada == false)
-            {
-                Verificacao(Grupos.Id, UserId);
-
-            }
             Atualizando = false;
                 
         }
@@ -215,7 +212,7 @@ namespace saac.ViewModels
 
         }
 
-        public async void Verificacao(string IdGrupo, string IdUsuario)
+        public async void Verificacao(string IdGrupo, string IdUsuario, bool atualizar)
         {
             try
             {
@@ -226,6 +223,7 @@ namespace saac.ViewModels
                     if (resultado.CodUsuario != IdUsuario)
                     {
                         Verificar = false;
+                        Administrador = false;
 
                     }
                     else
@@ -233,10 +231,14 @@ namespace saac.ViewModels
                         Verificar = true;
                         Administrador = resultado.Adiministrador;
 
-                        var aux = resultado;
-                        aux.DtVisualizacao = DateTime.Now;
-                        await _clienteAuxiliar.AtualizarTable(aux);
+                        if (atualizar)
+                        {
+                            var aux = resultado;
+                            aux.DtVisualizacao = DateTime.Now;
+                            await _clienteAuxiliar.AtualizarTable(aux);
 
+                        }
+                        
                     }
                     VerificacaoRealizada = true;
 
@@ -244,12 +246,14 @@ namespace saac.ViewModels
                 else
                 {
                     VerificacaoRealizada = false;
+                    UserDialogs.Instance.Toast("Você está sem conexão.", TimeSpan.FromSeconds(2));
 
                 }
             }
             catch (Exception)
             {
                 VerificacaoRealizada = false;
+                UserDialogs.Instance.Toast("Ops! Ocorreu algum problema", TimeSpan.FromSeconds(2));
             }
         }
 
@@ -274,17 +278,23 @@ namespace saac.ViewModels
                     //Verificacao(Grupos.Id, UserId);
 
                     //if (resultado == 0)
+                    if (VerificacaoRealizada)
+                    {
+                        Verificacao(Grupos.Id, UserId, false);
+
+                    }
+                    
                     if (!Verificar)
                     {
                         await SeguirGrupo();
-
+                        
                     }
                     else
                     {
                         await DeixarSeguirGrupo();
-
+                        
                     }
-                    Verificacao(Grupos.Id, UserId);
+                    Verificacao(Grupos.Id, UserId, false);
 
                 }
                 else
@@ -525,7 +535,7 @@ namespace saac.ViewModels
 
                     ExibirPublicacoesDisponiveis(Grupos.Id);
 
-                    Verificacao(Grupos.Id, UserId);
+                    Verificacao(Grupos.Id, UserId, true);
                 }
             }
             

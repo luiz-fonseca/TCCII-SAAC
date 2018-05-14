@@ -40,5 +40,16 @@ namespace saac.Services
 
             return resultado;
         }
+
+        async Task<int> IAzureServiceComment<T>.QtdComentariosPendentes(string codPublicacao, DateTime dataVisualizacao)
+        {
+            var query = _tableComment
+                .Where(Comentario => Comentario.CodPublicacao == codPublicacao && Comentario.DtPublicacao > dataVisualizacao);
+
+            var aux = await query.ToListAsync();
+            var resultado = aux.Count;
+
+            return resultado;
+        }
     }
 }
