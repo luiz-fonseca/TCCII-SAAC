@@ -10,6 +10,8 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Editar" Order="Secondary"  Command="{Binding EditarGrupoCommand}"/>
         <ToolbarItem Text="Excluir" Order="Secondary"  Command="{Binding ExcluirGrupoCommand}"/>
+        <ToolbarItem Text="Atualizar" Order="Secondary" Command="{Binding AtualizarCommand}"/>
+        
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>

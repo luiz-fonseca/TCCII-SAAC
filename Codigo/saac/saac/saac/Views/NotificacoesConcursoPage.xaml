@@ -8,6 +8,10 @@
              x:Class="saac.Views.NotificacoesConcursoPage"
              Title="Notificações de Concursos">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Atualizar" Order="Secondary" Command="{Binding AtualizarCommand}"/>
+    </ContentPage.ToolbarItems>
+    
     <ContentPage.Content>
         <StackLayout Padding="10,10,10,10" Spacing="10">
 

@@ -11,6 +11,7 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Pesquisar" Order="Primary"  Command="{Binding PesquisarGrupoCommand}"/>
         <ToolbarItem Text="Novo Grupo" Order="Secondary" Command="{Binding AdicionarGrupoCommand}"/>
+        <ToolbarItem Text="Atualizar" Order="Secondary" Command="{Binding AtualizarCommand}"/>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>

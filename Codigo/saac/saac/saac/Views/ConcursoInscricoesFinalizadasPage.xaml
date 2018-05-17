@@ -7,6 +7,10 @@
              x:Class="saac.Views.ConcursoInscricoesFinalizadasPage"
              Title="Inscrições Finalizadas">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Atualizar" Order="Secondary" Command="{Binding AtualizarCommand}"/>
+    </ContentPage.ToolbarItems>
+    
     <ContentPage.Content>
         <StackLayout Padding="10,10,10,10" Spacing="10">
 

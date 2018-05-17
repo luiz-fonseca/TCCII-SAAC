@@ -82,6 +82,7 @@ namespace saac.ViewModels
 
         #endregion
 
+        #region Construtor
         public NotificacoesGrupoPageViewModel(INavigationService navigationService, IAzureServicePublication<Publicacao> clientePublication,
             IAzureServiceComment<Comentario> clinteComment, IAzureServiceUser<Usuario> clienteUser) : base(navigationService)
         {
@@ -94,7 +95,9 @@ namespace saac.ViewModels
             ComentariosPendente = new ObservableCollection<AuxPublicacao>();
 
         }
+        #endregion
 
+        #region Métodos
         public void Atualizar()
         {
             Atualizando = true;
@@ -127,6 +130,8 @@ namespace saac.ViewModels
 
                     if (resulPublicacao.Count != 0)
                     {
+                        ComentariosPendente.Clear();
+
                         foreach (var item in resulPublicacao)
                         {
                             var resulComentario = await _clinteComment.QtdComentariosPendentes(item.Id, item.DtVisualizacao, idUser);
@@ -236,5 +241,6 @@ namespace saac.ViewModels
             }
             
         }
+        #endregion
     }
 }

@@ -207,9 +207,9 @@ namespace saac.ViewModels
                 Verificacao(Publication.Id, UserId);
 
             }
-            else
+            else if(VerificarExcluirPublicaco)
             {
-                await AtualizarDtVizualizacao();
+               // await AtualizarDtVizualizacao();
 
             }
             Atualizando = false;

@@ -12,6 +12,8 @@
         <ToolbarItem Text="Excluir" Order="Secondary" Command="{Binding ExcluirConcursoCommand}"/>
         <ToolbarItem Text="Editar" Order="Secondary" Command="{Binding EditarConcursoCommand}"/>
         <ToolbarItem Text="Editar Preferência" Order="Secondary" Command="{Binding EditarPreferenciaConcursoCommand}"/>
+        <ToolbarItem Text="Atualizar" Order="Secondary" Command="{Binding AtualizarCommand}"/>
+        
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>

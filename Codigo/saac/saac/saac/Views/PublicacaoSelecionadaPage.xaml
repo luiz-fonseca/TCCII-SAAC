@@ -7,9 +7,9 @@
              Title="Comentarios">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Excluir" 
-                     Order="Secondary" 
-                     Command="{Binding ExcluirPublicacaoCommand}"/>
+        <ToolbarItem Text="Excluir" Order="Secondary" Command="{Binding ExcluirPublicacaoCommand}"/>
+        <ToolbarItem Text="Atualizar" Order="Secondary" Command="{Binding AtualizarCommand}"/>
+
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
