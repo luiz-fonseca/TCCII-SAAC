@@ -19,7 +19,7 @@
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
     <LayoutDir>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.UWP\bin\x86\Debug\AppX</LayoutDir>
-    <RegisteredManifestChecksum>0491D3C73297B979121A0D68BFB4904AEC23199346548DC520672FA02EDD43D1</RegisteredManifestChecksum>
+    <RegisteredManifestChecksum>6C516913390F7345C5C82C7F027B38F7AA7A5D0AD4EDB67B55BE3A04642B092F</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>31e6402e-0407-4419-a6c3-7c6d18576017_1.0.0.0_x86__mm77914cpbf52</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>31e6402e-0407-4419-a6c3-7c6d18576017_mm77914cpbf52!App</RegisteredUserModeAppID>
     <RegisteredPackageID>31e6402e-0407-4419-a6c3-7c6d18576017</RegisteredPackageID>
@@ -31,13 +31,13 @@
     <AppXManifest Include="C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.UWP\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-05-13T00:36:51.374</Modified>
+      <Modified>2018-05-17T02:08:58.000</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.UWP\bin\x86\Debug\saac.UWP.exe">
       <PackagePath>entrypoint\saac.UWP.exe</PackagePath>
-      <Modified>2018-05-13T00:36:48.201</Modified>
+      <Modified>2018-05-17T02:08:55.823</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\acr.userdialogs\7.0.1\lib\uap10.0.16299\Acr.UserDialogs.dll">
       <PackagePath>Acr.UserDialogs.dll</PackagePath>
@@ -761,7 +761,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac\bin\Debug\netstandard2.0\saac.dll">
       <PackagePath>saac.dll</PackagePath>
-      <Modified>2018-05-13T00:36:39.658</Modified>
+      <Modified>2018-05-17T02:08:47.499</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.UWP\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
@@ -804,6 +804,14 @@
     <AppxPackagedFile Include="C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.UWP\bin\x86\Debug\saac.UWP.xr.xml">
       <PackagePath>saac.UWP.xr.xml</PackagePath>
       <Modified>2018-01-23T13:57:27.050</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.UWP\bin\x86\Debug\App.xbf">
+      <PackagePath>App.xbf</PackagePath>
+      <Modified>2018-05-17T02:08:55.537</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.UWP\bin\x86\Debug\MainPage.xbf">
+      <PackagePath>MainPage.xbf</PackagePath>
+      <Modified>2018-05-17T02:08:55.537</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.16299.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -848,11 +856,11 @@
     <AppxPackagedFile Include="C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.UWP\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-05-13T00:36:49.384</Modified>
+      <Modified>2018-05-16T22:38:22.680</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.UWP\bin\x86\Debug\Core\saac.UWP.exe">
       <PackagePath>saac.UWP.exe</PackagePath>
-      <Modified>2018-05-13T00:36:51.345</Modified>
+      <Modified>2018-05-17T02:08:57.958</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
@@ -885,27 +893,27 @@
     </ResolvedSDKReference>
     <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.VCLibs\14.0\">
       <Name>Microsoft.VCLibs.140.00.Debug</Name>
-      <Version>14.0.26128.0</Version>
+      <Version>14.0.26428.1</Version>
       <Architecture>ARM</Architecture>
-      <FrameworkIdentity>Name = Microsoft.VCLibs.140.00.Debug, MinVersion = 14.0.26128.0, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
+      <FrameworkIdentity>Name = Microsoft.VCLibs.140.00.Debug, MinVersion = 14.0.26428.1, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
       <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.VCLibs\14.0\.\AppX\Debug\ARM\Microsoft.VCLibs.ARM.Debug.14.00.appx</AppxLocation>
       <MoreInfo>
       </MoreInfo>
     </ResolvedSDKReference>
     <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.VCLibs\14.0\">
       <Name>Microsoft.VCLibs.140.00.Debug</Name>
-      <Version>14.0.26128.0</Version>
+      <Version>14.0.26428.1</Version>
       <Architecture>x64</Architecture>
-      <FrameworkIdentity>Name = Microsoft.VCLibs.140.00.Debug, MinVersion = 14.0.26128.0, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
+      <FrameworkIdentity>Name = Microsoft.VCLibs.140.00.Debug, MinVersion = 14.0.26428.1, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
       <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.VCLibs\14.0\.\AppX\Debug\x64\Microsoft.VCLibs.x64.Debug.14.00.appx</AppxLocation>
       <MoreInfo>
       </MoreInfo>
     </ResolvedSDKReference>
     <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.VCLibs\14.0\">
       <Name>Microsoft.VCLibs.140.00.Debug</Name>
-      <Version>14.0.26128.0</Version>
+      <Version>14.0.26428.1</Version>
       <Architecture>x86</Architecture>
-      <FrameworkIdentity>Name = Microsoft.VCLibs.140.00.Debug, MinVersion = 14.0.26128.0, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
+      <FrameworkIdentity>Name = Microsoft.VCLibs.140.00.Debug, MinVersion = 14.0.26428.1, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
       <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.VCLibs\14.0\.\AppX\Debug\x86\Microsoft.VCLibs.x86.Debug.14.00.appx</AppxLocation>
       <MoreInfo>
       </MoreInfo>

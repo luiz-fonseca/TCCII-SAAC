@@ -14,15 +14,11 @@ namespace saac.Views {
     
     
     [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("Views\\NotificacoesPage.xaml")]
-    public partial class NotificacoesPage : global::Xamarin.Forms.ContentPage {
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::saac.Controls.AdControlView adMobView;
+    public partial class NotificacoesPage : global::Xamarin.Forms.TabbedPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private void InitializeComponent() {
             global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(NotificacoesPage));
-            adMobView = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::saac.Controls.AdControlView>(this, "adMobView");
         }
     }
 }

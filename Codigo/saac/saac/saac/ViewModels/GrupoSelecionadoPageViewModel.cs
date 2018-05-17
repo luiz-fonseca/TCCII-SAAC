@@ -204,7 +204,11 @@ namespace saac.ViewModels
 
         public async void ExcluirGrupo()
         {
-            await RemoverGrupo();
+            using (var Dialog = UserDialogs.Instance.Loading("Excluindo...", null, null, true, MaskType.Black))
+            {
+                await RemoverGrupo();
+
+            }
 
             UserDialogs.Instance.Toast("Este grupo e suas publicações foram excluídos", TimeSpan.FromSeconds(2));
 
@@ -445,7 +449,7 @@ namespace saac.ViewModels
                         var resulUser = await _clienteUser.Usuarios(auxList);
 
                         var resulatdo = resulPublication.Join(resulUser, p => p.CodUsuario, u => u.Id,
-                                                                (p, u) => new { p.Id, p.CodGrupo, p.CodUsuario, p.Texto, u.Nome, u.Foto });
+                                                                (p, u) => new { p.Id, p.CodGrupo, p.CodUsuario, p.Texto, p.DtPublicacao, p.DtVisualizacao, u.Nome, u.Foto });
 
                         PublicacoesGrupo.Clear();
                         foreach (var item in resulatdo)
@@ -500,12 +504,15 @@ namespace saac.ViewModels
             var publica = new Publicacao();
             string Nome;
             string Foto;
-            var aux = Conversao(args, new { Id = "", CodGrupo = "", CodUsuario = "", Texto = "", Nome = "", Foto = "" });
+            var aux = Conversao(args, new { Id = "", CodGrupo = "", CodUsuario = "", Texto = "", DtPublicacao = DateTime.Now, DtVisualizacao = DateTime.Now, Nome = "", Foto = "" });
 
             publica.Id = aux.Id;
             publica.CodGrupo = aux.CodGrupo;
             publica.CodUsuario = aux.CodUsuario;
             publica.Texto = aux.Texto;
+            publica.DtPublicacao = aux.DtPublicacao;
+            publica.DtVisualizacao = aux.DtVisualizacao;
+
             Nome = aux.Nome;
             Foto = aux.Foto;
 

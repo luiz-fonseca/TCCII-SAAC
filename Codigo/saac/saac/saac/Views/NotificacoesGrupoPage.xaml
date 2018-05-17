@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="saac.Views.NotificacoesGrupoPage"
+             Title="Notificações de Grupos">
+
+    <ContentPage.Content>
+        <StackLayout Padding="10,10,10,10" Spacing="10">
+
+            <ListView ItemsSource="{Binding ComentariosPendente}" HasUnevenRows="True" 
+                      IsPullToRefreshEnabled="True" RefreshCommand="{Binding AtualizarCommand}"
+                      IsRefreshing="{Binding Atualizando}">
+
+                <ListView.Behaviors>
+                    <behaviors:EventToCommandBehavior   EventName="ItemTapped" 
+                                                        Command="{Binding PublicacaoSelectedCommand}"
+                                                        EventArgsParameterPath="Item" />
+                </ListView.Behaviors>
+
+                <ListView.Header>
+                    <StackLayout>
+                        <Label Text="Notificações" Style="{StaticResource TitleStyle}" />
+                        <ActivityIndicator  IsRunning="{Binding IsLoading}"
+                                            IsVisible="{Binding IsLoading}" Color="{StaticResource CorPrincipal}"/>
+                        <Label Text="{Binding Mensagem}"/>
+                    </StackLayout>
+                </ListView.Header>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10">
+                                <Label Style="{StaticResource TitleStyle}" Text="{Binding Texto}"/>
+                                <Label Text="{Binding QtdComenPendente}" FontSize="{StaticResource FonteSubTitulo}"/>
+
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

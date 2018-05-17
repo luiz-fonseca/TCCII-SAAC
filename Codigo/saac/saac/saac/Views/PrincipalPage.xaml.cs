@@ -4,19 +4,12 @@ using Xamarin.Forms;
 
 namespace saac.Views
 {
-    public partial class PrincipalPage : TabbedPage, INavigatingAware
+    public partial class PrincipalPage : TabbedPage
     {
         public PrincipalPage()
         {
             InitializeComponent();
         }
-
-        public void OnNavigatingTo(NavigationParameters parameters)
-        {
-            foreach (var child in Children)
-            {
-                PageUtilities.OnNavigatingTo(child, parameters);
-            }
-        }
+        
     }
 }

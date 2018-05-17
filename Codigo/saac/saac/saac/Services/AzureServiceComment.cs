@@ -41,7 +41,7 @@ namespace saac.Services
             return resultado;
         }
 
-        async Task<int> IAzureServiceComment<T>.QtdComentariosPendentes(string codPublicacao, DateTime dataVisualizacao)
+        async Task<int> IAzureServiceComment<T>.QtdComentariosPendentes(string codPublicacao, DateTime dataVisualizacao, string codUsuario)
         {
             var query = _tableComment
                 .Where(Comentario => Comentario.CodPublicacao == codPublicacao && Comentario.DtPublicacao > dataVisualizacao);

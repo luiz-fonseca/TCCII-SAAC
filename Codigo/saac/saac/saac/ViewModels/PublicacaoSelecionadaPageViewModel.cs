@@ -196,7 +196,7 @@ namespace saac.ViewModels
         }
 
 
-        public void AtualizarComentarios()
+        public async void AtualizarComentarios()
         {
             Atualizando = true;
 
@@ -205,6 +205,11 @@ namespace saac.ViewModels
             if (VerificacaoRealizada == false)
             {
                 Verificacao(Publication.Id, UserId);
+
+            }
+            else
+            {
+                await AtualizarDtVizualizacao();
 
             }
             Atualizando = false;
@@ -311,6 +316,8 @@ namespace saac.ViewModels
                     {
                         VerificarExcluirPublicaco = true;
 
+                        await AtualizarDtVizualizacao();
+                        
                     }
                     else
                     {
@@ -331,6 +338,13 @@ namespace saac.ViewModels
                 VerificacaoRealizada = false;
 
             }
+
+        }
+
+        public async Task AtualizarDtVizualizacao()
+        {
+            Publication.DtVisualizacao = DateTime.Now;
+            await _clientePublication.AtualizarTable(Publication);
 
         }
 
