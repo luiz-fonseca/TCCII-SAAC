@@ -209,7 +209,7 @@ namespace saac.ViewModels
             }
             else if(VerificarExcluirPublicaco)
             {
-               // await AtualizarDtVizualizacao();
+                await AtualizarDtVizualizacao();
 
             }
             Atualizando = false;

@@ -13,7 +13,13 @@
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
-        <StackLayout Padding="10,10,10,10" Spacing="10">
+        <StackLayout Spacing="10">
+
+            <StackLayout.Padding>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="Android" Value="10,10,10,10"/>
+                </OnPlatform>
+            </StackLayout.Padding>
 
             <ListView ItemsSource="{Binding ConcursosAgrupados}" HasUnevenRows="True" 
                       IsPullToRefreshEnabled="True" RefreshCommand="{Binding AtualizarCommand}"

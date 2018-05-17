@@ -204,16 +204,19 @@ namespace saac.ViewModels
 
         public async void ExcluirGrupo()
         {
-            using (var Dialog = UserDialogs.Instance.Loading("Excluindo...", null, null, true, MaskType.Black))
+            var resulExcluir = await _dialogService.DisplayAlertAsync("Excluir", "Deseja excluir este grupo?", " Sim ", " Não ");
+            if (resulExcluir)
             {
-                await RemoverGrupo();
+                using (var Dialog = UserDialogs.Instance.Loading("Excluindo...", null, null, true, MaskType.Black))
+                {
+                    await RemoverGrupo();
 
+                }
+
+                UserDialogs.Instance.Toast("Este grupo e suas publicações foram excluídos", TimeSpan.FromSeconds(2));
+
+                await _navigationService.GoBackAsync();
             }
-
-            UserDialogs.Instance.Toast("Este grupo e suas publicações foram excluídos", TimeSpan.FromSeconds(2));
-
-            await _navigationService.GoBackAsync();
-
         }
 
         public async void Verificacao(string IdGrupo, string IdUsuario, bool atualizar)

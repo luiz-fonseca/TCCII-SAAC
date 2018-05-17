@@ -12,7 +12,13 @@
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
-        <StackLayout Padding="10,10,10,10" Spacing="10">
+        <StackLayout Spacing="10">
+
+            <StackLayout.Padding>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="Android" Value="10,10,10,10"/>
+                </OnPlatform>
+            </StackLayout.Padding>
 
             <ListView ItemsSource="{Binding ComentariosPendente}" HasUnevenRows="True" 
                       IsPullToRefreshEnabled="True" RefreshCommand="{Binding AtualizarCommand}"
@@ -40,7 +46,7 @@
                                 <Label Text="{Binding Texto}"/>
                                 
                                 <StackLayout Orientation="Horizontal">
-                                    <Label TextColor="{StaticResource CorPrincipal}" Text="Está sua publicação contém: "/>
+                                    <Label TextColor="{StaticResource CorPrincipal}" Text="Essa publicação contém: "/>
                                     <Label TextColor="{StaticResource CorNotificacao}" Text="{Binding QtdComenPendente}"/>
                                     <Label TextColor="{StaticResource CorPrincipal}" Text=" Nova(s) Resposta(s)"/>
                                 </StackLayout>

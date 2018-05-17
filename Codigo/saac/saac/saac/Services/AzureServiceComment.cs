@@ -44,7 +44,8 @@ namespace saac.Services
         async Task<int> IAzureServiceComment<T>.QtdComentariosPendentes(string codPublicacao, DateTime dataVisualizacao, string codUsuario)
         {
             var query = _tableComment
-                .Where(Comentario => Comentario.CodPublicacao == codPublicacao && Comentario.DtPublicacao > dataVisualizacao);
+                .Where(Comentario => Comentario.CodPublicacao == codPublicacao && Comentario.DtPublicacao > dataVisualizacao
+                && Comentario.CodUsuario != codUsuario);
 
             var aux = await query.ToListAsync();
             var resultado = aux.Count;
