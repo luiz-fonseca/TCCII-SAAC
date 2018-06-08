@@ -27,6 +27,7 @@
                     <Picker Title="Regiões" 
                             TextColor="{StaticResource CorPrincipal}"
                             ItemsSource="{Binding Regioes}" 
+                            SelectedItem="{Binding Concursos.Regiao}"
                             SelectedIndex="{Binding ItemRegioes}"/>
 
                     <StackLayout Orientation="Horizontal">
@@ -43,6 +44,7 @@
                     <Picker Title="Estados" 
                             TextColor="{StaticResource CorPrincipal}"
                             ItemsSource="{Binding Estados}" 
+                             SelectedItem="{Binding Concursos.Estado}"
                             SelectedIndex="{Binding ItemEstados}"/>
                     
                     <StackLayout Orientation="Horizontal">

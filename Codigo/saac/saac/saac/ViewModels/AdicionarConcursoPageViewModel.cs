@@ -44,32 +44,12 @@ namespace saac.ViewModels
             get { return _itemRegioes; }
             set
             {
-                if (_itemRegioes != value)
-                {
-                    SetProperty(ref _itemRegioes, value);
-                    Concursos.Regiao = Regioes[_itemRegioes];
-                    InicializarEstados(_itemRegioes);
-                }
-
+                SetProperty(ref _itemRegioes, value);
+                InicializarEstados(_itemRegioes);
+                
             }
         }
-
-        private int _itemEstados;
-        public int ItemEstados
-        {
-            get { return _itemEstados; }
-            set
-            {
-                if (_itemEstados != value)
-                {
-                    SetProperty(ref _itemEstados, value);
-                    Concursos.Estado = Estados[_itemEstados];
-
-                }
-
-            }
-        }
-
+        
         private string _opcao;
         public string Opcao
         {
@@ -166,8 +146,8 @@ namespace saac.ViewModels
             
             if (item == 0)
             {
-                Estados.Add("");
                 Estados.Add("Nacional");
+
             }
             else if (item == 1)
             {
