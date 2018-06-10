@@ -21,42 +21,21 @@
                        FontAttributes="{StaticResource FonteNegrito}"
                        TextColor="{StaticResource CorPrincipal}"/>
                 
-                <Editor Text="{Binding Concursos.Detalhes}" HeightRequest="400"/>
+                <Editor Text="{Binding Concursos.Detalhes}"
+                        HeightRequest="400"/>
 
-                <StackLayout Spacing="10">
-                    <Picker Title="Regiões" 
-                            TextColor="{StaticResource CorPrincipal}"
-                            ItemsSource="{Binding Regioes}" 
-                            SelectedItem="{Binding Concursos.Regiao}"
-                            SelectedIndex="{Binding ItemRegioes}"/>
-
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="Região Atual: " 
-                               FontAttributes="{StaticResource FonteNegrito}"
-                               TextColor="{StaticResource CorPrincipal}"/>
-
-                        <Label Text="{Binding Concursos.Regiao}"/>
-                    </StackLayout>
-
-                </StackLayout>
-
-                <StackLayout Spacing="10">
-                    <Picker Title="Estados" 
-                            TextColor="{StaticResource CorPrincipal}"
-                            ItemsSource="{Binding Estados}" 
-                             SelectedItem="{Binding Concursos.Estado}"
-                            SelectedIndex="{Binding ItemEstados}"/>
+                <Picker Title="Regiões" 
+                        TextColor="{StaticResource CorPrincipal}"
+                        ItemsSource="{Binding Regioes}" 
+                        SelectedItem="{Binding Concursos.Regiao}"
+                        SelectedIndex="{Binding ItemRegioes}"/>
+                
+                <Picker Title="Estados" 
+                        TextColor="{StaticResource CorPrincipal}"
+                        ItemsSource="{Binding Estados}" 
+                        SelectedItem="{Binding Concursos.Estado}"
+                        SelectedIndex="{Binding ItemEstados}"/>
                     
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="Estado Atual: " 
-                               FontAttributes="{StaticResource FonteNegrito}"
-                               TextColor="{StaticResource CorPrincipal}"/>
-                        
-                        <Label Text="{Binding Concursos.Estado}"/>
-                    </StackLayout>
-
-                </StackLayout>
-
                 <Label Text="Data final da inscrição" 
                        FontAttributes="{StaticResource FonteNegrito}"
                        TextColor="{StaticResource CorPrincipal}"/>
