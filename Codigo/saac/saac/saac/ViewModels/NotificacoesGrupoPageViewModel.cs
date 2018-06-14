@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace saac.ViewModels
 {
@@ -132,6 +133,8 @@ namespace saac.ViewModels
                     {
                         ComentariosPendente.Clear();
 
+                        int count = 0;
+
                         foreach (var item in resulPublicacao)
                         {
                             var resulComentario = await _clinteComment.QtdComentariosPendentes(item.Id, item.DtVisualizacao, idUser);
@@ -152,8 +155,11 @@ namespace saac.ViewModels
 
                                 ComentariosPendente.Add(_auxPublicacao);
 
+                                count += resulComentario;
                             }
                         }
+
+                        MessengerCenter(count);
 
                         if (ComentariosPendente.Count == 0)
                         {
@@ -180,6 +186,16 @@ namespace saac.ViewModels
                 UserDialogs.Instance.Toast("Ops! Ocorreu algum problema", TimeSpan.FromSeconds(2));
 
             }
+        }
+
+        public void MessengerCenter(int aux)
+        {
+            MessagingCenter.Send(new Message
+            {
+                Value = aux
+
+            }, "Notificacoes");
+
         }
 
         public async void ItemTapped(object args)

@@ -5,7 +5,7 @@
             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
             prism:ViewModelLocator.AutowireViewModel="True"
             x:Class="saac.Views.NotificacoesPage"
-            Title="Notificações"
+            Title="{Binding Titulo}"
             BarTextColor="{StaticResource CorPrincipal}"
             BarBackgroundColor="{StaticResource CorDestaqueDoPrincipal}">
 
