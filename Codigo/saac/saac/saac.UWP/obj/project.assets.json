@@ -755,7 +755,7 @@
           "lib/uap10.0.15063/Plugin.Settings.dll": {}
         }
       },
-      "Xamarin.Forms/3.0.0.561731": {
+      "Xamarin.Forms/3.1.0.583944": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "6.0.1",
@@ -787,7 +787,7 @@
           "Prism.DryIoc.Forms": "7.0.0.396",
           "Xam.Plugin.Connectivity": "3.1.1",
           "Xam.Plugins.Settings": "4.0.0.7",
-          "Xamarin.Forms": "3.0.0.561731"
+          "Xamarin.Forms": "3.1.0.583944"
         },
         "compile": {
           "bin/placeholder/saac.dll": {}
@@ -1839,7 +1839,7 @@
           "lib/uap10.0.15063/Plugin.Settings.dll": {}
         }
       },
-      "Xamarin.Forms/3.0.0.561731": {
+      "Xamarin.Forms/3.1.0.583944": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "6.0.1",
@@ -1871,7 +1871,7 @@
           "Prism.DryIoc.Forms": "7.0.0.396",
           "Xam.Plugin.Connectivity": "3.1.1",
           "Xam.Plugins.Settings": "4.0.0.7",
-          "Xamarin.Forms": "3.0.0.561731"
+          "Xamarin.Forms": "3.1.0.583944"
         },
         "compile": {
           "bin/placeholder/saac.dll": {}
@@ -2979,7 +2979,7 @@
           "lib/uap10.0.15063/Plugin.Settings.dll": {}
         }
       },
-      "Xamarin.Forms/3.0.0.561731": {
+      "Xamarin.Forms/3.1.0.583944": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "6.0.1",
@@ -3011,7 +3011,7 @@
           "Prism.DryIoc.Forms": "7.0.0.396",
           "Xam.Plugin.Connectivity": "3.1.1",
           "Xam.Plugins.Settings": "4.0.0.7",
-          "Xamarin.Forms": "3.0.0.561731"
+          "Xamarin.Forms": "3.1.0.583944"
         },
         "compile": {
           "bin/placeholder/saac.dll": {}
@@ -3888,7 +3888,7 @@
           "lib/uap10.0.15063/Plugin.Settings.dll": {}
         }
       },
-      "Xamarin.Forms/3.0.0.561731": {
+      "Xamarin.Forms/3.1.0.583944": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "6.0.1",
@@ -3920,7 +3920,7 @@
           "Prism.DryIoc.Forms": "7.0.0.396",
           "Xam.Plugin.Connectivity": "3.1.1",
           "Xam.Plugins.Settings": "4.0.0.7",
-          "Xamarin.Forms": "3.0.0.561731"
+          "Xamarin.Forms": "3.1.0.583944"
         },
         "compile": {
           "bin/placeholder/saac.dll": {}
@@ -4972,7 +4972,7 @@
           "lib/uap10.0.15063/Plugin.Settings.dll": {}
         }
       },
-      "Xamarin.Forms/3.0.0.561731": {
+      "Xamarin.Forms/3.1.0.583944": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "6.0.1",
@@ -5004,7 +5004,7 @@
           "Prism.DryIoc.Forms": "7.0.0.396",
           "Xam.Plugin.Connectivity": "3.1.1",
           "Xam.Plugins.Settings": "4.0.0.7",
-          "Xamarin.Forms": "3.0.0.561731"
+          "Xamarin.Forms": "3.1.0.583944"
         },
         "compile": {
           "bin/placeholder/saac.dll": {}
@@ -6112,7 +6112,7 @@
           "lib/uap10.0.15063/Plugin.Settings.dll": {}
         }
       },
-      "Xamarin.Forms/3.0.0.561731": {
+      "Xamarin.Forms/3.1.0.583944": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "6.0.1",
@@ -6144,7 +6144,7 @@
           "Prism.DryIoc.Forms": "7.0.0.396",
           "Xam.Plugin.Connectivity": "3.1.1",
           "Xam.Plugins.Settings": "4.0.0.7",
-          "Xamarin.Forms": "3.0.0.561731"
+          "Xamarin.Forms": "3.1.0.583944"
         },
         "compile": {
           "bin/placeholder/saac.dll": {}
@@ -7196,7 +7196,7 @@
           "lib/uap10.0.15063/Plugin.Settings.dll": {}
         }
       },
-      "Xamarin.Forms/3.0.0.561731": {
+      "Xamarin.Forms/3.1.0.583944": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "6.0.1",
@@ -7228,7 +7228,7 @@
           "Prism.DryIoc.Forms": "7.0.0.396",
           "Xam.Plugin.Connectivity": "3.1.1",
           "Xam.Plugins.Settings": "4.0.0.7",
-          "Xamarin.Forms": "3.0.0.561731"
+          "Xamarin.Forms": "3.1.0.583944"
         },
         "compile": {
           "bin/placeholder/saac.dll": {}
@@ -8336,7 +8336,7 @@
           "lib/uap10.0.15063/Plugin.Settings.dll": {}
         }
       },
-      "Xamarin.Forms/3.0.0.561731": {
+      "Xamarin.Forms/3.1.0.583944": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "6.0.1",
@@ -8368,7 +8368,7 @@
           "Prism.DryIoc.Forms": "7.0.0.396",
           "Xam.Plugin.Connectivity": "3.1.1",
           "Xam.Plugins.Settings": "4.0.0.7",
-          "Xamarin.Forms": "3.0.0.561731"
+          "Xamarin.Forms": "3.1.0.583944"
         },
         "compile": {
           "bin/placeholder/saac.dll": {}
@@ -14130,10 +14130,10 @@
         "xam.plugins.settings.nuspec"
       ]
     },
-    "Xamarin.Forms/3.0.0.561731": {
-      "sha512": "ZnpuSybty6uZsgInJQD2QoYsjsdzPmu25EltSNJTnwgiQCW0MVZfwU6//jbt4Sf0ZfAiryi8MZFhU1I0NAP6Ew==",
+    "Xamarin.Forms/3.1.0.583944": {
+      "sha512": "q4AGFr8k9z6v5u++COV6M5TEZ8Oh8iiU3inVysapL5j75bhKfbcU2RizgZxTQ7+2CdlzVK+Dz+nyFx4JFh0Cwg==",
       "type": "package",
-      "path": "xamarin.forms/3.0.0.561731",
+      "path": "xamarin.forms/3.1.0.583944",
       "files": [
         ".signature.p7s",
         "build/netstandard1.0/Mono.Cecil.Mdb.dll",
@@ -14269,12 +14269,13 @@
         "lib/uap10.0/Xamarin.Forms.Platform.UAP/PageControlStyle.xbf",
         "lib/uap10.0/Xamarin.Forms.Platform.UAP/Properties/Xamarin.Forms.Platform.UAP.rd.xml",
         "lib/uap10.0/Xamarin.Forms.Platform.UAP/Resources.xbf",
+        "lib/uap10.0/Xamarin.Forms.Platform.UAP/SliderStyle.xbf",
         "lib/uap10.0/Xamarin.Forms.Platform.UAP/TabbedPageStyle.xbf",
         "lib/uap10.0/Xamarin.Forms.Platform.UAP/Xamarin.Forms.Platform.UAP.xr.xml",
         "lib/uap10.0/Xamarin.Forms.Platform.dll",
         "lib/uap10.0/Xamarin.Forms.Xaml.dll",
         "lib/uap10.0/Xamarin.Forms.Xaml.xml",
-        "xamarin.forms.3.0.0.561731.nupkg.sha512",
+        "xamarin.forms.3.1.0.583944.nupkg.sha512",
         "xamarin.forms.nuspec"
       ]
     },
@@ -14292,7 +14293,7 @@
       "Prism.DryIoc.Forms >= 7.0.0.396",
       "Xam.Plugin.Connectivity >= 3.1.1",
       "Xam.Plugins.Settings >= 4.0.0.7",
-      "Xamarin.Forms >= 3.0.0.561731",
+      "Xamarin.Forms >= 3.1.0.583944",
       "saac >= 1.0.0"
     ]
   },
@@ -14363,7 +14364,7 @@
           },
           "Xamarin.Forms": {
             "target": "Package",
-            "version": "[3.0.0.561731, )"
+            "version": "[3.1.0.583944, )"
           }
         },
         "imports": [

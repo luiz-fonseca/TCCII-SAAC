@@ -19,7 +19,7 @@
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
     <LayoutDir>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.UWP\bin\x86\Debug\AppX</LayoutDir>
-    <RegisteredManifestChecksum>28194519C1F32F37680E9F8407732E1EC92CF67E2E71ED1D04868D820327CDB4</RegisteredManifestChecksum>
+    <RegisteredManifestChecksum>BCF3662E79054F03F6FF106E723D9FE0EDE4D97C27C99233E8DA7B2C3864796E</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>31e6402e-0407-4419-a6c3-7c6d18576017_1.0.0.0_x86__mm77914cpbf52</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>31e6402e-0407-4419-a6c3-7c6d18576017_mm77914cpbf52!App</RegisteredUserModeAppID>
     <RegisteredPackageID>31e6402e-0407-4419-a6c3-7c6d18576017</RegisteredPackageID>
@@ -31,13 +31,13 @@
     <AppXManifest Include="C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.UWP\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-06-14T13:01:10.830</Modified>
+      <Modified>2018-06-25T11:45:36.724</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.UWP\bin\x86\Debug\saac.UWP.exe">
       <PackagePath>entrypoint\saac.UWP.exe</PackagePath>
-      <Modified>2018-06-14T13:00:56.317</Modified>
+      <Modified>2018-06-25T11:45:25.863</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\acr.userdialogs\7.0.1\lib\uap10.0.16299\Acr.UserDialogs.dll">
       <PackagePath>Acr.UserDialogs.dll</PackagePath>
@@ -743,25 +743,25 @@
       <PackagePath>Plugin.Settings.dll</PackagePath>
       <Modified>2018-05-04T23:54:32.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.forms\3.0.0.561731\lib\uap10.0\Xamarin.Forms.Core.dll">
+    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.forms\3.1.0.583944\lib\uap10.0\Xamarin.Forms.Core.dll">
       <PackagePath>Xamarin.Forms.Core.dll</PackagePath>
-      <Modified>2018-06-08T10:48:40.000</Modified>
+      <Modified>2018-06-16T01:58:34.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.forms\3.0.0.561731\lib\uap10.0\Xamarin.Forms.Platform.UAP.dll">
+    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.forms\3.1.0.583944\lib\uap10.0\Xamarin.Forms.Platform.UAP.dll">
       <PackagePath>Xamarin.Forms.Platform.UAP.dll</PackagePath>
-      <Modified>2018-06-08T10:48:40.000</Modified>
+      <Modified>2018-06-16T01:58:34.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.forms\3.0.0.561731\lib\uap10.0\Xamarin.Forms.Platform.dll">
+    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.forms\3.1.0.583944\lib\uap10.0\Xamarin.Forms.Platform.dll">
       <PackagePath>Xamarin.Forms.Platform.dll</PackagePath>
-      <Modified>2018-06-08T10:48:42.000</Modified>
+      <Modified>2018-06-16T01:58:36.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.forms\3.0.0.561731\lib\uap10.0\Xamarin.Forms.Xaml.dll">
+    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.forms\3.1.0.583944\lib\uap10.0\Xamarin.Forms.Xaml.dll">
       <PackagePath>Xamarin.Forms.Xaml.dll</PackagePath>
-      <Modified>2018-06-08T10:48:32.000</Modified>
+      <Modified>2018-06-16T01:58:30.000</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac\bin\Debug\netstandard2.0\saac.dll">
       <PackagePath>saac.dll</PackagePath>
-      <Modified>2018-06-14T12:56:24.648</Modified>
+      <Modified>2018-06-25T11:45:16.204</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.UWP\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
@@ -807,11 +807,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.UWP\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2018-06-14T13:00:56.007</Modified>
+      <Modified>2018-06-25T11:45:25.582</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.UWP\bin\x86\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2018-06-14T13:00:56.008</Modified>
+      <Modified>2018-06-25T11:45:25.583</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.16299.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -849,58 +849,62 @@
       <PackagePath>Coding4Fun.Toolkit.Controls\Themes\Generic.xbf</PackagePath>
       <Modified>2016-05-12T18:21:28.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.forms\3.0.0.561731\lib\uap10.0\Xamarin.Forms.Platform.UAP\AutoSuggestStyle.xbf">
+    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.forms\3.1.0.583944\lib\uap10.0\Xamarin.Forms.Platform.UAP\AutoSuggestStyle.xbf">
       <PackagePath>Xamarin.Forms.Platform.UAP\AutoSuggestStyle.xbf</PackagePath>
-      <Modified>2018-06-08T10:48:30.000</Modified>
+      <Modified>2018-06-16T01:58:28.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.forms\3.0.0.561731\lib\uap10.0\Xamarin.Forms.Platform.UAP\FormsCommandBarStyle.xbf">
+    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.forms\3.1.0.583944\lib\uap10.0\Xamarin.Forms.Platform.UAP\FormsCommandBarStyle.xbf">
       <PackagePath>Xamarin.Forms.Platform.UAP\FormsCommandBarStyle.xbf</PackagePath>
-      <Modified>2018-06-08T10:48:30.000</Modified>
+      <Modified>2018-06-16T01:58:28.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.forms\3.0.0.561731\lib\uap10.0\Xamarin.Forms.Platform.UAP\FormsEmbeddedPageWrapper.xbf">
+    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.forms\3.1.0.583944\lib\uap10.0\Xamarin.Forms.Platform.UAP\FormsEmbeddedPageWrapper.xbf">
       <PackagePath>Xamarin.Forms.Platform.UAP\FormsEmbeddedPageWrapper.xbf</PackagePath>
-      <Modified>2018-06-08T10:48:30.000</Modified>
+      <Modified>2018-06-16T01:58:28.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.forms\3.0.0.561731\lib\uap10.0\Xamarin.Forms.Platform.UAP\FormsFlyout.xbf">
+    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.forms\3.1.0.583944\lib\uap10.0\Xamarin.Forms.Platform.UAP\FormsFlyout.xbf">
       <PackagePath>Xamarin.Forms.Platform.UAP\FormsFlyout.xbf</PackagePath>
-      <Modified>2018-06-08T10:48:30.000</Modified>
+      <Modified>2018-06-16T01:58:28.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.forms\3.0.0.561731\lib\uap10.0\Xamarin.Forms.Platform.UAP\FormsProgressBarStyle.xbf">
+    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.forms\3.1.0.583944\lib\uap10.0\Xamarin.Forms.Platform.UAP\FormsProgressBarStyle.xbf">
       <PackagePath>Xamarin.Forms.Platform.UAP\FormsProgressBarStyle.xbf</PackagePath>
-      <Modified>2018-06-08T10:48:30.000</Modified>
+      <Modified>2018-06-16T01:58:28.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.forms\3.0.0.561731\lib\uap10.0\Xamarin.Forms.Platform.UAP\FormsTextBoxStyle.xbf">
+    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.forms\3.1.0.583944\lib\uap10.0\Xamarin.Forms.Platform.UAP\FormsTextBoxStyle.xbf">
       <PackagePath>Xamarin.Forms.Platform.UAP\FormsTextBoxStyle.xbf</PackagePath>
-      <Modified>2018-06-08T10:48:30.000</Modified>
+      <Modified>2018-06-16T01:58:28.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.forms\3.0.0.561731\lib\uap10.0\Xamarin.Forms.Platform.UAP\MasterDetailControlStyle.xbf">
+    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.forms\3.1.0.583944\lib\uap10.0\Xamarin.Forms.Platform.UAP\MasterDetailControlStyle.xbf">
       <PackagePath>Xamarin.Forms.Platform.UAP\MasterDetailControlStyle.xbf</PackagePath>
-      <Modified>2018-06-08T10:48:30.000</Modified>
+      <Modified>2018-06-16T01:58:28.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.forms\3.0.0.561731\lib\uap10.0\Xamarin.Forms.Platform.UAP\PageControlStyle.xbf">
+    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.forms\3.1.0.583944\lib\uap10.0\Xamarin.Forms.Platform.UAP\PageControlStyle.xbf">
       <PackagePath>Xamarin.Forms.Platform.UAP\PageControlStyle.xbf</PackagePath>
-      <Modified>2018-06-08T10:48:30.000</Modified>
+      <Modified>2018-06-16T01:58:28.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.forms\3.0.0.561731\lib\uap10.0\Xamarin.Forms.Platform.UAP\Resources.xbf">
+    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.forms\3.1.0.583944\lib\uap10.0\Xamarin.Forms.Platform.UAP\Resources.xbf">
       <PackagePath>Xamarin.Forms.Platform.UAP\Resources.xbf</PackagePath>
-      <Modified>2018-06-08T10:48:30.000</Modified>
+      <Modified>2018-06-16T01:58:28.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.forms\3.0.0.561731\lib\uap10.0\Xamarin.Forms.Platform.UAP\TabbedPageStyle.xbf">
+    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.forms\3.1.0.583944\lib\uap10.0\Xamarin.Forms.Platform.UAP\SliderStyle.xbf">
+      <PackagePath>Xamarin.Forms.Platform.UAP\SliderStyle.xbf</PackagePath>
+      <Modified>2018-06-16T01:58:28.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.forms\3.1.0.583944\lib\uap10.0\Xamarin.Forms.Platform.UAP\TabbedPageStyle.xbf">
       <PackagePath>Xamarin.Forms.Platform.UAP\TabbedPageStyle.xbf</PackagePath>
-      <Modified>2018-06-08T10:48:30.000</Modified>
+      <Modified>2018-06-16T01:58:28.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.forms\3.0.0.561731\lib\uap10.0\Xamarin.Forms.Platform.UAP\Xamarin.Forms.Platform.UAP.xr.xml">
+    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.forms\3.1.0.583944\lib\uap10.0\Xamarin.Forms.Platform.UAP\Xamarin.Forms.Platform.UAP.xr.xml">
       <PackagePath>Xamarin.Forms.Platform.UAP\Xamarin.Forms.Platform.UAP.xr.xml</PackagePath>
-      <Modified>2018-06-08T10:48:30.000</Modified>
+      <Modified>2018-06-16T01:58:28.000</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.UWP\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-06-14T13:01:06.235</Modified>
+      <Modified>2018-06-25T11:45:32.998</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.UWP\bin\x86\Debug\Core\saac.UWP.exe">
       <PackagePath>saac.UWP.exe</PackagePath>
-      <Modified>2018-06-14T13:01:10.819</Modified>
+      <Modified>2018-06-25T11:45:36.715</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
