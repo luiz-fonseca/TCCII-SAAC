@@ -11,7 +11,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
-using Plugin.Connectivity;
+using Xamarin.Essentials;
 
 namespace saac.ViewModels
 {
@@ -223,7 +223,8 @@ namespace saac.ViewModels
         {
             try
             {
-                if (CrossConnectivity.Current.IsConnected)
+                var current = Connectivity.NetworkAccess;
+                if (current == NetworkAccess.Internet)
                 {
                     var resultado = await _clienteAuxiliar.GetAuxiliar(IdGrupo, IdUsuario);
 
@@ -279,7 +280,8 @@ namespace saac.ViewModels
         {
             try
             {
-                if (CrossConnectivity.Current.IsConnected)
+                var current = Connectivity.NetworkAccess;
+                if (current == NetworkAccess.Internet)
                 {
                     //var resultado = await _clienteAuxiliar.ExisteSeguirAux(Grupos.Id, UserId);
                     //Verificacao(Grupos.Id, UserId);
@@ -378,7 +380,8 @@ namespace saac.ViewModels
         {
             try
             {
-                if (CrossConnectivity.Current.IsConnected)
+                var current = Connectivity.NetworkAccess;
+                if (current == NetworkAccess.Internet)
                 {
                     Publication.Id = Guid.NewGuid().ToString("N");
                     Publication.CodUsuario = UserId;
@@ -430,7 +433,8 @@ namespace saac.ViewModels
         {
             try
             {
-                if (CrossConnectivity.Current.IsConnected)
+                var current = Connectivity.NetworkAccess;
+                if (current == NetworkAccess.Internet)
                 {
                     List<string> auxList = new List<string>();
 

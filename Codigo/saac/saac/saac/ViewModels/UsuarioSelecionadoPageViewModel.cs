@@ -1,5 +1,4 @@
 ﻿using Acr.UserDialogs;
-using Plugin.Connectivity;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -8,6 +7,7 @@ using saac.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Xamarin.Essentials;
 
 namespace saac.ViewModels
 {
@@ -49,7 +49,8 @@ namespace saac.ViewModels
         {
             try
             {
-                if (CrossConnectivity.Current.IsConnected)
+                var current = Connectivity.NetworkAccess;
+                if (current == NetworkAccess.Internet)
                 {
                     User = await _clienteUsuario.UsuarioSelecionado(codUsuario);
 

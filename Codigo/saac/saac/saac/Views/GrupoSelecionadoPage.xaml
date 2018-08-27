@@ -32,7 +32,7 @@
 
                         <Label Style="{StaticResource TitleStyle}" Text="{Binding Grupos.Nome}"/>
                         <Label Text="{Binding Grupos.Descricao}" FontSize="{StaticResource FonteSubTitulo}"/>
-                        <Editor Text="{Binding Texto}" HeightRequest="75"/>
+                        <Editor Text="{Binding Texto}" AutoSize="TextChanges"/>
 
                         <StackLayout Orientation="Horizontal">
                             <Button Text="Publicar" 

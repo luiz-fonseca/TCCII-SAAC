@@ -1,5 +1,4 @@
 ﻿using Acr.UserDialogs;
-using Plugin.Connectivity;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -10,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 namespace saac.ViewModels
 {
@@ -66,7 +66,8 @@ namespace saac.ViewModels
         #region Métodos
         public async void Salvar()
         {
-            if (CrossConnectivity.Current.IsConnected)
+            var current = Connectivity.NetworkAccess;
+            if (current == NetworkAccess.Internet)
             {
                 if (Opcao.Contains("adicionar"))
                 {
@@ -139,7 +140,8 @@ namespace saac.ViewModels
         {
             try
             {
-                if (CrossConnectivity.Current.IsConnected)
+                var current = Connectivity.NetworkAccess;
+                if (current == NetworkAccess.Internet)
                 {
                     Preferencias = await _clientePreferencia.MinhasPreferencias(codUsuario);
 

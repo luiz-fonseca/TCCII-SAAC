@@ -1,5 +1,4 @@
 ﻿using Acr.UserDialogs;
-using Plugin.Connectivity;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -16,12 +15,14 @@ namespace saac.ViewModels
 {
 	public class NotificacoesPageViewModel : BindableBase
 	{
+        #region Propriedades
         private string _titulo = "Notificações";
         public string Titulo
         {
             get { return _titulo; }
             set { SetProperty(ref _titulo, value); }
         }
+        #endregion
 
         #region Construtor
         public NotificacoesPageViewModel()

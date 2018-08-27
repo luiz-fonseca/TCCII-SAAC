@@ -1,5 +1,4 @@
 ﻿using Acr.UserDialogs;
-using Plugin.Connectivity;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -10,6 +9,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 namespace saac.ViewModels
 {
@@ -101,7 +101,8 @@ namespace saac.ViewModels
         {
             try
             {
-                if (CrossConnectivity.Current.IsConnected)
+                var current = Connectivity.NetworkAccess;
+                if (current == NetworkAccess.Internet)
                 {
                     var dataAtual = DateTime.Now.Date;
                     var lista = await _clienteConcurso.ConcursosEmEspera(dataAtual);

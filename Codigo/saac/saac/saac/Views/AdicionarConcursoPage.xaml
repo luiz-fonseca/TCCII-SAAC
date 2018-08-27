@@ -22,7 +22,7 @@
                        TextColor="{StaticResource CorPrincipal}"/>
                 
                 <Editor Text="{Binding Concursos.Detalhes}"
-                        HeightRequest="400"/>
+                        AutoSize="TextChanges"/>
 
                 <Picker Title="Regiões" 
                         TextColor="{StaticResource CorPrincipal}"

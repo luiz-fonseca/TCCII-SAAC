@@ -1,4 +1,4 @@
-﻿using saac.Helpers;
+﻿using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace saac.Views
@@ -10,7 +10,7 @@ namespace saac.Views
             InitializeComponent();
 
             if (Device.RuntimePlatform == Device.Android)
-                adMobView.AdUnitId = Settings.IdAdMobAndroid;
+                adMobView.AdUnitId = Preferences.Get("publicidade", "");
         }
     }
 }

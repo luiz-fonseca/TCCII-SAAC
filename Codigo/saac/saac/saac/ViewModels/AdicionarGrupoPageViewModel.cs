@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
-using Plugin.Connectivity;
+using Xamarin.Essentials;
 
 namespace saac.ViewModels
 {
@@ -164,7 +164,8 @@ namespace saac.ViewModels
 
         
          private async void SelecionarOpcao(){
-            if (CrossConnectivity.Current.IsConnected)
+            var current = Connectivity.NetworkAccess;
+            if (current == NetworkAccess.Internet)
             {
                 if (Opcao.Contains("adicionar"))
                 {

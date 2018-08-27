@@ -131,14 +131,11 @@
     <PackageReference Include="Microsoft.Azure.Mobile.Client">
       <Version>4.0.2</Version>
     </PackageReference>
-    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.1.5" />
-    <PackageReference Include="Xam.Plugin.Connectivity">
-      <Version>3.1.1</Version>
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.1.7" />
+    <PackageReference Include="Xamarin.Essentials">
+      <Version>0.10.0-preview</Version>
     </PackageReference>
-    <PackageReference Include="Xam.Plugins.Settings">
-      <Version>4.0.0.7</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="3.1.0.583944" />
+    <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />
     <PackageReference Include="Prism.DryIoc.Forms" Version="7.0.0.396" />
   </ItemGroup>
   <ItemGroup>

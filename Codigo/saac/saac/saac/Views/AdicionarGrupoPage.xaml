@@ -4,7 +4,7 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="saac.Views.AdicionarGrupoPage"
-             Title="Concursos">
+             Title="Grupo">
 
     <ContentPage.Content>
         <StackLayout Spacing="20" Padding="10, 0, 10, 0"
@@ -13,14 +13,17 @@
             <Label Text="{Binding Mensagem}" Style="{StaticResource TitleStyle}"/>
 
             <Entry Placeholder="Nome do Grupo"
-                       Text="{Binding Grupos.Nome}"/>
+                   Text="{Binding Grupos.Nome}"
+                   MaxLength="30"/>
 
             <StackLayout Spacing="10">
                 <Label Text="Descrição" 
                        FontAttributes="{StaticResource FonteNegrito}"
                        TextColor="{StaticResource CorPrincipal}"/>
                 
-                <Editor Text="{Binding Grupos.Descricao}" HeightRequest="100"/>
+                <Editor Text="{Binding Grupos.Descricao}" 
+                        AutoSize="TextChanges"
+                        MaxLength="150"/>
 
             </StackLayout>
 

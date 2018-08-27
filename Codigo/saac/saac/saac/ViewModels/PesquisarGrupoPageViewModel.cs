@@ -8,9 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Plugin.Connectivity;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
+using Xamarin.Essentials;
 
 namespace saac.ViewModels
 {
@@ -133,7 +133,8 @@ namespace saac.ViewModels
         {
             try
             {
-                if (CrossConnectivity.Current.IsConnected)
+                var current = Connectivity.NetworkAccess;
+                if (current == NetworkAccess.Internet)
                 {
                     IsLoading = true;
 
@@ -168,7 +169,8 @@ namespace saac.ViewModels
         {
             try
             {
-                if (CrossConnectivity.Current.IsConnected)
+                var current = Connectivity.NetworkAccess;
+                if (current == NetworkAccess.Internet)
                 {
                     var resultado = await _clienteGroup.GetTable();
                     if (resultado.Count != 0)

@@ -1,5 +1,4 @@
 ﻿using Acr.UserDialogs;
-using Plugin.Connectivity;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -11,6 +10,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 namespace saac.ViewModels
 {
@@ -163,7 +163,8 @@ namespace saac.ViewModels
         {
             try
             {
-                if (CrossConnectivity.Current.IsConnected)
+                var current = Connectivity.NetworkAccess;
+                if (current == NetworkAccess.Internet)
                 {
                     Mensagem = string.Empty;
 
@@ -208,7 +209,8 @@ namespace saac.ViewModels
         {
             try
             {
-                if (CrossConnectivity.Current.IsConnected)
+                var current = Connectivity.NetworkAccess;
+                if (current == NetworkAccess.Internet)
                 {
                     var resultado = await _dialogService.DisplayAlertAsync("Excluir Concurso", "Deseja realmente remover este concurso?", "Sim", "Não");
 
@@ -305,7 +307,8 @@ namespace saac.ViewModels
         {
             try
             {
-                if (CrossConnectivity.Current.IsConnected)
+                var current = Connectivity.NetworkAccess;
+                if (current == NetworkAccess.Internet)
                 {
                     VerificadorAdm = await _clienteUser.VerificarAdministrador(id);
 

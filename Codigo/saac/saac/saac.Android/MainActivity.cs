@@ -7,7 +7,8 @@ using Prism;
 using Prism.Ioc;
 using saac.Droid.Services;
 using saac.Interfaces;
-using saac.Helpers;
+using Android.Runtime;
+using Xamarin.Essentials;
 
 namespace saac.Droid
 {
@@ -30,9 +31,19 @@ namespace saac.Droid
             UserDialogs.Init(this);
 
             //plugin de publicidade
-            MobileAds.Initialize(ApplicationContext, Settings.IdAdMobAndroid);
+            MobileAds.Initialize(ApplicationContext, Preferences.Get("publicidade", ""));
+
+            //Xamarin Essentials
+            Xamarin.Essentials.Platform.Init(this, bundle);
 
             LoadApplication(new App(new AndroidInitializer()));
+        }
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
+        {
+            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 

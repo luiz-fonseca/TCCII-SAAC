@@ -12,8 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Acr.UserDialogs;
-using saac.Helpers;
-using Plugin.Connectivity;
+using Xamarin.Essentials;
 
 namespace saac.ViewModels
 {
@@ -120,7 +119,9 @@ namespace saac.ViewModels
                 {
                     try
                     {
-                        if (CrossConnectivity.Current.IsConnected) {
+                        var current = Connectivity.NetworkAccess;
+                        if (current == NetworkAccess.Internet)
+                        { 
                             await SetFacebookUserProfileAsync(accessToken);
 
                             await CriarUsuario();
@@ -146,12 +147,14 @@ namespace saac.ViewModels
 
         private async Task CriarUsuario()
         {
-            User.Id = Settings.IdUser = FacebookProfile.Id;
+            User.Id = FacebookProfile.Id;
             User.Nome = FacebookProfile.Name;
             User.Foto = FacebookProfile.Picture.Data.Url;
             User.DtNasci = FacebookProfile.DtNascimento;
             User.Sexo = true;
             User.Endereco = "Areia Branca";
+
+            await SecureStorage.SetAsync("UserId", User.Id);
 
             var navigationParams = new NavigationParameters();
             navigationParams.Add("userId", User.Id);
@@ -186,20 +189,29 @@ namespace saac.ViewModels
 
         public async void Logado()
         {
-            var navigationParams = new NavigationParameters();
-            navigationParams.Add("userId", Settings.IdUser);
+            var oauthToken = await SecureStorage.GetAsync("UserId");
+            if (oauthToken != null)
+            {
+                var navigationParams = new NavigationParameters();
+                navigationParams.Add("userId", oauthToken);
 
-            await _navigationService.NavigateAsync("../PrincipalPage", navigationParams, useModalNavigation: false);
-
+                await _navigationService.NavigateAsync("../PrincipalPage", navigationParams, useModalNavigation: false);
+            }
         }
+
 
         public override void OnNavigatedTo(NavigationParameters parameters)
         {
-            if (Settings.IsLoggedIn)
+            
+            var myValue = Preferences.Get("publicidade", null);
+            if (myValue == null)
             {
-                Logado();
-
+                Preferences.Set("publicidade", "ca - app - pub - 3940256099942544 / 6300978111");
             }
+
+            Logado();
+
+            
         }
 
         #endregion

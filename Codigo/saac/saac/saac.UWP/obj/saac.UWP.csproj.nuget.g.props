@@ -7,7 +7,7 @@
     <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">$(UserProfile)\.nuget\packages\</NuGetPackageRoot>
     <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">C:\Users\luizf\.nuget\packages\;C:\Program Files (x86)\Microsoft SDKs\UWPNuGetPackages\</NuGetPackageFolders>
     <NuGetProjectStyle Condition=" '$(NuGetProjectStyle)' == '' ">PackageReference</NuGetProjectStyle>
-    <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">4.7.0</NuGetToolVersion>
+    <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">4.8.0</NuGetToolVersion>
   </PropertyGroup>
   <PropertyGroup>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
@@ -24,6 +24,6 @@
     <Import Project="C:\Program Files (x86)\Microsoft SDKs\UWPNuGetPackages\runtime.win10-arm.microsoft.net.native.compiler\2.1.8\build\runtime.win10-arm.Microsoft.Net.Native.Compiler.props" Condition="Exists('C:\Program Files (x86)\Microsoft SDKs\UWPNuGetPackages\runtime.win10-arm.microsoft.net.native.compiler\2.1.8\build\runtime.win10-arm.Microsoft.Net.Native.Compiler.props')" />
     <Import Project="$(NuGetPackageRoot)microsoft.net.uwpcoreruntimesdk\2.1.2\build\Microsoft.Net.UWPCoreRuntimeSdk.props" Condition="Exists('$(NuGetPackageRoot)microsoft.net.uwpcoreruntimesdk\2.1.2\build\Microsoft.Net.UWPCoreRuntimeSdk.props')" />
     <Import Project="C:\Program Files (x86)\Microsoft SDKs\UWPNuGetPackages\microsoft.net.native.compiler\2.1.8\build\Microsoft.Net.Native.Compiler.props" Condition="Exists('C:\Program Files (x86)\Microsoft SDKs\UWPNuGetPackages\microsoft.net.native.compiler\2.1.8\build\Microsoft.Net.Native.Compiler.props')" />
-    <Import Project="$(NuGetPackageRoot)xamarin.forms\3.1.0.583944\build\netstandard2.0\Xamarin.Forms.props" Condition="Exists('$(NuGetPackageRoot)xamarin.forms\3.1.0.583944\build\netstandard2.0\Xamarin.Forms.props')" />
+    <Import Project="$(NuGetPackageRoot)xamarin.forms\3.1.0.697729\build\netstandard2.0\Xamarin.Forms.props" Condition="Exists('$(NuGetPackageRoot)xamarin.forms\3.1.0.697729\build\netstandard2.0\Xamarin.Forms.props')" />
   </ImportGroup>
 </Project>

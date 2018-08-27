@@ -1,5 +1,4 @@
 ﻿using Acr.UserDialogs;
-using Plugin.Connectivity;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -9,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Xamarin.Essentials;
 
 namespace saac.ViewModels
 {
@@ -43,7 +43,14 @@ namespace saac.ViewModels
             get { return _atualizando; }
             set { SetProperty(ref _atualizando, value); }
         }
-        
+
+        private NetworkAccess _access;
+        public NetworkAccess Access
+        {
+            get { return _access; }
+            set { SetProperty(ref _access, value); }
+        }
+
         private ObservableCollection<object> _categorias;
         public ObservableCollection<object> Categorias
         {
@@ -60,7 +67,8 @@ namespace saac.ViewModels
 
         private DelegateCommand _administradorCommand;
         public DelegateCommand AdministradorCommand =>
-            _administradorCommand ?? (_administradorCommand = new DelegateCommand(Administrador, CondicaoAdministrador));
+            _administradorCommand ?? (_administradorCommand = new DelegateCommand(Administrador, CondicaoAdministrador))
+            .ObservesProperty(()=> Access);
 
         private DelegateCommand<object> _categoriaSelectedCommand;
         public DelegateCommand<object> CategoriaSelectedCommand =>
@@ -75,11 +83,19 @@ namespace saac.ViewModels
 
             Categorias = new ObservableCollection<object>();
 
+            Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
 
         }
         #endregion
 
         #region Métodos
+        void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
+        {
+            Access = e.NetworkAccess;
+            var profiles = e.Profiles;
+
+        }
+
         public void AtualizarVerificador()
         {
             Atualizando = true;
@@ -124,7 +140,7 @@ namespace saac.ViewModels
 
         private bool CondicaoAdministrador()
         {
-            return VerificadorAdm;
+            return VerificadorAdm || Access == NetworkAccess.Internet;
 
         }
 
@@ -132,7 +148,8 @@ namespace saac.ViewModels
         {
             try
             {
-                if (CrossConnectivity.Current.IsConnected)
+                var current = Connectivity.NetworkAccess;
+                if (current == NetworkAccess.Internet)
                 {
                     VerificadorAdm = await _clienteUser.VerificarAdministrador(id);
                     VerificacaoRealizada = true;
@@ -182,6 +199,12 @@ namespace saac.ViewModels
                 Verificacao(UserId);
                 
             }
+        }
+
+        public override void OnNavigatedFrom(NavigationParameters parameters)
+        {
+            Connectivity.ConnectivityChanged -= Connectivity_ConnectivityChanged;
+
         }
 
         #endregion

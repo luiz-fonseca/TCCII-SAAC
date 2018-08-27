@@ -1,5 +1,4 @@
 ﻿using Acr.UserDialogs;
-using Plugin.Connectivity;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -8,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Xamarin.Essentials;
 
 namespace saac.ViewModels
 {
@@ -51,7 +51,8 @@ namespace saac.ViewModels
         #region Métodos
         private async void ItemTapped(object obj)
         {
-            if (CrossConnectivity.Current.IsConnected)
+            var current = Connectivity.NetworkAccess;
+            if (current == NetworkAccess.Internet)
             {
                 var aux = ConversaoCategoria(obj);
                 var resultado = OpcaoSelecionada(aux);

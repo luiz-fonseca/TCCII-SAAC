@@ -10,8 +10,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Acr.UserDialogs;
-using Plugin.Connectivity;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 namespace saac.ViewModels
 {
@@ -164,7 +164,8 @@ namespace saac.ViewModels
         {
             try
             {
-                if (CrossConnectivity.Current.IsConnected)
+                var current = Connectivity.NetworkAccess;
+                if (current == NetworkAccess.Internet)
                 {
                     var comment = ConversaoComentario(args);
 
@@ -230,7 +231,8 @@ namespace saac.ViewModels
         {
             try
             {
-                if (CrossConnectivity.Current.IsConnected)
+                var current = Connectivity.NetworkAccess;
+                if (current == NetworkAccess.Internet)
                 {
                     Comentarios.Id = Guid.NewGuid().ToString("N");
                     Comentarios.CodUsuario = UserId;
@@ -262,7 +264,8 @@ namespace saac.ViewModels
         {
             try
             {
-                if (CrossConnectivity.Current.IsConnected)
+                var current = Connectivity.NetworkAccess;
+                if (current == NetworkAccess.Internet)
                 {
                     var resulPublicacao = await _dialogService.DisplayAlertAsync("Excluir Publicação", "A exclusão desta publicação," +
                         " também irá excluir todos os comentários relacionados a está publicação. Deseja Continuar?", " Sim ", " Não ");
@@ -308,7 +311,8 @@ namespace saac.ViewModels
         {
             try
             {
-                if (CrossConnectivity.Current.IsConnected)
+                var current = Connectivity.NetworkAccess;
+                if (current == NetworkAccess.Internet)
                 {
                     var resultado = await _clientePublication.MinhaPublicaco(idPublicacao, idUsuario);
 
@@ -359,7 +363,8 @@ namespace saac.ViewModels
         {
             try
             {
-                if (CrossConnectivity.Current.IsConnected)
+                var current = Connectivity.NetworkAccess;
+                if (current == NetworkAccess.Internet)
                 {
                     List<string> auxList = new List<string>();
 

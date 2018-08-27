@@ -8,9 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Plugin.Connectivity;
 using Acr.UserDialogs;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 namespace saac.ViewModels
 {
@@ -129,7 +129,8 @@ namespace saac.ViewModels
         {
             try
             {
-                if (CrossConnectivity.Current.IsConnected)
+                var current = Connectivity.NetworkAccess;
+                if (current == NetworkAccess.Internet)
                 {
                     var aux = await _clienteAux.MeusGrupos(id);
                     if (aux.Count == 0)
