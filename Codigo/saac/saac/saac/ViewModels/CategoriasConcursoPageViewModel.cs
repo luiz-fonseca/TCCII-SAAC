@@ -185,7 +185,7 @@ namespace saac.ViewModels
 
         }
 
-        public override void OnNavigatingTo(NavigationParameters parameters)
+        public override void OnNavigatingTo(INavigationParameters parameters)
         {
             if (HasInitialized) return;
             HasInitialized = true;
@@ -201,7 +201,7 @@ namespace saac.ViewModels
             }
         }
 
-        public override void OnNavigatedFrom(NavigationParameters parameters)
+        public override void OnNavigatedFrom(INavigationParameters parameters)
         {
             Connectivity.ConnectivityChanged -= Connectivity_ConnectivityChanged;
 

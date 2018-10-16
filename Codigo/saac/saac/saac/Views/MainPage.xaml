@@ -20,7 +20,7 @@
         <Button VerticalOptions="CenterAndExpand" 
                 Text="Facebook" BackgroundColor="Blue" 
                 TextColor="White" 
-                Clicked="LoginWithFacebook_Clicked">
+                Command="{Binding FacebookCommand}">
             
         </Button>
 

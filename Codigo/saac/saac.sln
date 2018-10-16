@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "saac", "saac\saac\saac.csproj", "{3E1CD1F7-7CE9-4682-9B0F-12725C916E6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "saac", "saac\saac\saac.csproj", "{3E1CD1F7-7CE9-4682-9B0F-12725C916E6E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "saac.Android", "saac\saac.Android\saac.Android.csproj", "{E7C2867D-3B28-431F-A557-CB78FC3AF5A7}"
 EndProject

@@ -89,6 +89,7 @@
 
                 <Button VerticalOptions="End" 
                         Text="Salvar"
+                        Padding="0,0"
                         Style="{StaticResource BotaoStyle}"
                         Command="{Binding SalvarComentarioCommand}"/>
 

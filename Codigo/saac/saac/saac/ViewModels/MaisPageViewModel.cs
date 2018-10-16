@@ -117,7 +117,7 @@ namespace saac.ViewModels
 
         }
 
-        public override void OnNavigatingTo(NavigationParameters parameters)
+        public override void OnNavigatingTo(INavigationParameters parameters)
         {
             if (HasInitialized) return;
             HasInitialized = true;

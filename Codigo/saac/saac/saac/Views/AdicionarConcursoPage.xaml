@@ -17,11 +17,8 @@
                 <Entry  Placeholder="Descrição"
                        Text="{Binding Concursos.Descricao}"/>
 
-                <Label Text="Detalhes"
-                       FontAttributes="{StaticResource FonteNegrito}"
-                       TextColor="{StaticResource CorPrincipal}"/>
-                
                 <Editor Text="{Binding Concursos.Detalhes}"
+                        Placeholder="Detalhes"
                         AutoSize="TextChanges"/>
 
                 <Picker Title="Regiões" 
@@ -34,7 +31,9 @@
                         TextColor="{StaticResource CorPrincipal}"
                         ItemsSource="{Binding Estados}" 
                         SelectedItem="{Binding Concursos.Estado}"
-                        SelectedIndex="{Binding ItemEstados}"/>
+                        />
+
+                <!--SelectedIndex="{Binding ItemEstados}"-->
                     
                 <Label Text="Data final da inscrição" 
                        FontAttributes="{StaticResource FonteNegrito}"

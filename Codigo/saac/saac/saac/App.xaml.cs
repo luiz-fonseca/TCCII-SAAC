@@ -8,6 +8,7 @@ using Prism.DryIoc;
 using saac.Interfaces;
 using saac.Models;
 using saac.Services;
+using System.Threading.Tasks;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace saac
@@ -57,6 +58,8 @@ namespace saac
             containerRegistry.RegisterForNavigation<AdicionarUsuarioPage>();
             containerRegistry.RegisterForNavigation<NotificacoesConcursoPage>();
             containerRegistry.RegisterForNavigation<NotificacoesGrupoPage>();
+            containerRegistry.RegisterForNavigation<FacebookAuthenticationPage>();
+            containerRegistry.RegisterForNavigation<GerenciarUsuarioPage>();
 
             //registrando interfaces
             containerRegistry.Register<IAzureServiceUser<Usuario>, AzureServiceUser<Usuario>>();
@@ -64,12 +67,19 @@ namespace saac
             containerRegistry.Register<IAzureServiceAux<Auxiliar>, AzureServiceAux<Auxiliar>>();
             containerRegistry.Register<IAzureServicePublication<Publicacao>, AzureServicePublication<Publicacao>>();
             containerRegistry.Register<IAzureServiceComment<Comentario>, AzureServiceComment<Comentario>>();
-            containerRegistry.Register<IFacebookService, FacebookService>();
             containerRegistry.Register<IAzureServiceAuxConcursoGrupo<AuxConcursoGrupo>, AzureServiceAuxConcursoGrupo<AuxConcursoGrupo>>();
             containerRegistry.Register<IAzureServiceConcurso<Concurso>, AzureServiceConcurso<Concurso>>();
             containerRegistry.Register<IAzureServicePrefConcurso<PreferenciaConcurso>, AzureServicePrefConcurso<PreferenciaConcurso>>();
             containerRegistry.Register<IAzureServicePrefUser<PreferenciaUser>, AzureServicePrefUser<PreferenciaUser>>();
 
+            
         }
+
+        
+            public async static Task NavegacaoAuthentication() => await Current.MainPage.Navigation.PushAsync(new GerenciarUsuarioPage());
+         //  public static Action HideLoginView => new Action(()=> Current.MainPage.Navigation.PopModalAsync());
+         
+         
+
     }
 }

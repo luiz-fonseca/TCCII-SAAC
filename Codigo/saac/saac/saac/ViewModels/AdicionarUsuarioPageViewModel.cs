@@ -7,6 +7,7 @@ using saac.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
 
 namespace saac.ViewModels
@@ -14,6 +15,8 @@ namespace saac.ViewModels
 	public class AdicionarUsuarioPageViewModel : ViewModelBase
 	{
         #region Propriedades
+        public string Opcao { get; set; }
+
         private Usuario _user;
         public Usuario User
         {
@@ -27,7 +30,7 @@ namespace saac.ViewModels
 
         private DelegateCommand _salvarUsuarioCommand;
         public DelegateCommand SalvarUsuarioCommand =>
-            _salvarUsuarioCommand ?? (_salvarUsuarioCommand = new DelegateCommand(SalvarUsuario));
+            _salvarUsuarioCommand ?? (_salvarUsuarioCommand = new DelegateCommand(Salvar));
         #endregion
 
         #region Construtor
@@ -43,21 +46,40 @@ namespace saac.ViewModels
         #endregion
 
         #region Métodos
-        public async void SalvarUsuario()
+        public async void Salvar()
+        {
+            var current = Connectivity.NetworkAccess;
+            if (current == NetworkAccess.Internet)
+            {
+                if (Opcao.Contains("adicionar"))
+                {
+                    await SalvarUsuario();
+                }
+                else if (Opcao.Contains("editar"))
+                {
+                    await AtualizarUsuario();
+                }
+            }
+            else
+            {
+                UserDialogs.Instance.Toast("Você está sem conexão.", TimeSpan.FromSeconds(2));
+
+            }
+
+        }
+
+        public async Task SalvarUsuario()
         {
             try
             {
-                var current = Connectivity.NetworkAccess;
-                if (current == NetworkAccess.Internet)
-                {
-                    await _clienteUsuario.AtualizarTable(User);
-                    UserDialogs.Instance.Toast("Os seus dados foram atualizados", TimeSpan.FromSeconds(2));
-                }
-                else
-                {
-                    UserDialogs.Instance.Toast("Você está sem conexão.", TimeSpan.FromSeconds(2));
+                var navigationParams = new NavigationParameters();
+                navigationParams.Add("userId", User.Id);
+                navigationParams.Add("adicionar", "adicionar");
 
-                }
+                //await _clienteUsuario.AdicionarTable(User);
+                await _navigationService.NavigateAsync("../AdicionarPrefUserPage", navigationParams, useModalNavigation: false);
+                UserDialogs.Instance.Toast("Parabéns!! O seu cadastro foi realizado.", TimeSpan.FromSeconds(2));
+                
             }
             catch (Exception)
             {
@@ -66,11 +88,37 @@ namespace saac.ViewModels
             }
         }
 
-        public override void OnNavigatingTo(NavigationParameters parameters)
+        public async Task AtualizarUsuario()
+        {
+            try
+            {
+                await _clienteUsuario.AtualizarTable(User);
+                UserDialogs.Instance.Toast("Os seus dados foram atualizados", TimeSpan.FromSeconds(2));
+
+            }
+            catch (Exception)
+            {
+                UserDialogs.Instance.Toast("Ops! Ocorreu algum problema", TimeSpan.FromSeconds(2));
+
+            }
+
+        }
+
+
+        public override void OnNavigatingTo(INavigationParameters parameters)
         {
             if (parameters.ContainsKey("usuario"))
             {
                 User = (Usuario)parameters["usuario"];
+
+                if (parameters.ContainsKey("adicionar"))
+                {
+                    Opcao = (string)parameters["adicionar"];
+                }
+                else if (parameters.ContainsKey("editar"))
+                {
+                    Opcao = (string)parameters["editar"];
+                }
 
             }
 

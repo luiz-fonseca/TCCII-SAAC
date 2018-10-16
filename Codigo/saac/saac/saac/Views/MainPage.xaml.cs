@@ -15,12 +15,12 @@ namespace saac.Views
 			InitializeComponent ();
 		}
 
-        private void LoginWithFacebook_Clicked(object sender, EventArgs e)
+       /* private void LoginWithFacebook_Clicked(object sender, EventArgs e)
         {
             var vm = BindingContext as MainPageViewModel;
 
             Content = vm.Initialize();
 
-        }
+        }*/
     }
 }

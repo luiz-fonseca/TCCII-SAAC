@@ -12,7 +12,7 @@ namespace saac.Views
             
         }
 
-        public void OnNavigatingTo(NavigationParameters parameters)
+        public void OnNavigatingTo(INavigationParameters parameters)
         {
             foreach (var child in Children)
             {

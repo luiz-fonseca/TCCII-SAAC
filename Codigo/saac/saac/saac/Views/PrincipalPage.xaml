@@ -5,9 +5,29 @@
             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
             prism:ViewModelLocator.AutowireViewModel="True"
             x:Class="saac.Views.PrincipalPage"
-            Title="Saac"
+            Title=""
             BarBackgroundColor="{StaticResource CorPrincipal}"
             BarTextColor="{StaticResource CorDestaqueDoPrincipal}">
+
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Image Source="{Binding User.Foto}" HeightRequest="30"
+                       WidthRequest="30">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding PerfilCommand}" />
+                </Image.GestureRecognizers>
+
+            </Image>
+
+            <Label Text="{Binding User.Nome}" TextColor="White"  VerticalTextAlignment="Center" Font="16">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer  Command="{Binding PerfilCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+        </StackLayout>
+
+    </NavigationPage.TitleView>
 
     <TabbedPage.ToolbarItems>
         <ToolbarItem Text="Sobre" Order="Secondary" Command="{Binding SobreCommand}"/>

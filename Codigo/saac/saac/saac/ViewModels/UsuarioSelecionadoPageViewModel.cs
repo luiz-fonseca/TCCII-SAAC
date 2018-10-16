@@ -72,6 +72,7 @@ namespace saac.ViewModels
         {
             var navigationParams = new NavigationParameters();
             navigationParams.Add("usuario", User);
+            navigationParams.Add("editar", "editar");
 
             await _navigationService.NavigateAsync("AdicionarUsuarioPage", navigationParams, useModalNavigation: false);
 
@@ -83,7 +84,7 @@ namespace saac.ViewModels
             return true;
         }
 
-        public override void OnNavigatingTo(NavigationParameters parameters)
+        public override void OnNavigatingTo(INavigationParameters parameters)
         {
             if (parameters.ContainsKey("userId"))
             {

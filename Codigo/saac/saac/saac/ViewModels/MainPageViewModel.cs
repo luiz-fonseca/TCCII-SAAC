@@ -19,132 +19,33 @@ namespace saac.ViewModels
     public class MainPageViewModel : ViewModelBase
     {
         #region Propriedades
-
-        private Facebook _facebookProfile;
-        public Facebook FacebookProfile
-        {
-            get { return _facebookProfile; }
-            set { SetProperty(ref _facebookProfile, value); }
-        }
-
-        private Usuario _user;
-        public Usuario User
-        {
-            get { return _user; }
-            set { SetProperty(ref _user, value); }
-        }
-
-        private readonly IAzureServiceUser<Usuario> _clienteUser;
-        private readonly IFacebookService _clienteFacebook;
-
-        private readonly INavigationService _navigationService;
-        private readonly IPageDialogService _dialogService;
         
+        private readonly INavigationService _navigationService;
+       
+        private DelegateCommand _facebookCommand;
+        public DelegateCommand FacebookCommand =>
+            _facebookCommand ?? (_facebookCommand = new DelegateCommand(Facebook));
+
         #endregion
 
         #region Construtor
 
-        public MainPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IAzureServiceUser<Usuario> clienteUser,
-            IFacebookService clienteFacebook)
-            : base(navigationService)
+        public MainPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IAzureServiceUser<Usuario> clienteUser) : base(navigationService)
         {
             _navigationService = navigationService;
-            _dialogService = dialogService;
-
-            _clienteUser = clienteUser;
-            _clienteFacebook = clienteFacebook;
             
-            User = new Usuario();
-
         }
         #endregion
 
         #region Métodos
-
-        #region Facebook
-        public async Task SetFacebookUserProfileAsync(string accessToken)
+        private async void Facebook()
         {
-            FacebookProfile = await _clienteFacebook.GetFacebookProfileAsync(accessToken);
-
-        }
-
-        public string ExtractAccessTokenFromUrl(string url)
-        {
-
-            if (url.Contains("access_token") && url.Contains("&expires_in="))
-            {
-
-                var at = url.Replace("https://www.facebook.com/connect/login_success.html#access_token=", "");
-
-                var accessToken = at.Remove(at.IndexOf("&expires_in="));
-
-                return accessToken;
-
-            }
-
-            return string.Empty;
-
-        }
-
-        public WebView Initialize()
-        {
-            string ClientId = "1958735654139902";
-
-            var apiRequest =
-
-                "https://www.facebook.com/dialog/oauth?client_id="
-                + ClientId
-                + "&display=popup&response_type=token&redirect_uri=http://www.facebook.com/connect/login_success.html";
-
-            var webView = new WebView
-            {
-                Source = apiRequest,
-                HeightRequest = 1
-
-            };
-
-            webView.Navigated += WebViewOnNavigated;
-
-            return webView;
+            await _navigationService.NavigateAsync("../FacebookAuthenticationPage");
         }
 
 
-        private async void WebViewOnNavigated(object sender, WebNavigatedEventArgs e)
-        {
-            var accessToken = ExtractAccessTokenFromUrl(e.Url);
-
-            if (accessToken != "")
-            {
-                using (var Dialog = UserDialogs.Instance.Loading("Carregando...", null, null, true, MaskType.Black))
-                {
-                    try
-                    {
-                        var current = Connectivity.NetworkAccess;
-                        if (current == NetworkAccess.Internet)
-                        { 
-                            await SetFacebookUserProfileAsync(accessToken);
-
-                            await CriarUsuario();
-
-                        }
-                        else
-                        {
-                            UserDialogs.Instance.Toast("Você está sem conexão.", TimeSpan.FromSeconds(2));
-
-                        }
-                    }
-                    catch (Exception)
-                    {
-                        UserDialogs.Instance.Toast("Ops! Ocorreu algum problema.", TimeSpan.FromSeconds(2));
-
-                    }
-
-                }
-            }
-        }
-        #endregion
-
-
+      
+       /*
         private async Task CriarUsuario()
         {
             User.Id = FacebookProfile.Id;
@@ -171,7 +72,7 @@ namespace saac.ViewModels
                     if (resulAleatorio == 0)
                     {
                         await _clienteUser.AtualizarTable(User);
-                    }*/
+                    }
                 await _navigationService.NavigateAsync("../PrincipalPage", navigationParams, useModalNavigation: false);
 
             }
@@ -186,6 +87,7 @@ namespace saac.ViewModels
 
             }
         }
+*/
 
         public async void Logado()
         {
@@ -200,7 +102,7 @@ namespace saac.ViewModels
         }
 
 
-        public override void OnNavigatedTo(NavigationParameters parameters)
+        public override void OnNavigatedTo(INavigationParameters parameters)
         {
             
             var myValue = Preferences.Get("publicidade", null);
