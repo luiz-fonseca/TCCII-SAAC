@@ -45,7 +45,7 @@ namespace saac.ViewModels
                 //Email = Preferences.Get("Email", "email");
                 User.Foto = Preferences.Get("Picture", "");
                 User.DtNasci = Preferences.Get("Birthday", DateTime.Now);
-                User.Sexo = true;
+                //User.Sexo = false;
                 User.Administrador = false;
                 User.Endereco = "";
                 User.Id = await SecureStorage.GetAsync("UserId");

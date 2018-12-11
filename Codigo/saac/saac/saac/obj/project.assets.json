@@ -20,7 +20,7 @@
           "lib/netstandard2.0/DryIoc.dll": {}
         }
       },
-      "Microsoft.Azure.Mobile.Client/4.0.2": {
+      "Microsoft.Azure.Mobile.Client/4.1.0": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "1.6.1",
@@ -932,7 +932,7 @@
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
       },
-      "Xamarin.Auth/1.6.0.2": {
+      "Xamarin.Auth/1.6.0.4": {
         "type": "package",
         "compile": {
           "lib/netstandard1.6/Xamarin.Auth.dll": {}
@@ -941,7 +941,7 @@
           "lib/netstandard1.6/Xamarin.Auth.dll": {}
         }
       },
-      "Xamarin.Essentials/0.11.0-preview": {
+      "Xamarin.Essentials/1.0.0": {
         "type": "package",
         "dependencies": {
           "System.Numerics.Vectors": "4.5.0"
@@ -953,7 +953,7 @@
           "lib/netstandard2.0/Xamarin.Essentials.dll": {}
         }
       },
-      "Xamarin.Forms/3.2.0.871581": {
+      "Xamarin.Forms/3.4.0.1008975": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/Xamarin.Forms.Core.dll": {},
@@ -966,8 +966,8 @@
           "lib/netstandard2.0/Xamarin.Forms.Xaml.dll": {}
         },
         "build": {
-          "build/netstandard2.0/Xamarin.Forms.props": {},
-          "build/netstandard2.0/Xamarin.Forms.targets": {}
+          "build/Xamarin.Forms.props": {},
+          "build/Xamarin.Forms.targets": {}
         }
       }
     }
@@ -1024,11 +1024,13 @@
         "lib/xamarinmac20/DryIoc.dll"
       ]
     },
-    "Microsoft.Azure.Mobile.Client/4.0.2": {
-      "sha512": "FFHBqESmv/wKOz6rJh1cCT+jByny56nQ3u1LA8TEc21L1DxYga/CR7b/yx7100+4EQXTdkzLc0E5ScLcYNKhTQ==",
+    "Microsoft.Azure.Mobile.Client/4.1.0": {
+      "sha512": "42FsOIZ9EiNUCztQ5gvOeDkZTQej+zMLfvDslW8NKGpWQZUOU3o/X8RrTLmQ7aS3FItCGIAqRzW0cv9M9tk5lQ==",
       "type": "package",
-      "path": "microsoft.azure.mobile.client/4.0.2",
+      "path": "microsoft.azure.mobile.client/4.1.0",
       "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
         "lib/monoandroid70/Microsoft.Azure.Mobile.Client.dll",
         "lib/monoandroid70/Microsoft.Azure.Mobile.Client.xml",
         "lib/net45/Microsoft.Azure.Mobile.Client.dll",
@@ -1042,7 +1044,7 @@
         "lib/uap10.0/Microsoft.Azure.Mobile.Client.xml",
         "lib/xamarinios10/Microsoft.Azure.Mobile.Client.dll",
         "lib/xamarinios10/Microsoft.Azure.Mobile.Client.xml",
-        "microsoft.azure.mobile.client.4.0.2.nupkg.sha512",
+        "microsoft.azure.mobile.client.4.1.0.nupkg.sha512",
         "microsoft.azure.mobile.client.nuspec"
       ]
     },
@@ -1281,10 +1283,11 @@
       ]
     },
     "Prism.Core/7.1.0.431": {
-      "sha512": "tBkEf4cDYn2oQfW1wPem4jJK/H1Z4mJsnndO04n2oZyIql7Bj3OVlpfQ6vbPgbtlkEN0oyn02XVurZba3DYqmQ==",
+      "sha512": "l4sBztXr1d2aJ1Ub5OKcd8dkf18UV7k+DWRbi0uen8y0pqb0tH+OC1/B35ZvaxMNlCtl1VZYbeq6wypdcrt92A==",
       "type": "package",
       "path": "prism.core/7.1.0.431",
       "files": [
+        ".nupkg.metadata",
         ".signature.p7s",
         "lib/net45/Prism.dll",
         "lib/net45/Prism.pdb",
@@ -1293,6 +1296,7 @@
         "lib/netstandard1.0/Prism.pdb",
         "lib/netstandard1.0/Prism.xml",
         "lib/netstandard2.0/Prism.dll",
+        "lib/netstandard2.0/Prism.dll.mdb",
         "lib/netstandard2.0/Prism.pdb",
         "lib/netstandard2.0/Prism.xml",
         "lib/uap10.0.15063/Prism.dll",
@@ -1308,10 +1312,11 @@
       ]
     },
     "Prism.DryIoc.Forms/7.1.0.431": {
-      "sha512": "NSl5T0XIYJ35MceKd7rKEwyDel5pAKU3RY/++eGWQG44hWaacJmzI2WMJqYdbqYrBNiUZlhaBVKW1KlwTMSNGA==",
+      "sha512": "NnDiRCpzHTgHSg6xuQ1dY30DH+f2kssVnDcZv9GJxKWe+ldBokSfxoEMp26tRb474RSQ40z/6oaR3Sf1b5TEig==",
       "type": "package",
       "path": "prism.dryioc.forms/7.1.0.431",
       "files": [
+        ".nupkg.metadata",
         ".signature.p7s",
         "lib/monoandroid71/Prism.DryIoc.Forms.dll",
         "lib/monoandroid71/Prism.DryIoc.Forms.pdb",
@@ -1327,10 +1332,11 @@
       ]
     },
     "Prism.Forms/7.1.0.431": {
-      "sha512": "sbwu3Ao4yUPVQ4gln1EA5N9vOj/NkaOEYNoCvuY5BOGlkTQod5gPnGJST2ZFsj1gHLJHSdvlT5OP+RKEeqo7pQ==",
+      "sha512": "L9CQS9PKFXSjpYEdDQeucmzF7kOH5af+dgVBgv5+zId6Rjyzk4OMyzG0BH05zQiWCsbx3qnXJG7Mc8Q4qeMlEQ==",
       "type": "package",
       "path": "prism.forms/7.1.0.431",
       "files": [
+        ".nupkg.metadata",
         ".signature.p7s",
         "lib/netstandard1.0/Prism.Forms.dll",
         "lib/netstandard1.0/Prism.Forms.pdb",
@@ -2371,10 +2377,11 @@
       ]
     },
     "System.Numerics.Vectors/4.5.0": {
-      "sha512": "MNcaYxUJvUcoXOa+jgKl/GDw/Mh+wMrxDjW4dre7qrp35LUGTjUBNtZsNjxsWX592ocdyqt1X5hMJB+5OStoYw==",
+      "sha512": "QQTlPTl06J/iiDbJCiepZ4H//BVraReU4O4EoRw1U02H5TLUIT7xn3GnDp9AXPSlJUDyFs4uWjWafNX6WrAojQ==",
       "type": "package",
       "path": "system.numerics.vectors/4.5.0",
       "files": [
+        ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
@@ -3926,11 +3933,13 @@
         "system.xml.xdocument.nuspec"
       ]
     },
-    "Xamarin.Auth/1.6.0.2": {
-      "sha512": "tSRTHDKTLK+YC7JGX8M8jca5RE9PcHZpamLXkPP2TGmoQULIjtwy/gxlaUFb9cAGFbSvTMCm65IAi+8GvvcQ+g==",
+    "Xamarin.Auth/1.6.0.4": {
+      "sha512": "nruIDKXLkg5FJ5nbckWKVAlLB07Pq+7g3Iw9EUlnxz4QD2+XY5ravmVz4LUdwcF708GNSAqhgDabdSjHWK7BvA==",
       "type": "package",
-      "path": "xamarin.auth/1.6.0.2",
+      "path": "xamarin.auth/1.6.0.4",
       "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
         "lib/MonoAndroid10/Xamarin.Auth.dll",
         "lib/Xamarin.iOS10/Xamarin.Auth.dll",
         "lib/netstandard1.0/Xamarin.Auth.dll",
@@ -3938,6 +3947,7 @@
         "lib/portable-net45 wp8 wpa81 win8 MonoAndroid10 MonoTouch10 XamarinIOS10/Xamarin.Auth.dll",
         "lib/uap10.0/Xamarin.Auth.dll",
         "lib/uap10.0/Xamarin.Auth.pri",
+        "lib/uap10.0/Xamarin.Auth/WebAuthenticatorPage.xbf",
         "lib/uap10.0/Xamarin.Auth/Xamarin.Auth.xr.xml",
         "lib/win81/Xamarin.Auth.dll",
         "lib/win81/Xamarin.Auth.pri",
@@ -3950,15 +3960,16 @@
         "lib/wpa81/Xamarin.Auth/WebAuthenticatorPage.xaml",
         "lib/wpa81/Xamarin.Auth/WebAuthenticatorPage.xbf",
         "lib/wpa81/Xamarin.Auth/Xamarin.Auth.xr.xml",
-        "xamarin.auth.1.6.0.2.nupkg.sha512",
+        "xamarin.auth.1.6.0.4.nupkg.sha512",
         "xamarin.auth.nuspec"
       ]
     },
-    "Xamarin.Essentials/0.11.0-preview": {
-      "sha512": "12YM3Na6inAHj5imaYFVVq2qeLXJ7ZUzrje2AvOu2nDTj0cZYlOAfaP2N7otqpiIF8SV9TQOa8GafgGd4fYOyw==",
+    "Xamarin.Essentials/1.0.0": {
+      "sha512": "WZiNlNChkqElCuYEg8rHw8qH1Dz7rnHJyfz831dsMLE+/42Wk1mG662sdgBjsbT/rltvUl8YLcKWgOi8jWlqzw==",
       "type": "package",
-      "path": "xamarin.essentials/0.11.0-preview",
+      "path": "xamarin.essentials/1.0.0",
       "files": [
+        ".nupkg.metadata",
         ".signature.p7s",
         "lib/monoandroid71/Xamarin.Essentials.dll",
         "lib/monoandroid71/Xamarin.Essentials.pdb",
@@ -3983,28 +3994,29 @@
         "lib/xamarinios10/Xamarin.Essentials.pdb",
         "lib/xamarinios10/Xamarin.Essentials.xml",
         "readme.txt",
-        "xamarin.essentials.0.11.0-preview.nupkg.sha512",
+        "xamarin.essentials.1.0.0.nupkg.sha512",
         "xamarin.essentials.nuspec"
       ]
     },
-    "Xamarin.Forms/3.2.0.871581": {
-      "sha512": "1yKOnOHYR1v4Afa5XIkpPfdIG3A3Tu0gT5TX4923xG5DV+8dJw+beSPuLagSJoU33NzV023t73R5iSbMoSF7qQ==",
+    "Xamarin.Forms/3.4.0.1008975": {
+      "sha512": "tM9syeev45u92OFENGjq+Zw8WiEwLJFiXe317XpL9SY2RRk9sm2fc1lDVjzwz0da+5ZP5fi24NAPsPQdxBdMwQ==",
       "type": "package",
-      "path": "xamarin.forms/3.2.0.871581",
+      "path": "xamarin.forms/3.4.0.1008975",
       "files": [
+        ".nupkg.metadata",
         ".signature.p7s",
-        "build/netstandard1.0/Mono.Cecil.Mdb.dll",
-        "build/netstandard1.0/Mono.Cecil.Pdb.dll",
-        "build/netstandard1.0/Mono.Cecil.Rocks.dll",
-        "build/netstandard1.0/Mono.Cecil.dll",
-        "build/netstandard1.0/System.CodeDom.dll",
-        "build/netstandard1.0/Xamarin.Forms.Build.Tasks.dll",
-        "build/netstandard1.0/Xamarin.Forms.Core.dll",
-        "build/netstandard1.0/Xamarin.Forms.DefaultItems.props",
-        "build/netstandard1.0/Xamarin.Forms.DefaultItems.targets",
-        "build/netstandard1.0/Xamarin.Forms.Xaml.dll",
-        "build/netstandard1.0/Xamarin.Forms.props",
-        "build/netstandard1.0/Xamarin.Forms.targets",
+        "build/Xamarin.Forms.DefaultItems.props",
+        "build/Xamarin.Forms.DefaultItems.targets",
+        "build/Xamarin.Forms.props",
+        "build/Xamarin.Forms.targets",
+        "build/net461/Mono.Cecil.Mdb.dll",
+        "build/net461/Mono.Cecil.Pdb.dll",
+        "build/net461/Mono.Cecil.Rocks.dll",
+        "build/net461/Mono.Cecil.dll",
+        "build/net461/System.CodeDom.dll",
+        "build/net461/Xamarin.Forms.Build.Tasks.dll",
+        "build/net461/Xamarin.Forms.Core.dll",
+        "build/net461/Xamarin.Forms.Xaml.dll",
         "build/netstandard2.0/Mono.Cecil.Mdb.dll",
         "build/netstandard2.0/Mono.Cecil.Pdb.dll",
         "build/netstandard2.0/Mono.Cecil.Rocks.dll",
@@ -4012,21 +4024,15 @@
         "build/netstandard2.0/System.CodeDom.dll",
         "build/netstandard2.0/Xamarin.Forms.Build.Tasks.dll",
         "build/netstandard2.0/Xamarin.Forms.Core.dll",
-        "build/netstandard2.0/Xamarin.Forms.DefaultItems.props",
-        "build/netstandard2.0/Xamarin.Forms.DefaultItems.targets",
         "build/netstandard2.0/Xamarin.Forms.Xaml.dll",
-        "build/netstandard2.0/Xamarin.Forms.props",
-        "build/netstandard2.0/Xamarin.Forms.targets",
         "lib/MonoAndroid10/Design/Xamarin.Forms.Core.Design.dll",
         "lib/MonoAndroid10/Design/Xamarin.Forms.Xaml.Design.dll",
         "lib/MonoAndroid10/FormsViewGroup.dll",
-        "lib/MonoAndroid10/FormsViewGroup.dll.mdb",
         "lib/MonoAndroid10/FormsViewGroup.pdb",
         "lib/MonoAndroid10/Xamarin.Forms.Core.dll",
         "lib/MonoAndroid10/Xamarin.Forms.Core.pdb",
         "lib/MonoAndroid10/Xamarin.Forms.Core.xml",
         "lib/MonoAndroid10/Xamarin.Forms.Platform.Android.dll",
-        "lib/MonoAndroid10/Xamarin.Forms.Platform.Android.dll.mdb",
         "lib/MonoAndroid10/Xamarin.Forms.Platform.Android.pdb",
         "lib/MonoAndroid10/Xamarin.Forms.Platform.dll",
         "lib/MonoAndroid10/Xamarin.Forms.Xaml.dll",
@@ -4134,7 +4140,7 @@
         "lib/uap10.0/Xamarin.Forms.Platform.dll",
         "lib/uap10.0/Xamarin.Forms.Xaml.dll",
         "lib/uap10.0/Xamarin.Forms.Xaml.xml",
-        "xamarin.forms.3.2.0.871581.nupkg.sha512",
+        "xamarin.forms.3.4.0.1008975.nupkg.sha512",
         "xamarin.forms.nuspec"
       ]
     }
@@ -4142,12 +4148,12 @@
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
       "Acr.UserDialogs >= 7.0.1",
-      "Microsoft.Azure.Mobile.Client >= 4.0.2",
+      "Microsoft.Azure.Mobile.Client >= 4.1.0",
       "NETStandard.Library >= 2.0.3",
       "Prism.DryIoc.Forms >= 7.1.0.431",
-      "Xamarin.Auth >= 1.6.0.2",
-      "Xamarin.Essentials >= 0.11.0-preview",
-      "Xamarin.Forms >= 3.2.0.871581"
+      "Xamarin.Auth >= 1.6.0.4",
+      "Xamarin.Essentials >= 1.0.0",
+      "Xamarin.Forms >= 3.4.0.1008975"
     ]
   },
   "packageFolders": {
@@ -4197,7 +4203,7 @@
           },
           "Microsoft.Azure.Mobile.Client": {
             "target": "Package",
-            "version": "[4.0.2, )"
+            "version": "[4.1.0, )"
           },
           "NETStandard.Library": {
             "suppressParent": "All",
@@ -4211,15 +4217,15 @@
           },
           "Xamarin.Auth": {
             "target": "Package",
-            "version": "[1.6.0.2, )"
+            "version": "[1.6.0.4, )"
           },
           "Xamarin.Essentials": {
             "target": "Package",
-            "version": "[0.11.0-preview, )"
+            "version": "[1.0.0, )"
           },
           "Xamarin.Forms": {
             "target": "Package",
-            "version": "[3.2.0.871581, )"
+            "version": "[3.4.0.1008975, )"
           }
         },
         "imports": [

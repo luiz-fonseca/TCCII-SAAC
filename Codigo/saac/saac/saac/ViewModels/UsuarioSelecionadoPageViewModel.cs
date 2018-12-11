@@ -54,6 +54,17 @@ namespace saac.ViewModels
                 {
                     User = await _clienteUsuario.UsuarioSelecionado(codUsuario);
 
+                    var Foto = Preferences.Get("Picture", "");
+
+                    if (User.Foto != Foto)
+                    {
+                        User.Foto = Foto;
+
+                        await _clienteUsuario.AtualizarTable(User);
+
+                        UserDialogs.Instance.Toast("Atualizado", TimeSpan.FromSeconds(2));
+
+                    }
                 }
                 else
                 {

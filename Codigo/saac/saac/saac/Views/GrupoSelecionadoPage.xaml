@@ -4,8 +4,16 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:Converters="clr-namespace:saac.Converters;assembly=saac"
              x:Class="saac.Views.GrupoSelecionadoPage"
              Title="Grupo">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Converters:BoolToStringConverter x:Key="boolToStringConverterTipoGrupo" x:TypeArguments="x:String" 
+                                              TrueObject="Temporário" FalseObject="Padrão"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Editar" Order="Secondary"  Command="{Binding EditarGrupoCommand}"/>
@@ -32,7 +40,8 @@
 
                         <Label Style="{StaticResource TitleStyle}" Text="{Binding Grupos.Nome}"/>
                         <Label Text="{Binding Grupos.Descricao}" FontSize="{StaticResource FonteSubTitulo}"/>
-                        <Editor Text="{Binding Texto}" AutoSize="TextChanges"/>
+                        <Label Text="{Binding Grupos.Temporario, Converter= {StaticResource boolToStringConverterTipoGrupo}}" TextColor="{StaticResource CorPrincipal}"/>
+                        <Editor Text="{Binding Texto}" AutoSize="TextChanges" Placeholder="Publicação"/>
 
                         <StackLayout Orientation="Horizontal">
                             <Button Text="Publicar" 
@@ -79,7 +88,7 @@
                                            Text="{Binding Nome}"/>
                                   
                                 </StackLayout>
-                                <Label Text="{Binding Texto}" FontSize="{StaticResource FonteSubTitulo}"/>
+                                <Label Text="{Binding Texto}" FontSize="{StaticResource FonteSubTitulo}" MaxLines="3"/>
                                 <Label/>
 
                             </StackLayout>

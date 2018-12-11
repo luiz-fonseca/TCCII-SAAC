@@ -4,9 +4,17 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:Converters="clr-namespace:saac.Converters;assembly=saac"
              xmlns:controls="clr-namespace:saac.Controls;assembly=saac"
              x:Class="saac.Views.MeusGruposPage"
              Title="Grupos">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Converters:BoolToStringConverter x:Key="boolToStringConverterTipoGrupo" x:TypeArguments="x:String" 
+                                              TrueObject="Temporário" FalseObject="Padrão"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Pesquisar" Order="Primary"  Command="{Binding PesquisarGrupoCommand}"/>
@@ -57,8 +65,8 @@
                                     <Label Style="{StaticResource TitleStyle}" Text="{Binding Nome}"/>
                                     <Label HorizontalTextAlignment="End" HorizontalOptions="FillAndExpand" FontAttributes="{StaticResource FonteNegrito}" TextColor="{StaticResource CorNotificacao}" Text="{Binding QtdPubPendente}"/>
                                 </StackLayout>
-                                <Label Text="{Binding Descricao}" FontSize="{StaticResource FonteSubTitulo}"/>
-                                <Label/>
+                                <Label Text="{Binding Descricao}" FontSize="{StaticResource FonteSubTitulo}" MaxLines="2"/>
+                                <Label Text="{Binding Temporario, Converter= {StaticResource boolToStringConverterTipoGrupo}}" TextColor="{StaticResource CorPrincipal}"/>
 
                             </StackLayout>
                         </ViewCell>

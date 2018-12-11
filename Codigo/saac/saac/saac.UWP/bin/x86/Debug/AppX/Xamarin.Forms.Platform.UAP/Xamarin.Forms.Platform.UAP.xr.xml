@@ -51,8 +51,6 @@
     <RootPropertyPathName Name="TextColor" />
     <RootPropertyPathName Name="ImageSource" />
     <RootPropertyPathName Name="Value" />
-    <RootPropertyPathName Name="ToolbarBackground" />
-    <RootPropertyPathName Name="ToolbarForeground" />
     <RootPropertyPathName Name="Cell" />
     <RootPropertyPathName Name="RenderHeight" />
     <RootPropertyPathName Name="View" />

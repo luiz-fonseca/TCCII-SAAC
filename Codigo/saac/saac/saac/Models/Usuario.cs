@@ -34,6 +34,9 @@ namespace saac.Models
         [JsonProperty(PropertyName = "endereco")]
         public string Endereco { get; set; }
 
+        [JsonProperty(PropertyName = "email")]
+        public string Email { get; set; }
+
         [JsonProperty(PropertyName = "administrador")]
         public bool Administrador { get; set; }
 

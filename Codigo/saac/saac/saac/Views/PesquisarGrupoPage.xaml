@@ -4,8 +4,16 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:Converters="clr-namespace:saac.Converters;assembly=saac"
              x:Class="saac.Views.PesquisarGrupoPage"
              Title="Grupos">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Converters:BoolToStringConverter x:Key="boolToStringConverter" x:TypeArguments="x:String" 
+                                              TrueObject="Temporário" FalseObject="Padrão"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Atualizar" Order="Secondary" Command="{Binding AtualizarCommand}"/>
@@ -40,7 +48,8 @@
                         <ViewCell>
                             <StackLayout Padding="10">
                                 <Label Style="{StaticResource TitleStyle}" Text="{Binding Nome}"/>
-                                <Label Text="{Binding Descricao}" FontSize="{StaticResource FonteSubTitulo}"/>
+                                <Label Text="{Binding Descricao}" FontSize="{StaticResource FonteSubTitulo}" MaxLines="2"/>
+                                <Label Text="{Binding Temporario, Converter= {StaticResource boolToStringConverter}}" TextColor="{StaticResource CorPrincipal}"/>
 
                             </StackLayout>
                         </ViewCell>

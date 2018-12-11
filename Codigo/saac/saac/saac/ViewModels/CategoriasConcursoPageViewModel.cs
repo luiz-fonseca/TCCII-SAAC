@@ -83,17 +83,24 @@ namespace saac.ViewModels
 
             Categorias = new ObservableCollection<object>();
 
-            Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
-
+            ConnectivityTest();
         }
+
         #endregion
 
         #region Métodos
-        void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
+        private void ConnectivityTest()
         {
-            Access = e.NetworkAccess;
-            var profiles = e.Profiles;
+            Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
+           
+        }
 
+        private void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
+        {
+            //Access = e.NetworkAccess;
+            //var profiles = e.ConnectionProfiles;
+
+            Categorias.Add(new { Nome = "UFS" });
         }
 
         public void AtualizarVerificador()
@@ -146,6 +153,7 @@ namespace saac.ViewModels
 
         public async void Verificacao(string id)
         {
+            
             try
             {
                 var current = Connectivity.NetworkAccess;
@@ -199,6 +207,7 @@ namespace saac.ViewModels
                 Verificacao(UserId);
                 
             }
+            
         }
 
         public override void OnNavigatedFrom(INavigationParameters parameters)

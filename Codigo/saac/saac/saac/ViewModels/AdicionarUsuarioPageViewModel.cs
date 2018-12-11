@@ -92,6 +92,7 @@ namespace saac.ViewModels
         {
             try
             {
+                User.Foto = Preferences.Get("Picture", "");
                 await _clienteUsuario.AtualizarTable(User);
                 UserDialogs.Instance.Toast("Os seus dados foram atualizados", TimeSpan.FromSeconds(2));
 

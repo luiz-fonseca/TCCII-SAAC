@@ -43,7 +43,7 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Padding="10">
-                                <Label Text="{Binding Texto}"/>
+                                <Label Text="{Binding Texto}" MaxLines="3"/>
                                 
                                 <StackLayout Orientation="Horizontal">
                                     <Label TextColor="{StaticResource CorPrincipal}" Text="Essa publicação contém: "/>

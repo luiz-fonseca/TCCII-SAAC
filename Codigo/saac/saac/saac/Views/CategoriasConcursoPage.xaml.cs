@@ -12,6 +12,7 @@ namespace saac.Views
             if (Device.RuntimePlatform == Device.Android)
                 adMobView.AdUnitId = Preferences.Get("publicidade", "");
 
+
         }
     }
 }

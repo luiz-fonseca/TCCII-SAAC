@@ -3,8 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:Converters="clr-namespace:saac.Converters;assembly=saac"
              x:Class="saac.Views.AdicionarUsuarioPage"
              Title="Usuário">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Converters:BoolToStringConverter x:Key="boolToStringConverterSexo" x:TypeArguments="x:String" 
+                                              TrueObject="Masculino" FalseObject="Feminino"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
 
     <ContentPage.Content>
         <StackLayout Padding="10,10,10,10" Spacing="20">
@@ -13,22 +22,21 @@
                    HeightRequest="100"
                    WidthRequest="100" VerticalOptions="Start"/>
 
-            <Entry Text="{Binding User.Nome}"/>
+            <Entry Text="{Binding User.Nome}" Placeholder="Nome"/>
 
-            <!--<Entry Text="{Binding User.Email}"/>-->
-
-            <Picker Title="Sexo"
-                    SelectedItem="{Binding User.Sexo}">
+            <Picker Title="Sexo" TextColor="{StaticResource CorPrincipal}"
+                    SelectedItem="{Binding User.Sexo, Converter= {StaticResource boolToStringConverterSexo}}">
                 <Picker.Items>
                     <x:String>Masculino</x:String>
                     <x:String>Feminino</x:String>
                 </Picker.Items>
             </Picker>
 
+            <Entry Text="{Binding User.Email}" Placeholder="Email"/>
+
+            <Label Text="Data de nascimento" TextColor="{StaticResource CorPrincipal}"/>
             <DatePicker Date="{Binding User.DtNasci}"/>
-            
-            <Label Text="" />
-            
+
             <Button Text="Salvar" 
                     Style="{StaticResource BotaoStyle}"
                     Command="{Binding SalvarUsuarioCommand}"/>
