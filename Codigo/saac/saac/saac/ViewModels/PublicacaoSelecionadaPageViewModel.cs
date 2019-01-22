@@ -374,6 +374,10 @@ namespace saac.ViewModels
                             Publication.Resolvido = false;
                             await AtualizarDtVizualizacao();
 
+                            var aux = Publication;
+                            Publication = null;
+                            Publication = aux;
+                            
                             UserDialogs.Instance.Toast("Publicação reaberta", TimeSpan.FromSeconds(2));
 
                         }
@@ -387,6 +391,10 @@ namespace saac.ViewModels
                         {
                             Publication.Resolvido = true;
                             await AtualizarDtVizualizacao();
+
+                            var aux = Publication;
+                            Publication = null;
+                            Publication = aux;
 
                             UserDialogs.Instance.Toast("Publicação fechada", TimeSpan.FromSeconds(2));
 

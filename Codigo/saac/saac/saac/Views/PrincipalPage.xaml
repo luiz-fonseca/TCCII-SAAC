@@ -7,7 +7,11 @@
             x:Class="saac.Views.PrincipalPage"
             Title=""
             BarBackgroundColor="{StaticResource CorPrincipal}"
-            BarTextColor="{StaticResource CorDestaqueDoPrincipal}">
+            BarTextColor="{StaticResource CorDestaqueDoPrincipal}"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            android:TabbedPage.ToolbarPlacement="Bottom"
+            android:TabbedPage.BarItemColor="{StaticResource CorDestaqueDoPrincipal}"
+            android:TabbedPage.BarSelectedItemColor="{StaticResource CorDestaqueDoPrincipal}">
 
     <NavigationPage.TitleView>
         <StackLayout Orientation="Horizontal">
@@ -37,13 +41,13 @@
     
     <TabbedPage.Children>
 
-        <Views:MeusGruposPage/>
+        <Views:MeusGruposPage Icon="{OnPlatform Android=inicial}"/>
 
-        <Views:CategoriasConcursoPage/>
+        <Views:CategoriasConcursoPage Icon="{OnPlatform Android=livro}"/>
 
-        <Views:NotificacoesPage/>
+        <Views:NotificacoesPage Icon="{OnPlatform Android=notificacao}"/>
 
-        <Views:MaisPage/>
+        <Views:MaisPage Icon="{OnPlatform Android=usuario}"/>
 
     </TabbedPage.Children>
 
