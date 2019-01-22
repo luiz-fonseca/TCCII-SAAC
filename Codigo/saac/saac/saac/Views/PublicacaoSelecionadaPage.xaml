@@ -3,8 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:Converters="clr-namespace:saac.Converters;assembly=saac"
              x:Class="saac.Views.PublicacaoSelecionadaPage"
              Title="Comentarios">
+
+    <ContentPage.Resources>
+        <Converters:BoolToStringConverter x:Key="boolToStringConverterTipoResposta" x:TypeArguments="x:String" 
+                                              TrueObject="Respondida" FalseObject="Em aberto"/>
+    </ContentPage.Resources>
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Excluir" Order="Secondary" Command="{Binding ExcluirPublicacaoCommand}"/>
@@ -13,39 +19,69 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <StackLayout Padding="10,10,10,10">
+        <StackLayout Padding="5,5,5,5">
 
             <ListView x:Name="ListaComentario" 
-                      ItemsSource="{Binding ComentariosPublication}" 
-                      HasUnevenRows="True"
-                      IsPullToRefreshEnabled="True" 
-                      RefreshCommand="{Binding AtualizarCommand}"
-                      IsRefreshing="{Binding Atualizando}">
+                        ItemsSource="{Binding ComentariosPublication}" 
+                        HasUnevenRows="True"
+                        IsPullToRefreshEnabled="True" 
+                        RefreshCommand="{Binding AtualizarCommand}"
+                        IsRefreshing="{Binding Atualizando}">
 
                 <ListView.Header>
                     <StackLayout Spacing="10">
-                        <StackLayout Orientation="Horizontal">
-                            <Image Source="{Binding Foto}"  
-                                   HeightRequest="60"
-                                   WidthRequest="60" 
-                                   VerticalOptions="Start"/>
+                        <Frame BorderColor="{StaticResource CorPrincipal}">
+                            <StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Image Source="{Binding Foto}"  
+                                                HeightRequest="60"
+                                                WidthRequest="60" 
+                                                VerticalOptions="Start"/>
 
-                            <Label Style="{StaticResource TitleStyle}" 
-                                   Text="{Binding Nome}"/>
+                                    <Label Style="{StaticResource TitleStyle}" 
+                                                Text="{Binding Nome}"/>
 
-                        </StackLayout>
-                        <Label Text="{Binding Publication.Texto}" 
-                               FontSize="{StaticResource FonteTitulo}"/>
+                                </StackLayout>
+                                <Label Text="{Binding Publication.Texto}" 
+                                            FontSize="{StaticResource FonteTitulo}"/>
+
+                                <Label Text="{Binding Publication.Resolvido, Converter= {StaticResource boolToStringConverterTipoResposta}}"  TextColor="{StaticResource CorPrincipal}" TextDecorations="Underline">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding AtualizarStatusCommand}"/>
+                                    </Label.GestureRecognizers>
+                                    <Label.Triggers>
+                                        <DataTrigger TargetType="Label"
+                                                         Binding="{Binding Publication.Resolvido}"
+                                                         Value="true">
+
+                                            <Setter Property="TextColor" Value="{StaticResource CorNotificacao}"/>
+
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                            </StackLayout>
+                            <Frame.Triggers>
+                                <DataTrigger TargetType="Frame"
+                                                 Binding="{Binding Publication.Resolvido}"
+                                                 Value="True">
+                                    <Setter 
+                                                Property="BorderColor"
+                                                Value="{StaticResource CorNotificacao}" />
+
+                                </DataTrigger>
+                            </Frame.Triggers>
+
+                        </Frame>
 
                         <Label Text="Comentários"
-                               Style="{StaticResource TitleStyle}"/>
-                        
+                                            Style="{StaticResource TitleStyle}"/>
+
                         <ActivityIndicator  IsRunning="{Binding IsLoading}"
                                             IsVisible="{Binding IsLoading}" 
                                             Color="{StaticResource CorPrincipal}"/>
                         <Label Text="{Binding Message}"/>
-
                     </StackLayout>
+
                 </ListView.Header>
 
                 <ListView.ItemTemplate>
@@ -55,26 +91,28 @@
                                 <MenuItem Text="Excluir" 
                                           Command="{Binding BindingContext.ExcluirComentarioSelectedCommand, Source={x:Reference ListaComentario}}" 
                                           CommandParameter="{Binding .}" />
-                                
-                            </ViewCell.ContextActions>
-                            <StackLayout>
-                                <StackLayout Orientation="Horizontal">
-                                    <Image Source="{Binding Foto}"  
-                                           HeightRequest="50"
-                                           WidthRequest="50" 
-                                           VerticalOptions="Start"/>
 
-                                    <Label TextColor="{StaticResource CorPrincipal}" 
-                                           FontSize="{StaticResource FonteSubTitulo}"
-                                           FontAttributes ="{StaticResource FonteNegrito}"
-                                           Text="{Binding Nome}"/>
-                                    
+                            </ViewCell.ContextActions>
+                            <Frame BorderColor="{StaticResource CorPrincipal}" Margin="5">
+                                <StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Image Source="{Binding Foto}"  
+                                                        HeightRequest="50"
+                                                        WidthRequest="50" 
+                                                        VerticalOptions="Start"/>
+
+                                        <Label TextColor="{StaticResource CorPrincipal}" 
+                                                    FontSize="{StaticResource FonteSubTitulo}"
+                                                    FontAttributes ="{StaticResource FonteNegrito}"
+                                                    Text="{Binding Nome}"/>
+
+                                    </StackLayout>
+                                    <Label Text="{Binding Texto}" 
+                                                FontSize="{StaticResource FonteSubTitulo}"/>
+
+
                                 </StackLayout>
-                                <Label Text="{Binding Texto}" 
-                                       FontSize="{StaticResource FonteSubTitulo}"/>
-                                <Label/>
-                                
-                            </StackLayout>
+                            </Frame>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
@@ -83,15 +121,15 @@
 
             <StackLayout Orientation="Horizontal">
                 <Entry HorizontalOptions="FillAndExpand" 
-                       VerticalOptions="End" 
-                       Placeholder="Comentário"
-                       Text="{Binding Texto}"/>
+                            VerticalOptions="End" 
+                            Placeholder="Comentário"
+                            Text="{Binding Texto}"/>
 
                 <Button VerticalOptions="End" 
-                        Text="Salvar"
-                        Padding="0,0"
-                        Style="{StaticResource BotaoStyle}"
-                        Command="{Binding SalvarComentarioCommand}"/>
+                            Text="Salvar"
+                            Padding="0,0"
+                            Style="{StaticResource BotaoStyle}"
+                            Command="{Binding SalvarComentarioCommand}"/>
 
             </StackLayout>
 

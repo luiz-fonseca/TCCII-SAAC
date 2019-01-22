@@ -15,7 +15,7 @@ using Xamarin.Essentials;
 
 namespace saac.ViewModels
 {
-	public class PublicacaoSelecionadaPageViewModel : ViewModelBase
+    public class PublicacaoSelecionadaPageViewModel : ViewModelBase
     {
         #region Propriedades
         private bool _atualizando = false;
@@ -122,6 +122,11 @@ namespace saac.ViewModels
         public DelegateCommand AtualizarCommand =>
             _atualizarCommand ?? (_atualizarCommand = new DelegateCommand(AtualizarComentarios));
 
+        private DelegateCommand _atualizarStatusCommand;
+        public DelegateCommand AtualizarStatusCommand =>
+            _atualizarStatusCommand ?? (_atualizarStatusCommand = new DelegateCommand(AtualizarStatus, CondicaoAtualizarStatus))
+            .ObservesProperty(() => VerificarExcluirPublicaco);
+
         private DelegateCommand _excluirPublicacaoCommand;
         public DelegateCommand ExcluirPublicacaoCommand =>
             _excluirPublicacaoCommand ?? (_excluirPublicacaoCommand = new DelegateCommand(ExcluirPublicacao, CondicaoExcluirPublicacao));
@@ -130,7 +135,7 @@ namespace saac.ViewModels
         private DelegateCommand<object> _excluirComentarioSelectedCommand;
         public DelegateCommand<object> ExcluirComentarioSelectedCommand =>
             _excluirComentarioSelectedCommand != null ? _excluirComentarioSelectedCommand : (_excluirComentarioSelectedCommand = new DelegateCommand<object>(ExcluirComentarioSelecionado));
-        
+
         #endregion
 
         #region Construtor
@@ -208,7 +213,7 @@ namespace saac.ViewModels
                 Verificacao(Publication.Id, UserId);
 
             }
-            else if(VerificarExcluirPublicaco)
+            else if (VerificarExcluirPublicaco)
             {
                 await AtualizarDtVizualizacao();
 
@@ -321,7 +326,7 @@ namespace saac.ViewModels
                         VerificarExcluirPublicaco = true;
 
                         await AtualizarDtVizualizacao();
-                        
+
                     }
                     else
                     {
@@ -349,6 +354,61 @@ namespace saac.ViewModels
         {
             Publication.DtVisualizacao = DateTime.Now;
             await _clientePublication.AtualizarTable(Publication);
+
+        }
+
+        public async void AtualizarStatus()
+        {
+            try
+            {
+                var current = Connectivity.NetworkAccess;
+                if (current == NetworkAccess.Internet)
+                {
+                    if (Publication.Resolvido)
+                    {
+                        var resulPublicacao = await _dialogService.DisplayAlertAsync("Atualizar Status", "Deseja reabrir está " +
+                            "questão?", " Sim ", " Não ");
+
+                        if (resulPublicacao)
+                        {
+                            Publication.Resolvido = false;
+                            await AtualizarDtVizualizacao();
+
+                            UserDialogs.Instance.Toast("Publicação reaberta", TimeSpan.FromSeconds(2));
+
+                        }
+                    }
+                    else
+                    {
+                        var resulPublicacao = await _dialogService.DisplayAlertAsync("Atualizar Status", "Deseja fechar está " +
+                            "questão?", " Sim ", " Não ");
+
+                        if (resulPublicacao)
+                        {
+                            Publication.Resolvido = true;
+                            await AtualizarDtVizualizacao();
+
+                            UserDialogs.Instance.Toast("Publicação fechada", TimeSpan.FromSeconds(2));
+
+                        }
+                    }
+                }
+                else
+                {
+                    UserDialogs.Instance.Toast("Você está sem conexão", TimeSpan.FromSeconds(2));
+                }
+            }
+            catch (Exception)
+            {
+                UserDialogs.Instance.Toast("Ops! Ocorreu algum problema", TimeSpan.FromSeconds(2));
+
+            }
+
+        }
+
+        public bool CondicaoAtualizarStatus()
+        {
+            return VerificarExcluirPublicaco;
 
         }
 
@@ -386,7 +446,7 @@ namespace saac.ViewModels
                         var resulUser = await _clienteUser.Usuarios(auxList);
 
                         var resultado = resulComment.Join(resulUser, c => c.CodUsuario, u => u.Id,
-                                                                (c, u) => new { c.Id, c.CodPublicacao, c.CodUsuario, c.Texto, u.Nome, u.Foto });
+                                                                (c, u) => new { c.Id, c.CodPublicacao, c.CodUsuario, c.Texto, c.DtPublicacao, u.Nome, u.Foto }).OrderByDescending(c => c.DtPublicacao);
 
                         ComentariosPublication.Clear();
                         foreach (var item in resultado)
@@ -421,12 +481,13 @@ namespace saac.ViewModels
         {
             var comment = new Comentario();
 
-            var aux = Conversao(args, new { Id = "", CodPublicacao = "", CodUsuario = "", Texto = "", Nome = "", Foto = "" });
+            var aux = Conversao(args, new { Id = "", CodPublicacao = "", CodUsuario = "", Texto = "", DtPublicacao = DateTime.Now, Nome = "", Foto = "" });
 
             comment.Id = aux.Id;
             comment.CodPublicacao = aux.CodPublicacao;
             comment.CodUsuario = aux.CodUsuario;
             comment.Texto = aux.Texto;
+            comment.DtPublicacao = aux.DtPublicacao;
 
             return comment;
 

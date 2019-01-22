@@ -42,16 +42,20 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Padding="10">
-                                <Label Text="{Binding Texto}" MaxLines="3"/>
-                                
-                                <StackLayout Orientation="Horizontal">
-                                    <Label TextColor="{StaticResource CorPrincipal}" Text="Essa publicação contém: "/>
-                                    <Label TextColor="{StaticResource CorNotificacao}" Text="{Binding QtdComenPendente}"/>
-                                    <Label TextColor="{StaticResource CorPrincipal}" Text=" Nova(s) Resposta(s)"/>
+                            <Frame BorderColor="{StaticResource CorPrincipal}" Margin="5">
+                                <StackLayout Padding="10">
+                                    <Label Text="{Binding Texto}" MaxLines="3"/>
+
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label TextColor="{StaticResource CorPrincipal}" Text="Essa publicação contém: "/>
+                                        <Label TextColor="{StaticResource CorNotificacao}" Text="{Binding QtdComenPendente}"/>
+                                        <Label TextColor="{StaticResource CorPrincipal}" Text=" Nova(s) Resposta(s)"/>
+                                    </StackLayout>
+
                                 </StackLayout>
 
-                            </StackLayout>
+                            </Frame>
+                            
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

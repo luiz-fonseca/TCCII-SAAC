@@ -9,16 +9,22 @@
              Title="Concursos">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Gerenciar Concursos" Order="Secondary" Command="{Binding AdministradorCommand}"/>
-    </ContentPage.ToolbarItems>
-        
+        <!--<OnPlatform x:TypeArguments="ToolbarItem">
+            <On Platform="Android">-->
+                <ToolbarItem  Text="Gerenciar Concursos" Order="Secondary" Command="{Binding AdministradorCommand}"/>
+          <!--  </On>
+        </OnPlatform>-->
+
+    </ContentPage.ToolbarItems> 
+    
     <ContentPage.Content>
         <StackLayout Padding="10,10,10,10" Spacing="10">
 
             <ListView ItemsSource="{Binding Categorias}"
                       IsPullToRefreshEnabled="True" 
                       RefreshCommand="{Binding AtualizarCommand}"
-                      IsRefreshing="{Binding Atualizando}">
+                      IsRefreshing="{Binding Atualizando}"
+                      HasUnevenRows="True">
 
                 <ListView.Behaviors>
                     <behaviors:EventToCommandBehavior   EventName="ItemTapped" 
@@ -35,9 +41,11 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Padding="10">
-                                <Label Style="{StaticResource TitleStyle}" Text="{Binding Nome}"/>
-                            </StackLayout>
+                            <Frame BorderColor="{StaticResource CorPrincipal}" Margin="5">
+                                <StackLayout Padding="10">
+                                    <Label Style="{StaticResource TitleStyle}" Text="{Binding Nome}"/>
+                                </StackLayout>
+                            </Frame>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

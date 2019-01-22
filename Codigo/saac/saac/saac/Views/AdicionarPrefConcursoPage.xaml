@@ -7,40 +7,45 @@
              Title="Concurso">
 
     <StackLayout Padding="10,10,10,10">
-        <TableView Intent="Form">
-            <TableRoot>
-                <TableSection Title="Preferências do Concurso">
-                    <SwitchCell On="{Binding Preferencias.Ti}" Text="Ti"/>
-                    <SwitchCell On="{Binding Preferencias.Saude}" Text="Saúde"/>
-                    <SwitchCell On="{Binding Preferencias.Licenciatura}" Text="Licenciatura"/>
-                    <SwitchCell On="{Binding Preferencias.Financas}" Text="Finanças"/>
-                    <SwitchCell On="{Binding Preferencias.Administracao}" Text="Administração"/>
-                    <SwitchCell On="{Binding Preferencias.Militar}" Text="Militar"/>
-                    <SwitchCell On="{Binding Preferencias.Outra}" Text="Outra"/>
+        <Frame BorderColor="{StaticResource CorPrincipal}">
+            <StackLayout>
+                <TableView Intent="Form">
+                    <TableRoot>
+                        <TableSection Title="Preferências do Concurso">
+                            <SwitchCell On="{Binding Preferencias.Ti}" Text="Ti"/>
+                            <SwitchCell On="{Binding Preferencias.Saude}" Text="Saúde"/>
+                            <SwitchCell On="{Binding Preferencias.Licenciatura}" Text="Licenciatura"/>
+                            <SwitchCell On="{Binding Preferencias.Financas}" Text="Finanças"/>
+                            <SwitchCell On="{Binding Preferencias.Administracao}" Text="Administração"/>
+                            <SwitchCell On="{Binding Preferencias.Militar}" Text="Militar"/>
+                            <SwitchCell On="{Binding Preferencias.Outra}" Text="Outra"/>
 
-                </TableSection>
-                
-                <TableSection>
-                    <ViewCell>
-                        <StackLayout Orientation="Horizontal">
-                            <Button Text="Voltar"
+                        </TableSection>
+
+                        <TableSection>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <Button Text="Voltar"
                                     Style="{StaticResource BotaoStyle}"
                                     HorizontalOptions="FillAndExpand"    
                                     Command="{Binding VoltarCommand}"/>
 
-                            <Button Text="Salvar" 
+                                    <Button Text="Salvar" 
                                     Style="{StaticResource BotaoStyle}"
                                     HorizontalOptions="FillAndExpand"
                                     Command="{Binding SalvarCommand}"/>
 
-                        </StackLayout>
+                                </StackLayout>
 
-                    </ViewCell>
+                            </ViewCell>
 
-                </TableSection>
-            </TableRoot>
-        </TableView>
+                        </TableSection>
+                    </TableRoot>
+                </TableView>
 
+            </StackLayout>
+
+        </Frame>
     </StackLayout>
-    
+
 </ContentPage>

@@ -19,7 +19,7 @@
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
     <LayoutDir>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.UWP\bin\x86\Debug\AppX</LayoutDir>
-    <RegisteredManifestChecksum>5EFE69CE85154D8A3904D16DF1437D3967879284628D10375A33C40AB0816F6D</RegisteredManifestChecksum>
+    <RegisteredManifestChecksum>98161C0D89B782129824BFF5148C79BA5241DD60EDBDED4119DFD2B066A5A57E</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>31e6402e-0407-4419-a6c3-7c6d18576017_1.0.0.0_x86__mm77914cpbf52</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>31e6402e-0407-4419-a6c3-7c6d18576017_mm77914cpbf52!App</RegisteredUserModeAppID>
     <RegisteredPackageID>31e6402e-0407-4419-a6c3-7c6d18576017</RegisteredPackageID>
@@ -30,13 +30,13 @@
     <AppXManifest Include="C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.UWP\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-12-06T10:24:14.347</Modified>
+      <Modified>2019-01-22T00:51:26.161</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.UWP\bin\x86\Debug\saac.UWP.exe">
       <PackagePath>entrypoint\saac.UWP.exe</PackagePath>
-      <Modified>2018-12-06T10:24:11.999</Modified>
+      <Modified>2019-01-22T00:51:24.065</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\acr.userdialogs\7.0.1\lib\uap10.0.16299\Acr.UserDialogs.dll">
       <PackagePath>Acr.UserDialogs.dll</PackagePath>
@@ -54,9 +54,9 @@
       <PackagePath>DryIoc.dll</PackagePath>
       <Modified>2018-07-11T15:53:32.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\microsoft.azure.mobile.client\4.0.2\lib\uap10.0\Microsoft.Azure.Mobile.Client.dll">
+    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\microsoft.azure.mobile.client\4.1.1\lib\uap10.0\Microsoft.Azure.Mobile.Client.dll">
       <PackagePath>Microsoft.Azure.Mobile.Client.dll</PackagePath>
-      <Modified>2017-10-11T20:23:28.000</Modified>
+      <Modified>2018-12-12T23:04:50.000</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\newtonsoft.json\9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll">
       <PackagePath>Newtonsoft.Json.dll</PackagePath>
@@ -82,29 +82,29 @@
       <PackagePath>Xamarin.Auth.dll</PackagePath>
       <Modified>2018-11-15T23:50:58.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.essentials\1.0.0\lib\uap10.0.16299\Xamarin.Essentials.dll">
+    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.essentials\1.0.1\lib\uap10.0.16299\Xamarin.Essentials.dll">
       <PackagePath>Xamarin.Essentials.dll</PackagePath>
-      <Modified>2018-12-01T00:50:26.000</Modified>
+      <Modified>2019-01-14T19:29:50.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.forms\3.4.0.1008975\lib\uap10.0\Xamarin.Forms.Core.dll">
+    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.forms\3.4.0.1009999\lib\uap10.0\Xamarin.Forms.Core.dll">
       <PackagePath>Xamarin.Forms.Core.dll</PackagePath>
-      <Modified>2018-11-13T23:15:30.000</Modified>
+      <Modified>2019-01-04T02:17:10.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.forms\3.4.0.1008975\lib\uap10.0\Xamarin.Forms.Platform.UAP.dll">
+    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.forms\3.4.0.1009999\lib\uap10.0\Xamarin.Forms.Platform.UAP.dll">
       <PackagePath>Xamarin.Forms.Platform.UAP.dll</PackagePath>
-      <Modified>2018-11-13T23:15:32.000</Modified>
+      <Modified>2019-01-04T02:17:12.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.forms\3.4.0.1008975\lib\uap10.0\Xamarin.Forms.Platform.dll">
+    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.forms\3.4.0.1009999\lib\uap10.0\Xamarin.Forms.Platform.dll">
       <PackagePath>Xamarin.Forms.Platform.dll</PackagePath>
-      <Modified>2018-11-13T23:15:32.000</Modified>
+      <Modified>2019-01-04T02:17:12.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.forms\3.4.0.1008975\lib\uap10.0\Xamarin.Forms.Xaml.dll">
+    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.forms\3.4.0.1009999\lib\uap10.0\Xamarin.Forms.Xaml.dll">
       <PackagePath>Xamarin.Forms.Xaml.dll</PackagePath>
-      <Modified>2018-11-13T23:15:22.000</Modified>
+      <Modified>2019-01-04T02:17:02.000</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac\bin\Debug\netstandard2.0\saac.dll">
       <PackagePath>saac.dll</PackagePath>
-      <Modified>2018-12-06T10:23:57.204</Modified>
+      <Modified>2019-01-22T00:51:14.431</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.UWP\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
@@ -150,11 +150,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.UWP\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2018-12-06T10:24:11.677</Modified>
+      <Modified>2019-01-22T00:51:23.759</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.UWP\bin\x86\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2018-12-06T10:24:11.678</Modified>
+      <Modified>2019-01-22T00:51:23.759</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.16299.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -200,17 +200,17 @@
       <PackagePath>Xamarin.Auth\Xamarin.Auth.xr.xml</PackagePath>
       <Modified>2018-11-15T23:50:54.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.forms\3.4.0.1008975\lib\uap10.0\Xamarin.Forms.Platform.UAP\Xamarin.Forms.Platform.UAP.xr.xml">
+    <AppxPackagedFile Include="C:\Users\luizf\.nuget\packages\xamarin.forms\3.4.0.1009999\lib\uap10.0\Xamarin.Forms.Platform.UAP\Xamarin.Forms.Platform.UAP.xr.xml">
       <PackagePath>Xamarin.Forms.Platform.UAP\Xamarin.Forms.Platform.UAP.xr.xml</PackagePath>
-      <Modified>2018-11-13T23:15:20.000</Modified>
+      <Modified>2019-01-04T02:17:00.000</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.UWP\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2018-12-05T17:28:25.952</Modified>
+      <Modified>2019-01-22T00:43:37.242</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.UWP\bin\x86\Debug\Core\saac.UWP.exe">
       <PackagePath>saac.UWP.exe</PackagePath>
-      <Modified>2018-12-06T10:24:14.333</Modified>
+      <Modified>2019-01-22T00:51:26.149</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

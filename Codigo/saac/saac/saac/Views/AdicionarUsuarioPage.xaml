@@ -16,33 +16,39 @@
 
 
     <ContentPage.Content>
-        <StackLayout Padding="10,10,10,10" Spacing="20">
-            
-            <Image Source="{Binding User.Foto}"
+        <StackLayout Padding="10,10,10,10">
+            <Frame BorderColor="{StaticResource CorPrincipal}">
+                <StackLayout Spacing="20">
+
+                    <Image Source="{Binding User.Foto}"
                    HeightRequest="100"
                    WidthRequest="100" VerticalOptions="Start"/>
 
-            <Entry Text="{Binding User.Nome}" Placeholder="Nome"/>
+                    <Entry Text="{Binding User.Nome}" Placeholder="Nome"/>
 
-            <Picker Title="Sexo" TextColor="{StaticResource CorPrincipal}"
+                    <Picker Title="Sexo" TextColor="{StaticResource CorPrincipal}"
                     SelectedItem="{Binding User.Sexo, Converter= {StaticResource boolToStringConverterSexo}}">
-                <Picker.Items>
-                    <x:String>Masculino</x:String>
-                    <x:String>Feminino</x:String>
-                </Picker.Items>
-            </Picker>
+                        <Picker.Items>
+                            <x:String>Masculino</x:String>
+                            <x:String>Feminino</x:String>
+                        </Picker.Items>
+                    </Picker>
 
-            <Entry Text="{Binding User.Email}" Placeholder="Email"/>
+                    <Entry Text="{Binding User.Email}" Placeholder="Email"/>
 
-            <Label Text="Data de nascimento" TextColor="{StaticResource CorPrincipal}"/>
-            <DatePicker Date="{Binding User.DtNasci}"/>
+                    <Label Text="Data de nascimento" TextColor="{StaticResource CorPrincipal}"/>
+                    <DatePicker Date="{Binding User.DtNasci}"/>
 
-            <Button Text="Salvar" 
+                    <Button Text="Salvar" 
                     Style="{StaticResource BotaoStyle}"
                     Command="{Binding SalvarUsuarioCommand}"/>
 
 
+                </StackLayout>
+
+            </Frame>
         </StackLayout>
+        
     </ContentPage.Content>
   
 </ContentPage>

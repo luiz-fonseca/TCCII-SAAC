@@ -17,7 +17,7 @@
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
-        <StackLayout Padding="10,10,10,10">
+        <StackLayout Padding="5,5,5,5">
             <ListView ItemsSource="{Binding Grupos}" 
                       HasUnevenRows="True" 
                       IsPullToRefreshEnabled="True" 
@@ -32,16 +32,21 @@
 
                 <ListView.Header>
                     <StackLayout Spacing="10">
-                        <Label Text="{Binding Concursos.Titulo}"
-                               Style="{StaticResource TitleStyle}"/>
-                        
-                        <Label Text="{Binding Concursos.Descricao}"
-                               FontSize="{StaticResource FonteTitulo}"/>
-                        
-                        <Label Text="{Binding Concursos.Detalhes}" 
-                               Style="{StaticResource TitleDivisoriaStyle}"/>
+                        <Frame BorderColor="{StaticResource CorPrincipal}">
+                            <StackLayout>
+                                <Label Text="{Binding Concursos.Titulo}"
+                                    Style="{StaticResource TitleStyle}"/>
 
-                        <Label/>
+                                <Label Text="{Binding Concursos.Descricao}"
+                                       FontSize="{StaticResource FonteTitulo}"
+                                       FontAttributes="{StaticResource FonteItalico}"/>
+
+                                <Label Text="{Binding Concursos.Detalhes}" 
+                                       FontSize="{StaticResource FonteTitulo}"/>
+                            </StackLayout>
+                            
+                        </Frame>
+                        
                         <Label Text="Grupos Disponíveis"
                                Style="{StaticResource TitleDivisoriaStyle}"/>
                         
@@ -57,14 +62,17 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Padding="10">
-                                <Label Style="{StaticResource TitleStyle}" 
+                            <Frame BorderColor="{StaticResource CorPrincipal}" Margin="5">
+                                <StackLayout Padding="10">
+                                    <Label Style="{StaticResource TitleStyle}" 
                                        Text="{Binding Nome}"/>
-                                
-                                <Label Text="{Binding Descricao}" 
+
+                                    <Label Text="{Binding Descricao}" 
                                        FontSize="{StaticResource FonteSubTitulo}"/>
 
-                            </StackLayout>
+                                </StackLayout>
+
+                            </Frame>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

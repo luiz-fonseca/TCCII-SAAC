@@ -10,7 +10,8 @@
     <ContentPage.Content>
         <StackLayout Padding="10,10,10,10" Spacing="10">
 
-            <ListView ItemsSource="{Binding GerenciarConcursos}">
+            <ListView ItemsSource="{Binding GerenciarConcursos}"
+                      HasUnevenRows="True">
 
                 <ListView.Behaviors>
                     <behaviors:EventToCommandBehavior   EventName="ItemTapped" 
@@ -27,9 +28,11 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Padding="10">
-                                <Label Style="{StaticResource TitleStyle}" Text="{Binding Nome}"/>
-                            </StackLayout>
+                            <Frame BorderColor="{StaticResource CorPrincipal}" Margin="5">
+                                <StackLayout Padding="10">
+                                    <Label Style="{StaticResource TitleStyle}" Text="{Binding Nome}"/>
+                                </StackLayout>
+                            </Frame>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

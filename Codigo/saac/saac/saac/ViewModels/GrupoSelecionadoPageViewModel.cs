@@ -387,6 +387,7 @@ namespace saac.ViewModels
                     Publication.CodUsuario = UserId;
                     Publication.CodGrupo = Grupos.Id;
                     Publication.Texto = Texto;
+                    Publication.Resolvido = false;
                     Publication.DtPublicacao = DateTime.Now;
                     Publication.DtVisualizacao = DateTime.Now;
 
@@ -395,6 +396,7 @@ namespace saac.ViewModels
                     Texto = string.Empty;
 
                     AtualizarPublicacoes();
+                    
                 }
                 else
                 {
@@ -456,7 +458,7 @@ namespace saac.ViewModels
                         var resulUser = await _clienteUser.Usuarios(auxList);
 
                         var resulatdo = resulPublication.Join(resulUser, p => p.CodUsuario, u => u.Id,
-                                                                (p, u) => new { p.Id, p.CodGrupo, p.CodUsuario, p.Texto, p.DtPublicacao, p.DtVisualizacao, u.Nome, u.Foto });
+                                                                (p, u) => new { p.Id, p.CodGrupo, p.CodUsuario, p.Texto, p.DtPublicacao, p.DtVisualizacao, p.Resolvido, u.Nome, u.Foto }).OrderByDescending(p => p.DtPublicacao);
 
                         PublicacoesGrupo.Clear();
                         foreach (var item in resulatdo)
@@ -464,6 +466,7 @@ namespace saac.ViewModels
                             PublicacoesGrupo.Add(item);
 
                         }
+                        
                     }
                     else
                     {
@@ -511,7 +514,7 @@ namespace saac.ViewModels
             var publica = new Publicacao();
             string Nome;
             string Foto;
-            var aux = Conversao(args, new { Id = "", CodGrupo = "", CodUsuario = "", Texto = "", DtPublicacao = DateTime.Now, DtVisualizacao = DateTime.Now, Nome = "", Foto = "" });
+            var aux = Conversao(args, new { Id = "", CodGrupo = "", CodUsuario = "", Texto = "", DtPublicacao = DateTime.Now, DtVisualizacao = DateTime.Now, Resolvido = false, Nome = "", Foto = "" });
 
             publica.Id = aux.Id;
             publica.CodGrupo = aux.CodGrupo;
@@ -519,6 +522,7 @@ namespace saac.ViewModels
             publica.Texto = aux.Texto;
             publica.DtPublicacao = aux.DtPublicacao;
             publica.DtVisualizacao = aux.DtVisualizacao;
+            publica.Resolvido = aux.Resolvido;
 
             Nome = aux.Nome;
             Foto = aux.Foto;

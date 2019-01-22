@@ -5,55 +5,60 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="saac.Views.SobrePage"
              Title="Sobre">
-    
-    <StackLayout Padding="10,10,10,10" Spacing="10">
-        <TableView Intent="Form" HasUnevenRows="True">
-            <TableRoot>
-                <TableSection Title="Sistema Auxiliar de Apoio ao Concurseiro (SaaC)" >
 
-                    <ViewCell>
-                        <StackLayout>
-                            <Label Text="Universidade Federal de Sergipe - UFS &#10;" Style="{StaticResource TitleStyle}"/>
-                        </StackLayout>
-                    </ViewCell>
+    <StackLayout Padding="10,10,10,10">
+        <Frame BorderColor="{StaticResource CorPrincipal}" Margin="5">
+            <StackLayout Spacing="10">
+                <TableView Intent="Form" HasUnevenRows="True">
+                    <TableRoot>
+                        <TableSection Title="Sistema Auxiliar de Apoio ao Concurseiro (SaaC)" >
 
-                    <ViewCell>
-                        <StackLayout>
-                            <Label Text="Campus Universitário Prof. Alberto Carvalho &#10;" Style="{StaticResource TitleStyle}"/>
-                        </StackLayout>
-                    </ViewCell>
+                            <ViewCell>
+                                <StackLayout>
+                                    <Label Text="Universidade Federal de Sergipe - UFS &#10;" Style="{StaticResource TitleStyle}"/>
+                                </StackLayout>
+                            </ViewCell>
 
-                    <ViewCell>
-                        <StackLayout>
-                            <Label Text="Departamento de Sistemas de Informação - DSI &#10;" Style="{StaticResource TitleStyle}"/>
-                        </StackLayout>
-                    </ViewCell>
+                            <ViewCell>
+                                <StackLayout>
+                                    <Label Text="Campus Universitário Prof. Alberto Carvalho &#10;" Style="{StaticResource TitleStyle}"/>
+                                </StackLayout>
+                            </ViewCell>
 
-                    <ViewCell>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="Disciplina: " Style="{StaticResource TitleStyle}"/>
-                            <Label Text="Trabalho de Conclusão de Curso II &#10;" FontSize="{StaticResource FonteSubTitulo}"/>
-                        </StackLayout>
-                    </ViewCell>
+                            <ViewCell>
+                                <StackLayout>
+                                    <Label Text="Departamento de Sistemas de Informação - DSI &#10;" Style="{StaticResource TitleStyle}"/>
+                                </StackLayout>
+                            </ViewCell>
 
-                    <ViewCell>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="Orientador: " Style="{StaticResource TitleStyle}"/>
-                            <Label Text="Dr. José Aélio &#10;" FontSize="{StaticResource FonteSubTitulo}"/>
-                        </StackLayout>
-                    </ViewCell>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Disciplina: " Style="{StaticResource TitleStyle}"/>
+                                    <Label Text="Trabalho de Conclusão de Curso II &#10;" FontSize="{StaticResource FonteSubTitulo}"/>
+                                </StackLayout>
+                            </ViewCell>
 
-                    <ViewCell>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="Discente: " Style="{StaticResource TitleStyle}"/>
-                            <Label Text="Luiz Antônio Fonsêca Sobrinho &#10;" FontSize="{StaticResource FonteSubTitulo}"/>
-                        </StackLayout>
-                    </ViewCell>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Orientador: " Style="{StaticResource TitleStyle}"/>
+                                    <Label Text="Dr. José Aélio &#10;" FontSize="{StaticResource FonteSubTitulo}"/>
+                                </StackLayout>
+                            </ViewCell>
 
-                </TableSection>
-            </TableRoot>
-        </TableView>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Discente: " Style="{StaticResource TitleStyle}"/>
+                                    <Label Text="Luiz Antônio Fonsêca Sobrinho &#10;" FontSize="{StaticResource FonteSubTitulo}"/>
+                                </StackLayout>
+                            </ViewCell>
 
+                        </TableSection>
+                    </TableRoot>
+                </TableView>
+
+            </StackLayout>
+
+        </Frame>
     </StackLayout>
   
 </ContentPage>

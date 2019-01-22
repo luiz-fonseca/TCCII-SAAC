@@ -12,6 +12,10 @@
         <ResourceDictionary>
             <Converters:BoolToStringConverter x:Key="boolToStringConverterTipoGrupo" x:TypeArguments="x:String" 
                                               TrueObject="Temporário" FalseObject="Padrão"/>
+
+            <Converters:BoolToStringConverter x:Key="boolToStringConverterTipoResposta" x:TypeArguments="x:String" 
+                                              TrueObject="Respondida" FalseObject="Em aberto"/>
+            
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -38,32 +42,39 @@
                 <ListView.Header>
                     <StackLayout Spacing="10">
 
-                        <Label Style="{StaticResource TitleStyle}" Text="{Binding Grupos.Nome}"/>
-                        <Label Text="{Binding Grupos.Descricao}" FontSize="{StaticResource FonteSubTitulo}"/>
-                        <Label Text="{Binding Grupos.Temporario, Converter= {StaticResource boolToStringConverterTipoGrupo}}" TextColor="{StaticResource CorPrincipal}"/>
-                        <Editor Text="{Binding Texto}" AutoSize="TextChanges" Placeholder="Publicação"/>
+                        <Frame BorderColor="{StaticResource CorPrincipal}">
+                            <StackLayout>
+                                <Label Style="{StaticResource TitleStyle}" Text="{Binding Grupos.Nome}"/>
+                                <Label Text="{Binding Grupos.Descricao}" FontSize="{StaticResource FonteSubTitulo}"/>
+                                <Label Text="{Binding Grupos.Temporario, Converter= {StaticResource boolToStringConverterTipoGrupo}}" TextColor="{StaticResource CorPrincipal}"/>
+                                <Editor Text="{Binding Texto}" AutoSize="TextChanges" Placeholder="Publicação"/>
 
-                        <StackLayout Orientation="Horizontal">
-                            <Button Text="Publicar" 
+                                <StackLayout Orientation="Horizontal">
+                                    <Button Text="Publicar" 
                                     Style="{StaticResource BotaoStyle}"
                                     HorizontalOptions="FillAndExpand"
                                     Command="{Binding SalvarPublicacaoCommand}"/>
 
-                            <Button Text="Seguir" 
+                                    <Button Text="Seguir" 
                                     Command="{Binding SeguirGrupoCommand}"
                                     HorizontalOptions="FillAndExpand"
                                     TextColor="White">
-                                <Button.Triggers>
-                                    <DataTrigger TargetType="Button"
+                                        <Button.Triggers>
+                                            <DataTrigger TargetType="Button"
                                                  Binding="{Binding Verificar}"
                                                  Value="True">
-                                        <Setter Property="Style" Value="{StaticResource BotaoStyle}"/>
-                                        <Setter Property="Text" Value="Seguindo"/>
-                                    </DataTrigger>
-                                </Button.Triggers>
-                            </Button>
+                                                <Setter Property="Style" Value="{StaticResource BotaoStyle}"/>
+                                                <Setter Property="Text" Value="Seguindo"/>
+                                            </DataTrigger>
+                                        </Button.Triggers>
+                                    </Button>
 
-                        </StackLayout>
+                                </StackLayout>
+
+                            </StackLayout>
+                        </Frame>
+                        
+                        
 
                         <Label Text="Publicações" Style="{StaticResource TitleStyle}"/>
                         <ActivityIndicator  IsRunning="{Binding IsLoading}"
@@ -77,21 +88,44 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout>
-                                <StackLayout Orientation="Horizontal">
-                                    <Image Source="{Binding Foto}"  HeightRequest="50"
+                            <Frame BorderColor="{StaticResource CorPrincipal}" Margin="5">
+                                <StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Image Source="{Binding Foto}"  HeightRequest="50"
                                             WidthRequest="50" VerticalOptions="Start"/>
 
-                                    <Label TextColor="{StaticResource CorPrincipal}"
+                                        <Label TextColor="{StaticResource CorPrincipal}"
                                            FontSize="{StaticResource FonteSubTitulo}"
                                            FontAttributes ="{StaticResource FonteNegrito}"
                                            Text="{Binding Nome}"/>
-                                  
-                                </StackLayout>
-                                <Label Text="{Binding Texto}" FontSize="{StaticResource FonteSubTitulo}" MaxLines="3"/>
-                                <Label/>
 
-                            </StackLayout>
+                                    </StackLayout>
+                                    <Label Text="{Binding Texto}" FontSize="{StaticResource FonteSubTitulo}" MaxLines="3"/>
+                                    <Label Text="{Binding Resolvido, Converter= {StaticResource boolToStringConverterTipoResposta}}" TextColor="{StaticResource CorPrincipal}">
+                                        <Label.Triggers>
+                                            <DataTrigger TargetType="Label"
+                                                         Binding="{Binding Resolvido}"
+                                                         Value="true">
+
+                                                <Setter Property="TextColor" Value="{StaticResource CorNotificacao}"/>
+
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+                                </StackLayout>
+
+                                <Frame.Triggers>
+                                    <DataTrigger TargetType="Frame"
+                                                 Binding="{Binding Resolvido}"
+                                                 Value="True">
+                                        <Setter 
+                                            Property="BorderColor"
+                                            Value="{StaticResource CorNotificacao}" />
+
+                                    </DataTrigger>
+                                </Frame.Triggers>
+
+                            </Frame>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

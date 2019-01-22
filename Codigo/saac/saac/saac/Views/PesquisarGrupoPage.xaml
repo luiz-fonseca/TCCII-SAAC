@@ -46,12 +46,15 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Padding="10">
-                                <Label Style="{StaticResource TitleStyle}" Text="{Binding Nome}"/>
-                                <Label Text="{Binding Descricao}" FontSize="{StaticResource FonteSubTitulo}" MaxLines="2"/>
-                                <Label Text="{Binding Temporario, Converter= {StaticResource boolToStringConverter}}" TextColor="{StaticResource CorPrincipal}"/>
+                            <Frame BorderColor="{StaticResource CorPrincipal}" Margin="5">
+                                <StackLayout Padding="10">
+                                    <Label Style="{StaticResource TitleStyle}" Text="{Binding Nome}"/>
+                                    <Label Text="{Binding Descricao}" FontSize="{StaticResource FonteSubTitulo}" MaxLines="2"/>
+                                    <Label Text="{Binding Temporario, Converter= {StaticResource boolToStringConverter}}" TextColor="{StaticResource CorPrincipal}"/>
 
-                            </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                            
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

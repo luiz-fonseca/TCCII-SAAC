@@ -36,11 +36,13 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Padding="10">
-                                <Label Style="{StaticResource TitleStyle}" Text="{Binding Titulo}"/>
-                                <Label Text="{Binding Descricao}" FontSize="{StaticResource FonteSubTitulo}"/>
+                            <Frame BorderColor="{StaticResource CorPrincipal}" Margin="5">
+                                <StackLayout Padding="10">
+                                    <Label Style="{StaticResource TitleStyle}" Text="{Binding Titulo}"/>
+                                    <Label Text="{Binding Descricao}" FontSize="{StaticResource FonteSubTitulo}"/>
 
-                            </StackLayout>
+                                </StackLayout>
+                            </Frame>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

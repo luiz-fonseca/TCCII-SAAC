@@ -43,7 +43,7 @@
                                             IsVisible="{Binding IsLoading}" 
                                             Color="{StaticResource CorPrincipal}"/>
                         <Label Text="{Binding Message}"/>
-                        
+
                     </StackLayout>
                 </ListView.Header>
 
@@ -60,15 +60,17 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Padding="10">
-                                <StackLayout Orientation="Horizontal">
-                                    <Label Style="{StaticResource TitleStyle}" Text="{Binding Nome}"/>
-                                    <Label HorizontalTextAlignment="End" HorizontalOptions="FillAndExpand" FontAttributes="{StaticResource FonteNegrito}" TextColor="{StaticResource CorNotificacao}" Text="{Binding QtdPubPendente}"/>
-                                </StackLayout>
-                                <Label Text="{Binding Descricao}" FontSize="{StaticResource FonteSubTitulo}" MaxLines="2"/>
-                                <Label Text="{Binding Temporario, Converter= {StaticResource boolToStringConverterTipoGrupo}}" TextColor="{StaticResource CorPrincipal}"/>
+                            <Frame BorderColor="{StaticResource CorPrincipal}" Margin="5" HasShadow="True">
+                                <StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Style="{StaticResource TitleStyle}" Text="{Binding Nome}"/>
+                                        <Label HorizontalTextAlignment="End" HorizontalOptions="FillAndExpand" FontAttributes="{StaticResource FonteNegrito}" TextColor="{StaticResource CorNotificacao}" Text="{Binding QtdPubPendente}"/>
+                                    </StackLayout>
+                                    <Label Text="{Binding Descricao}" FontSize="{StaticResource FonteSubTitulo}" MaxLines="2"/>
+                                    <Label Text="{Binding Temporario, Converter= {StaticResource boolToStringConverterTipoGrupo}}" TextColor="{StaticResource CorPrincipal}"/>
 
-                            </StackLayout>
+                                </StackLayout>
+                            </Frame>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
@@ -84,8 +86,9 @@
                     </OnPlatform>
                 </ContentView>
             </StackLayout>
-            
+
         </StackLayout>
+        
     </ContentPage.Content>
 
 </ContentPage>

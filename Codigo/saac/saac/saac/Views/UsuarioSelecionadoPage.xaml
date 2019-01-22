@@ -23,41 +23,47 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <StackLayout Padding="10,10,10,10" Spacing="20">
-            <StackLayout Orientation="Horizontal">
-                <Image Source="{Binding User.Foto}"  HeightRequest="100"
+        <StackLayout Padding="10,10,10,10">
+            <Frame BorderColor="{StaticResource CorPrincipal}">
+                <StackLayout Spacing="20">
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="{Binding User.Foto}"  HeightRequest="100"
                        WidthRequest="100" VerticalOptions="Start"/>
 
-                <Label Style="{StaticResource TitleStyle}" Text="{Binding User.Nome}"/>
+                        <Label Style="{StaticResource TitleStyle}" Text="{Binding User.Nome}"/>
 
-            </StackLayout>
-            
-            <StackLayout Spacing="20">
-                <StackLayout>
-                    <Label Text="Sexo: " TextColor="{StaticResource CorPrincipal}"/>
-                    <Label Text="{Binding User.Sexo, Converter= {StaticResource boolToStringConverterSexo}}" />
+                    </StackLayout>
+
+                    <StackLayout Spacing="20">
+                        <StackLayout>
+                            <Label Text="Sexo: " TextColor="{StaticResource CorPrincipal}"/>
+                            <Label Text="{Binding User.Sexo, Converter= {StaticResource boolToStringConverterSexo}}" />
+
+                        </StackLayout>
+
+                        <StackLayout>
+                            <Label Text="Data de nascimento: " TextColor="{StaticResource CorPrincipal}"/>
+                            <Label Text="{Binding User.DtNasci}"/>
+                        </StackLayout>
+
+                        <StackLayout>
+                            <Label Text="Email: " TextColor="{StaticResource CorPrincipal}"/>
+                            <Label Text="{Binding User.Email}"/>
+                        </StackLayout>
+
+                        <StackLayout>
+                            <Label Text="Administrador: " TextColor="{StaticResource CorPrincipal}"/>
+                            <Label Text="{Binding User.Administrador, Converter= {StaticResource boolToStringConverterAdm}}" />
+
+                        </StackLayout>
+
+                    </StackLayout>
 
                 </StackLayout>
 
-                <StackLayout>
-                    <Label Text="Data de nascimento: " TextColor="{StaticResource CorPrincipal}"/>
-                    <Label Text="{Binding User.DtNasci}"/>
-                </StackLayout>
-
-                <StackLayout>
-                    <Label Text="Email: " TextColor="{StaticResource CorPrincipal}"/>
-                    <Label Text="{Binding User.Email}"/>
-                </StackLayout>
-
-                <StackLayout>
-                    <Label Text="Administrador: " TextColor="{StaticResource CorPrincipal}"/>
-                    <Label Text="{Binding User.Administrador, Converter= {StaticResource boolToStringConverterAdm}}" />
-
-                </StackLayout>
-
-            </StackLayout>
-            
+            </Frame>
         </StackLayout>
+        
     </ContentPage.Content>
   
 </ContentPage>

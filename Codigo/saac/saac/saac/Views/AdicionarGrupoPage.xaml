@@ -7,27 +7,34 @@
              Title="Grupo">
 
     <ContentPage.Content>
-        <StackLayout Spacing="20" Padding="10, 0, 10, 0"
-                         VerticalOptions="Center">
 
-            <Label Text="{Binding Mensagem}" Style="{StaticResource TitleStyle}"/>
+        <StackLayout Padding="10, 0, 10, 0" VerticalOptions="Center">
+            <Frame BorderColor="{StaticResource CorPrincipal}">
+                <StackLayout Spacing="20" >
 
-            <Entry Placeholder="Nome do Grupo"
+                    <Label Text="{Binding Mensagem}" Style="{StaticResource TitleStyle}"/>
+
+                    <Entry Placeholder="Nome do Grupo"
                    Text="{Binding Grupos.Nome}"
                    MaxLength="30"/>
 
-            
-                
-            <Editor Text="{Binding Grupos.Descricao}" 
+
+
+                    <Editor Text="{Binding Grupos.Descricao}" 
                     AutoSize="TextChanges"
                     MaxLength="150"
                     Placeholder="Descrição"/>
 
-            
-            <Button Text="Salvar" 
+
+                    <Button Text="Salvar" 
                     Style="{StaticResource BotaoStyle}"
                     Command="{Binding SalvarGrupoCommand}"/>
 
+
+
+                </StackLayout>
+
+            </Frame>
         </StackLayout>
 
     </ContentPage.Content>

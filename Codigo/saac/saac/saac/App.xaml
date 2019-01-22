@@ -13,6 +13,7 @@
             <Color x:Key="CorPrincipal">#0BC433</Color>
             <Color x:Key="CorDestaqueDoPrincipal">White</Color>
             <Color x:Key="CorNotificacao">Red</Color>
+            <Color x:Key="CorQuestaoRespondida">#9AFC8C</Color>
 
             <!--Label-->
             <OnPlatform x:TypeArguments="x:Double" x:Key="FonteTitulo">
@@ -28,6 +29,7 @@
             </OnPlatform>
 
             <FontAttributes x:Key="FonteNegrito">Bold</FontAttributes>
+            <FontAttributes x:Key="FonteItalico">Italic</FontAttributes>
 
 
             <!--Styles-->

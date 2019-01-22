@@ -21,6 +21,9 @@ namespace saac.Models
         [JsonProperty(PropertyName = "texto")]
         public string Texto { get; set; }
 
+        [JsonProperty(PropertyName = "resolvido")]
+        public bool Resolvido { get; set; }
+
         private DateTime _dtPublicacao;
         [JsonProperty(PropertyName = "dtPublicacao")]
         public DateTime DtPublicacao

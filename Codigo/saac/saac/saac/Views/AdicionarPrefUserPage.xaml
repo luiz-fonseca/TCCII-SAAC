@@ -7,35 +7,39 @@
              Title="Usuário">
 
     <StackLayout Padding="10,10,10,10">
-        <TableView Intent="Form">
-            <TableRoot>
-                <TableSection Title="Preferências de Usuário">
-                    <SwitchCell On="{Binding Preferencias.Ti}" Text="Ti"/>
-                    <SwitchCell On="{Binding Preferencias.Saude}" Text="Saúde"/>
-                    <SwitchCell On="{Binding Preferencias.Licenciatura}" Text="Licenciatura"/>
-                    <SwitchCell On="{Binding Preferencias.Financas}" Text="Finanças"/>
-                    <SwitchCell On="{Binding Preferencias.Administracao}" Text="Administração"/>
-                    <SwitchCell On="{Binding Preferencias.Militar}" Text="Militar"/>
-                    <SwitchCell On="{Binding Preferencias.Outra}" Text="Outra"/>
+        <Frame BorderColor="{StaticResource CorPrincipal}">
+            <StackLayout>
+                <TableView Intent="Form">
+                    <TableRoot>
+                        <TableSection Title="Preferências de Usuário">
+                            <SwitchCell On="{Binding Preferencias.Ti}" Text="Ti"/>
+                            <SwitchCell On="{Binding Preferencias.Saude}" Text="Saúde"/>
+                            <SwitchCell On="{Binding Preferencias.Licenciatura}" Text="Licenciatura"/>
+                            <SwitchCell On="{Binding Preferencias.Financas}" Text="Finanças"/>
+                            <SwitchCell On="{Binding Preferencias.Administracao}" Text="Administração"/>
+                            <SwitchCell On="{Binding Preferencias.Militar}" Text="Militar"/>
+                            <SwitchCell On="{Binding Preferencias.Outra}" Text="Outra"/>
 
-                </TableSection>
-                
-                <TableSection>
-                    <ViewCell>
-                        <StackLayout>
-                            <Button Text="Salvar" 
+                        </TableSection>
+
+                        <TableSection>
+                            <ViewCell>
+                                <StackLayout>
+                                    <Button Text="Salvar" 
                                     Style="{StaticResource BotaoStyle}"
                                     Command="{Binding SalvarCommand}"/>
 
-                        </StackLayout>
+                                </StackLayout>
 
-                    </ViewCell>
-                </TableSection>
-            </TableRoot>
+                            </ViewCell>
+                        </TableSection>
+                    </TableRoot>
 
-        </TableView>
+                </TableView>
 
+            </StackLayout>
+
+        </Frame>
     </StackLayout>
-
 
 </ContentPage>
