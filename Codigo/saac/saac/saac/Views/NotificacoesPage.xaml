@@ -7,13 +7,16 @@
             x:Class="saac.Views.NotificacoesPage"
             Title="{Binding Titulo}"
             BarTextColor="{StaticResource CorPrincipal}"
-            BarBackgroundColor="{StaticResource CorDestaqueDoPrincipal}">
+            BarBackgroundColor="{StaticResource CorDestaqueDoPrincipal}"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            android:TabbedPage.BarItemColor="{StaticResource CorPrincipal}"
+            android:TabbedPage.BarSelectedItemColor="{StaticResource CorNotificacao}">
 
     <TabbedPage.Children>
         
-        <Views:NotificacoesConcursoPage/>
-        
-        <Views:NotificacoesGrupoPage/>
+        <Views:NotificacoesConcursoPage Icon="{OnPlatform Android=concurso}"/>
+
+        <Views:NotificacoesGrupoPage Icon="{OnPlatform Android=grupo}"/>
         
     </TabbedPage.Children>
 

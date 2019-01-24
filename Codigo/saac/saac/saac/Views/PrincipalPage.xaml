@@ -11,7 +11,7 @@
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
             android:TabbedPage.ToolbarPlacement="Bottom"
             android:TabbedPage.BarItemColor="{StaticResource CorDestaqueDoPrincipal}"
-            android:TabbedPage.BarSelectedItemColor="{StaticResource CorDestaqueDoPrincipal}">
+            android:TabbedPage.BarSelectedItemColor="{StaticResource CorNotificacao}">
 
     <NavigationPage.TitleView>
         <StackLayout Orientation="Horizontal">

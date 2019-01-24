@@ -3363,6 +3363,9 @@ namespace saac.Droid
 			// aapt resource value: 0x1
 			public const int common_google_signin_btn_text_light_normal_background = 1;
 			
+			// aapt resource value: 0x7F010002
+			public const int concurso = 2130771970;
+			
 			// aapt resource value: 0x7F090056
 			public const int design_bottom_navigation_item_background = 2131296342;
 			
@@ -3387,11 +3390,14 @@ namespace saac.Droid
 			// aapt resource value: 0x1
 			public const int googleg_standard_color_18 = 1;
 			
-			// aapt resource value: 0x7F010002
-			public const int icon = 2130771970;
+			// aapt resource value: 0x7F010003
+			public const int grupo = 2130771971;
 			
-			// aapt resource value: 0x7F010011
-			public const int ic_arrow_back = 2130771985;
+			// aapt resource value: 0x7F010004
+			public const int icon = 2130771972;
+			
+			// aapt resource value: 0x7F010013
+			public const int ic_arrow_back = 2130771987;
 			
 			// aapt resource value: 0x7F090054
 			public const int ic_audiotrack_dark = 2131296340;
@@ -3405,8 +3411,8 @@ namespace saac.Droid
 			// aapt resource value: 0x7F090057
 			public const int ic_dialog_close_light = 2131296343;
 			
-			// aapt resource value: 0x7F010009
-			public const int ic_errorstatus = 2130771977;
+			// aapt resource value: 0x7F010011
+			public const int ic_errorstatus = 2130771985;
 			
 			// aapt resource value: 0x7F090058
 			public const int ic_group_collapse_00 = 2131296344;
@@ -3921,8 +3927,8 @@ namespace saac.Droid
 			// aapt resource value: 0x1
 			public const int ic_plusone_tall_off_client = 1;
 			
-			// aapt resource value: 0x7F010010
-			public const int ic_successstatus = 2130771984;
+			// aapt resource value: 0x7F010012
+			public const int ic_successstatus = 2130771986;
 			
 			// aapt resource value: 0x7F0900FF
 			public const int ic_vol_type_speaker_dark = 2131296511;
@@ -3942,11 +3948,11 @@ namespace saac.Droid
 			// aapt resource value: 0x7F090104
 			public const int ic_vol_type_tv_light = 2131296516;
 			
-			// aapt resource value: 0x7F010003
-			public const int inicial = 2130771971;
+			// aapt resource value: 0x7F010005
+			public const int inicial = 2130771973;
 			
-			// aapt resource value: 0x7F010004
-			public const int livro = 2130771972;
+			// aapt resource value: 0x7F010006
+			public const int livro = 2130771974;
 			
 			// aapt resource value: 0x7F090105
 			public const int mr_button_connected_dark = 2131296517;
@@ -4011,8 +4017,8 @@ namespace saac.Droid
 			// aapt resource value: 0x7F09005C
 			public const int navigation_empty_icon = 2131296348;
 			
-			// aapt resource value: 0x7F010005
-			public const int notificacao = 2130771973;
+			// aapt resource value: 0x7F010007
+			public const int notificacao = 2130771975;
 			
 			// aapt resource value: 0x7F090001
 			public const int notification_action_background = 2131296257;
@@ -4185,11 +4191,11 @@ namespace saac.Droid
 			// aapt resource value: 0x1
 			public const int quantum_ic_volume_up_white_36 = 1;
 			
-			// aapt resource value: 0x7F010007
-			public const int roundedbg = 2130771975;
+			// aapt resource value: 0x7F010009
+			public const int roundedbg = 2130771977;
 			
-			// aapt resource value: 0x7F010008
-			public const int roundedbgdark = 2130771976;
+			// aapt resource value: 0x7F010010
+			public const int roundedbgdark = 2130771984;
 			
 			// aapt resource value: 0x7F090069
 			public const int tooltip_frame_dark = 2131296361;
@@ -4197,8 +4203,8 @@ namespace saac.Droid
 			// aapt resource value: 0x7F09006A
 			public const int tooltip_frame_light = 2131296362;
 			
-			// aapt resource value: 0x7F010006
-			public const int usuario = 2130771974;
+			// aapt resource value: 0x7F010008
+			public const int usuario = 2130771976;
 			
 			static Drawable()
 			{

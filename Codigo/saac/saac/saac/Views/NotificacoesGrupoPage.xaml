@@ -5,7 +5,7 @@
              xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="saac.Views.NotificacoesGrupoPage"
-             Title="Notificações de Grupos">
+             Title="Grupos">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Atualizar" Order="Secondary" Command="{Binding AtualizarCommand}"/>

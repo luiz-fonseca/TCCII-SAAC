@@ -784,7 +784,7 @@
           "lib/uap10.0.16299/Xamarin.Essentials.dll": {}
         }
       },
-      "Xamarin.Forms/3.4.0.1009999": {
+      "Xamarin.Forms/3.4.0.1029999": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "6.0.12",
@@ -816,7 +816,7 @@
           "Prism.DryIoc.Forms": "7.1.0.431",
           "Xamarin.Auth": "1.6.0.4",
           "Xamarin.Essentials": "1.0.1",
-          "Xamarin.Forms": "3.4.0.1009999"
+          "Xamarin.Forms": "3.4.0.1029999"
         },
         "compile": {
           "bin/placeholder/saac.dll": {}
@@ -1899,7 +1899,7 @@
           "lib/uap10.0.16299/Xamarin.Essentials.dll": {}
         }
       },
-      "Xamarin.Forms/3.4.0.1009999": {
+      "Xamarin.Forms/3.4.0.1029999": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "6.0.12",
@@ -1931,7 +1931,7 @@
           "Prism.DryIoc.Forms": "7.1.0.431",
           "Xamarin.Auth": "1.6.0.4",
           "Xamarin.Essentials": "1.0.1",
-          "Xamarin.Forms": "3.4.0.1009999"
+          "Xamarin.Forms": "3.4.0.1029999"
         },
         "compile": {
           "bin/placeholder/saac.dll": {}
@@ -3070,7 +3070,7 @@
           "lib/uap10.0.16299/Xamarin.Essentials.dll": {}
         }
       },
-      "Xamarin.Forms/3.4.0.1009999": {
+      "Xamarin.Forms/3.4.0.1029999": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "6.0.12",
@@ -3102,7 +3102,7 @@
           "Prism.DryIoc.Forms": "7.1.0.431",
           "Xamarin.Auth": "1.6.0.4",
           "Xamarin.Essentials": "1.0.1",
-          "Xamarin.Forms": "3.4.0.1009999"
+          "Xamarin.Forms": "3.4.0.1029999"
         },
         "compile": {
           "bin/placeholder/saac.dll": {}
@@ -4241,7 +4241,7 @@
           "lib/uap10.0.16299/Xamarin.Essentials.dll": {}
         }
       },
-      "Xamarin.Forms/3.4.0.1009999": {
+      "Xamarin.Forms/3.4.0.1029999": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "6.0.12",
@@ -4273,7 +4273,7 @@
           "Prism.DryIoc.Forms": "7.1.0.431",
           "Xamarin.Auth": "1.6.0.4",
           "Xamarin.Essentials": "1.0.1",
-          "Xamarin.Forms": "3.4.0.1009999"
+          "Xamarin.Forms": "3.4.0.1029999"
         },
         "compile": {
           "bin/placeholder/saac.dll": {}
@@ -5356,7 +5356,7 @@
           "lib/uap10.0.16299/Xamarin.Essentials.dll": {}
         }
       },
-      "Xamarin.Forms/3.4.0.1009999": {
+      "Xamarin.Forms/3.4.0.1029999": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "6.0.12",
@@ -5388,7 +5388,7 @@
           "Prism.DryIoc.Forms": "7.1.0.431",
           "Xamarin.Auth": "1.6.0.4",
           "Xamarin.Essentials": "1.0.1",
-          "Xamarin.Forms": "3.4.0.1009999"
+          "Xamarin.Forms": "3.4.0.1029999"
         },
         "compile": {
           "bin/placeholder/saac.dll": {}
@@ -6527,7 +6527,7 @@
           "lib/uap10.0.16299/Xamarin.Essentials.dll": {}
         }
       },
-      "Xamarin.Forms/3.4.0.1009999": {
+      "Xamarin.Forms/3.4.0.1029999": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "6.0.12",
@@ -6559,7 +6559,7 @@
           "Prism.DryIoc.Forms": "7.1.0.431",
           "Xamarin.Auth": "1.6.0.4",
           "Xamarin.Essentials": "1.0.1",
-          "Xamarin.Forms": "3.4.0.1009999"
+          "Xamarin.Forms": "3.4.0.1029999"
         },
         "compile": {
           "bin/placeholder/saac.dll": {}
@@ -7642,7 +7642,7 @@
           "lib/uap10.0.16299/Xamarin.Essentials.dll": {}
         }
       },
-      "Xamarin.Forms/3.4.0.1009999": {
+      "Xamarin.Forms/3.4.0.1029999": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "6.0.12",
@@ -7674,7 +7674,7 @@
           "Prism.DryIoc.Forms": "7.1.0.431",
           "Xamarin.Auth": "1.6.0.4",
           "Xamarin.Essentials": "1.0.1",
-          "Xamarin.Forms": "3.4.0.1009999"
+          "Xamarin.Forms": "3.4.0.1029999"
         },
         "compile": {
           "bin/placeholder/saac.dll": {}
@@ -8813,7 +8813,7 @@
           "lib/uap10.0.16299/Xamarin.Essentials.dll": {}
         }
       },
-      "Xamarin.Forms/3.4.0.1009999": {
+      "Xamarin.Forms/3.4.0.1029999": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "6.0.12",
@@ -8845,7 +8845,7 @@
           "Prism.DryIoc.Forms": "7.1.0.431",
           "Xamarin.Auth": "1.6.0.4",
           "Xamarin.Essentials": "1.0.1",
-          "Xamarin.Forms": "3.4.0.1009999"
+          "Xamarin.Forms": "3.4.0.1029999"
         },
         "compile": {
           "bin/placeholder/saac.dll": {}
@@ -15390,10 +15390,10 @@
         "xamarin.essentials.nuspec"
       ]
     },
-    "Xamarin.Forms/3.4.0.1009999": {
-      "sha512": "pgqRxgD23FJHG2B7zOxf4Fm+KYgoWctUJp8hNtdZgAt43RIiK3VgM11wJf3S0SkMIsXQCUL0yYQmR8gR/njltA==",
+    "Xamarin.Forms/3.4.0.1029999": {
+      "sha512": "qupCyyDo1x3c0BfroaTOhkc6wjeBXQnRLkUhvlgfVmZAcBjSEOaPRsa5/HWShtnkgqnySrkwzYEu3N0dG0pn7Q==",
       "type": "package",
-      "path": "xamarin.forms/3.4.0.1009999",
+      "path": "xamarin.forms/3.4.0.1029999",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -15534,7 +15534,7 @@
         "lib/uap10.0/Xamarin.Forms.Xaml.dll",
         "lib/uap10.0/Xamarin.Forms.Xaml.pdb",
         "lib/uap10.0/Xamarin.Forms.Xaml.xml",
-        "xamarin.forms.3.4.0.1009999.nupkg.sha512",
+        "xamarin.forms.3.4.0.1029999.nupkg.sha512",
         "xamarin.forms.nuspec"
       ]
     },
@@ -15552,7 +15552,7 @@
       "Prism.DryIoc.Forms >= 7.1.0.431",
       "Xamarin.Auth >= 1.6.0.4",
       "Xamarin.Essentials >= 1.0.1",
-      "Xamarin.Forms >= 3.4.0.1009999",
+      "Xamarin.Forms >= 3.4.0.1029999",
       "saac >= 1.0.0"
     ]
   },
@@ -15623,7 +15623,7 @@
           },
           "Xamarin.Forms": {
             "target": "Package",
-            "version": "[3.4.0.1009999, )"
+            "version": "[3.4.0.1029999, )"
           }
         },
         "imports": [

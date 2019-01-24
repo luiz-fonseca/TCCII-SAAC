@@ -6,7 +6,7 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              xmlns:controls="clr-namespace:saac.Controls;assembly=saac"
              x:Class="saac.Views.NotificacoesConcursoPage"
-             Title="Notificações de Concursos">
+             Title="Concursos">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Atualizar" Order="Secondary" Command="{Binding AtualizarCommand}"/>
