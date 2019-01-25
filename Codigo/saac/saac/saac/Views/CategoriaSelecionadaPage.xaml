@@ -5,7 +5,8 @@
              xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="saac.Views.CategoriaSelecionadaPage"
-             Title="Concursos">
+             Title="Concurso">
+
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Atualizar" Order="Secondary" Command="{Binding AtualizarCommand}"/>
@@ -13,7 +14,9 @@
     
     <ContentPage.Content>
         <StackLayout Padding="10,10,10,10" Spacing="10">
-
+            <SearchBar Placeholder="Concursos" Text="{Binding Pesquisar}"
+                       SearchCommand="{Binding PesquisarGrupoCommand}" />
+            
             <ListView ItemsSource="{Binding ConcursosAgrupados}" HasUnevenRows="True" 
                       IsPullToRefreshEnabled="True" RefreshCommand="{Binding AtualizarCommand}"
                       IsRefreshing="{Binding Atualizando}" IsGroupingEnabled="True" 
@@ -37,7 +40,7 @@
 
                 <ListView.Header>
                     <StackLayout>
-                        <Label Text="Concursos Disponíveis" Style="{StaticResource TitleStyle}"/>
+                        <!--<Label Text="Concursos Disponíveis" Style="{StaticResource TitleStyle}"/>-->
                         <ActivityIndicator  IsRunning="{Binding IsLoading}"
                                             IsVisible="{Binding IsLoading}" Color="{StaticResource CorPrincipal}"/>
                         <Label Text="{Binding Mensagem}"/>

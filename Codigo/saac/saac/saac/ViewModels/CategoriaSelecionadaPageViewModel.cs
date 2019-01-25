@@ -30,6 +30,13 @@ namespace saac.ViewModels
             set { SetProperty(ref _isLoading, value); }
         }
 
+        private string _pesquisar;
+        public string Pesquisar
+        {
+            get { return _pesquisar; }
+            set { SetProperty(ref _pesquisar, value); }
+        }
+
         public string Regiao { get; set; }
 
         public string UserId { get; set; }
@@ -51,6 +58,10 @@ namespace saac.ViewModels
         private readonly INavigationService _navigationService;
 
         private readonly IAzureServiceConcurso<Concurso> _clienteConcurso;
+
+        private DelegateCommand _pesquisarConcursoCommand;
+        public DelegateCommand PesquisarConcursoCommand =>
+            _pesquisarConcursoCommand ?? (_pesquisarConcursoCommand = new DelegateCommand(ExibirPesquisarConcurso));
 
         private DelegateCommand _atualizarCommand;
         public DelegateCommand AtualizarCommand =>
@@ -93,6 +104,62 @@ namespace saac.ViewModels
 
             IsLoading = false;
 
+        }
+
+        public void ExibirPesquisarConcurso()
+        {
+            IsLoading = true;
+
+            PesquisarConcurso();
+
+            IsLoading = false;
+
+        }
+
+        public void PesquisarConcurso()
+        {
+            try
+            {
+            
+                Mensagem = string.Empty;
+                
+                var auxConcurso = new List<Concurso>();
+
+                if (ConcursosAgrupados.Count != 0)
+                {
+                    foreach (var key in ConcursosAgrupados)
+                    {
+                        foreach (var item in key)
+                        {
+                            if (item.Titulo.ToLower().Contains(Pesquisar.ToLower()))
+                            {
+                                
+                                auxConcurso.Add(item);
+                            }
+                        }
+
+                    }
+                    var listaAgrupada = Agrupar(auxConcurso);
+                    Converter(listaAgrupada);
+
+                    if (auxConcurso.Count == 0)
+                    {
+                        Mensagem = "Nenhum resultado encontrado para sua busca.";
+
+                    }
+
+                }
+                else
+                {
+                    Mensagem = "Está região ainda não possui nenhum Concurso Disponível";
+                }
+       
+            }
+            catch (Exception)
+            {
+                UserDialogs.Instance.Toast("Ops! Ocorreu algum problema", TimeSpan.FromSeconds(2));
+
+            }
         }
 
         public async void ItemTapped(Concurso obj)

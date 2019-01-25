@@ -5,9 +5,17 @@
              xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              xmlns:Converters="clr-namespace:saac.Converters;assembly=saac"
-             x:Class="saac.Views.GrupoSelecionadoPage"
-             Title="Grupo">
+             x:Class="saac.Views.GrupoSelecionadoPage">
 
+    <NavigationPage.TitleView>
+        <StackLayout Padding="{OnPlatform UWP='0,10,0,0'}" >
+            <SearchBar Placeholder="Pesquisar no grupo" Text="{Binding Pesquisar}" 
+                       SearchCommand="{Binding PesquisarPublicacaoCommand}"/>
+            
+        </StackLayout>
+    </NavigationPage.TitleView>
+ 
+    
     <ContentPage.Resources>
         <ResourceDictionary>
             <Converters:BoolToStringConverter x:Key="boolToStringConverterTipoGrupo" x:TypeArguments="x:String" 

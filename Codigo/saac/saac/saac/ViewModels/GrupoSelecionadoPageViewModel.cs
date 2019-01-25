@@ -32,6 +32,13 @@ namespace saac.ViewModels
             set { SetProperty(ref _isLoading, value); }
         }
 
+        private string _pesquisar;
+        public string Pesquisar
+        {
+            get { return _pesquisar; }
+            set { SetProperty(ref _pesquisar, value); }
+        }
+
         private Publicacao _publication;
         public Publicacao Publication
         {
@@ -117,6 +124,10 @@ namespace saac.ViewModels
             _editarGrupoCommand ?? (_editarGrupoCommand = new DelegateCommand(EditarGrupo, CondicaoEditarGrupo))
             .ObservesProperty(() => Administrador);
 
+        private DelegateCommand _pesquisarPublicacaoCommand;
+        public DelegateCommand PesquisarPublicacaoCommand =>
+            _pesquisarPublicacaoCommand ?? (_pesquisarPublicacaoCommand = new DelegateCommand(ExibirPesquisarPublicacoes));
+
         private DelegateCommand _salvarPublicacaoCommand;
         public DelegateCommand SalvarPublicacaoCommand =>
             _salvarPublicacaoCommand ?? (_salvarPublicacaoCommand = new DelegateCommand(AdicionarPublicacao, CondicaoAdicionarPublicacao))
@@ -201,6 +212,96 @@ namespace saac.ViewModels
             IsLoading = false;
 
         }
+
+        public void ExibirPesquisarPublicacoes()
+        {
+            IsLoading = true;
+
+            PesquisarPublicacoes();
+
+            IsLoading = false;
+
+        }
+
+        public void PesquisarPublicacoes()
+        {
+            try
+            {
+                Message = string.Empty;
+                
+                if (PublicacoesGrupo.Count != 0)
+                {
+                    var auxPublicao = new List<object>(PublicacoesGrupo);
+
+                    PublicacoesGrupo.Clear();
+                    foreach (var item in auxPublicao)
+                    {
+                        var aux = ConversaoAux(item);
+                       
+                        if (((Publicacao)aux[0]).Texto.ToLower().Contains(Pesquisar.ToLower()))
+                        {
+                            var auxiliar = new
+                            {
+                                ((Publicacao)aux[0]).Id,
+                                ((Publicacao)aux[0]).CodGrupo,
+                                ((Publicacao)aux[0]).CodUsuario,
+                                ((Publicacao)aux[0]).Texto,
+                                ((Publicacao)aux[0]).DtPublicacao,
+                                ((Publicacao)aux[0]).DtVisualizacao,
+                                ((Publicacao)aux[0]).Resolvido,
+                                Nome = (string)aux[1],
+                                Foto = (string)aux[2]
+                                
+                            };
+                            PublicacoesGrupo.Add(auxiliar);
+                        }
+                    }
+
+                    if (PublicacoesGrupo.Count == 0)
+                    {
+                        Message = "Nenhum resultado encontrado para sua busca.";
+
+                    }
+                }
+                else
+                {
+                    Message = "Este grupo ainda não possui nenhuma publicação.";
+
+                }
+
+
+                /*var auxGrupo = new List<GrupoAux>();
+
+                if (MeusGroups.Count != 0)
+                {
+                    foreach (var key in MeusGroups)
+                    {
+                        foreach (var item in key)
+                        {
+                            if (item.Nome.ToLower().Contains(Pesquisar.ToLower()))
+                            {
+                                auxGrupo.Add(item);
+
+                            }
+                        }
+                    }
+                    var listaAgrupada = Agrupar(auxGrupo);
+                    Converter(listaAgrupada);
+
+                }
+                else
+                {
+                    Message = "Você ainda não possui nenhum Grupo. Crie um novo ou Entre em algum.";
+
+                }*/
+            }
+            catch (Exception)
+            {
+                UserDialogs.Instance.Toast("Ops! Ocorreu algum problema", TimeSpan.FromSeconds(2));
+
+            }
+        }
+
 
         public async void ExcluirGrupo()
         {

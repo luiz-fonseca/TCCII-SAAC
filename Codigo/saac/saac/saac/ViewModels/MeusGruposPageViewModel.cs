@@ -60,6 +60,13 @@ namespace saac.ViewModels
             set { SetProperty(ref _message, value); }
         }
 
+        private string _pesquisar;
+        public string Pesquisar
+        {
+            get { return _pesquisar; }
+            set { SetProperty(ref _pesquisar, value); }
+        }
+
         private ObservableCollection<Group<string, GrupoAux>> _meusGroups;
         public ObservableCollection<Group<string, GrupoAux>> MeusGroups
         {
@@ -80,6 +87,10 @@ namespace saac.ViewModels
         private DelegateCommand _pesquisarGrupoCommand;
         public DelegateCommand PesquisarGrupoCommand =>
             _pesquisarGrupoCommand ?? (_pesquisarGrupoCommand = new DelegateCommand(PesquisarGrupo));
+
+        private DelegateCommand _pesquisarMeusGruposCommand;
+        public DelegateCommand PesquisarMeusGruposCommand =>
+            _pesquisarMeusGruposCommand ?? (_pesquisarMeusGruposCommand = new DelegateCommand(ExibirPesquisarMeusGrupos));
 
         private DelegateCommand _atualizarCommand;
         public DelegateCommand AtualizarCommand =>
@@ -123,6 +134,60 @@ namespace saac.ViewModels
 
             IsLoading = false;
 
+        }
+
+        public void ExibirPesquisarMeusGrupos()
+        {
+            IsLoading = true;
+
+            PesquisarMeusGrupos();
+
+            IsLoading = false;
+
+        }
+
+        public void PesquisarMeusGrupos()
+        {
+            try
+            {
+                Message = string.Empty;
+
+                var auxGrupo = new List<GrupoAux>();
+
+                if (MeusGroups.Count != 0)
+                {
+                    foreach (var key in MeusGroups)
+                    {
+                        foreach (var item in key)
+                        {
+                            if (item.Nome.ToLower().Contains(Pesquisar.ToLower()))
+                            {
+                                auxGrupo.Add(item);
+
+                            }
+                        }
+                    }
+                    var listaAgrupada = Agrupar(auxGrupo);
+                    Converter(listaAgrupada);
+
+                    if (auxGrupo.Count == 0)
+                    {
+                        Message = "Nenhum resultado encontrado para sua busca.";
+
+                    }
+
+                }
+                else
+                {
+                    Message = "Você ainda não possui nenhum Grupo. Crie um novo ou Entre em algum.";
+
+                }
+            }
+            catch (Exception)
+            {
+                UserDialogs.Instance.Toast("Ops! Ocorreu algum problema", TimeSpan.FromSeconds(2));
+
+            }
         }
 
         public async Task MeusGruposDisponiveis(string id)

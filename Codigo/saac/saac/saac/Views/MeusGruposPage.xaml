@@ -24,6 +24,7 @@
 
     <ContentPage.Content>
         <StackLayout Padding="10,10,10,10" Spacing="10">
+            <SearchBar Placeholder="Meus Grupos" Text="{Binding Pesquisar}" SearchCommand="{Binding PesquisarMeusGruposCommand}" />
 
             <ListView ItemsSource="{Binding MeusGroups}" HasUnevenRows="True" 
                       IsPullToRefreshEnabled="True" RefreshCommand="{Binding AtualizarCommand}"
@@ -38,7 +39,7 @@
 
                 <ListView.Header>
                     <StackLayout>
-                        <Label Text="Meus Grupos" Style="{StaticResource TitleStyle}"/>
+                        <!--<Label Text="Meus Grupos" Style="{StaticResource TitleStyle}"/>-->
                         <ActivityIndicator  IsRunning="{Binding IsLoading}"
                                             IsVisible="{Binding IsLoading}" 
                                             Color="{StaticResource CorPrincipal}"/>
