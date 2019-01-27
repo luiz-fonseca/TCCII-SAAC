@@ -213,87 +213,66 @@ namespace saac.ViewModels
 
         }
 
-        public void ExibirPesquisarPublicacoes()
+        public async void ExibirPesquisarPublicacoes()
         {
             IsLoading = true;
 
-            PesquisarPublicacoes();
+            await PesquisarPublicacoes();
 
             IsLoading = false;
 
         }
 
-        public void PesquisarPublicacoes()
+        public async Task PesquisarPublicacoes()
         {
             try
             {
-                Message = string.Empty;
-                
-                if (PublicacoesGrupo.Count != 0)
+                var current = Connectivity.NetworkAccess;
+                if (current == NetworkAccess.Internet)
                 {
-                    var auxPublicao = new List<object>(PublicacoesGrupo);
+                    List<string> auxList = new List<string>();
 
-                    PublicacoesGrupo.Clear();
-                    foreach (var item in auxPublicao)
+                    var resulPublication = await _clientePublication.PesquisarPublicacoes(Grupos.Id, Pesquisar);
+
+                    if (resulPublication.Count != 0)
                     {
-                        var aux = ConversaoAux(item);
-                       
-                        if (((Publicacao)aux[0]).Texto.ToLower().Contains(Pesquisar.ToLower()))
+                        Message = string.Empty;
+
+                        foreach (var item in resulPublication)
                         {
-                            var auxiliar = new
+                            if (!auxList.Contains(item.CodUsuario))
                             {
-                                ((Publicacao)aux[0]).Id,
-                                ((Publicacao)aux[0]).CodGrupo,
-                                ((Publicacao)aux[0]).CodUsuario,
-                                ((Publicacao)aux[0]).Texto,
-                                ((Publicacao)aux[0]).DtPublicacao,
-                                ((Publicacao)aux[0]).DtVisualizacao,
-                                ((Publicacao)aux[0]).Resolvido,
-                                Nome = (string)aux[1],
-                                Foto = (string)aux[2]
-                                
-                            };
-                            PublicacoesGrupo.Add(auxiliar);
-                        }
-                    }
-
-                    if (PublicacoesGrupo.Count == 0)
-                    {
-                        Message = "Nenhum resultado encontrado para sua busca.";
-
-                    }
-                }
-                else
-                {
-                    Message = "Este grupo ainda não possui nenhuma publicação.";
-
-                }
-
-
-                /*var auxGrupo = new List<GrupoAux>();
-
-                if (MeusGroups.Count != 0)
-                {
-                    foreach (var key in MeusGroups)
-                    {
-                        foreach (var item in key)
-                        {
-                            if (item.Nome.ToLower().Contains(Pesquisar.ToLower()))
-                            {
-                                auxGrupo.Add(item);
+                                auxList.Add(item.CodUsuario);
 
                             }
                         }
-                    }
-                    var listaAgrupada = Agrupar(auxGrupo);
-                    Converter(listaAgrupada);
 
+                        var resulUser = await _clienteUser.Usuarios(auxList);
+
+                        var resulatdo = resulPublication.Join(resulUser, p => p.CodUsuario, u => u.Id,
+                                                                (p, u) => new { p.Id, p.CodGrupo, p.CodUsuario, p.Texto, p.DtPublicacao, p.DtVisualizacao, p.Resolvido, u.Nome, u.Foto }).OrderByDescending(p => p.DtPublicacao);
+
+                        PublicacoesGrupo.Clear();
+                        foreach (var item in resulatdo)
+                        {
+                            PublicacoesGrupo.Add(item);
+
+                        }
+
+                    }
+                    else
+                    {
+                        PublicacoesGrupo.Clear();
+                        Message = "Nenhum resultado encontrado.";
+
+                    }
                 }
                 else
                 {
-                    Message = "Você ainda não possui nenhum Grupo. Crie um novo ou Entre em algum.";
+                    PublicacoesGrupo.Clear();
+                    Message = "Você está sem conexão.";
 
-                }*/
+                }
             }
             catch (Exception)
             {

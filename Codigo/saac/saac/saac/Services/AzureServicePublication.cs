@@ -66,5 +66,17 @@ namespace saac.Services
             return resultado;
         }
 
+        async Task<List<Publicacao>> IAzureServicePublication<T>.PesquisarPublicacoes(string codGrupo, string pesquisarPublicacao)
+        {
+            var itens = new List<Publicacao>();
+
+            var query = _tablePublication
+                .Where(Publicacao => Publicacao.CodGrupo == codGrupo && 
+                                     Publicacao.Texto.ToLower().Contains(pesquisarPublicacao.ToLower()));
+
+            itens = await query.ToListAsync();
+
+            return itens;
+        }
     }
 }

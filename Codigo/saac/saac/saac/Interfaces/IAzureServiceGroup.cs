@@ -9,7 +9,8 @@ namespace saac.Interfaces
     public interface IAzureServiceGroup<T> : IAzureServiceBase<T>
     {
         Task<List<Grupo>> MeusGrupos(List<string> meusCodigos);
-        Task<List<Grupo>> PesquisarGrupos(string nomeGrupo);
+        Task<List<Grupo>> PesquisarGrupos(string pesquisarGrupo);
+        Task<List<Grupo>> PesquisarMeusGrupos(List<string> meusCodigos, string pesquisarGrupo);
 
     }
 }

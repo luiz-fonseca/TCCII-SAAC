@@ -39,17 +39,40 @@ namespace saac.Services
             return items;
         }
 
-        async Task<List<Grupo>> IAzureServiceGroup<T>.PesquisarGrupos(string nomeGrupo)
+        async Task<List<Grupo>> IAzureServiceGroup<T>.PesquisarGrupos(string pesquisarGrupo)
         {
             var itens = new List<Grupo>();
 
             var query = _tableGroup
-                .Where(Grupo => Grupo.Nome == nomeGrupo);
+                .Where(Grupo => Grupo.Nome.ToLower().Contains(pesquisarGrupo.ToLower()) || 
+                                Grupo.Descricao.ToLower().Contains(pesquisarGrupo.ToLower()));
 
             itens = await query.ToListAsync();
 
             return itens;
 
+        }
+
+        async Task<List<Grupo>> IAzureServiceGroup<T>.PesquisarMeusGrupos(List<string> meusCodigos, string pesquisarGrupo)
+        {
+            List<Grupo> items = new List<Grupo>();
+
+            foreach (var item in meusCodigos)
+            {
+                var query = _tableGroup
+                .Where(Grupo => Grupo.Id == item && (Grupo.Nome.ToLower().Contains(pesquisarGrupo.ToLower()) ||
+                                                     Grupo.Descricao.ToLower().Contains(pesquisarGrupo.ToLower())));
+
+                var resultado = await query.ToListAsync();
+
+                foreach (var aux in resultado)
+                {
+                    items.Add(aux);
+                }
+
+            }
+
+            return items;
         }
     }
 }

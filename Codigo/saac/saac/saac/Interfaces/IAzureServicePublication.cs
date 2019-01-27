@@ -12,5 +12,7 @@ namespace saac.Interfaces
         Task<int> MinhaPublicaco(string codPublicao, string CodUsuario);
         Task<int> QtdPublicacoesPendentes(string codGrupo, string codUsuario, DateTime dataVisualizacao);
         Task<List<Publicacao>> MinhasPublicacoes(string codUsuario);
+        Task<List<Publicacao>> PesquisarPublicacoes(string codGrupo, string pesquisarPublicacao);
+
     }
 }

@@ -136,50 +136,56 @@ namespace saac.ViewModels
 
         }
 
-        public void ExibirPesquisarMeusGrupos()
+        public async void ExibirPesquisarMeusGrupos()
         {
             IsLoading = true;
 
-            PesquisarMeusGrupos();
+            await PesquisarMeusGrupos();
 
             IsLoading = false;
 
         }
 
-        public void PesquisarMeusGrupos()
+        public async Task PesquisarMeusGrupos()
         {
             try
             {
-                Message = string.Empty;
-
-                var auxGrupo = new List<GrupoAux>();
-
-                if (MeusGroups.Count != 0)
+                var current = Connectivity.NetworkAccess;
+                if (current == NetworkAccess.Internet)
                 {
-                    foreach (var key in MeusGroups)
+                    var aux = await _clienteAux.MeusGrupos(UserId);
+                    if (aux.Count == 0)
                     {
-                        foreach (var item in key)
+                        MeusGroups.Clear();
+                        Message = "Nenhum resultado encontrado";
+
+                    }
+                    else
+                    {
+                        Message = string.Empty;
+
+                        var resultado = await _clienteGroup.PesquisarMeusGrupos(aux, Pesquisar);
+                        if (resultado.Count != 0)
                         {
-                            if (item.Nome.ToLower().Contains(Pesquisar.ToLower()))
-                            {
-                                auxGrupo.Add(item);
 
-                            }
+                            var resulPublicacao = await PublicacoesPendentes(resultado);
+                            var resultadoAgrupar = Agrupar(resulPublicacao);
+                            Converter(resultadoAgrupar);
+
                         }
+                        else
+                        {
+                            MeusGroups.Clear();
+                            Message = "Nenhum resultado encontrado";
+
+                        }
+
                     }
-                    var listaAgrupada = Agrupar(auxGrupo);
-                    Converter(listaAgrupada);
-
-                    if (auxGrupo.Count == 0)
-                    {
-                        Message = "Nenhum resultado encontrado para sua busca.";
-
-                    }
-
                 }
                 else
                 {
-                    Message = "Você ainda não possui nenhum Grupo. Crie um novo ou Entre em algum.";
+                    MeusGroups.Clear();
+                    Message = "Você está sem conexão.";
 
                 }
             }
@@ -188,6 +194,7 @@ namespace saac.ViewModels
                 UserDialogs.Instance.Toast("Ops! Ocorreu algum problema", TimeSpan.FromSeconds(2));
 
             }
+
         }
 
         public async Task MeusGruposDisponiveis(string id)

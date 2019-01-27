@@ -90,5 +90,20 @@ namespace saac.Services
 
             return concursos;
         }
+
+        async Task<List<Concurso>> IAzureServiceConcurso<T>.PesquisarConcursos(string regiao, string pesquisarPublicacao)
+        {
+            var itens = new List<Concurso>();
+
+            var query = _tableConcurso
+                .Where(Concurso => (Concurso.Regiao == regiao && Concurso.Visibilidade == true) && 
+                                   (Concurso.Titulo.ToLower().Contains(pesquisarPublicacao.ToLower()) ||
+                                    Concurso.Descricao.ToLower().Contains(pesquisarPublicacao.ToLower()) ||
+                                    Concurso.Detalhes.ToLower().Contains(pesquisarPublicacao.ToLower())));
+
+            itens = await query.ToListAsync();
+
+            return itens;
+        }
     }
 }

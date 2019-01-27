@@ -106,54 +106,43 @@ namespace saac.ViewModels
 
         }
 
-        public void ExibirPesquisarConcurso()
+        public async void ExibirPesquisarConcurso()
         {
             IsLoading = true;
 
-            PesquisarConcurso();
+            await PesquisarConcurso();
 
             IsLoading = false;
 
         }
 
-        public void PesquisarConcurso()
+        public async Task PesquisarConcurso()
         {
             try
             {
-            
-                Mensagem = string.Empty;
-                
-                var auxConcurso = new List<Concurso>();
-
-                if (ConcursosAgrupados.Count != 0)
+                var current = Connectivity.NetworkAccess;
+                if (current == NetworkAccess.Internet)
                 {
-                    foreach (var key in ConcursosAgrupados)
+                    var resultado = await _clienteConcurso.PesquisarConcursos(Regiao, Pesquisar);
+                    if (resultado.Count != 0)
                     {
-                        foreach (var item in key)
-                        {
-                            if (item.Titulo.ToLower().Contains(Pesquisar.ToLower()))
-                            {
-                                
-                                auxConcurso.Add(item);
-                            }
-                        }
+                        Mensagem = string.Empty;
 
+                        var listaAgrupada = Agrupar(resultado);
+
+                        Converter(listaAgrupada);
                     }
-                    var listaAgrupada = Agrupar(auxConcurso);
-                    Converter(listaAgrupada);
-
-                    if (auxConcurso.Count == 0)
+                    else
                     {
-                        Mensagem = "Nenhum resultado encontrado para sua busca.";
-
+                        ConcursosAgrupados.Clear();
+                        Mensagem = "Nenhum resultado encontrado";
                     }
-
                 }
                 else
                 {
-                    Mensagem = "Está região ainda não possui nenhum Concurso Disponível";
+                    Mensagem = "Você está sem conexão";
+
                 }
-       
             }
             catch (Exception)
             {
