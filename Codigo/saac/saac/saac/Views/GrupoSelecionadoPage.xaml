@@ -8,7 +8,7 @@
              x:Class="saac.Views.GrupoSelecionadoPage">
 
     <NavigationPage.TitleView>
-        <StackLayout Padding="{OnPlatform UWP='0,10,0,0'}" >
+        <StackLayout Padding="{OnPlatform UWP='0,10,0,0', Android='-5,0,0,0' }" >
             <SearchBar Placeholder="Pesquisar no grupo" Text="{Binding Pesquisar}" 
                        SearchCommand="{Binding PesquisarPublicacaoCommand}"/>
             

@@ -43,7 +43,6 @@ namespace saac
             containerRegistry.RegisterForNavigation<AdicionarGrupoPage>();
             containerRegistry.RegisterForNavigation<SobrePage>();
             containerRegistry.RegisterForNavigation<CategoriasConcursoPage>();
-            containerRegistry.RegisterForNavigation<CategoriaSelecionadaPage>();
             containerRegistry.RegisterForNavigation<MaisPage>();
             containerRegistry.RegisterForNavigation<AdicionarConcursoPage>();
             containerRegistry.RegisterForNavigation<AdicionarPrefConcursoPage>();

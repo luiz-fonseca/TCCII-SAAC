@@ -52,7 +52,7 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout BackgroundColor="{StaticResource CorPrincipal}">
-                                <Label Text="{Binding Key}" Style="{StaticResource TitleDivisoriaStyle}" />
+                                <Label Text="{Binding Key}" Style="{StaticResource TitleDivisoriaStyle}"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

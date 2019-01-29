@@ -137,7 +137,7 @@ namespace saac.ViewModels
             Regioes.Add("Norte");
             Regioes.Add("Sudeste");
             Regioes.Add("Sul");
-            Regioes.Add("Centro-Oeste");
+            Regioes.Add("Centro-Oeste");            
 
         }
 

@@ -20,21 +20,50 @@
     <ContentPage.Content>
         <StackLayout Padding="10,10,10,10" Spacing="10">
 
-            <ListView ItemsSource="{Binding Categorias}"
-                      IsPullToRefreshEnabled="True" 
-                      RefreshCommand="{Binding AtualizarCommand}"
-                      IsRefreshing="{Binding Atualizando}"
-                      HasUnevenRows="True">
+            <Grid Padding="-5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="6.7*" />
+                    <ColumnDefinition Width="3.3*" />
+                </Grid.ColumnDefinitions>
+
+                <SearchBar Text="{Binding Pesquisar}" Placeholder="Concursos" 
+                           Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand"
+                           SearchCommand="{Binding PesquisarConcursoCommand}"/>
+
+                <Picker ItemsSource="{Binding Categorias}" SelectedItem="{Binding Regiao}" SelectedIndex="{Binding ItemRegioes}"
+                        Grid.Row="0" Grid.Column="1" HorizontalOptions="EndAndExpand" 
+                        Title="{OnPlatform Android='Regiões Disponíveis'}"/>
+            </Grid>
+
+            <ListView ItemsSource="{Binding ConcursosAgrupados}" HasUnevenRows="True" 
+                      IsPullToRefreshEnabled="True" RefreshCommand="{Binding AtualizarCommand}"
+                      IsRefreshing="{Binding Atualizando}" IsGroupingEnabled="True" 
+                      GroupDisplayBinding="{Binding Key}" GroupShortNameBinding="{Binding Key}">
 
                 <ListView.Behaviors>
                     <behaviors:EventToCommandBehavior   EventName="ItemTapped" 
-                                                        Command="{Binding CategoriaSelectedCommand}"
+                                                        Command="{Binding ConcursoSelectedCommand}"
                                                         EventArgsParameterPath="Item" />
                 </ListView.Behaviors>
 
+                <ListView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Label Text="{Binding Key}" Style="{StaticResource TitleDivisoriaStyle}" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>
+
                 <ListView.Header>
-                    <StackLayout Orientation="Horizontal">
-                        <Label  Text="Regiões: &#10;" Style="{StaticResource TitleStyle}" />
+                    <StackLayout>
+                        <ActivityIndicator  IsRunning="{Binding IsLoading}"
+                                            IsVisible="{Binding IsLoading}" Color="{StaticResource CorPrincipal}"/>
+                        <Label Text="{Binding Mensagem}"/>
                     </StackLayout>
                 </ListView.Header>
 
@@ -43,12 +72,15 @@
                         <ViewCell>
                             <Frame BorderColor="{StaticResource CorPrincipal}" Margin="5">
                                 <StackLayout Padding="10">
-                                    <Label Style="{StaticResource TitleStyle}" Text="{Binding Nome}"/>
+                                    <Label Style="{StaticResource TitleStyle}" Text="{Binding Titulo}"/>
+                                    <Label Text="{Binding Descricao}" FontSize="{StaticResource FonteSubTitulo}"/>
+
                                 </StackLayout>
                             </Frame>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
+
             </ListView>
 
             <StackLayout Padding="-10,-10,-10,-10">

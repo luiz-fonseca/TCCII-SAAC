@@ -9,7 +9,9 @@ namespace saac.Interfaces
     public interface IAzureServiceConcurso<T> : IAzureServiceBase<T>
     {
         Task<List<Concurso>> ConcursosDisponiveis(string regiao);
+        Task<List<Concurso>> ConcursosDisponiveis();
         Task<List<Concurso>> PesquisarConcursos(string regiao, string pesquisarPublicacao);
+        Task<List<Concurso>> PesquisarConcursos(string pesquisarPublicacao);
         Task<List<Concurso>> MeusConcursos(List<string> codConcurso);
         Task<List<Concurso>> InscricoesFinalizadas(DateTime dataAtual);
         Task<List<Concurso>> ConcursosFinalizados(DateTime dataAutual);
