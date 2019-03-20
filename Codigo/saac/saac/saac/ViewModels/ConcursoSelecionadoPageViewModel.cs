@@ -151,6 +151,7 @@ namespace saac.ViewModels
         public async void AdicionarGrupo()
         {
             var navigationParams = new NavigationParameters();
+            navigationParams.Add("adicionar", "adicionar");
             navigationParams.Add("concursoId", Concursos.Id);
             navigationParams.Add("userId", UserId);
             navigationParams.Add("temporario", true);
@@ -239,9 +240,14 @@ namespace saac.ViewModels
                     }
                     else
                     {
-                        UserDialogs.Instance.Toast("Você está sem conexão", TimeSpan.FromSeconds(2));
+                        UserDialogs.Instance.Toast("Você cancelou está opção", TimeSpan.FromSeconds(2));
 
                     }
+
+                }
+                else
+                {
+                    UserDialogs.Instance.Toast("Você está sem conexão", TimeSpan.FromSeconds(2));
 
                 }
             }

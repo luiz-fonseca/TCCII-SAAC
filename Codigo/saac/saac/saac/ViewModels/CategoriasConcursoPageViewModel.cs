@@ -30,7 +30,7 @@ namespace saac.ViewModels
             }
         }
 
-        public bool VerificacaoRealizada { get; set; }
+        public bool VerificacaoRealizada { get; set; } = false;
 
         private string _userId;
         public string UserId
@@ -82,7 +82,7 @@ namespace saac.ViewModels
             set
             {
                 SetProperty(ref _itemRegioes, value);
-                InicializarEstados(_itemRegioes);
+                InicializarRegioes(_itemRegioes);
 
             }
         }
@@ -118,32 +118,28 @@ namespace saac.ViewModels
 
         private DelegateCommand _atualizarCommand;
         public DelegateCommand AtualizarCommand =>
-            _atualizarCommand ?? (_atualizarCommand = new DelegateCommand(AtualizarVerificador));
+            _atualizarCommand ?? (_atualizarCommand = new DelegateCommand(Atualizar));
 
         private DelegateCommand _administradorCommand;
         public DelegateCommand AdministradorCommand =>
             _administradorCommand ?? (_administradorCommand = new DelegateCommand(Administrador, CondicaoAdministrador))
             .ObservesProperty(()=> Access);
 
-        /*private DelegateCommand<object> _categoriaSelectedCommand;
-        public DelegateCommand<object> CategoriaSelectedCommand =>
-            _categoriaSelectedCommand != null ? _categoriaSelectedCommand : (_categoriaSelectedCommand = new DelegateCommand<object>(ItemTapped));
-*/
         private DelegateCommand<Concurso> _concursoSelectedCommand;
         public DelegateCommand<Concurso> ConcursoSelectedCommand =>
             _concursoSelectedCommand != null ? _concursoSelectedCommand : (_concursoSelectedCommand = new DelegateCommand<Concurso>(ItemTapped));
+
         #endregion
 
         #region Construtor
         public CategoriasConcursoPageViewModel(INavigationService navigationService, IAzureServiceUser<Usuario> clienteUser, IAzureServiceConcurso<Concurso> clienteConcurso) : base(navigationService)
         {
             _navigationService = navigationService;
-            _clienteUser = clienteUser;
 
+            _clienteUser = clienteUser;
             _clienteConcurso = clienteConcurso;
             
             ConcursosAgrupados = new ObservableCollection<Group<string, Concurso>>();
-            
             Categorias = new ObservableCollection<object>();
 
             ConnectivityTest();
@@ -154,6 +150,17 @@ namespace saac.ViewModels
         #region Métodos
         public void Atualizar()
         {
+            AtualizarConcursos();
+
+            if (VerificacaoRealizada == false)
+            {
+                AtualizarVerificador();
+
+            }          
+        }
+
+        public void AtualizarConcursos()
+        {
             Atualizando = true;
 
             ExibirConcursos(Regiao);
@@ -161,7 +168,7 @@ namespace saac.ViewModels
             Atualizando = false;
         }
 
-        public void InicializarEstados(int item)
+        public void InicializarRegioes(int item)
         {
             Atualizando = true;
 
@@ -202,8 +209,8 @@ namespace saac.ViewModels
 
         private void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
         {
-            //Access = e.NetworkAccess;
-            //var profiles = e.ConnectionProfiles;
+            Access = e.NetworkAccess;
+            var profiles = e.ConnectionProfiles;
             
         }
 
@@ -316,6 +323,7 @@ namespace saac.ViewModels
                 }
                 else
                 {
+                    ConcursosAgrupados.Clear();
                     Mensagem = "Você está sem conexão";
 
                 }
@@ -347,7 +355,6 @@ namespace saac.ViewModels
 
                     }
                     
-
                     if (resultado.Count != 0)
                     {
                         Mensagem = string.Empty;
@@ -364,6 +371,7 @@ namespace saac.ViewModels
                 }
                 else
                 {
+                    ConcursosAgrupados.Clear();
                     Mensagem = "Você está sem conexão";
 
                 }
@@ -373,7 +381,6 @@ namespace saac.ViewModels
                 UserDialogs.Instance.Toast("Ops! Ocorreu algum problema", TimeSpan.FromSeconds(2));
 
             }
-
         }
 
         public IEnumerable<Group<string, Concurso>> Agrupar(List<Concurso> concursos)
@@ -385,8 +392,7 @@ namespace saac.ViewModels
                             select new Group<string, Concurso>(grupos.Key, grupos);
 
             return resultado;
-
-
+            
         }
 
         public void Converter(IEnumerable<Group<string, Concurso>> listaAgrupada)
@@ -397,25 +403,8 @@ namespace saac.ViewModels
                 ConcursosAgrupados.Add(item);
 
             }
-
         }
 
-
-        /*public string ConversaoCategoria(object args)
-        {
-            var aux = Conversao(args, new { Nome = "" });
-
-            var resutado = aux.Nome;
-
-            return resutado;
-            
-        }
-
-        public T Conversao<T>(object objeto, T tipo)
-        {
-            return (T)objeto;
-
-        }*/
 
         public override void OnNavigatingTo(INavigationParameters parameters)
         {
@@ -431,7 +420,6 @@ namespace saac.ViewModels
                 Verificacao(UserId);
                 
             }
-            
         }
 
         public override void OnNavigatedFrom(INavigationParameters parameters)
@@ -439,7 +427,6 @@ namespace saac.ViewModels
             Connectivity.ConnectivityChanged -= Connectivity_ConnectivityChanged;
 
         }
-
         #endregion
     }
 }

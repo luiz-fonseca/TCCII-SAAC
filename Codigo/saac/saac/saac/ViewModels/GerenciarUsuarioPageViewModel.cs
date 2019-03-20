@@ -46,12 +46,12 @@ namespace saac.ViewModels
                 User.Foto = Preferences.Get("Picture", "");
                 User.DtNasci = Preferences.Get("Birthday", DateTime.Now);
                 //User.Sexo = false;
-                User.Administrador = false;
+                User.Administrador = true;
                 User.Endereco = "";
-                User.Id = await SecureStorage.GetAsync("UserId");
-                
+                User.Id = await SecureStorage.GetAsync("UserId")+""; 
+
                 var navigationParams = new NavigationParameters();
-                
+
                 var resultado = await _clienteUser.ExisteUsuario(User.Id);
 
                 if (resultado != 0)

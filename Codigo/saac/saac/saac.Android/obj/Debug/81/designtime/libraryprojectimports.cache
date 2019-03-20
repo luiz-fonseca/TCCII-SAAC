@@ -1,11 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Paths>
   <Jars>
-    <Jar>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\19\jl\arch-core-common.jar</Jar>
-    <Jar>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\20\jl\arch-lifecycle-common.jar</Jar>
-    <Jar>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\21\jl\bin\classes.jar</Jar>
+    <Jar>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\17\jl\arch-core-common.jar</Jar>
+    <Jar>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\18\jl\arch-lifecycle-common.jar</Jar>
+    <Jar>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\19\jl\bin\classes.jar</Jar>
+    <Jar>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\20\jl\bin\classes.jar</Jar>
+    <Jar>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\21\jl\support-annotations.jar</Jar>
     <Jar>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\22\jl\bin\classes.jar</Jar>
-    <Jar>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\23\jl\support-annotations.jar</Jar>
+    <Jar>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\23\jl\bin\classes.jar</Jar>
     <Jar>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\24\jl\bin\classes.jar</Jar>
     <Jar>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\25\jl\bin\classes.jar</Jar>
     <Jar>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\26\jl\bin\classes.jar</Jar>
@@ -20,60 +22,61 @@
     <Jar>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\34\jl\bin\classes.jar</Jar>
     <Jar>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\35\jl\bin\classes.jar</Jar>
     <Jar>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\36\jl\bin\classes.jar</Jar>
-    <Jar>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\37\jl\bin\classes.jar</Jar>
-    <Jar>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\38\jl\bin\classes.jar</Jar>
+    <Jar>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\39\jl\classes.jar</Jar>
+    <Jar>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\40\jl\classes.jar</Jar>
     <Jar>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\41\jl\classes.jar</Jar>
     <Jar>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\42\jl\classes.jar</Jar>
-    <Jar>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\43\jl\classes.jar</Jar>
-    <Jar>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\44\jl\classes.jar</Jar>
+    <Jar>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\47\jl\classes.jar</Jar>
+    <Jar>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\48\jl\classes.jar</Jar>
     <Jar>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\49\jl\classes.jar</Jar>
     <Jar>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\50\jl\classes.jar</Jar>
     <Jar>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\51\jl\classes.jar</Jar>
-    <Jar>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\52\jl\classes.jar</Jar>
-    <Jar>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\53\jl\classes.jar</Jar>
   </Jars>
   <ResolvedResourceDirectories>
     <ResolvedResourceDirectory>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\1\jl\res</ResolvedResourceDirectory>
     <ResolvedResourceDirectory>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\4\jl\res</ResolvedResourceDirectory>
     <ResolvedResourceDirectory>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\6\jl\res</ResolvedResourceDirectory>
-    <ResolvedResourceDirectory>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\24\jl\res</ResolvedResourceDirectory>
+    <ResolvedResourceDirectory>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\22\jl\res</ResolvedResourceDirectory>
+    <ResolvedResourceDirectory>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\26\jl\res</ResolvedResourceDirectory>
     <ResolvedResourceDirectory>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\28\jl\res</ResolvedResourceDirectory>
+    <ResolvedResourceDirectory>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\29\jl\res</ResolvedResourceDirectory>
     <ResolvedResourceDirectory>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\30\jl\res</ResolvedResourceDirectory>
     <ResolvedResourceDirectory>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\31\jl\res</ResolvedResourceDirectory>
     <ResolvedResourceDirectory>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\32\jl\res</ResolvedResourceDirectory>
     <ResolvedResourceDirectory>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\33\jl\res</ResolvedResourceDirectory>
-    <ResolvedResourceDirectory>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\34\jl\res</ResolvedResourceDirectory>
     <ResolvedResourceDirectory>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\35\jl\res</ResolvedResourceDirectory>
     <ResolvedResourceDirectory>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\37\jl\res</ResolvedResourceDirectory>
-    <ResolvedResourceDirectory>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\39\jl\res</ResolvedResourceDirectory>
+    <ResolvedResourceDirectory>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\44\jl\res</ResolvedResourceDirectory>
+    <ResolvedResourceDirectory>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\47\jl\res</ResolvedResourceDirectory>
+    <ResolvedResourceDirectory>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\48\jl\res</ResolvedResourceDirectory>
     <ResolvedResourceDirectory>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\49\jl\res</ResolvedResourceDirectory>
-    <ResolvedResourceDirectory>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\50\jl\res</ResolvedResourceDirectory>
-    <ResolvedResourceDirectory>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\51\jl\res</ResolvedResourceDirectory>
   </ResolvedResourceDirectories>
   <ResolvedAssetDirectories>
     <ResolvedAssetDirectory>obj\Debug\81\lp\1\jl\assets</ResolvedAssetDirectory>
     <ResolvedAssetDirectory>obj\Debug\81\lp\4\jl\assets</ResolvedAssetDirectory>
     <ResolvedAssetDirectory>obj\Debug\81\lp\6\jl\assets</ResolvedAssetDirectory>
-    <ResolvedAssetDirectory>obj\Debug\81\lp\32\jl\assets</ResolvedAssetDirectory>
-    <ResolvedAssetDirectory>obj\Debug\81\lp\39\jl\assets</ResolvedAssetDirectory>
+    <ResolvedAssetDirectory>obj\Debug\81\lp\30\jl\assets</ResolvedAssetDirectory>
+    <ResolvedAssetDirectory>obj\Debug\81\lp\37\jl\assets</ResolvedAssetDirectory>
+    <ResolvedAssetDirectory>obj\Debug\81\lp\44\jl\assets</ResolvedAssetDirectory>
   </ResolvedAssetDirectories>
   <ResolvedEnvironmentFiles />
   <ResolvedResourceDirectoryStamps>
     <ResolvedResourceDirectoryStamp>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\1.stamp</ResolvedResourceDirectoryStamp>
     <ResolvedResourceDirectoryStamp>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\4.stamp</ResolvedResourceDirectoryStamp>
     <ResolvedResourceDirectoryStamp>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\6.stamp</ResolvedResourceDirectoryStamp>
-    <ResolvedResourceDirectoryStamp>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\24.stamp</ResolvedResourceDirectoryStamp>
+    <ResolvedResourceDirectoryStamp>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\22.stamp</ResolvedResourceDirectoryStamp>
+    <ResolvedResourceDirectoryStamp>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\26.stamp</ResolvedResourceDirectoryStamp>
     <ResolvedResourceDirectoryStamp>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\28.stamp</ResolvedResourceDirectoryStamp>
+    <ResolvedResourceDirectoryStamp>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\29.stamp</ResolvedResourceDirectoryStamp>
     <ResolvedResourceDirectoryStamp>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\30.stamp</ResolvedResourceDirectoryStamp>
     <ResolvedResourceDirectoryStamp>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\31.stamp</ResolvedResourceDirectoryStamp>
     <ResolvedResourceDirectoryStamp>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\32.stamp</ResolvedResourceDirectoryStamp>
     <ResolvedResourceDirectoryStamp>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\33.stamp</ResolvedResourceDirectoryStamp>
-    <ResolvedResourceDirectoryStamp>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\34.stamp</ResolvedResourceDirectoryStamp>
     <ResolvedResourceDirectoryStamp>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\35.stamp</ResolvedResourceDirectoryStamp>
     <ResolvedResourceDirectoryStamp>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\37.stamp</ResolvedResourceDirectoryStamp>
-    <ResolvedResourceDirectoryStamp>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\39.stamp</ResolvedResourceDirectoryStamp>
+    <ResolvedResourceDirectoryStamp>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\44.stamp</ResolvedResourceDirectoryStamp>
+    <ResolvedResourceDirectoryStamp>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\47.stamp</ResolvedResourceDirectoryStamp>
+    <ResolvedResourceDirectoryStamp>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\48.stamp</ResolvedResourceDirectoryStamp>
     <ResolvedResourceDirectoryStamp>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\49.stamp</ResolvedResourceDirectoryStamp>
-    <ResolvedResourceDirectoryStamp>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\50.stamp</ResolvedResourceDirectoryStamp>
-    <ResolvedResourceDirectoryStamp>C:\Users\luizf\source\repos\TCCII-SAAC\Codigo\saac\saac\saac.Android\obj\Debug\81\lp\51.stamp</ResolvedResourceDirectoryStamp>
   </ResolvedResourceDirectoryStamps>
 </Paths>

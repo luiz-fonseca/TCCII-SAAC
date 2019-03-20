@@ -519,13 +519,13 @@ namespace saac.ViewModels
                 if (current == NetworkAccess.Internet)
                 {
                     List<string> auxList = new List<string>();
-
+                    
                     var resulPublication = await _clientePublication.Publicacoes(codGrupo);
-
+                    
                     if (resulPublication.Count != 0)
                     {
                         Message = string.Empty;
-
+                        
                         foreach (var item in resulPublication)
                         {
                             if (!auxList.Contains(item.CodUsuario))

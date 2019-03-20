@@ -1,0 +1,1 @@
+C:\Users\luizf\.nuget\packages\acr.userdialogs\7.0.3\lib\monoandroid81\Acr.UserDialogs.dll

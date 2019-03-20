@@ -105,13 +105,13 @@ namespace saac.ViewModels
             {
                 var codGrupo = await SalvarGrupo();
                 await SalvarAuxiliar(codGrupo, true);
-
+                
                 if (Temporario)
                 {
                     await SalvarConcursoGrupo(codGrupo);
 
                 }
-
+                
                 UserDialogs.Instance.Toast("Parabéns!! O cadastro" +
                     " do seu grupo foi realizado.", TimeSpan.FromSeconds(2));
 
@@ -163,7 +163,8 @@ namespace saac.ViewModels
         }
 
         
-         private async void SelecionarOpcao(){
+        private async void SelecionarOpcao()
+        {
             var current = Connectivity.NetworkAccess;
             if (current == NetworkAccess.Internet)
             {

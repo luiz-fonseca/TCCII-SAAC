@@ -71,7 +71,7 @@ namespace saac.ViewModels
 
         public async void Logout()
         {
-            //_facebookLogout.Logout();
+            _facebookLogout.Logout();
             SecureStorage.RemoveAll();
             Preferences.Clear();
 

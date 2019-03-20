@@ -435,7 +435,7 @@ namespace saac.ViewModels
                 if (current == NetworkAccess.Internet)
                 {
                     List<string> auxList = new List<string>();
-
+                    
                     var resulComment = await _clienteComment.Comentarios(codPublicacao);
 
                     if (resulComment.Count != 0)

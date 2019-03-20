@@ -76,7 +76,7 @@ namespace saac.ViewModels
                 navigationParams.Add("userId", User.Id);
                 navigationParams.Add("adicionar", "adicionar");
 
-                //await _clienteUsuario.AdicionarTable(User);
+                await _clienteUsuario.AdicionarTable(User);
                 await _navigationService.NavigateAsync("../AdicionarPrefUserPage", navigationParams, useModalNavigation: false);
                 UserDialogs.Instance.Toast("Parabéns!! O seu cadastro foi realizado.", TimeSpan.FromSeconds(2));
                 

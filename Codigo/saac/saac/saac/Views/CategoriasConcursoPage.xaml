@@ -11,15 +11,15 @@
     <ContentPage.ToolbarItems>
         <!--<OnPlatform x:TypeArguments="ToolbarItem">
             <On Platform="Android">-->
-                <ToolbarItem  Text="Gerenciar Concursos" Order="Secondary" Command="{Binding AdministradorCommand}"/>
-          <!--  </On>
+        <ToolbarItem  Text="Gerenciar Concursos" Order="Secondary" Command="{Binding AdministradorCommand}"/>
+        <ToolbarItem  Text="Atualizar" Order="Secondary" Command="{Binding AtualizarCommand}"/>
+        <!--  </On>
         </OnPlatform>-->
 
-    </ContentPage.ToolbarItems> 
-    
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
         <StackLayout Padding="10,10,10,10" Spacing="10">
-
             <Grid Padding="-5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
